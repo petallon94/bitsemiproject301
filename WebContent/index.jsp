@@ -12,7 +12,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Karma&family=Open+Sans:ital@1&family=Yeon+Sung&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2??family=Gothic+A1&family=Karma&family=Open+Sans:ital@1&family=Yeon+Sung&display=swap" rel="stylesheet">
 
 <title>Insert title here</title>
 <style type="text/css">
@@ -21,22 +21,12 @@
 	margin:0;
 	padding:0;
 	}
-	
-	body {
-		font-family: 'Karma';	
-	}
-	a{
-		color:black;
-		text-decoration: none;
-		font-family: 'Karma';		
-	}
 
 	div.layout div.menu{
 		display: flex;
 		justify-content: center;
 		font-size: 20px;
 		text-align: center;
-		top: 100px;
 	}
 	
 	div.layout div.login{
@@ -55,7 +45,7 @@
 <body>
 <div class="layout">
 	<div class="login">
-		<jsp:include page="login/loginmain.jsp"/>
+		<jsp:include page="layout/loginmenu.jsp"/>
 	</div>
 	<div class="menu">
 		<jsp:include page="layout/menu.jsp"/>
