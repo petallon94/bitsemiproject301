@@ -4,16 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<!-- bootstrap4 -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<!-- jQuery library -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <link href="https://fonts.googleapis.com/css2??family=Gothic+A1&family=Karma&family=Open+Sans:ital@1&family=Yeon+Sung&display=swap" rel="stylesheet">
-
 <title>Insert title here</title>
 <style type="text/css">
 	html, body {
@@ -23,15 +20,17 @@
 	}
 
 	div.layout div.menu{
-		display: flex;
-		justify-content: center;
-		font-size: 20px;
-		text-align: center;
+	display: flex;
+	justify-content: center;
+	font-size: 20px;
+	text-align: center;
+	font-family: 'Gothic A1', sans-serif;
 	}
 	
 	div.layout div.login{
-	display: flex;
+	display: flex;	
 	justify-content: flex-end;
+	font-family: 'Gothic A1', sans-serif;
 	}
 	
 </style>
@@ -39,7 +38,14 @@
 <%
 	//메인페이지에 들어갈 파일 읽기
 	String mainPage="layout/main.jsp";
-
+	if(request.getParameter("main")!=null){
+		mainPage=request.getParameter("main");
+	}else{%>
+	<script type="text/javascript">
+		localStorage.menu="menu1";
+	</script>
+	<%}
+//include는 앞에 url이 들어가면 안된다. 
 %>
 
 <body>
