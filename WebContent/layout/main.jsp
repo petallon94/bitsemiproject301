@@ -93,7 +93,7 @@ text-align: center;
 <!-- 사이트메인 우측배너 -->
 <div class="image-container">
 <div id="image-container_title">
-<h1>Dream your code</h1>
+<h1>Code your dream</h1>
 <h2>with STARBOTTLE</h2>
 </div>
 <img class="image-container_bg" src="./image/coffee-5132832_1920.jpg" alt="cafe4" style="width: 100%;">
