@@ -11,7 +11,7 @@ import java.sql.Statement;
 
 public class MysqlConnect {
 	String driver="com.mysql.jdbc.Driver";
-	String myurl="jdbc:mysql://bitmidproject.cggf5sghxawi.ap-northeast-2.rds.amazonaws.com:3306";
+	String myurl="jdbc:mysql://bitmidproject.cggf5sghxawi.ap-northeast-2.rds.amazonaws.com:3306/bitproject";
 	String myid="admin";
 	String mypass="bitproject";
 
