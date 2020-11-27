@@ -1,11 +1,15 @@
-
-<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<title>W3.CSS Template</title>
+<title>main page</title>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <style>
 body{
 font-family: 'Gothic A1', sans-serif;
@@ -13,12 +17,17 @@ font-family: 'Gothic A1', sans-serif;
 h1,h2,h3 {
 font-family: "Karma", sans-serif
 }
-.carousel-container {
+.carousel-container{
 width: 50%;
 }
 .image-container{
 width: 50%;
 }
+.carousel-inner img{
+width: 100%;
+height: 100%;
+}
+
 #image-container_bg{
 position: relative;
 width: 100%;
@@ -36,10 +45,7 @@ width: 100%;
     font-family: "Karma", sans-serif
 
 }
-.carousel-inner .item{
-	width: 100%;
-  	height: 100%;
-}
+
 .fixed-btn {
     position: fixed;
     z-index: 49;
@@ -71,23 +77,23 @@ text-align: center;
 	<li data-taget="#myCarousel" data-slide-to="2" ></li>
 </ol>
 <div class="carousel-inner">
-  <div class="item active">
+  <div class="carousel-item active">
     <img src="./image/closeup-coffee-machine-wide.jpg" alt="cafe1">
   </div>
-  <div class="item">
+  <div class="carousel-item">
     <img src="./image/close-up-of-hands-barista-wide.jpg" alt="cafe2">
 
   </div>
-  <div class="item">
+  <div class="carousel-item">
     <img src="./image/people-coffee-shop-wide.jpg" alt="cafe3">
   </div>
 </div>
-<a class="left carousel-control" href="#myCarousel" data-slide="prev">
-<span class="glyphicon glyphicon-chevron-left"></span>
-</a>
-<a class="right carousel-control" href="#myCarousel" data-slide="next">
-<span class="glyphicon glyphicon-chevron-right"></span>
-</a>
+  <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </a>
+  <a class="carousel-control-next" href="#myCarousel" data-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </a>
 </div>
 </div>
 <!-- 사이트메인 우측배너 -->
