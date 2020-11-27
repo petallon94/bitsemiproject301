@@ -1,3 +1,5 @@
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -9,28 +11,61 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  
+ <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap" rel="stylesheet">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: 'Noto Sans KR', sans-serif;}
+.w3-bar-block .w3-bar-item {padding:20px}
+</style>
 <title>Insert title here</title>
 </head>
 <body>
 
 <div class="container">
   <h2>메뉴 추가 화면</h2>
+  <br><hr>
+  <br>
   <form>
     <div class="menuform">
       <label for="menuname">메뉴이름</label>
       <input type="text" class="form-control" id="menuname"  name="menuname">
     </div>
+    <br>
+    <div class = "classform" >
+    <label for="menucata">분류</label>
+    <select name="menujob">
+     <%
+		String[] drinks = { "커피", "음료", "디저트", "프라푸치노" };
+						//for Sting co :colors 이렇게 써도 된다
+			for (int i = 0; i < drinks.length; i++) {
+				%>
+				<option value="drinks<%=i%>"><%=drinks[i]%></option>
+	<%};%> 
+	</select>
+    </div>
+    <br>
     <div class="menuform">
       <label for="menuprice">가격</label>
-      <input type="text" class="form-control" id="menuprice"  name="menuprice">
+      <input type="text" class="form-control" id="menuprice"  name="menuprice" required = "required">
     </div>
     <div class="menuform">
-      <label class="form-check-label">
-        <input class="form-check-input" type="checkbox" name="remember"> Remember me
-      </label>
+      <label for="menupthoto">상품 사진</label>
+      <input type="file" class="form-control" id="menuphoto"  name="menuphoto" required = "required">
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <br>
+    <div class="menuform">
+      <label class="menudesc"> 메뉴소개</label>
+    </div>
+    <br>
+    <div class="menuform">
+      <label class="menuday"> 판매시작일</label>
+      <%
+      SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String day = sdf.format(new Date()); %>
+		<input type= "date" name = "menuipgoday" value = "<%=day %>" required = "required">
+					
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary" onclick ="location.href='index.jsp?main=menu/menulist.jsp'">추가</button>
   </form>
 </div>
 
