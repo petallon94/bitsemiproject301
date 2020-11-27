@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Random;
 import java.util.Vector;
 
 import data.dto.MemberDto;
@@ -21,11 +22,10 @@ public class MemberDao {
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
-		String sql="select * from member where id=?";
+		String sql="select * from Login where id=?";
 		
 		conn=db.getMyConnection();
-		//conn=db.getGangsaConnection();
-		 try {
+		try {
 			pstmt=conn.prepareStatement(sql);
 			//바인딩
 			pstmt.setString(1, id);
@@ -46,26 +46,28 @@ public class MemberDao {
 		
 	//insert
 	public void insertMember(MemberDto dto) {
-		String sql="insert into member values (seq_mini.nextval,"
-	+"?,?,?,?,?,?,?,sysdate)";
+		String sql="insert into Login (id, password, address, addrdetail, birthday, gaipday, email, name, hp) values (?,?,?,?,?,now(),?,?,?)";
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		
 		conn=db.getMyConnection();
-		//conn=db.getGangsaConnection();
+		
 		try {
 			pstmt=conn.prepareStatement(sql);
 			//바인딩
 
 			pstmt.setString(1, dto.getId());
 			pstmt.setString(2, dto.getPassword());				
-			pstmt.setString(3, dto.getName());
-			pstmt.setString(4, dto.getAddress());
-			pstmt.setString(5, dto.getAddrdetail());
+			String address=dto.getPostcode()+dto.getAddress()+dto.getExtraaddr();
+			pstmt.setString(3, address);
+			pstmt.setString(4, dto.getAddrdetail());			
+			pstmt.setString(5, dto.getBirthday());
 			String email=dto.getEmail1()+"@"+dto.getEmail2();
 			pstmt.setString(6, email);
+			pstmt.setString(7, dto.getName());
 			String hp=dto.getHp1()+"-"+dto.getHp2()+"-"+dto.getHp3();
-			pstmt.setString(7, hp);
+			pstmt.setString(8, hp);
+			
 
 			//실행
 			pstmt.execute();			
@@ -84,9 +86,9 @@ public class MemberDao {
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
-		String sql="select * from member order by id asc";
+		String sql="select * from Login order by id asc";
 		conn=db.getMyConnection();
-		//conn=db.getGangsaConnection();
+		
 			try {
 				pstmt=conn.prepareStatement(sql);
 				rs=pstmt.executeQuery();
@@ -118,14 +120,14 @@ public class MemberDao {
 	public MemberDto getData(String num)
 	{
 		MemberDto dto=new MemberDto();
-		String sql="select * from member where num=?";
+		String sql="select * from Login where num=?";
 		
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		
 		conn=db.getMyConnection();
-		//conn=db.getGangsaConnection();
+		
 		try {
 			pstmt=conn.prepareStatement(sql);
 			//바인딩
@@ -162,14 +164,14 @@ public class MemberDao {
 	public String getNum(String id)
 	{
 		String num="";
-		String sql="select num from member where id=?";
+		String sql="select num from Login where id=?";
 		
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		
 		conn=db.getMyConnection();
-		//conn=db.getGangsaConnection();
+		
 		try {
 			pstmt=conn.prepareStatement(sql);
 			//바인딩
@@ -195,10 +197,10 @@ public class MemberDao {
 	{
 		Connection conn=null;
 		PreparedStatement pstmt=null;
-		String sql="update member set name=?, hp=?, email=?, address=?, addrdetail=? where num=?";
+		String sql="update Login set name=?, hp=?, email=?, address=?, addrdetail=? where num=?";
 		
 		conn=db.getMyConnection();
-		//conn=db.getGangsaConnection();
+		
 		try {
 			pstmt=conn.prepareStatement(sql);
 			//바인딩
@@ -228,10 +230,10 @@ public class MemberDao {
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
-		String sql="select * from member where id=? and pass=?";
+		String sql="select * from Login where id=? and pass=?";
 		
 		conn=db.getMyConnection();
-		//conn=db.getGangsaConnection(); 
+		
 		try {
 			pstmt=conn.prepareStatement(sql);
 			//바인딩
@@ -254,12 +256,12 @@ public class MemberDao {
 	//삭제하는 메서드
 		public void deleteMember(String id)
 		{
-			String sql="delete from member where id=?";
+			String sql="delete from Login where id=?";
 			Connection conn=null;
 			PreparedStatement pstmt=null;
 			
 			conn=db.getMyConnection();
-			//conn=db.getGangsaConnection();
+			
 			try {
 				pstmt=conn.prepareStatement(sql);
 				//바인딩
@@ -306,10 +308,10 @@ public class MemberDao {
 			Connection conn=null;
 			PreparedStatement pstmt=null;
 			ResultSet rs=null;
-			String sql="select name from member where id=?";
+			String sql="select name from Login where id=?";
 
 			conn=db.getMyConnection();
-			//conn=db.getGangsaConnection();
+			
 			try {
 				pstmt=conn.prepareStatement(sql);
 				//바인딩
@@ -325,6 +327,8 @@ public class MemberDao {
 			}
 			return name;
 		}
+		
+		
 
 
 }

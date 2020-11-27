@@ -9,8 +9,10 @@ public class MemberDto {
 	private String hp1;
 	private String hp2;
 	private String hp3;
+	private String postcode;	
 	private String address;
 	private String addrdetail;
+	private String extraaddr;
 	private String email1;
 	private String email2;
 	
@@ -62,6 +64,14 @@ public class MemberDto {
 	public void setHp3(String hp3) {
 		this.hp3 = hp3;
 	}
+	
+	public String getPostcode() {
+		return postcode;
+	}
+	public void setPostcode(String postcode) {
+		this.postcode = postcode;
+	}
+	
 	public String getAddress() {
 		return address;
 	}
@@ -73,6 +83,12 @@ public class MemberDto {
 	}
 	public void setAddrdetail(String addrdetail) {
 		this.addrdetail = addrdetail;
+	}
+	public String getExtraaddr() {
+		return extraaddr;
+	}
+	public void setExtraaddr(String extraaddr) {
+		this.extraaddr = extraaddr;
 	}
 	public String getEmail1() {
 		return email1;

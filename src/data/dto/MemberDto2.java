@@ -56,7 +56,7 @@ public class MemberDto2 {
 	}
 	public void setAddrdetail(String addrdetail) {
 		this.addrdetail = addrdetail;
-	}
+	}	
 	public String getHp() {
 		return hp;
 	}
