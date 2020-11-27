@@ -55,10 +55,10 @@
 <body>
 <div class="layout">
 	<div class="login">
-		<jsp:include page="login/loginmain.jsp"/>
+		<jsp:include page="map/map1.jsp"></jsp:include>
 	</div>
 	<div class="menu">
-		<jsp:include page="layout/menu.jsp"/>
+		<jsp:include page="map/map2.jsp"></jsp:include>
 	</div>
 	<div class="main">
 		<jsp:include page="<%=mainPage%>"/>
