@@ -87,19 +87,19 @@ $(function() {
 <!--mainmenu -->
 <nav class="mainmenu">
 	<ul>
-		<li class="mainmemu_title" menu="menu1">
+		<li menu="menu1">
 		<a href="<%=url %>/index.jsp?main=menu/menulist.jsp">커피메뉴</a>
 		</li>
-		<li class="mainmemu_title" menu="menu2">
+		<li menu="menu2">
 		<a href="<%=url %>/index.jsp?main=notice/noticelist.jsp">공지사항</a>
 		</li>		
 		<li menu="menu3">
 		<a href="<%=url %>/index.jsp"><img class="logo" src="./image/starbottle_logo.jpg" alt=""></a>
 		</li>
-		<li class="mainmemu_title" menu="menu4">
+		<li menu="menu4">
 		<a href="<%=url %>/index.jsp?main=location/locationlist.jsp">매장위치</a>
 		</li>
-		<li class="mainmemu_title" menu="menu5">
+		<li menu="menu5">
 		<a href="<%=url %>/index.jsp?main=event/eventlist.jsp">이벤트</a>
 	</ul>
 </nav>
