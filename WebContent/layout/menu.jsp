@@ -4,6 +4,12 @@
 <html>
 <title>Insert title here</title>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link href="https://fonts.googleapis.com/css2??family=Gothic+A1&family=Karma&family=Open+Sans:ital@1&family=Yeon+Sung&display=swap" rel="stylesheet">
+
 <style>
 nav.mainmenu {
 width: 1100px;
@@ -91,7 +97,7 @@ $(function() {
 		<a href="<%=url %>/index.jsp?main=menu/menulist.jsp">커피메뉴</a>
 		</li>
 		<li menu="menu2">
-		<a href="<%=url %>/index.jsp?main=notice/noticelist.jsp">공지사항</a>
+		<a href="<%=url %>/index.jsp?main=gonji/gonjilist.jsp">공지사항</a>
 		</li>		
 		<li menu="menu3">
 		<a href="<%=url %>/index.jsp"><img class="logo" src="./image/starbottle_logo.jpg" alt=""></a>

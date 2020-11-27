@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Random;
 import java.util.Vector;
 
 import data.dto.MemberDto;
@@ -66,8 +65,7 @@ public class MemberDao {
 			pstmt.setString(6, email);
 			pstmt.setString(7, dto.getName());
 			String hp=dto.getHp1()+"-"+dto.getHp2()+"-"+dto.getHp3();
-			pstmt.setString(8, hp);
-			
+			pstmt.setString(8, hp);			
 
 			//½ÇÇà
 			pstmt.execute();			
