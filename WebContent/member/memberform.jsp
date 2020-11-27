@@ -158,7 +158,7 @@ function execDaumPostcode() {
 			</tr>
 			<tr>
 				<td class="table_title">비밀번호확인<b>*</b></td>
-				<td><input type="password" id="pwd2" name="pass" class="w-50 form-control" required="required" placeholder="비밀번호를 확인해주세요">
+				<td><input type="password" id="pwd2" class="w-50 form-control" required="required" placeholder="비밀번호를 확인해주세요">
  				</td>
 			</tr>
 			<tr>
