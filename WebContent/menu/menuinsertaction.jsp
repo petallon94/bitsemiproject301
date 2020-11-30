@@ -67,7 +67,7 @@
 		dao.insertShop(dto);
 		
 		
-		response.sendRedirect("../index.jsp?main=menu/menuinsertform.jsp");
+		response.sendRedirect("../index.jsp?main=menu/menulist.jsp");
 		
 		
 	}catch(Exception e){

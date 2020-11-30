@@ -1,0 +1,110 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Roboto&display=swap');
+
+body{
+	font-family: 'Noto Sans KR', sans-serif;
+	font-family: 'Roboto', sans-serif;
+}
+#ord_ctn{
+	width: 1000px;
+}
+#ord_ctn .img{
+	float: left;
+}
+.ord_frm{
+	width: 420px;
+	margin-left: 40px;
+	float: left;
+}
+.ord_frm .info .main_t{
+	font-size: 24pt;
+	font-weight: 600;
+	margin: 0 10px 10px 0;
+}
+.ord_frm .info .sub_t{
+	font-size: 12pt;
+	font-weight: 300;
+	color: #999;
+}
+
+/*select css*/
+.ord_frm .ord_label{
+	font-size: 16pt;
+	font-weight: 600;
+	margin: 40px 0 10px 0;
+}
+#ord_ctn #size{
+	width: 420px;
+	height: 45px;
+	text-align-last: center;
+	font-size: 14pt;
+}
+
+/*radio css*/
+#ord_ctn .switch-field {
+	display: flex;
+	overflow: hidden;
+}
+
+#ord_ctn .switch-field input {
+	position: absolute !important;
+	clip: rect(0, 0, 0, 0);
+	height: 1px;
+	width: 1px;
+	border: 0;
+	overflow: hidden;
+}
+
+#ord_ctn .switch-field label {
+	background-color: white;
+	color: #666;
+	font-size: 14pt;
+	text-align: center;
+	line-height:45px;
+	margin-right: 20px;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	width: 60px; height: 45px;
+}
+
+#ord_ctn .switch-field label:hover {
+	cursor: pointer;
+}
+
+#ord_ctn .switch-field input:checked + label {
+	background-color: #f6c244;
+	border: none;
+	color: #333;
+}
+
+#ord_ctn .switch-field label:first-of-type {
+	border-radius: 4px;
+}
+
+#ord_ctn .switch-field label:last-of-type {
+	border-radius: 4px;
+}
+
+/*price css*/
+#ord_ctn #price{
+	margin: 40px 0 45px 0;
+	width: 100%;
+	text-align: right;
+}
+#ord_ctn #price .money{
+	font-size: 27pt;
+}
+#ord_ctn #price .won{
+	font-size: 14pt;
+}
+#ord_ctn button{
+	width: 200px;
+	height: 60px;
+	font-size: 14pt;
+	font-weight: 600;
+}
+#ord_ctn #btncart{
+	float: left;
+}
+#ord_ctn #btnorder{
+	float: right;
+}

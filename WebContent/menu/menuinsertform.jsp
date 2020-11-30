@@ -47,7 +47,7 @@ $(function(){
   <h2>메뉴 추가 화면</h2>
   <br><hr>
   <br>
-  <form action="menuinsertaction.jsp" method="post" enctype="multipart/form-data">
+  <form action="menu/menuinsertaction.jsp" method="post" enctype="multipart/form-data">
     <div class="menuform">
       <label for="menuname">메뉴이름</label>
       <input type="text" class="form-control" id="menuname"  name="menuname">

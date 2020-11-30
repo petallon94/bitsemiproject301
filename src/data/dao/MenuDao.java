@@ -2,7 +2,10 @@ package data.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import data.dto.MenuDto;
 import mysql.db.MysqlConnect;
@@ -40,6 +43,48 @@ public class MenuDao {
 		}
 	}
 	
+	public List<MenuDto> getallMenus(){
+		List<MenuDto> list = new ArrayList<MenuDto>();
+		Connection conn =null;
+		PreparedStatement pstmt = null;
+		ResultSet rs =null;
+		
+		String sql = "select * from menu order by menunum";
+		
+		conn = db.getMyConnection();
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				MenuDto dto = new MenuDto();
+				dto.setCategory(rs.getString("category"));
+				dto.setMenudetail(rs.getString("menudetail"));
+				dto.setMenuid(rs.getString("menuid"));
+				dto.setMenuname(rs.getString("menuname"));
+				dto.setMenunum(rs.getInt("menunum"));
+				dto.setMenuphoto(rs.getString("menuphoto"));
+				dto.setMenuprice(rs.getInt("menuprice"));
+				dto.setMipgoday(rs.getString("mipgoday"));
+				list.add(dto);
+				
+			}
+		
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			db.dbClose(conn, pstmt,rs);
+		}
+		
+		
+		
+		
+		return list;
+	}
 	
 	
 

@@ -1,6 +1,9 @@
+<%@page import="data.dto.MenuDto"%>
+<%@page import="java.util.List"%>
+<%@page import="data.dao.MenuDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
+<head>
 <html>
 <title>메뉴</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,18 +11,64 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: 'Noto Sans KR', sans-serif;}
 .w3-bar-block .w3-bar-item {padding:20px}
+
+/*godetail*/
+
+.godetail{cursor:pointer;}
+
+
+/* sub */
+.sub_visual{min-height:499px;padding:0 10px;text-align:center;background-repeat:no-repeat;background-size:cover;background-position:center;position:relative;}
+.sub_visual .txt{width:100%;position:absolute;top:148px;left:0;}
+.sub_visual .txt h1{margin:0;font-size:2.75rem;font-weight:300;}
+.sub_visual .txt h1:after{display:block;width:40px;height:2px;margin:32px auto;background:#202020;content:'';}
+.sub_visual .txt p{font-size:1.25rem;font-weight:300;}
+.sub_visual .page_tab{width:100%;padding:0 10px;font-size:0;position:absolute;bottom:41px;left:0;}
+.sub_visual .page_tab li{display:inline-block;width:20%;max-width:170px;padding:10px 0;border:1px solid #bfbfbf;border-left:0;font-size:1rem;color:#909090;background:#fff;}
+.sub_visual .page_tab li:first-child{border-left:1px solid #bfbfbf;}
+.sub_visual .page_tab li a{display:block;}
+.sub_visual .page_tab li.on, .sub_visual .page_tab li:hover{color:#000;background:#ffe600;transition:background .3s ease;-webkit-transition:background .3s ease;}
+.sub_visual.bg-menu{background-image:url(./image/coffee-5132832_1920.jpg);}
+
 </style>
+<script>
+$(function(){
+	
+	$("div.godetail").click(function(e){
+	  	  
+	   	 e.preventDefault(); 
+	   	 var menunum = $(this).attr("menunum");
+	   	 location.href ="index.jsp?main=menu/menudetailpage.jsp?menunum="+menunum;
+	   	  
+	     });
+	
+	
+	
+});
+</script>
+</head>
+<%
+	MenuDao dao =new MenuDao();
+	List<MenuDto> list = dao.getallMenus();
+	
+%>
+
+
 <body>
 
-<nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" style="z-index:3;width:250px" id="mySidebar">
+
+
+
+<!-- <div class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" style="z-index:3;width:250px" id="mySidebar">
   <div class="w3-container w3-display-container w3-padding-16">
     <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i>
     <h3 class="w3-wide"><b>LOGO</b></h3>
-  <button type="button" class="btn btn-outline-primary">Primary</button>
-  <button type="button" class="btn btn-outline-secondary">Secondary</button>
   </div>
   <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
     <a href="#" class="w3-bar-item w3-button">신메뉴</a>
@@ -28,94 +77,59 @@ body,h1,h2,h3,h4,h5,h6 {font-family: 'Noto Sans KR', sans-serif;}
     <a href="#" class="w3-bar-item w3-button">음료</a>
     <a href="#" class="w3-bar-item w3-button">디저트</a>
   </div>
-  <a href="#footer" class="w3-bar-item w3-button w3-padding">메뉴추가</a> 
+  <a href="#footer" onclick ="location.href='index.jsp?main=menu/menuinsertform.jsp'" class="w3-bar-item w3-button w3-padding">메뉴추가</a> 
   
-</nav>
+</div> -->
   
-  
-  
-  
-<!-- !PAGE CONTENT! -->
-<div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
+<div class="sub_visual bg-menu">
+    <div class="txt">
+        <h1>스타보틀</h1>
+        <p>오직 스타보틀에서만 만나보실 수 있는 시그니처 메뉴입니다.</p>
+    </div>
+    <ul class="page_tab st-2">
+		        <li ><a>전체</a></li>
+		        <li ><a>커피</a></li>
+		        <li ><a>음료</a></li>
+		        <li ><a>디저트</a></li>
+		        <li ><a>프라푸치노</a></li>
+		    </ul>
+		     
+ 
+</div>
 
-	<h3>음료음료</h3>
+  
+<!-- !PAGE CONTENT! 페이지 부분 -->
+<div class="menu_list w3-content w3-padding" style="max-width:1600px;margin-top:100px" >
+
+	<h3>전체음료</h3>
 
 	<hr id="about">
+	
+	
+	<!-- 출력연습하기 -->
 
-  <!-- First Photo Grid-->
-  <div class="w3-row-padding w3-padding-16 w3-center" id="food">
-    <div class="w3-quarter">
-      <img src="https://saint-marc-cafe.s3.amazonaws.com/4216/0031/5179/98b8b2b03acdcd60b542b792567bbe7b.jpg" alt="Sandwich" style="width:100%">
-      <h3>The Perfect Sandwich,</h3>
-      <p></p>
-    </div>
-    <div class="w3-quarter">
-      <img src="https://saint-marc-cafe.s3.amazonaws.com/5016/0031/5173/2N2A8553.jpg" alt="Steak" style="width:100%">
-      <h3>Let Me Tell </h3>
-       <p></p>
-    </div>
-    <div class="w3-quarter">
-      <img src="https://saint-marc-cafe.s3.amazonaws.com/8014/6202/2876/dr1411_01.jpg" alt="Cherries" style="width:100%">
-      <h3>Cherries, interrupted</h3>
-       <p></p>
-      
-    </div>
-    <div class="w3-quarter">
-      <img src="https://saint-marc-cafe.s3.amazonaws.com/1616/0031/5163/2N2A8230.jpg" alt="Pasta and Wine" style="width:100%">
-      <h3>Once Again, R</h3>
-       <p></p>
-    </div>
-  </div>
-  
-  <!-- third Photo Grid-->
-  <div class="w3-row-padding w3-padding-16 w3-center">
-    <div class="w3-quarter">
-      <img src="https://saint-marc-cafe.s3.amazonaws.com/5016/0031/5173/2N2A8553.jpg" alt="Popsicle" style="width:100%">
-      <h3>All I Need Is a Popsicle</h3>
-      <p></p>
-    </div>
-    <div class="w3-quarter">
-      <img src="https://saint-marc-cafe.s3.amazonaws.com/5016/0031/5173/2N2A8553.jpg" alt="Salmon" style="width:100%">
-      <h3>Salmon For Your Skin</h3>
-      <p></p>
-    </div>
-    <div class="w3-quarter">
-      <img src="https://saint-marc-cafe.s3.amazonaws.com/5016/0031/5173/2N2A8553.jpg" alt="Sandwich" style="width:100%">
-      <h3>The Perfect =</h3>
-       <p></p>
-    </div>
-    <div class="w3-quarter">
-      <img src="https://saint-marc-cafe.s3.amazonaws.com/5016/0031/5173/2N2A8553.jpg" alt="Croissant" style="width:100%">
-      <h3>Le French</h3>
-       <p></p>
-    </div>
-  </div>
-  
-  <div class="w3-row-padding w3-padding-16 w3-center">
-    <div class="w3-quarter">
-      <img src="https://saint-marc-cafe.s3.amazonaws.com/5016/0031/5173/2N2A8553.jpg" alt="Popsicle" style="width:100%">
-      <h3>All I Need </h3>
-       <p></p>
-    </div>
-    <div class="w3-quarter">
-      <img src="https://saint-marc-cafe.s3.amazonaws.com/5016/0031/5173/2N2A8553.jpg" alt="Salmon" style="width:100%">
-      <h3>Salmon </h3>
-       <p></p>
-    </div>
-    <div class="w3-quarter">
-      <img src="https://saint-marc-cafe.s3.amazonaws.com/5016/0031/5173/2N2A8553.jpg" alt="Sandwich" style="width:100%">
-      <h3>The Perfect </h3>
-       <p></p>
-    </div>
-    <div class="w3-quarter">
-      <img src="https://saint-marc-cafe.s3.amazonaws.com/5016/0031/5173/2N2A8553.jpg" alt="Croissant" style="width:100%">
-      <h3>Le French</h3>
-       <p></p>
-    </div>
-  </div>
-
+	<div class="menu_contain w3-main w3-content w3-padding" >
+	
+	<%
+	
+		for(MenuDto dto : list){%>
+			<div class="w3-quarter godetail">
+      		<img src ="menusave/<%=dto.getMenuphoto()%>" style="width:100%;height :250px;margin-left:10px;marigin_top :10px;">
+      		<h3><%=dto.getMenuname() %></h3>
+     		<input type="hidden" class="form-control" id="menunum"  name="menunum" value =<%=dto.getMenunum()%>>
+ 		   </div>
+		<%}%>
+		<br>
+	
+	</div>
 <!-- End page content -->
 </div>
+<div class="menu_footer w3-padding" style="max-width:1600px;margin-top:100px">
+<hr>
+<a href="#footer" onclick ="location.href='index.jsp?main=menu/menuinsertform.jsp'" class="w3-bar-item w3-button w3-padding">메뉴추가</a>
+</div>
+
+
 
 <script>
 // Script to open and close sidebar
@@ -126,29 +140,6 @@ function w3_open() {
 function w3_close() {
   document.getElementById("mySidebar").style.display = "none";
 }
-function myAccFunc() {
-	  var x = document.getElementById("demoAcc");
-	  if (x.className.indexOf("w3-show") == -1) {
-	    x.className += " w3-show";
-	  } else {
-	    x.className = x.className.replace(" w3-show", "");
-	  }
-	}
-
-	// Click on the "Jeans" link on page load to open the accordion for demo purposes
-	document.getElementById("myBtn").click();
-
-
-	// Open and close sidebar
-	function w3_open() {
-	  document.getElementById("mySidebar").style.display = "block";
-	  document.getElementById("myOverlay").style.display = "block";
-	}
-	 
-	function w3_close() {
-	  document.getElementById("mySidebar").style.display = "none";
-	  document.getElementById("myOverlay").style.display = "none";
-	}
 
 
 </script>
