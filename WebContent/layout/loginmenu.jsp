@@ -1,3 +1,4 @@
+<%@page import="data.dao.OrderDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -12,18 +13,13 @@
 
 <title>Insert title here</title>
 <style type="text/css">
-nav #topmenu {
-width: 100%;
-white-space: nowrap;
+i{
+width: 20px;
+height: 20px;
 }
-
-nav #topmenu{
-    position: relative;
-    display: inline-block;
-    margin-left: 25px;
-    padding-left: 12px;
-    font-size: 12px;
-    vertical-align: middle;
+span.count{
+font-size: 15px;
+color: red;
 }
 span {
 margin-right: 25px;
@@ -33,25 +29,42 @@ margin-right: 25px;
 
 </head>
 <body>
-<%
+<%	
+	//세션에서 id 얻기
+	String id=(String)session.getAttribute("myid");
  	//프로젝트의 경로 구하기
-	 String url=request.getContextPath();
-	
+	 String url=request.getContextPath();	
 	//세션 로그인상태
-	/*String loginok=(String)session.getAttribute("loginok");
+	String loginok=(String)session.getAttribute("loginok");
 	//세션에 저장된 아이디
 	String myid=(String)session.getAttribute("myid"); 
 
- */
+	
+	//OrderDao 선언
+	//OrderDao cdao=new OrderDao();
+	//카트 갯수 얻어오기
+	//int cartSize=cdao.getOrderList(id).size();
+	
  %>
+ 
 <!-- topmenu -->
 <div class="topmenu" id="topmenu">
    <span><a href="<%=url %>/index.jsp?main=member/memberform.jsp" class="topmenu_btn">회원가입</a></span> 
-   <span><a href="<%=url %>/index.jsp?main=login/loginform2.jsp" class="topmenu_btn">로그인</a></span>
+  	<%--  <%
+  	 if(loginok==null){%> --%>
+   	<span><a href="<%=url %>/index.jsp?main=login/loginform.jsp" class="topmenu_btn">로그인</a></span>
+	<%-- <%}else{%> --%>
+	<span><a href="<%=url %>/index.jsp?main=login/logoutform.jsp" class="topmenu_btn">로그아웃</a></span>
+<%-- 	<%}%>
+	<%
+	if(loginok!=null && myid.equals("admin")){%> --%>
+	<span><a href="<%=url %>/index.jsp?main=mypage/memberlist.jsp" class="topmenu_btn">관리페이지</a></span> 
+<%-- 	<%}else{%> --%>
    <span><a href="<%=url %>/index.jsp?main=mypage/mypageform.jsp" class="topmenu_btn">마이페이지</a></span> 
-   <span><a href="<%=url %>/index.jsp?main=order/orderform.jsp" class="topmenu_btn">주문</a></span>
-   <!--카트아이콘 <i class="fas fa-shopping-cart"><i> -->
-</nav>
+<%-- 	<%}%> --%>
+   <span><a href="<%=url %>/index.jsp?main=order/orderform.jsp" class="topmenu_btn"><i class="fas fa-shopping-cart">주문</i>
+	<%-- <span class="count"><%=cartSize%></span> --%>
+	</a></span>
 
 </div>
 </body>

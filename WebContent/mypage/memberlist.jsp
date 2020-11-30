@@ -8,6 +8,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link href="https://fonts.googleapis.com/css2??family=Gothic+A1&family=Karma&family=Open+Sans:ital@1&family=Yeon+Sung&display=swap" rel="stylesheet">
+
 <title>Insert title here</title>
 </head>
 <%
@@ -17,30 +24,31 @@
 	List<MemberDto2> list=dao.getAllMembers();
 %>
 <body>
+<h4>회원 관리</h4>
 <table class="table table-bordered" style="width: 800px;">
-<caption><b>회원 명단</b></caption>
-<tr bgcolor="#ffdd22">
-	<td style="width:100px;" align="center"><b>아이디</b></td>
-	<td style="width:600px;" align="center" colspan="2"><b>정보</b></td>
-	<td style="width:100px;" align="center"><b>관리</b></td>
+<thead class="thead-light">
+<tr>
+	<th>아이디</th>
+	<th>관리</th>
+	<th colspan="2">정보</th>
 </tr>
+</thead>
+<tbody>
 	<%
-	SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
+	SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 	for(MemberDto2 dto:list){
 		%>
 		<tr>
-			<td rowspan="5" style="verticl-align:middle" align="center">
-			<%=dto.getId()%>
+			<td rowspan="7">
+			<%=dto.getId()%>(<%=dto.getName()%>)
 			</td>
-			<td align="center" style="width: 100px;">이름</td>
-			<td style="width:500px;"><%=dto.getName()%></td>
-			<td rowspan="5" style="verticl-align:middle" align="center">
+			<td rowspan="7">
 			<button class="btn btn-info btn-sm" onclick="location.href='index.jsp?main=member/updateform.jsp?num=<%=dto.getLoginnum()%>'">정보수정</button><br>
 			<button type="button" class="btn btn-danger btn-sm"
 				 onclick="location.href='index.jsp?main=member/deletepassform.jsp?id=<%=dto.getId()%>'">
 				회원탈퇴</button>
 
-			</td>			
+			</td>				
 		</tr>
 		<tr>
 			<td align="center">핸드폰</td>
@@ -55,12 +63,22 @@
 			<td><%=dto.getEmail()%></td>
 		</tr>
 		<tr>
+			<td align="center">바코드</td>
+			<td><%=dto.getBarcode()%></td>
+		</tr>
+		<tr>
+			<td align="center">생년월일</td>
+			<td><%=dto.getBirthday()%></td>
+		</tr>
+		<tr>
 			<td align="center">가입일</td>
 			<td><%=sdf.format(dto.getGaipday())%></td>
 		</tr>
-	<%}
-	
-	%>
+		<tr>
+				
+		</tr>
+	<%}%>
+</tbody>
 </table>
 </body>
 </html>

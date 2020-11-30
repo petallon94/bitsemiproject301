@@ -101,6 +101,8 @@ $("#id").keydown(function () {
 	
 });
 
+
+
 //아이디 유효성 검사(1 = 중복 / 0 != 중복)
 $("#id").blur(function() {
 		var id=$(this).val();//앞뒤공백제거
@@ -108,6 +110,8 @@ $("#id").blur(function() {
 			$(this).val('');
 			return;
 		}
+		//id 중복확인 버튼 클릭시
+		//$("#idcheck_btn").click(function() {
 		//alert(id);
 		$.ajax({
 			type:"get",
@@ -115,27 +119,37 @@ $("#id").blur(function() {
 			dataType:"xml",
 			data:{"id":id},
 			success:function(data){
-				$("#idcheck_btn").click(function() {
 				
 				//alert($(data).text());
 				if($(data).text()=='yes'){
-					alert("이미 등록된 아이디 입니다.");
+					$("b.idcheck").html("이미 등록된 아이디 입니다.");
+					$("b.idcheck").css({
+						"color":"red",
+						"font-size":"14px"
+					});
 					$("#id").val("");
+					$("#id").focus();
 					
+					//alert("이미 등록된 아이디 입니다.");
+					//$("#id").val('');
+				
 										
 				}else{
-					alert("사용가능한 아이디입니다.");
+					$("b.idcheck").html("사용가능한 아이디입니다.");
+					$("b.idcheck").css({
+						"color":"green",
+						"font-size":"14px"
+					});
 					$("#pwd").focus();
-					
+					//alert("사용가능한 아이디입니다.");
+					//$("#pwd").focus();						
 				}
-					return;	
-				})	
 				
 			}			
-		});		
+		});	
 	});
-});
 
+});
 //카카오 우편번호 API
 function execDaumPostcode() {
     new daum.Postcode({

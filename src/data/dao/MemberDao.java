@@ -97,13 +97,15 @@ public class MemberDao {
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
 				MemberDto2 dto=new MemberDto2();
-				dto.setLoginnum(rs.getString("num"));
+				dto.setLoginnum(rs.getString("loginnum"));
 				dto.setId(rs.getString("id"));
 				dto.setName(rs.getString("name"));
 				dto.setAddress(rs.getString("address"));
 				dto.setAddrdetail(rs.getString("addrdetail"));
 				dto.setHp(rs.getString("hp"));
+				dto.setBirthday(rs.getString("birthday"));
 				dto.setEmail(rs.getString("email"));
+				dto.setBarcode(rs.getString("barcode"));
 				dto.setGaipday(rs.getTimestamp("gaipday"));
 
 				list.add(dto);				
