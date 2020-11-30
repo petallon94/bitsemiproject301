@@ -1,6 +1,6 @@
 package data.dto;
 
-import com.sun.jmx.snmp.Timestamp;
+import java.sql.Timestamp;
 
 public class OrderDto {
 	private int ordernum;
