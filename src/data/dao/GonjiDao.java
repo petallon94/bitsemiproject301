@@ -14,6 +14,32 @@ public class GonjiDao {
 	
 	MysqlConnect db=new MysqlConnect();
 	
+	//gonnum의 max값 구해서 리턴(null일 경우 0리턴)
+	public int getMaxNum() 
+	{
+		int max=0;
+		String sql="select ifnull(max(num),0) from gonji";
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		conn=db.getMyConnection();
+		try {
+			pstmt=conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			
+			if(rs.next())
+				max=rs.getInt(1);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			db.dbClose(conn, pstmt, rs);
+		}
+		return max;
+		
+	}
+	
 	//insert
 	public void insertGonji(GonjiDto dto)
 	{
@@ -83,7 +109,7 @@ public class GonjiDao {
 			{
 				GonjiDto dto=new GonjiDto();
 				dto.setGonnum(rs.getString("gonnum"));
-				dto.setGonid(rs.getNString("gonid"));
+				dto.setGonid(rs.getString("gonid"));
 				dto.setGonsubject(rs.getString("gonsubject"));
 				dto.setGoncontent(rs.getString("goncontent"));
 				dto.setGonreadcount(rs.getInt("gonreadcount"));
@@ -98,6 +124,60 @@ public class GonjiDao {
 			db.dbClose(conn, pstmt, rs);
 		}
 		return list;
+	}
+	
+	//num에 해당하는 dto반환: 내용보기&수정
+	public GonjiDto getData(String gonnum)
+	{
+		GonjiDto dto=new GonjiDto();
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql="select * from gonji where gonnum=?";
+		
+		conn=db.getMyConnection();
+		try {
+			pstmt=conn.prepareStatement(sql);
+			//바인딩
+			pstmt.setString(1, gonnum);
+			rs=pstmt.executeQuery();
+			while(rs.next())
+			{
+				dto.setGonnum(rs.getString("gonnum"));
+				dto.setGonid(rs.getString("gonid"));
+				dto.setGonsubject(rs.getString("gonsubject"));
+				dto.setGoncontent(rs.getString("goncontent"));
+				dto.setGonreadcount(rs.getInt("gonreadcount"));
+				dto.setGonwriteday(rs.getTimestamp("gonwriteday"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			db.dbClose(conn, pstmt, rs);
+		}
+		return dto;
+	}
+	
+	//내용보기시 조회수 1증가
+	public void updateReadcount(String gonnum)
+	{
+		String sql="update gonji set readcount=readcount+1 where gonnum=?";
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		conn=db.getMyConnection();
+		try {
+			pstmt=conn.prepareStatement(sql);
+			//바인딩
+			pstmt.setString(1, gonnum);
+			//실행
+			pstmt.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			db.dbClose(conn, pstmt);
+		}
 	}
 }
 

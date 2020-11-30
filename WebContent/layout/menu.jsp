@@ -91,7 +91,7 @@ $(function() {
 		<a href="<%=url %>/index.jsp?main=menu/menulist.jsp">커피메뉴</a>
 		</li>
 		<li menu="menu2">
-		<a href="<%=url %>/index.jsp?main=notice/noticelist.jsp">공지사항</a>
+		<a href="<%=url %>/index.jsp?main=gonji/gonjilist.jsp">공지사항</a>
 		</li>		
 		<li menu="menu3">
 		<a href="<%=url %>/index.jsp"><img class="logo" src="./image/starbottle_logo.jpg" alt=""></a>

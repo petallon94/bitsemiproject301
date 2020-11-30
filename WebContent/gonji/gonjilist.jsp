@@ -9,12 +9,16 @@
 <head>
 <meta charset="EUC-KR">
 <%--만약 화면이 안나오면 부트스트랩 이하 5줄 추가하기 : main에 있는--%>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
 <title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<style type="text/css">
+	#cl-dashboard{display: none;}
+</style>
 </head>
 <%
 	//페이징 처리를 위한 자바함수
@@ -106,7 +110,7 @@
  	<%for(GonjiDto dto:list)//list로부터 dto를 가져온다
  	{%>
 		<tr>
-			<td align="center"><%=no-- %></td>
+			<td align="center"><%=no--%></td>
 			<td>
 				<a style="color: black;" 
 				href="index.jsp?main=gonji/content.jsp?num=<%=dto.getGonnum()%>&pageNum=<%=currentPage%>&key=list">
