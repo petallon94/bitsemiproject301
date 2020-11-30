@@ -198,7 +198,9 @@ div.product_view_wrap1 { width:1100px; padding-bottom:40px; border-bottom:1px so
 								</fieldset>
 							</form>
 							
-							<div class="product_view_order" style="cursor:pointer;" onclick="location.href='index.jsp?main=order/order_page.jsp'">주문하기</div>
+
+							<div class="product_view_order" style="cursor:pointer;" onclick="location.href='index.jsp?main=order/orderpage.jsp'">주문하기</div>
+
 							</div>
 						</div>
 						
