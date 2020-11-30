@@ -52,7 +52,7 @@ public class StarMapDao {
 	public List<StarMapDto> getMainList()
 	{
 		
-		String sql="select * from map2 order by shopname asc";
+		String sql="select * from map order by shopname asc";
 		List<StarMapDto> list=new ArrayList<StarMapDto>();
 		Connection conn=null;
 		PreparedStatement pstmt=null;
