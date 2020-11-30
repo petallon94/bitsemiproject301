@@ -35,9 +35,9 @@
 		db.insertGonji(dto);
 		
 		//최근 추가된 num구하기
-		int num=db.getMaxNum();
+		int gonnum=db.getMaxNum();
 		//글 올린 내용보기로 바로 이동하기
-		String path="../index.jsp?main=gonji/content.jsp?num="+num+"&pageNum=1";
+		String path="../index.jsp?main=gonji/content.jsp?num="+gonnum+"&pageNum=1";
 		response.sendRedirect(path);
 		
 	}catch(Exception e){

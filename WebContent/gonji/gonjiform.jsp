@@ -20,7 +20,7 @@
 	 		<td>
 	 			<input type="text" class="form-control"
 	 			  style="width: 120px;" required="required"
-	 			  name="name" placeholder="작성자">		 			  
+	 			  name="gonid" placeholder="작성자">		 			  
 	 		</td>
 	 	</tr>
 	 	<tr>
@@ -28,16 +28,16 @@
 	 		<td>
 	 			<input type="text" class="form-control"
 	 			  style="width: 300px;" required="required"
-	 			  name="subject" placeholder="제목">		 			  
+	 			  name="gonsubject" placeholder="제목">		 			  
 	 		</td>
 	 	</tr>
 	 	
 	 	<tr>
-	 		<th width="100" bgcolor="#ddd">상품설명</th>
+	 		<th width="100" bgcolor="#ddd">내  용</th>
 	 		<td>
 	 		  <textarea class="form-control"	 			 
 	 			 style="width:100%; height:300px; display:none;"
-	 			 name="content" id="content"></textarea>
+	 			 name="goncontent" id="goncontent"></textarea>
 	 	</tr>
 	 	<tr>
 	 		<td colspan="2" align="center">
@@ -64,7 +64,7 @@ nhn.husky.EZCreator.createInIFrame({
 
     oAppRef: oEditors,
 
-    elPlaceHolder: "content",
+    elPlaceHolder: "goncontent",
 
     sSkinURI: "<%=request.getContextPath()%>/se2/SmartEditor2Skin.html",
 
@@ -78,7 +78,7 @@ function submitContents(elClickedObj) {
 
     // 에디터의 내용이 textarea에 적용된다.
 
-    oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", [ ]);
+    oEditors.getById["goncontent"].exec("UPDATE_CONTENTS_FIELD", [ ]);
 
  
 
@@ -96,8 +96,8 @@ function submitContents(elClickedObj) {
 // textArea에 이미지 첨부
 
 function pasteHTML(filepath){
-    var sHTML = '<img src="<%=request.getContextPath()%>/save/'+filepath+'">';
-    oEditors.getById["content"].exec("PASTE_HTML", [sHTML]); 
+    var sHTML = '<img src="<%=request.getContextPath()%>/gonsave/'+filepath+'">';
+    oEditors.getById["goncontent"].exec("PASTE_HTML", [sHTML]); 
 
 }
 </script>

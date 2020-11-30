@@ -18,7 +18,7 @@ public class GonjiDao {
 	public int getMaxNum() 
 	{
 		int max=0;
-		String sql="select ifnull(max(num),0) from gonji";
+		String sql="select ifnull(max(gonnum),0) from gonji";
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
