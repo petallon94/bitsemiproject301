@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-ㄷㄷㄷ왜안돼!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ㄷㄷㄷ왜안돼!!!!!!!
 </body>
 </html>
