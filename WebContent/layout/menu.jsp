@@ -103,7 +103,7 @@ $(function() {
 		<a href="<%=url %>/index.jsp"><img class="logo" src="./image/starbottle_logo.jpg" alt=""></a>
 		</li>
 		<li menu="menu4">
-		<a href="<%=url %>/index.jsp?main=location/locationlist.jsp">매장위치</a>
+		<a href="<%=url %>/index.jsp?main=map/map.jsp">매장위치</a>
 		</li>
 		<li menu="menu5">
 		<a href="<%=url %>/index.jsp?main=event/eventlist.jsp">이벤트</a>
