@@ -80,8 +80,8 @@ public class OrderDao {
 	//장바구니 출력
 	public List<HashMap<String, String>> getOrderList(String id)
 	{
-		String sql="select c.idx,s.sangpum,s.shopnum,s.photo,s.price,c.cnt,c.mycolor,c.cartday "
-				+ "from cart c,shop s,member m where c.shopnum=s.shopnum and c.num=m.num and m.id=?";
+		String sql="select m.menuname, m.menunum, m.menuphoto, m.menuprice, o.size, o.temp, o.takeout, o.orderdate "
+				+ "from morder o,Login l,menu m where o.mnname=m.menuname and o.orderid=l.id and l.id=?";
 		List<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
 		
 		Connection conn = null;
