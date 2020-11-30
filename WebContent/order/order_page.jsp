@@ -1,3 +1,8 @@
+<%@page import="java.text.DecimalFormat"%>
+<%@page import="data.dao.MemberDao"%>
+<%@page import="data.dto.MenuDto"%>
+<%@page import="data.dto.OrderDto"%>
+<%@page import="data.dao.OrderDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -12,15 +17,35 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
+<%
+	String menunum = request.getParameter("menunum");
+	int menuprice = Integer.parseInt(request.getParameter("menuprice"));
+	String photo = request.getParameter("menuphoto");
+	
+	//로그인한 아이디 구하기
+	String myid = (String)session.getAttribute("myid");
+	//아이디에 해당하는 멤버 테이블의 시퀀스 번호 가져오기
+ 	MemberDao mdao = new MemberDao();
+	String loginnum = mdao.getNum(myid);
+	
+	//해당 상품에 대한 데이터 가져오기
+	OrderDao odao = new OrderDao();
+	MenuDto dto = odao.getData(menunum);
+	
+	DecimalFormat dmf = new DecimalFormat("###,###");
+%>
 <body>
 <div id="ord_ctn">
 	<div class="img">
-		<img src="../img/sumnail">
+		<img src="ordersave/<%=photo%>">
 	</div>
-	<form action="#" class="ord_frm">
+	<form action="orderaction.jsp" class="ord_frm" method="post">
+	<input type="hidden" name="menunum" value="<%=menunum %>">
+	<input type="hidden" name="loginnum" value="<%=loginnum%>">
+	
 		<div class="info">
-			<p class="main_t">아메리카노</p>
-			<span class="sub_t">스타보틀만의 특별한 원두로 만들어진 향긋한 아메리카노</span><br>
+			<p class="main_t"><%=dto.getMenuname() %></p>
+			<span class="sub_t"><%=dto.getMenudetail() %></span><br>
 		</div>
 		<p class="ord_label s">Size</p>
 		<select id="size">
@@ -44,7 +69,7 @@
 			<input type="radio" id="radio-four" name="switch-two" value="In" />
 			<label for="radio-four">In</label>
 		</div>
-		<div id="price"><b class="money">7,800</b><span class="won"> 원</span></div>
+		<div id="price"><b class="money"><%=dmf.format("menuprice") %></b><span class="won"> 원</span></div>
 		<button type="button" id="btncart" class="btn btn-outline-warning">장바구니 담기</button>
 		<button type="button" id="btnorder" class="btn btn-warning">주문하기</button>
 	</form>

@@ -4,24 +4,25 @@ import com.sun.jmx.snmp.Timestamp;
 
 public class OrderDto {
 	private int ordernum;
-	private String id;
+	private String orderid;
 	private String mnname;
 	private String size;
 	private String temp;
+	private int orderprice;
 	private String takeout;
-	private String price;
 	private Timestamp orderdate;
+	
 	public int getOrdernum() {
 		return ordernum;
 	}
 	public void setOrdernum(int ordernum) {
 		this.ordernum = ordernum;
 	}
-	public String getId() {
-		return id;
+	public String getOrderid() {
+		return orderid;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setOrderid(String orderid) {
+		this.orderid = orderid;
 	}
 	public String getMnname() {
 		return mnname;
@@ -41,17 +42,17 @@ public class OrderDto {
 	public void setTemp(String temp) {
 		this.temp = temp;
 	}
+	public int getOrderprice() {
+		return orderprice;
+	}
+	public void setOrderprice(int orderprice) {
+		this.orderprice = orderprice;
+	}
 	public String getTakeout() {
 		return takeout;
 	}
 	public void setTakeout(String takeout) {
 		this.takeout = takeout;
-	}
-	public String getPrice() {
-		return price;
-	}
-	public void setPrice(String price) {
-		this.price = price;
 	}
 	public Timestamp getOrderdate() {
 		return orderdate;
