@@ -39,7 +39,7 @@
 </button>
 
 <!-- 로그인 모달창 -->
-  <div class="modal" id="loginModal">
+  <div class="modal fade" id="loginModal" data-toggle="modal" data-target="#loginModal">
   <input type="text" id="login_num" value="">
     <div class="modal-dialog">    
       <div class="modal-content">
@@ -54,12 +54,12 @@
         <div class="modal-body">
           <input type="text" class="form-control" id="login_id" placeholder="아이디를 입력해주세요">
           <input type="text" class="form-control" id="login_password" placeholder="비밀번호를 입력해주세요">
-          <button type="submit" class="btn btn-warning" id="login_enterbtn">로그인하기</button>
+          <button type="submit" class="btn btn-warning btn-block" id="login_enterbtn">로그인하기</button>
         </div>
         
         <!-- Modal footer -->
         <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">취소</button>
+          <button type="button" class="btn btn-danger btn-default pull-left" data-dismiss="modal">취소</button>
         </div>
         
       </div>

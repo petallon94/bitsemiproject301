@@ -74,17 +74,6 @@ $(function() {
 
     });
 
-	//아이디 입력했는지 안했는지 확인
-	$("#idcheck").click(function() {
-		var id=$("#id").val();//앞뒤공백제거
-		if(id == ""){
-			alert("아이디를 입력해 주세요.")
-		}else {
-			idCheckFunc(id);
-		}
-	});
-
-	
 	//1. 핸드폰 4자리 입력시 다음 번호칸으로 이동
 	$("#hp2").keyup(function() {
 		var len=$(this).val().length;
@@ -104,29 +93,48 @@ $(function() {
 			$("#email2").val(s);
 		}
 	});
+
+
+//아이디 입력시 메세지 지우기
+$("#id").keydown(function () {
+	$("b.idcheck").html("");
+	
 });
 
-function idCheckFunc(id) {
-	
-	$.ajax({
-	type:"get",
-	url:"../member/idcheckxml.jsp",
-	dataType:"xml",
-	data:{"id":id},
-	success:function(data){
-		console.log($(data).text());
-		if($(data).text()=='yes'){
-			alert("이미 등록된 아이디입니다.")
-			$("#id").val("");
-		}else{
-			alert("사용가능한 아이디입니다.")
-		}			
-	}			
-});		
-
-}
-
-
+//아이디 유효성 검사(1 = 중복 / 0 != 중복)
+$("#id").blur(function() {
+		var id=$(this).val();//앞뒤공백제거
+		if(id.trim().length==0){
+			$(this).val('');
+			return;
+		}
+		//alert(id);
+		$.ajax({
+			type:"get",
+			url:"member/idcheck.jsp",
+			dataType:"xml",
+			data:{"id":id},
+			success:function(data){
+				$("#idcheck_btn").click(function() {
+				
+				//alert($(data).text());
+				if($(data).text()=='yes'){
+					alert("이미 등록된 아이디 입니다.");
+					$("#id").val("");
+					
+										
+				}else{
+					alert("사용가능한 아이디입니다.");
+					$("#pwd").focus();
+					
+				}
+					return;	
+				})	
+				
+			}			
+		});		
+	});
+});
 
 //카카오 우편번호 API
 function execDaumPostcode() {
@@ -181,11 +189,13 @@ function execDaumPostcode() {
 				<td class="table_title">아이디<b>*</b></td>
 				<td><input name="id" id="id" type="text"
 					autofocus="autofocus" class="w-50 form-control" required="required" placeholder="중복확인을 해주세요" >
-					<button class="btn btn-outline-warning" id="idcheck">중복확인</button></td>
+					<button class="btn btn-outline-warning" id="idcheck_btn">중복확인</button>
+					<b class="idcheck"></b>
+				</td>
 			</tr>
 			<tr>
 				<td class="table_title">비밀번호<b>*</b></td>
-				<td><input type="password" id="pwd" name="pass" class="w-50 form-control" required="required" placeholder="비밀번호를 입력해주세요">
+				<td><input type="password" id="pwd" name="password" class="w-50 form-control" required="required" placeholder="비밀번호를 입력해주세요">
 				<b id="passcheck"></b></td>
 			</tr>
 			<tr>

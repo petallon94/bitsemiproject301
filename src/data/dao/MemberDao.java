@@ -11,9 +11,14 @@ import data.dto.MemberDto;
 import data.dto.MemberDto2;
 import mysql.db.MysqlConnect;
 
+
 public class MemberDao {
 	MysqlConnect db=new MysqlConnect();
-	
+
+	public MemberDao() {
+		// TODO Auto-generated constructor stub
+	}
+
 	//아이디가 있으면 true 반환, 없으면 false 반환
 	public boolean isIdSearch(String id)
 	{
@@ -22,7 +27,7 @@ public class MemberDao {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		String sql="select * from Login where id=?";
-		
+
 		conn=db.getMyConnection();
 		try {
 			pstmt=conn.prepareStatement(sql);
@@ -31,26 +36,26 @@ public class MemberDao {
 			rs=pstmt.executeQuery();
 			if(rs.next())
 				find=true;
-			
+
 		} catch (SQLException e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}finally {
 			db.dbClose(conn, pstmt, rs);
 		}
-			
+
 		return find;
-		
+
 	}
-		
+
 	//insert
 	public void insertMember(MemberDto dto) {
 		String sql="insert into Login (id, password, address, addrdetail, birthday, gaipday, email, name, hp) values (?,?,?,?,?,now(),?,?,?)";
 		Connection conn=null;
 		PreparedStatement pstmt=null;
-		
+
 		conn=db.getMyConnection();
-		
+
 		try {
 			pstmt=conn.prepareStatement(sql);
 			//바인딩
@@ -69,7 +74,7 @@ public class MemberDao {
 
 			//실행
 			pstmt.execute();			
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -77,7 +82,7 @@ public class MemberDao {
 			db.dbClose(conn, pstmt);
 		}		
 	}
-	
+
 	//전체회원목록
 	public List<MemberDto2> getAllMembers() {
 		List<MemberDto2> list=new Vector<MemberDto2>();
@@ -86,53 +91,53 @@ public class MemberDao {
 		ResultSet rs=null;
 		String sql="select * from Login order by id asc";
 		conn=db.getMyConnection();
-		
-			try {
-				pstmt=conn.prepareStatement(sql);
-				rs=pstmt.executeQuery();
-				while(rs.next()) {
-					MemberDto2 dto=new MemberDto2();
-					dto.setLoginnum(rs.getString("num"));
-					dto.setId(rs.getString("id"));
-					dto.setName(rs.getString("name"));
-					dto.setAddress(rs.getString("address"));
-					dto.setAddrdetail(rs.getString("addrdetail"));
-					dto.setHp(rs.getString("hp"));
-					dto.setEmail(rs.getString("email"));
-					dto.setGaipday(rs.getTimestamp("gaipday"));
-					
-					list.add(dto);				
-				}
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}finally {
-				db.dbClose(conn, pstmt, rs);
+
+		try {
+			pstmt=conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				MemberDto2 dto=new MemberDto2();
+				dto.setLoginnum(rs.getString("num"));
+				dto.setId(rs.getString("id"));
+				dto.setName(rs.getString("name"));
+				dto.setAddress(rs.getString("address"));
+				dto.setAddrdetail(rs.getString("addrdetail"));
+				dto.setHp(rs.getString("hp"));
+				dto.setEmail(rs.getString("email"));
+				dto.setGaipday(rs.getTimestamp("gaipday"));
+
+				list.add(dto);				
 			}
-				
-			
-			return list;		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			db.dbClose(conn, pstmt, rs);
+		}
+
+
+		return list;		
 	}
-	
+
 	//num에 해당하는 dto 반환
 	public MemberDto getData(String num)
 	{
 		MemberDto dto=new MemberDto();
 		String sql="select * from Login where num=?";
-		
+
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
-		
+
 		conn=db.getMyConnection();
-		
+
 		try {
 			pstmt=conn.prepareStatement(sql);
 			//바인딩
 			pstmt.setString(1, num);
 			//실행
 			rs=pstmt.executeQuery();
-			
+
 			while(rs.next())
 			{
 				dto.setLoginnum(rs.getString("num"));
@@ -148,40 +153,40 @@ public class MemberDao {
 				dto.setEmail1(email[0]);
 				dto.setEmail2(email[1]);
 			}
-			
+
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
 			db.dbClose(conn, pstmt, rs);
 		}
 		return dto;
-		
+
 	}
-	
+
 	//id에 따른 getdata
 	public String getNum(String id)
 	{
 		String num="";
 		String sql="select num from Login where id=?";
-		
+
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
-		
+
 		conn=db.getMyConnection();
-		
+
 		try {
 			pstmt=conn.prepareStatement(sql);
 			//바인딩
 			pstmt.setString(1, id);
 			//실행
 			rs=pstmt.executeQuery();
-			
+
 			if(rs.next())
 			{
 				num=rs.getString("num");				
 			}
-			
+
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -189,16 +194,16 @@ public class MemberDao {
 		}
 		return num;		
 	}
-	
+
 	//수정-이름, 핸드폰,이메일, 주소만 수정
 	public void updateMember(MemberDto dto) 
 	{
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		String sql="update Login set name=?, hp=?, email=?, address=?, addrdetail=? where num=?";
-		
+
 		conn=db.getMyConnection();
-		
+
 		try {
 			pstmt=conn.prepareStatement(sql);
 			//바인딩
@@ -210,7 +215,7 @@ public class MemberDao {
 			pstmt.setString(4, dto.getAddress());
 			pstmt.setString(5, dto.getAddrdetail());
 			pstmt.setString(6, dto.getLoginnum());
-			
+
 			//실행
 			pstmt.execute();
 
@@ -220,7 +225,7 @@ public class MemberDao {
 			db.dbClose(conn, pstmt);
 		}		
 	}
-	
+
 	//아이디에 해당하는 비번이 맞으면 true반환 틀리면 false 반환
 	public boolean isIdPassCheck(String id, String pass)
 	{
@@ -229,9 +234,9 @@ public class MemberDao {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		String sql="select * from Login where id=? and pass=?";
-		
+
 		conn=db.getMyConnection();
-		
+
 		try {
 			pstmt=conn.prepareStatement(sql);
 			//바인딩
@@ -240,93 +245,93 @@ public class MemberDao {
 			rs=pstmt.executeQuery();
 			if(rs.next())
 				find=true;
-			
+
 		} catch (SQLException e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}finally {
 			db.dbClose(conn, pstmt, rs);
 		}
-			
+
 		return find;
 	}
-	
+
 	//삭제하는 메서드
-		public void deleteMember(String id)
-		{
-			String sql="delete from Login where id=?";
-			Connection conn=null;
-			PreparedStatement pstmt=null;
-			
-			conn=db.getMyConnection();
-			
-			try {
-				pstmt=conn.prepareStatement(sql);
-				//바인딩
-				pstmt.setString(1, id);
-				//실행
-				pstmt.execute();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}finally {
-				db.dbClose(conn, pstmt);
-			}
+	public void deleteMember(String id)
+	{
+		String sql="delete from Login where id=?";
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+
+		conn=db.getMyConnection();
+
+		try {
+			pstmt=conn.prepareStatement(sql);
+			//바인딩
+			pstmt.setString(1, id);
+			//실행
+			pstmt.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			db.dbClose(conn, pstmt);
 		}
-		
-		//로그인시 필요한 메서드
-		/*아이디가  DB 명단에 없을경우 1 반환
+	}
+
+	//로그인시 필요한 메서드
+	/*아이디가  DB 명단에 없을경우 1 반환
 	   아이디는 있는데 비번이 안맞는경우 2 반환
 	  아이디와 비번 모두 맞는경우 3 반환*/
-		public int loginProcess(String id, String pass)
+	public int loginProcess(String id, String pass)
+	{
+		int ans=0;
+		if(this.isIdSearch(id))
 		{
-			int ans=0;
-			if(this.isIdSearch(id))
-			{
-				//아이디가 존재하는 경우
-				//비번이 맞는지 체크하기
-				if(this.isIdPassCheck(id, pass)) {
-					//비번이 맞는경우
-					ans=3;
-				}else {
-					//비번이 틀린경우
-					ans=2;
-				}
-				
-			}else {//아이디가 아예 존재하지 않는경우
-				ans=1;
-			}		
-			return ans;
-		}
-		
-		//아이디에 해당하는 이름을 반환하는 메서드 추가
-		public String getName(String id)
-		{
-			String name="";
-			Connection conn=null;
-			PreparedStatement pstmt=null;
-			ResultSet rs=null;
-			String sql="select name from Login where id=?";
-
-			conn=db.getMyConnection();
-			
-			try {
-				pstmt=conn.prepareStatement(sql);
-				//바인딩
-				pstmt.setString(1, id);
-				rs=pstmt.executeQuery();
-				if(rs.next())
-					name=rs.getString("name");
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}finally {
-				db.dbClose(conn, pstmt, rs);
+			//아이디가 존재하는 경우
+			//비번이 맞는지 체크하기
+			if(this.isIdPassCheck(id, pass)) {
+				//비번이 맞는경우
+				ans=3;
+			}else {
+				//비번이 틀린경우
+				ans=2;
 			}
-			return name;
+
+		}else {//아이디가 아예 존재하지 않는경우
+			ans=1;
+		}		
+		return ans;
+	}
+
+	//아이디에 해당하는 이름을 반환하는 메서드 추가
+	public String getName(String id)
+	{
+		String name="";
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql="select name from Login where id=?";
+
+		conn=db.getMyConnection();
+
+		try {
+			pstmt=conn.prepareStatement(sql);
+			//바인딩
+			pstmt.setString(1, id);
+			rs=pstmt.executeQuery();
+			if(rs.next())
+				name=rs.getString("name");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			db.dbClose(conn, pstmt, rs);
 		}
-		
-		
+		return name;
+	}
+
+
 
 
 }
