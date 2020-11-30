@@ -5,9 +5,8 @@
 <%
 //id읽기
 String id=request.getParameter("id");
-//dao 선언
 MemberDao dao=new MemberDao();
-//메서드 호출
+
 boolean find=dao.isIdSearch(id);
 %>
 <data><%=find?"yes":"no"%></data>

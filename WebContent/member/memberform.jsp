@@ -42,39 +42,38 @@ font-size: 15px;
 b{
 color: red;
 }
+
 .btn {
 text-size: 0.8em;
 }
 </style>
 <script type="text/javascript">
 $(function() {
-
-	//아이디 입력후 포커스가 벗어날때 아이디 체크하기
-	$("#id").blur(function() {
-		var id=$(this).val();//앞뒤공백제거
-		if(id.trim().length==0){
-			$(this).val('');
-			return;
-		}
-		$.ajax({
-			type:"get",
-			url:"member/idcheckxml.jsp",
-			dataType:"xml",
-			data:{"id":id},
-			success:function(data){
-				alert($(data).text());
-				$("#idcheck").click(function() {
-					if($(data).text()=='yes'){					
-						alert("이미 등록된 아이디입니다.");
-						$("#id").val("");
-					}else{
-						alert("사용가능한 아이디입니다.");				
-					}
-				});			
-			}			
-		});		
-	});	
 	
+	//패스워드 확인
+    $('#pwd').keyup(function(){
+      $('#passcheck').html('');
+    });
+
+    $('#pwd2').keyup(function(){
+
+        if($('#pwd').val() != $('#pwd2').val()){
+          $('#passcheck').html('비밀번호 일치하지 않음');
+          $('#passcheck').css({
+        	  	"color":"red",
+				"font-size":"14px"
+			});
+        } else{
+          $('#passcheck').html('비밀번호 일치함');
+          $('#passcheck').css({
+				"color":"green",
+				"font-size":"14px"
+          });
+        }
+        return;
+
+    });
+
 	//1. 핸드폰 4자리 입력시 다음 번호칸으로 이동
 	$("#hp2").keyup(function() {
 		var len=$(this).val().length;
@@ -93,6 +92,47 @@ $(function() {
 		}else{
 			$("#email2").val(s);
 		}
+	});
+
+
+//아이디 입력시 메세지 지우기
+$("#id").keydown(function () {
+	$("b.idcheck").html("");
+	
+});
+
+//아이디 유효성 검사(1 = 중복 / 0 != 중복)
+$("#id").blur(function() {
+		var id=$(this).val();//앞뒤공백제거
+		if(id.trim().length==0){
+			$(this).val('');
+			return;
+		}
+		//alert(id);
+		$.ajax({
+			type:"get",
+			url:"member/idcheck.jsp",
+			dataType:"xml",
+			data:{"id":id},
+			success:function(data){
+				$("#idcheck_btn").click(function() {
+				
+				//alert($(data).text());
+				if($(data).text()=='yes'){
+					alert("이미 등록된 아이디 입니다.");
+					$("#id").val("");
+					
+										
+				}else{
+					alert("사용가능한 아이디입니다.");
+					$("#pwd").focus();
+					
+				}
+					return;	
+				})	
+				
+			}			
+		});		
 	});
 });
 
@@ -149,12 +189,14 @@ function execDaumPostcode() {
 				<td class="table_title">아이디<b>*</b></td>
 				<td><input name="id" id="id" type="text"
 					autofocus="autofocus" class="w-50 form-control" required="required" placeholder="중복확인을 해주세요" >
-					<button class="btn btn-outline-warning" id="idcheck">중복확인</button></td>
+					<button class="btn btn-outline-warning" id="idcheck_btn">중복확인</button>
+					<b class="idcheck"></b>
+				</td>
 			</tr>
 			<tr>
 				<td class="table_title">비밀번호<b>*</b></td>
-				<td><input type="password" id="pwd" name="pass" class="w-50 form-control" required="required" placeholder="비밀번호를 입력해주세요">
- 				</td>
+				<td><input type="password" id="pwd" name="password" class="w-50 form-control" required="required" placeholder="비밀번호를 입력해주세요">
+				<b id="passcheck"></b></td>
 			</tr>
 			<tr>
 				<td class="table_title">비밀번호확인<b>*</b></td>

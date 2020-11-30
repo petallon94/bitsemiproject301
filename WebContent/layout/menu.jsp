@@ -4,6 +4,12 @@
 <html>
 <title>Insert title here</title>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link href="https://fonts.googleapis.com/css2??family=Gothic+A1&family=Karma&family=Open+Sans:ital@1&family=Yeon+Sung&display=swap" rel="stylesheet">
+
 <style>
 nav.mainmenu {
 width: 1100px;
@@ -97,7 +103,7 @@ $(function() {
 		<a href="<%=url %>/index.jsp"><img class="logo" src="./image/starbottle_logo.jpg" alt=""></a>
 		</li>
 		<li menu="menu4">
-		<a href="<%=url %>/index.jsp?main=location/locationlist.jsp">매장위치</a>
+		<a href="<%=url %>/index.jsp?main=map/map.jsp">매장위치</a>
 		</li>
 		<li menu="menu5">
 		<a href="<%=url %>/index.jsp?main=event/eventlist.jsp">이벤트</a>

@@ -4,45 +4,66 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<title>로그인</title>
+<style type="text/css">
+<style>
+  .modal-header, h4, .close {
+    background-color: #5cb85c;
+    color:white !important;
+    text-align: center;
+    font-size: 30px;
+  }
+  .modal-header{
+  padding:15px 30px;
+  }
+  .modal-title{
+  text-align: center;
+  }
+  .modal-body{
+  padding:40px 50px;
+  }
+  
+  .modal-footer {
+    background-color: #f9f9f9;
+  }
+</style>
 </head>
 <body>
-<!-- 꽃 주문하기 모달창 -->
-<div class="modal fade" id="myModal" role="dialog">
-<input type="hidden" id="ins_num" value="">
-<div class="modal-dialog">    
-      <div class="modal-content">
-        <div class="modal-header" style="padding:15px 30px;">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4><span class="glyphicon glyphicon-lock"></span>꽃 주문하기</h4>
-        </div>
-        <div class="modal-body" style="padding:40px 50px;">      
-          <form role="form">
-            <div class="form-group">
-              <label for="name"><span class="glyphicon glyphicon-user"></span>이름</label>
-              <input type="text" class="form-control" id="ins_name" placeholder="이름을 입력해주세요">
-            </div>           
-            <div class="form-group">
-              <label for="address"><span class="glyphicon glyphicon-home"></span>배송지</label>
-              <input type="text" class="form-control" id="ins_address" placeholder="주소를 입력해주세요">
-            </div>
-            <div class="form-group">
-              <label for="hp"><span class="glyphicon glyphicon-home"></span>연락처</label>
-              <input type="text" class="form-control" id="ins_hp" placeholder="연락처를 입력해주세요">
-            </div>
-            <div class="form-group">
-             <label for="deliveryday"><span class="glyphicon glyphicon-calendar"></span>배송날짜</label>
-            <input type="date" id="ins_deliveryday" value="2020-10-29" class="form-control input-sm">
-            </div>
-              <button type="submit" class="btn btn-success btn-block" id="btninsert"><span class="glyphicon glyphicon-ok"></span>주문하기</button>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> 취소하기</button>
-        </div>
-       </div>
- </div>
- </div>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">
+  Open modal
+</button>
 
+<!-- 로그인 모달창 -->
+  <div class="modal fade" id="loginModal" data-toggle="modal" data-target="#loginModal">
+  <input type="text" id="login_num" value="">
+    <div class="modal-dialog">    
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">로그인</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          <input type="text" class="form-control" id="login_id" placeholder="아이디를 입력해주세요">
+          <input type="text" class="form-control" id="login_password" placeholder="비밀번호를 입력해주세요">
+          <button type="submit" class="btn btn-warning btn-block" id="login_enterbtn">로그인하기</button>
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger btn-default pull-left" data-dismiss="modal">취소</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
 </body>
 </html>
