@@ -162,7 +162,7 @@ public class GonjiDao {
 	//내용보기시 조회수 1증가
 	public void updateReadcount(String gonnum)
 	{
-		String sql="update gonji set readcount=readcount+1 where gonnum=?";
+		String sql="update gonji set gonreadcount=gonreadcount+1 where gonnum=?";
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		conn=db.getMyConnection();

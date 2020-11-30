@@ -18,6 +18,7 @@
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <style type="text/css">
 	#cl-dashboard{display: none;}
+
 </style>
 </head>
 <%
@@ -79,7 +80,7 @@
 <b>총 <span style="color: red;"><%=totalCount%></span>
  개의 글이 있습니다</b>
  <input type="button" value="게시물등록"
- class="btn btn-danger btn-sm"
+ class="btn btn-secondary btn-sm"
   style="width: 100px;margin-left: 200px;"
  onclick="location.href='index.jsp?main=gonji/gonjiform.jsp'">  
  

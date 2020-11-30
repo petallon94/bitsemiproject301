@@ -14,6 +14,12 @@
 	<form action="gonji/formaction.jsp"
 	  method="post" enctype="multipart/form-data"
 	   name="f">
+	 <!-- hidden -->
+	 <%
+	 	String gonnum=request.getParameter("gonnum");
+	 %>
+	 <input type="hidden" name="gonnum" value="<%=gonnum%>">
+	 
 	 <table class="table table-bordered">
 	 	<tr>
 	 		<th width="100" bgcolor="#ddd">작성자</th>
@@ -42,12 +48,12 @@
 	 	<tr>
 	 		<td colspan="2" align="center">
 	 			<input type="button" value="글등록"
-	 			 class="btn btn-info btn-sm"
+	 			 class="btn btn-warning btn-sm"
 	 			  style="width: 100px;"
 	 			  onclick="submitContents(this)">
 	 			  
 	 			<input type="button" value="글목록"
-	 			 class="btn btn-info btn-sm"
+	 			 class="btn btn-dark btn-sm"
 	 			  style="width: 100px;"
 	 			  onclick="location.href='index.jsp?main=gonji/gonjilist.jsp'">  
 	 		</td>		 		

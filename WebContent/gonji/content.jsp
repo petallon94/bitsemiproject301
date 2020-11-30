@@ -60,10 +60,10 @@
 	</tr>
 	<tr>
 		<td colspan="2" align="right">
-			<input type="button" class="btn btn-default btn-xs"
+			<input type="button" class="btn btn-warning btn-xs"
 			  value="글쓰기" style="width: 60px;"
 			  onclick="location.href='index.jsp?main=gonji/gonjiform.jsp'">
-			<input type="button" class="btn btn-default btn-xs"
+			<input type="button" class="btn btn-dark btn-xs"
 			  value="글목록" style="width: 60px;"
 			  onclick="location.href='index.jsp?main=gonji/gonjilist.jsp?pageNum=<%=pageNum%>'">			
 		</td>
