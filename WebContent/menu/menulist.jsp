@@ -20,7 +20,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: 'Noto Sans KR', sans-serif;}
 
 /*godetail*/
 
-.godetail{cursor:pointer;}
+.godetail img{cursor:pointer;}
 
 
 /* sub */
@@ -40,7 +40,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: 'Noto Sans KR', sans-serif;}
 <script>
 $(function(){
 	
-	$("div.godetail").click(function(e){
+	$("img.godetail").click(function(e){
 	  	  
 	   	 e.preventDefault(); 
 	   	 var menunum = $(this).attr("menunum");
@@ -113,8 +113,8 @@ $(function(){
 	<%
 	
 		for(MenuDto dto : list){%>
-			<div class="w3-quarter godetail">
-      		<img src ="menusave/<%=dto.getMenuphoto()%>" style="width:100%;height :250px;margin-left:10px;marigin_top :10px;">
+			<div class="w3-quarter godetail" >
+      		<img src ="menusave/<%=dto.getMenuphoto()%>" class ="godetail" menunum = "<%=dto.getMenunum()%>" style="width:100%;height :250px;margin-left:10px;marigin_top :10px;">
       		<h3><%=dto.getMenuname() %></h3>
      		<input type="hidden" class="form-control" id="menunum"  name="menunum" value =<%=dto.getMenunum()%>>
  		   </div>

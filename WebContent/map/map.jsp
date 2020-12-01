@@ -1,6 +1,8 @@
+
 <%@page import="data.dto.StarMapDto"%>
-<%@page import="java.util.List"%>
 <%@page import="data.dao.StarMapDao"%>
+<%@page import="java.util.List"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -54,34 +56,45 @@
     	StarMapDao StarDao=new StarMapDao();
     	//목록 가져오기
     	List<StarMapDto> list=StarDao.getMainList();
+    
     	%>
+    	//ov
+    		
+    		var positions = [
+    		                 
+							<%for(StarMapDto dto : list){ %>
+    		     		    {
+    		     		    	
+    		     		        title: '<%=dto.getShopname()%>',
+    		     		        content: '<div class="wrap">' + 
+    		     	            '    <div class="info">' + 
+    		     	            '        <div class="title">' + 
+    		     	            '            <%=dto.getShopname()%>' + 
+    		     	            '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' + 
+    		     	            '        </div>' + 
+    		     	            '        <div class="body">' + 
+    		     	            '            <div class="img">' +
+    		     	            '                <img src="https://cfile181.uf.daum.net/image/250649365602043421936D" width="73" height="70">' +
+    		     	            '           </div>' + 
+    		     	            '            <div class="desc">' + 
+    		     	            '                <div class="ellipsis"><%=dto.getShopaddr()%></div>' + 
+    		     	            '                <div class="jibun ellipsis"><%=dto.getShopaddrdetail()%></div>' + 
+    		     	             
+    		     	            '            </div>' + 
+    		     	            '        </div>' + 
+    		     	            '    </div>' +    
+    		     	            '</div>',
+    		     		        latlng: new kakao.maps.LatLng(<%=dto.getMpositionx()%>, <%=dto.getMpositiony()%>)
+    		     		    },
+    		     		   <%}
+					    	%>
+					    	
+    		     		]; 
+    		
+    		
     	
-		var positions = [ 
-		    {
-		    	
-		        title: '스타보틀 신논현 교보타워점',
-		        content: '<div class="wrap">' + 
-	            '    <div class="info">' + 
-	            '        <div class="title">' + 
-	            '            카카오 스페이스닷원' + 
-	            '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' + 
-	            '        </div>' + 
-	            '        <div class="body">' + 
-	            '            <div class="img">' +
-	            '                <img src="https://cfile181.uf.daum.net/image/250649365602043421936D" width="73" height="70">' +
-	            '           </div>' + 
-	            '            <div class="desc">' + 
-	            '                <div class="ellipsis">제주특별자치도 제주시 첨단로 242</div>' + 
-	            '                <div class="jibun ellipsis">(우) 63309 (지번) 영평동 2181</div>' + 
-	            '                <div><a href="https://www.kakaocorp.com/main" target="_blank" class="link">홈페이지</a></div>' + 
-	            '            </div>' + 
-	            '        </div>' + 
-	            '    </div>' +    
-	            '</div>',
-		        latlng: new kakao.maps.LatLng(37.50375828621347, 127.02411861828377)
-		    }
-		]; 
-		
+    	
+
     	
 	
 		var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png", // 마커이미지의 주소입니다    
@@ -91,7 +104,7 @@
 		// 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
 		var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
 	    
-
+		//★마커 찍어주는곳★//
 	    for (var i = 0; i < positions.length; i ++) {
 	        
 	        // 마커 이미지의 이미지 크기 입니다
@@ -213,7 +226,7 @@
 
 				// 마커를 생성하고 지도에 표시합니다
 				var placePosition = new kakao.maps.LatLng(places[i].y,
-						places[i].x), marker = addMarker(placePosition, i), itemEl = getListItem(
+						places[i].x),marker = addMarker(placePosition, i), itemEl = getListItem(
 						i, places[i]); // 검색 결과 항목 Element를 생성합니다
 
 				// 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
