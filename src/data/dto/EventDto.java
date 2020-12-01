@@ -3,7 +3,7 @@ package data.dto;
 import java.sql.Timestamp;
 
 public class EventDto {
-	private int eventnum;
+	private String eventnum;
 	private String id;
 	private String evsubject;
 	private String evlistimage;
@@ -15,11 +15,10 @@ public class EventDto {
 	private Timestamp evwriteday;
 	
 	
-	
-	public int getEventnum() {
+	public String getEventnum() {
 		return eventnum;
 	}
-	public void setEventnum(int eventnum) {
+	public void setEventnum(String eventnum) {
 		this.eventnum = eventnum;
 	}
 	public String getId() {
@@ -76,6 +75,9 @@ public class EventDto {
 	public void setEvwriteday(Timestamp evwriteday) {
 		this.evwriteday = evwriteday;
 	}
+	
+	
+	
 	
 	
 	

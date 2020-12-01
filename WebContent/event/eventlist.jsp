@@ -1,3 +1,6 @@
+<%@page import="data.dto.EventDto"%>
+<%@page import="java.util.List"%>
+<%@page import="data.dao.EventDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -26,119 +29,80 @@ body,h1 {font-family: "Raleway", Arial, sans-serif}
 	div .w3-third{
 		margin-bottom: 10px;
 	}
+	
+	.ev_content{
+		cursor: pointer;
+	}
 </style>
+
+
+<script type="text/javascript">
+$(function(){
+	$("div.ev_content").click(function(){
+		
+		var eventnum=$(this).attr("eventnum");
+		location.href="index.jsp?main=event/eventcontent.jsp?eventnum="+eventnum;
+		
+	});
+	
+});
+
+</script>
+<%
+	EventDao dao=new EventDao();
+	List<EventDto> list=dao.getAllEvent();
+%>
+
 <body>
-<button type="button" class="btn btn-outline-secondary"
-onclick="location.href='../event/eventaddform.jsp'">
-이벤트추가
-</button>
+
 <!-- !PAGE CONTENT! -->
 <div class="w3-content" style="max-width:1500px">
 <!-- Header -->
 <header class="w3-panel w3-center w3-opacity" style="padding:15px 15px">
-
-  
   <div class="w3-padding-32">
+  
+  	<!--이벤트탭들 이름에맞게 출력되게 수정-->
     <div class="w3-bar w3-border">
       <a href="#" class="w3-bar-item w3-button">전체 이벤트</a>
       <a href="#" class="w3-bar-item w3-button w3-light-grey">진행중인 이벤트</a>
       <a href="#" class="w3-bar-item w3-button">종료된 이벤트</a>
     </div>
+    
+    <!--이벤트추가버튼 admin 계정으로만 보이게-->
+    <br><br>
+    <button type="button" class="btn btn-outline-secondary"
+	onclick="location.href='index.jsp?main=event/eventaddform.jsp'">
+	이벤트추가
+	</button>
+	<button type="button" class="btn btn-outline-secondary"
+	onclick="location.href='#'">
+	이벤트수정
+	</button>
   </div>
 </header>
 </div>
 
 
 
-  <!-- The Band Section -->
+  <!--각 이벤트들 반복문으로 출력하기-->
   <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="band">
     <div class="w3-row w3-padding-32">
     
-    
-      <div class="w3-third">
-        
-        <img src="../image/list_1.jpg" class="w3-round w3-margin-bottom" style="width:90%">
-        <p>event1<br>
-        123123
-        </p>
-      </div>
-      <div class="w3-third">
-        
-        <img src="../image/list_2.jpg" class="w3-round w3-margin-bottom" style="width:90%">
-        <p>event2<br>
-        123123
-        </p>
-      </div>
-      <div class="w3-third">
-        
-        <img src="../image/list_3.jpg" class="w3-round w3-margin-bottom" style="width:90%">
-        <p>event3<br>
-        123123
-        </p>
-      </div>
-      <div class="w3-third">
-        
-        <img src="../image/list_4.jpg" class="w3-round w3-margin-bottom" style="width:90%">
-        <p>event4<br>
-        123123
-        </p>
-      </div>
-      <div class="w3-third">
-        
-        <img src="../image/list_5.jpg" class="w3-round w3-margin-bottom" style="width:90%">
-        <p>event5<br>
-        123123
-        </p>
-      </div>
-      <div class="w3-third">
-        
-        <img src="../image/list_6.jpg" class="w3-round w3-margin-bottom" style="width:90%">
-        <p>event6<br>
-        123123
-        </p>
-      </div>
-      <div class="w3-third">
-        
-        <img src="../image/list_7.jpg" class="w3-round w3-margin-bottom" style="width:90%">
-        <p>event7<br>
-        123123
-        </p>
-      </div>
-      <div class="w3-third">
-        
-        <img src="../image/list_8.jpg" class="w3-round w3-margin-bottom" style="width:90%">
-        <p>event8<br>
-        123123
-        </p>
-      </div>
-      <div class="w3-third">
-        
-        <img src="../image/list_9.jpg" class="w3-round w3-margin-bottom" style="width:90%">
-        <p>event9<br>
-        123123
-        </p>
-      </div>
-      <div class="w3-third">
-        
-        <img src="../image/list_10.jpg" class="w3-round w3-margin-bottom" style="width:90%">
-        <p>event10<br>
-        123123
-        </p>
-      </div>
-      <div class="w3-third">
-        
-        <img src="../image/list_11.jpg" class="w3-round w3-margin-bottom" style="width:90%">
-        <p>event11<br>
-        123123
-        </p>
-      </div>
-      <div class="w3-third">
-        
-        <img src="../image/list_12.jpg" class="w3-round w3-margin-bottom" style="width:90%">
-        <p>event12<br>
-        123123
-        </p>
-      </div>
+      <%
+      	for(EventDto dto:list)
+      	{%>
+      		<div class="ev_content w3-third"
+      		 eventnum="<%=dto.getEventnum()%>">
+      		 <img src="eventsave/<%=dto.getEvlistimage()%>" 
+      		 class="w3-round w3-margin-bottom" style="width:90%">
+      		  <p><%=dto.getEvsubject()%><br>
+      		  <%=dto.getEvstartday()%>~<%=dto.getEvendday()%>
+      		  </p>
+      		 
+      		</div> 
+      	<%}
+      %>
+
       
       
     </div>
