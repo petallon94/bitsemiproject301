@@ -69,8 +69,6 @@ local.properties
 
 # JDT-specific
 .classpath
-#eclipseCore
-.project
 #Annotation processing
 .apt_generated
 
