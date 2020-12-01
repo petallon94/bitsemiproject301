@@ -58,10 +58,10 @@
 		<p class="ord_label s">Size</p>
 		<select id="size" name="size">
 			<option value="hide">---- Size ----</option>
-		    <option value="small" >Small</option>
-		    <option value="medium">Medium</option>
-		    <option value="large">Large</option>
-		    <option value="jumbo">Jumbo</option>
+		    <option value="S" >Small</option>
+		    <option value="M">Medium</option>
+		    <option value="L">Large</option>
+		    <option value="J">Jumbo</option>
 		</select>
 		<p class="ord_label hc">Hot / Cold</p>
 		<div class="switch-field">
