@@ -8,17 +8,33 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<%--만약 화면이 안나오면 부트스트랩 이하 5줄 추가하기 : main에 있는--%>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<!-- 메인페이지에 필요한 링크/부트스트랩  -->
+<%--   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> --%>
+
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <style type="text/css">
-	#cl-dashboard{display: none;}
-
+	/* #cl-dashboard{display: none;} */
+/*폰트 */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300&display=swap');
+	
+	div.gonlist{
+		display: flex;
+		width: 100%;
+		margin-left: 250px;	
+		font-family: 'Noto Serif KR', serif;
+	}
+	
+	/*리스트의 제목 부분 */
+	tr.gontitle{
+		background-color: #fffee9;
+		text-align: center; 
+		height:65px;line-height: 65px;
+	}
 </style>
 </head>
 <%
@@ -77,26 +93,26 @@
 	List<GonjiDto> list=db.getList(start, perPage);
 %>
 <body>
-<b>총 <span style="color: red;"><%=totalCount%></span>
- 개의 글이 있습니다</b>
+<b style="margin-left: 250px;">총 <span style="color: red;">
+<%=totalCount%></span>개의 글이 있습니다</b>
  <input type="button" value="게시물등록"
- class="btn btn-secondary btn-sm"
-  style="width: 100px;margin-left: 200px;"
+ class="btn btn-warning btn-sm" 
+  style="width: 100px;float: right;margin-right: 220px;"
  onclick="location.href='index.jsp?main=gonji/gonjiform.jsp'">  
  
  <br><br>
  <%
  	SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
  %>
- <div>
+ <div class="gonlist">
  <%--테이블로 제목넣기--%>
- 	<table class="table table-bordered" style="width: 1200px;">
- 		<tr bgcolor="#ddd">
- 		 	<th width="80">번호</th>
- 		 	<th width="350">제 목</th>
- 		 	<th width="100">작성자</th>
- 		 	<th width="80">조회수</th>
- 		 	<th width="130">작성일</th> 		 	
+ 	<table class="table table-bordered" style="width: 1000px;">
+ 		<tr class="gontitle">
+ 		 	<th width="40">번호</th>
+ 		 	<th width="400">제 목</th>
+ 		 	<th width="60">작성자</th>
+ 		 	<th width="50">조회수</th>
+ 		 	<th width="70">작성일</th> 		 	
  		</tr>
  	<%
  	if(totalCount==0)
@@ -113,7 +129,7 @@
 		<tr>
 			<td align="center"><%=no--%></td>
 			<td>
-				<a style="color: black;" 
+				<a style="color: black;text-align: left;" 
 				href="index.jsp?main=gonji/content.jsp?num=<%=dto.getGonnum()%>&pageNum=<%=currentPage%>&key=list">
 				<%=dto.getGonsubject()%></a>
 			</td>	
