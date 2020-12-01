@@ -9,20 +9,22 @@
 <head>
 <meta charset="EUC-KR">
 <!-- 메인페이지에 필요한 링크/부트스트랩  -->
-<%--   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> --%>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 <title>Insert title here</title>
-<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-1.10.2.js"></script> -->
+
 <style type="text/css">
 	/* #cl-dashboard{display: none;} */
+	
 /*폰트 */
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300&display=swap');
 	
-	div.gonlist{
+	body{
 		display: flex;
 		width: 100%;
 		margin-left: 250px;	
@@ -33,7 +35,15 @@
 	tr.gontitle{
 		background-color: #fffee9;
 		text-align: center; 
-		height:65px;line-height: 65px;
+		height:65px;
+		line-height: 65px;
+	}
+	
+	table.table{
+		border-left: none;
+		border-top: none;
+		border-right: none;
+		height: 50px;
 	}
 </style>
 </head>
@@ -93,11 +103,13 @@
 	List<GonjiDto> list=db.getList(start, perPage);
 %>
 <body>
-<b style="margin-left: 250px;">총 <span style="color: red;">
+<%--공지사항 리스트 페이지 --%>
+<h2 style="display: inline;">공지사항	</h2>
+<b>	총 <span style="color: red;">
 <%=totalCount%></span>개의 글이 있습니다</b>
  <input type="button" value="게시물등록"
  class="btn btn-warning btn-sm" 
-  style="width: 100px;float: right;margin-right: 220px;"
+  style="width: 100px;float: right;margin-right: 100px;"
  onclick="location.href='index.jsp?main=gonji/gonjiform.jsp'">  
  
  <br><br>
@@ -106,8 +118,8 @@
  %>
  <div class="gonlist">
  <%--테이블로 제목넣기--%>
- 	<table class="table table-bordered" style="width: 1000px;">
- 		<tr class="gontitle">
+ 	<table class="table" style="width: 1000px;">
+ 		<tr class="gontitle" style="text-align: center; ">
  		 	<th width="40">번호</th>
  		 	<th width="400">제 목</th>
  		 	<th width="60">작성자</th>
@@ -144,6 +156,7 @@
 
     </table>
 </div>    
+
 <%--페이징 처리--%>
 <%
   if(totalCount>0)
@@ -154,7 +167,7 @@
 		//이전 페이지 표시
 		if(startPage>1)
 		{%>
-			<li><a href="index.jsp?main=gonji/gonjilist.jsp?pageNum=<%=startPage-1%>">
+			<li class="page-item"><a class="page-link" href="index.jsp?main=gonji/gonjilist.jsp?pageNum=<%=startPage-1%>">
 			이전&gt;</a></li>
 		<%}	
 			//페이지 블록 표시
@@ -172,13 +185,13 @@
 				
 				if(i==currentPage)
 				{%>
-					<li class="active">
-					  <a href="<%=url%>"><%=i%></a>
+					<li class="page-item">
+					  <a class="page-link" href="<%=url%>"><%=i%></a>
 					</li>
 			  
 			  <%}else{%>
-					<li>
-					  <a href="<%=url%>"><%=i%></a>
+					<li class="page-item">
+					  <a class="page-link" href="<%=url%>"><%=i%></a>
 					</li>
 			  <%}
 			}//for문 close
@@ -186,14 +199,56 @@
 		if(endPage<totalPage)
 		{%>
 			<%-- 부등호 기호(>)가 출력안될때: &gt; --%>
-			<li>
-			  <a href="index.jsp?main=gonji/gonjilist.jsp?pageNum=<%=endPage+1%>">
+			<li class="page-item">
+			  <a class="page-link" href="index.jsp?main=gonji/gonjilist.jsp?pageNum=<%=endPage+1%>">
 			다음&gt;</a>
 			</li>
 	  <%}%>
 	  </ul>
 	</div>
 <%}//if문 close
-%>
+%> 
+<%-- 페이징 끝 --%>
+
+<%-- 검색창  --%>
+<form action="" class="form-inline">
+  <div style="width: 800px;text-align: center;">
+	<div class="form-group">
+	<%
+		//검색창에 검색한 단어 남아있게 해주기
+		String search=(String)session.getAttribute("key");
+		String word=(String)session.getAttribute("value");
+		if(search==null)
+			search="all";
+		if(word==null)
+			word="";
+	%>
+	<%-- 검색 폼 --%>
+		<select id="search" class="form-control"
+			style="width: 100px;">
+		
+		</select>
+	</div>
+  </div>
+</form>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
