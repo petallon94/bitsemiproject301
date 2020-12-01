@@ -56,7 +56,7 @@
     	StarMapDao StarDao=new StarMapDao();
     	//목록 가져오기
     	List<StarMapDto> list=StarDao.getMainList();
-    	
+    
     	%>
     	//ov
     		
@@ -94,10 +94,7 @@
     		
     	
     	
-    	//ov
-    	
-		
-		
+
     	
 	
 		var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png", // 마커이미지의 주소입니다    
@@ -229,7 +226,7 @@
 
 				// 마커를 생성하고 지도에 표시합니다
 				var placePosition = new kakao.maps.LatLng(places[i].y,
-						places[i].x), marker = addMarker(placePosition, i), itemEl = getListItem(
+						places[i].x),marker = addMarker(placePosition, i), itemEl = getListItem(
 						i, places[i]); // 검색 결과 항목 Element를 생성합니다
 
 				// 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해

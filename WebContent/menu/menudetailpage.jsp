@@ -170,8 +170,11 @@ $(function(){
 									</div>
 								</fieldset>
 							</form>
-							<br></br>
-							<div class="product_view_order" style="cursor:pointer;" onclick="location.href='index.jsp?main=order/orderpage.jsp'">주문하기</div>
+
+							
+
+							<div class="product_view_order" style="cursor:pointer;">주문하기</div>
+
 							</div>
 						</div>
 						
