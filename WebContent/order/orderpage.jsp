@@ -23,12 +23,13 @@
 	String menuprice = request.getParameter("menuprice");
 	String photo = request.getParameter("menuphoto");
 	
-	//로그인한 아이디 구하기
+	//로그인한 아이디 구하기 - 수정
 	String myid = (String)session.getAttribute("myid");
 	//아이디에 해당하는 멤버 테이블의 시퀀스 번호 가져오기
  	MemberDao mdao = new MemberDao();
 
 	//String loginnum = mdao.getNum(myid);
+
 	String loginnum = "7";
 	
 	
@@ -59,10 +60,10 @@
 		<p class="ord_label s">Size</p>
 		<select id="size" name="size">
 			<option value="hide">---- Size ----</option>
-		    <option value="small" >Small</option>
-		    <option value="medium">Medium</option>
-		    <option value="large">Large</option>
-		    <option value="jumbo">Jumbo</option>
+		    <option value="S" >Small</option>
+		    <option value="M">Medium</option>
+		    <option value="L">Large</option>
+		    <option value="J">Jumbo</option>
 		</select>
 		<p class="ord_label hc">Hot / Cold</p>
 		<div class="switch-field">
@@ -80,7 +81,7 @@
 		</div>
 		<div id="price"><b class="money"><%=medto.getMenuprice() %></b><span class="won"> 원</span></div>
 		<button type="button" id="btncart" class="btn btn-outline-warning">장바구니 담기</button>
-		<button type="button" id="btnorder" class="btn btn-warning">주문하기</button>
+		<button type="submit" id="btnorder" class="btn btn-warning" onclick="location.href='index.jsp?main=order/orderfinish.jsp'">주문하기</button>
 	</form>
 </div>
 <script type="text/javascript">
@@ -100,19 +101,6 @@ $("#btncart").click(function(){
 	});
 });
 
-$("#btnorder").click(function(){
-	//form태그의 모든 값을 가져오기
-	var formdata=$("#frm").serialize();
-	alert(formdata);
-	$.ajax({
-		type:"post",
-		dataType:"html",
-		url:"order/orderprocess.jsp",
-		success:function(data){
-				location.href="index.jsp?main=order/orderfinish.jsp";
-		}
-	});
-});
 </script>
 </body>
 </html>

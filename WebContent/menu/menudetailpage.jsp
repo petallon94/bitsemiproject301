@@ -58,8 +58,8 @@ $(function(){
 	$("div.product_view_order").click(function(e){
 	
 		e.preventDefault(); 
-	   	 var menunum = $("#menunum").val();
-	   	 location.href ="index.jsp?main=order/orderpage.jsp?menunum="+menunum;
+		var menunum = $("#menunum").val();
+	   	location.href ="index.jsp?main=order/orderpage.jsp?menunum="+menunum;
 		
 	});
 	
