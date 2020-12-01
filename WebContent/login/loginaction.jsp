@@ -10,9 +10,9 @@
  --%>
  <%
  	//id,pass,saveid 읽기
- 	String id=request.getParameter("id");
- 	String pass=request.getParameter("pass");
- 	String saveid=request.getParameter("saveid");//null이면 체크 안한상태를 의미
+ 	String id=request.getParameter("login_id");
+ 	String pass=request.getParameter("login_password");
+ 	String saveid=request.getParameter("login_saveid");//null이면 체크 안한상태를 의미
  	//dao 선언
  	MemberDao dao=new MemberDao();
  	
@@ -27,12 +27,12 @@
   	if(a==1){%>
   		<script type="text/javascript">
 			alert("아이디가 존재하지 않습니다\n먼저 회원가입을 해주세요");
-			history.back();
+			location.href="../index.jsp?main=member/memberform.jsp";    
 		</script>
   	<%}else if(a==2){%>
 		<script type="text/javascript">
 			alert("비밀번호가 맞지 않습니다");
-			history.back();
+			location.href="../index.jsp?main=login/loginmenu.jsp#loginModal";
 	</script>
 	<%}else{
 		//아이디와 비번이 맞는경우
