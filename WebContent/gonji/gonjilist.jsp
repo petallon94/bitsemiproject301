@@ -226,8 +226,15 @@
 	<%-- 검색 폼 --%>
 		<select id="search" class="form-control"
 			style="width: 100px;">
-		
+		  <option value="all">전체</option>
+		  <option value="myid">아이디</option>
+		  <option value="subject">제목</option>
+		  <option value="content">내용</option>
 		</select>
+	<%-- ajax에서 action호출하기 위한 id --%>
+		<input type="text" class="form-control" style="width: 150px;"
+			name="word" id="word" placeholder="검색단어입력"
+			>
 	</div>
   </div>
 </form>
