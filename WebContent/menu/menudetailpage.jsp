@@ -67,6 +67,20 @@ div.product_view_wrap1 { width:1100px; padding-bottom:40px; border-bottom:1px so
 
 </style>
 </head>
+<script>
+$(function(){
+
+	$("div.product_view_order").click(function(e){
+	
+		e.preventDefault(); 
+	   	 var menunum = $(this).attr("menunum");
+	   	 location.href ="index.jsp?main=order/orderpage.jsp?menunum="+menunum;
+		
+	});
+	
+
+});
+</script>
 <body>
 <!-- 서브 타이틀 end -->
 <div class="sub_visual bg-menu">
@@ -103,7 +117,7 @@ div.product_view_wrap1 { width:1100px; padding-bottom:40px; border-bottom:1px so
 					<!-- 제품 상세보기 -->
 					<div class="product_view_wrap1">
 						<div class="product_view_pic">
-						<input type="hidden" class="form-control" id="menunum"  name="menunum" value =<%=medto.getMenunum()%>>		  
+						<input type="text" class="form-control" id="menunum"  name="menunum" value =<%=medto.getMenunum()%>>		  
 						<img src = "menusave/<%=medto.getMenuphoto() %>">
 						</div>
 						<div class="product_view_detail">
@@ -127,79 +141,39 @@ div.product_view_wrap1 { width:1100px; padding-bottom:40px; border-bottom:1px so
 											 <ul>
                                                 <li class="kcal">
                                                     <dl>
-                                                        <dt>1회 제공량 (kcal)</dt>
+                                                        <dt>1회 제공량 (kcal) : <%=medto.getMenukcal() %></dt>
                                                         <dd></dd>
                                                     </dl>
                                                 </li>
-                                              	<li class="sat_FAT">
-                                                    <dl>
-                                                        <dt>포화지방 (g)</dt>
-                                                        <dd></dd>
-                                                    </dl>
-                                                </li>
-                                                <li class="protein">
-                                                    <dl>
-                                                        <dt>단백질 (g)</dt>
-                                                        <dd></dd>
-                                                    </dl>
-                                                </li>
-                                                <li class="fat" style="display:none;">
-                                                    <dl>
-                                                        <dt>지방 (g)</dt>
-                                                        <dd></dd>
-                                                    </dl>
-                                                </li>
-                                                <li class="trans_FAT" style="display:none;">
-                                                    <dl>
-                                                        <dt>트랜스지방 (g)</dt>
-                                                        <dd></dd>
-                                                    </dl>
-                                                </li>
-                                                
-                                            </ul>
-                                            <ul>
                                                 <li class="sodium">
                                                     <dl>
-                                                        <dt>나트륨 (mg)</dt>
+                                                        <dt>나트륨 (mg)  : <%=medto.getMenunat() %></dt>
                                                         <dd></dd>
                                                     </dl>
                                                 </li>
                                                 <li class="sugars">
                                                     <dl>
-                                                        <dt>당류 (g)</dt>
+                                                        <dt>당류 (g)  :  <%=medto.getMenusugar() %> </dt>
                                                         <dd></dd>
                                                     </dl>
                                                 </li>
                                                 <li class="caffeine last">
                                                     <dl>
-                                                        <dt>카페인 (mg)</dt>
-                                                        <dd></dd>
-                                                    </dl>
-                                                </li>
-                                                <li class="cholesterol" style="display:none;">
-                                                    <dl>
-                                                        <dt>콜레스테롤 (mg)</dt>
-                                                        <dd></dd>
-                                                    </dl>
-                                                </li>
-                                                <li class="chabo" style="display:none;">
-                                                    <dl>
-                                                        <dt>탄수화물 (g)</dt>
+                                                        <dt>카페인 (mg)  :  <%=medto.getMenucaff() %> </dt>
                                                         <dd></dd>
                                                     </dl>
                                                 </li>
                                             </ul>
 										</div>
-										<div class="product_factor">
-											<p></p>
-										</div>
+										
 										
 									</div>
 								</fieldset>
 							</form>
+
 							
 
-							<div class="product_view_order" style="cursor:pointer;" onclick="location.href='index.jsp?main=order/orderpage.jsp'">주문하기</div>
+							<div class="product_view_order" style="cursor:pointer;">주문하기</div>
 
 							</div>
 						</div>
