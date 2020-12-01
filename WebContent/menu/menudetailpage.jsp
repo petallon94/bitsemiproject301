@@ -118,7 +118,7 @@ $(function(){
 					<!-- 제품 상세보기 -->
 					<div class="product_view_wrap1">
 						<div class="product_view_pic">
-						<input type="text" class="form-control" id="menunum"  name="menunum" value =<%=medto.getMenunum()%>>		  
+						<input type="hidden" class="form-control" id="menunum"  name="menunum" value =<%=medto.getMenunum()%>>		  
 						<img src = "menusave/<%=medto.getMenuphoto() %>">
 						</div>
 						<div class="product_view_detail">
