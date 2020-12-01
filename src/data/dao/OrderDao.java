@@ -20,7 +20,7 @@ public class OrderDao {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		
-		String sql="insert into morder(orderid,mnname,size,temp,orderprice,takeout,orderdate) values (admin,'아메리카노',?,?,?,?,sysdate)";
+		String sql="insert into morder(orderid,mnname,size,temp,orderprice,takeout,orderdate) values (admin,?,?,?,?,?,sysdate)";
 		
 		conn = db.getMyConnection();
 		try {
@@ -28,11 +28,11 @@ public class OrderDao {
 			
 			//바인딩
 			//pstmt.setString(1, dto.getOrderid());
-			//pstmt.setString(1, dto.getMnname());
-			pstmt.setString(1, dto.getSize());
-			pstmt.setString(2, dto.getTemp());
-			pstmt.setInt(3, dto.getOrderprice());
-			pstmt.setString(4, dto.getTakeout());
+			pstmt.setString(1, dto.getMnname());
+			pstmt.setString(2, dto.getSize());
+			pstmt.setString(3, dto.getTemp());
+			pstmt.setInt(4, dto.getOrderprice());
+			pstmt.setString(5, dto.getTakeout());
 			
 			//실행
 			pstmt.execute();
@@ -81,7 +81,7 @@ public class OrderDao {
 	public List<HashMap<String, String>> getOrderList(String id)
 	{
 		String sql="select m.menuname, m.menunum, m.menuphoto, m.menuprice, o.size, o.temp, o.takeout, o.orderdate "
-				+ "from morder o,Login l,menu m where o.mnname=m.menuname and o.orderid=l.id and l.id=?";
+				+ "from morder o,Login l,menu m where o.mnname=m.menuname and o.orderid=l.id and l.id='admin'";
 		List<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
 		
 		Connection conn = null;
@@ -100,14 +100,14 @@ public class OrderDao {
 			while(rs.next())
 			{
 				HashMap<String, String> map = new HashMap<String, String>();
-				map.put("idx", rs.getString("idx"));
-				map.put("sangpum", rs.getString("sangpum"));
-				map.put("shopnum", rs.getString("shopnum"));
-				map.put("photo", rs.getString("photo"));
-				map.put("price", rs.getString("price"));
-				map.put("cnt", rs.getString("cnt"));
-				map.put("mycolor", rs.getString("mycolor"));
-				map.put("cartday", rs.getString("cartday").substring(0,10));
+				map.put("menuname", rs.getString("menuname"));
+				map.put("menunum", rs.getString("menunum"));
+				map.put("menuphoto", rs.getString("menuphoto"));
+				map.put("menuprice", rs.getString("menuprice"));
+				map.put("size", rs.getString("size"));
+				map.put("temp", rs.getString("temp"));
+				map.put("takeout", rs.getString("takeout"));
+				map.put("orderdate", rs.getString("orderdate").substring(0,10));
 				
 				//list에 추가
 				list.add(map);
