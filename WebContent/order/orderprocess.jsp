@@ -21,7 +21,7 @@
 	String takeout = request.getParameter("takeout");
 	//String orderdate = request.getParameter("");
 	
-	//odto.setOrderid(orderid);
+	//odto.setOrderid(orderid); - 수정할건데 왜 안떠
 	odto.setMnname(mnname);
 	odto.setSize(size);
 	odto.setTemp(temp);

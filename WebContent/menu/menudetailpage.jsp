@@ -12,31 +12,16 @@
 .content02 { width:1100px; margin:auto;} /* 제품 상세보기 */
 
 div.product_view_wrap1 { width:1100px; padding-bottom:40px; border-bottom:1px solid #ddd; margin-bottom:40px; }
-	div.product_view_wrap1:after { content:""; display:block; clear:both; }
-	div.product_view_pic { width:450px; float:left; }
-	div.product_view_pic ul { width:450px; }
-	div.product_view_pic:after { content:""; display:block; clear:both; }
-	div.product_view_pic ul li { float:left; }
+	div.product_view_pic { width:400px; float:left;margin-right : 10px; }
+	div.product_view_pic img { width:400px; float:left; align: center;}
 
-	div.product_view_pic div.product_big_pic { position:relative; width:450px; height:470px; margin-bottom:8px; }
-	div.product_view_pic div.card_big_pic { position:relative; height:286px; }
-	div.product_view_pic div.card_big_pic a { cursor:default; }
-	div.product_view_pic div.product_big_pic p.more_btn { position:absolute; right:15px; bottom:15px; }
-	
-	div.product_view_pic ul.product_thum li { margin-right:8px; }
-	div.product_view_pic ul.product_thum li.last { margin-right:0; }
 
 	div.product_view_detail { width:610px; float:right; position:relative; }
 	div.product_view_detail div.myAssignZone { position:relative; }
 	div.product_view_detail h4 { font-size:24px; font-weight:bold; color:#222; border-bottom:2px solid #333; padding-bottom:18px; margin-bottom:20px; }
 	div.product_view_detail h4 span { font-size:14px; font-family:"Arial"; font-weight:normal; color:#666; }
 	div.product_view_detail p.t1 { font-size:16px; color:#444; margin-bottom:20px; line-height:1.6; min-height:40px; }
-	div.product_view_detail p.card_launch { padding:18px 12px; background:#f4f4f2; color:#222; font-size:14px; border-radius:3px; margin-bottom:20px; }
-	div.product_view_detail p.card_launch span { color:#222; }
-	div.product_view_detail div.myDrink { position:absolute; right:0; top:7px; }
-	div.product_view_detail div.myDrink a { display:block; width:111px; height:28px; line-height:28px; background:#006633; font-size:12px; color:#fff; text-align:center; border-radius:3px; }
-	div.product_view_detail div.myAssignZone .storeInfo{display:block; padding-top: 20px; color:#444; font-size:16px} /*20171204 추가*/
-
+	
 	div.product_view_detail div.product_info_head { height:59px; line-height:59px; position:relative; border-top:1px solid #ddd; border-bottom:1px solid #ddd; }
 	div.product_view_detail div.product_info_head p.tit { font-size:18px; color:#222; padding-left:10px; }
 	div.product_view_detail div.product_info_head div.card_enro { position:absolute; right:0; top:15px; }
@@ -117,7 +102,7 @@ $(function(){
 					<!-- 제품 상세보기 -->
 					<div class="product_view_wrap1">
 						<div class="product_view_pic">
-						<input type="text" class="form-control" id="menunum"  name="menunum" value =<%=medto.getMenunum()%>>		  
+						<input type="hidden" class="form-control" id="menunum"  name="menunum" value =<%=medto.getMenunum()%>>		  
 						<img src = "menusave/<%=medto.getMenuphoto() %>">
 						</div>
 						<div class="product_view_detail">
@@ -170,11 +155,8 @@ $(function(){
 									</div>
 								</fieldset>
 							</form>
-
-							
-
+							<br></br>
 							<div class="product_view_order" style="cursor:pointer;">주문하기</div>
-
 							</div>
 						</div>
 						
