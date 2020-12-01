@@ -15,35 +15,6 @@ import mysql.db.MysqlConnect;
 public class OrderDao {
 	MysqlConnect db = new MysqlConnect();
 	
-	public void insertCart(OrderDto dto)
-	{
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		
-		String sql="insert into morder(orderid,mnname,size,temp,orderprice,takeout,orderdate) values (admin,?,?,?,?,?,sysdate)";
-		
-		conn = db.getMyConnection();
-		try {
-			pstmt = conn.prepareStatement(sql);
-			
-			//바인딩
-			//pstmt.setString(1, dto.getOrderid());
-			pstmt.setString(1, dto.getMnname());
-			pstmt.setString(2, dto.getSize());
-			pstmt.setString(3, dto.getTemp());
-			pstmt.setInt(4, dto.getOrderprice());
-			pstmt.setString(5, dto.getTakeout());
-			
-			//실행
-			pstmt.execute();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			db.dbClose(conn, pstmt);
-		}
-	}
-	
 	public MenuDto getData(String menunum)
 	{
 		MenuDto dto = new MenuDto();
@@ -76,6 +47,36 @@ public class OrderDao {
 		}
 		return dto;
 	}
+	
+	public void insertCart(OrderDto dto)
+	{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		String sql="insert into morder(orderid,mnname,size,temp,orderprice,takeout,orderdate) values ('admin',?,?,?,?,?, now())";
+		
+		conn = db.getMyConnection();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			//바인딩
+			//pstmt.setString(1, dto.getOrderid());
+			pstmt.setString(1, dto.getMnname());
+			pstmt.setString(2, dto.getSize());
+			pstmt.setString(3, dto.getTemp());
+			pstmt.setInt(4, dto.getOrderprice());
+			pstmt.setString(5, dto.getTakeout());
+			
+			//실행
+			pstmt.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			db.dbClose(conn, pstmt);
+		}
+	}
+	
 	
 	//장바구니 출력
 	public List<HashMap<String, String>> getOrderList(String id)
@@ -121,25 +122,4 @@ public class OrderDao {
 		return list;
 	}
 	
-	//장바구니 삭제 버튼 이벤
-	public void deleteCart(String idx)
-	{
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		
-		String sql="delete from cart where idx=?";
-		conn = db.getMyConnection();
-		try {
-			pstmt = conn.prepareStatement(sql);
-			//���ε�
-			pstmt.setString(1, idx);
-			//����
-			pstmt.execute();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			db.dbClose(conn, pstmt);
-		}
-	}
 }
