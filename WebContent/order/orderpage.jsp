@@ -27,15 +27,16 @@
 	String myid = (String)session.getAttribute("myid");
 	//아이디에 해당하는 멤버 테이블의 시퀀스 번호 가져오기
  	MemberDao mdao = new MemberDao();
-//	String loginnum = mdao.getNum(myid);
+
+	//String loginnum = mdao.getNum(myid);
 	String loginnum = "7";
+	
 	
 	//해당 상품에 대한 데이터 가져오기
 	OrderDao odao = new OrderDao();
-	//MenuDto dto = odao.getData(menunum);
 	MenuDao medao = new MenuDao();
-	MenuDto medto = new MenuDto();
-	
+	MenuDto medto = medao.getdata(menunum);
+
 	DecimalFormat dmf = new DecimalFormat("###,###");
 %>
 <body>
