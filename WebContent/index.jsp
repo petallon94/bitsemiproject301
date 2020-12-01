@@ -17,8 +17,10 @@
         h1 { color: white; }
 }
 @media all and (min-width: 321px) and (max-width: 768px) {
+
+
+
         body { background-color: green; }
-        h1 { color: red; }
 }
 @media all and (min-width: 769px) {
         body { background-color: blue; }
@@ -71,6 +73,9 @@
 	<div class="login">
 		<jsp:include page="layout/loginmenu.jsp"/>
 	</div>
+	
+	
+	
 	<div class="menu">
 		<jsp:include page="layout/menu.jsp"/>
 	</div>
