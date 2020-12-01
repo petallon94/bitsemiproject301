@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -7,6 +6,7 @@
 <meta charset="UTF-8">
 <!-- bootstrap4 -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <!-- 반응형 -->
 <!-- <style type="text/css"> 
 @media all and (max-width: 320px) {
@@ -43,6 +43,7 @@
 	
 	div.layout div.login{
 	display: flex;	
+	font-size: 15px;
 	justify-content: flex-end;
 	font-family: 'Gothic A1', sans-serif;
 	}
