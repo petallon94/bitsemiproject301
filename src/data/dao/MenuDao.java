@@ -14,11 +14,11 @@ public class MenuDao {
 
 	MysqlConnect db = new MysqlConnect();
 
-	public void insertShop(MenuDto dto) {
+	public void insertMenu(MenuDto dto) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String sql = "insert into menu (menuid,menuname,category,menuprice,mipgoday,menuphoto,menudetail) "
-				+ "values('admin',?,?,?,?,?,?);";
+		String sql = "insert into menu (menuid,menuname,category,menuprice,mipgoday,menuphoto,menudetail,menukcal,menunat,menusugar,menucaff) "
+				+ "values('admin',?,?,?,?,?,?,?,?,?,?);";
 		conn = db.getMyConnection();
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -29,7 +29,14 @@ public class MenuDao {
 			pstmt.setString(4, dto.getMipgoday());
 			pstmt.setString(5, dto.getMenuphoto());
 			pstmt.setString(6, dto.getMenudetail());
+			pstmt.setInt(7,dto.getMenukcal());
+			pstmt.setInt(8,dto.getMenunat());
+			pstmt.setInt(9,dto.getMenusugar());
+			pstmt.setInt(10,dto.getMenucaff());
 
+			//menukcal menunat menusugar menucaff
+			
+			
 			// ½ÇÇà
 			pstmt.execute();
 		} catch (SQLException e) {
@@ -105,7 +112,10 @@ public class MenuDao {
 				dto.setMenuphoto(rs.getString("menuphoto"));
 				dto.setMenuprice(rs.getInt("menuprice"));
 				dto.setMipgoday(rs.getString("mipgoday"));
-				
+				dto.setMenukcal(rs.getInt("menukcal"));
+				dto.setMenunat(rs.getInt("menunat"));
+				dto.setMenusugar(rs.getInt("menusugar"));
+				dto.setMenucaff(rs.getInt("menucaff"));
 			}
 			
 			
