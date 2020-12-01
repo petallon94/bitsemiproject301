@@ -42,7 +42,7 @@
 	 	<tr>
 	 		<td colspan="2" align="center">
 	 			<input type="button" value="글등록"
-	 			 class="btn btn-info btn-sm"
+	 			 class="btn btn-warning btn-sm"
 	 			  style="width: 100px;"
 	 			  onclick="submitContents(this)">
 	 			  
