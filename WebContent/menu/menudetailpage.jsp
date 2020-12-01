@@ -73,7 +73,8 @@ $(function(){
 	$("div.product_view_order").click(function(e){
 	
 		e.preventDefault(); 
-	   	 var menunum = $(this).attr("menunum");
+	   	 var menunum = $("#menunum").val();
+	   	 alert(menunum);
 	   	 location.href ="index.jsp?main=order/orderpage.jsp?menunum="+menunum;
 		
 	});
@@ -170,11 +171,8 @@ $(function(){
 									</div>
 								</fieldset>
 							</form>
-
-							
-
+							<br></br>
 							<div class="product_view_order" style="cursor:pointer;">주문하기</div>
-
 							</div>
 						</div>
 						

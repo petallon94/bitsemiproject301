@@ -1,3 +1,4 @@
+<%@page import="data.dao.MenuDao"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="data.dao.MemberDao"%>
 <%@page import="data.dto.MenuDto"%>
@@ -26,11 +27,14 @@
 	String myid = (String)session.getAttribute("myid");
 	//아이디에 해당하는 멤버 테이블의 시퀀스 번호 가져오기
  	MemberDao mdao = new MemberDao();
-	String loginnum = mdao.getNum(myid);
+	//String loginnum = mdao.getNum(myid);
+	String loginnum = "1";
+	
 	
 	//해당 상품에 대한 데이터 가져오기
 	OrderDao odao = new OrderDao();
-	MenuDto dto = odao.getData(menunum);
+	MenuDao medao = new MenuDao();
+	MenuDto medto = medao.getdata(menunum);
 	
 	DecimalFormat dmf = new DecimalFormat("###,###");
 %>
@@ -46,8 +50,8 @@
 	<input type="hidden" name="menuprice" value="<%=menuprice%>">
 	
 		<div class="info">
-			<p class="main_t"><%=dto.getCategory()%> ) <%=dto.getMenuname() %></p>
-			<span class="sub_t"><%=dto.getMenudetail() %></span><br>
+			<p class="main_t"><%=medto.getCategory()%> ) <%=medto.getMenuname() %></p>
+			<span class="sub_t"><%=medto.getMenudetail() %></span><br>
 		</div>
 		<p class="ord_label s">Size</p>
 		<select id="size">
