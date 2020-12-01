@@ -22,7 +22,7 @@ public class MenuDao {
 		conn = db.getMyConnection();
 		try {
 			pstmt = conn.prepareStatement(sql);
-			// ¹ÙÀÎµù
+			// Ã¯Â¿Â½Ã¯Â¿Â½Ã¯Â¿Â½ÃŽÂµÃ¯Â¿Â½
 			pstmt.setString(1, dto.getMenuname());
 			pstmt.setString(2, dto.getCategory());
 			pstmt.setInt(3, dto.getMenuprice());
@@ -34,10 +34,7 @@ public class MenuDao {
 			pstmt.setInt(9,dto.getMenusugar());
 			pstmt.setInt(10,dto.getMenucaff());
 
-			//menukcal menunat menusugar menucaff
-			
-			
-			// ½ÇÇà
+
 			pstmt.execute();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -132,5 +129,11 @@ public class MenuDao {
 		  return dto;
 	  }
 	 
-
+	  public int getNum(int menunum)
+	  {
+		  int num=0;
+		  String sql="select menunum from menu where menuname=?";
+		  
+		  return menunum;
+	  }
 }

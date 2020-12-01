@@ -27,6 +27,7 @@
 	String myid = (String)session.getAttribute("myid");
 	//아이디에 해당하는 멤버 테이블의 시퀀스 번호 가져오기
  	MemberDao mdao = new MemberDao();
+
 	//String loginnum = mdao.getNum(myid);
 	String loginnum = "7";
 	
@@ -35,7 +36,7 @@
 	OrderDao odao = new OrderDao();
 	MenuDao medao = new MenuDao();
 	MenuDto medto = medao.getdata(menunum);
-	
+
 	DecimalFormat dmf = new DecimalFormat("###,###");
 %>
 <body>
@@ -45,9 +46,9 @@
 		<img src="image/sumnail">
 	</div>
 	<form action="orderaction.jsp" class="ord_frm" id="frm" method="post">
-	<input type="hidden" name="menunum" value="<%=menunum %>">
-	<input type="hidden" name="loginnum" value="<%=loginnum%>">
-	<input type="hidden" name="menuprice" value="<%=menuprice%>">
+	<input type="text" name="menunum" value="<%=menunum %>">
+	<input type="text" name="loginnum" value="<%=loginnum%>">
+	<input type="text" name="menuprice" value="<%=menuprice%>">
 	
 		<div class="info">
 			<p class="main_t"><%=medto.getCategory()%> ) <%=medto.getMenuname() %></p>
