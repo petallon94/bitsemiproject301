@@ -53,7 +53,7 @@ public class OrderDao {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		
-		String sql="insert into morder(orderid,mnname,size,temp,orderprice,takeout,orderdate) values ('admin',?,?,?,?,?, now())";
+		String sql="insert into morder (orderid,mnname,size,temp,orderprice,takeout,orderdate) values ('admin',?,?,?,?,?, now())";
 		
 		conn = db.getMyConnection();
 		try {
@@ -76,7 +76,6 @@ public class OrderDao {
 			db.dbClose(conn, pstmt);
 		}
 	}
-	
 	
 	//장바구니 출력
 	public List<HashMap<String, String>> getOrderList(String id)
