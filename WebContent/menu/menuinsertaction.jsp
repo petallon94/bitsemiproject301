@@ -23,6 +23,8 @@
 		//menuid,menuname,category,menuprice,mipgoday,menuphoto,menudetail
 		
 		multi = new MultipartRequest(request,uploadPath,uploadSize,"utf-8",new DefaultFileRenamePolicy());
+		
+		
 		String menuid = multi.getParameter("menuid");
 		String menuname = multi.getParameter("menuname");
 		String category = multi.getParameter("menucategory");
@@ -30,8 +32,19 @@
 		String mipgoday = multi.getParameter("mipgoday");
 		int menuprice = Integer.parseInt(multi.getParameter("menuprice"));
 		String menudetail = multi.getParameter("menudetail");
-				
+		
+		//고친부분
+		int menukcal =Integer.parseInt(multi.getParameter("menukcal"));
+		int menunat =Integer.parseInt(multi.getParameter("menunat"));
+		int menusugar =Integer.parseInt(multi.getParameter("menusugar"));
+		int menucaff =Integer.parseInt(multi.getParameter("menucaff"));
+		
+		
 		String menuphoto = ""; //사진
+		
+		
+		
+		
 		
 		
 		Enumeration en = multi.getFileNames();
@@ -62,16 +75,20 @@
 		dto.setMenuphoto(menuphoto);
 		dto.setMenudetail(menudetail);
 		
+		dto.setMenukcal(menukcal);
+		dto.setMenunat(menunat);
+		dto.setMenusugar(menusugar);
+		dto.setMenucaff(menucaff);
 		
 		
-		dao.insertShop(dto);
+		dao.insertMenu(dto);
 		
 		
 		response.sendRedirect("../index.jsp?main=menu/menulist.jsp");
 		
 		
 	}catch(Exception e){
-		
+		e.printStackTrace();
 		System.out.println("업로드오류 : "+e.getMessage());
 	}
 	
