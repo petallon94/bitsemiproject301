@@ -49,8 +49,8 @@
 </style>
 <script type="text/javascript">
 $(function(){
-	//전체 체크박스 체크,해제
-	$("#search").click(function(){
+/* 	//전체 체크박스 체크,해제
+	$("#all").click(function(){
 		var a=$(this).is(":checked");
 		if(a){
 			//prop속성주는 것:체크속성줄 때는 arrt보다 prop이 정확
@@ -59,13 +59,16 @@ $(function(){
 		}else{
 			$("input[name='search']").prop("checked",false);
 		}
-	});//체크박스 전체 선택 해제 close
+	});//체크박스 전체 선택 해제 close */
 	
-	//검색
+	//검색 
 	$("#btndatasearch").click(function(){
-		//검색한 값이랑 단어의 값을 넣으면,
+		//변수
 		var search=$("#search").val();
 		var word=$("#word").val();
+		alert(search+":"+word);
+		//검색한 값이랑 단어의 값을 넣으면
+		//전체 선택했을 경우,
 		$.ajax({
 			type:"get",
 			dataType:"html",
@@ -78,6 +81,11 @@ $(function(){
 		});//$.ajax close
 	});//$("#btndatasearch") close
 	
+	//전체 선택하면 입력단어 지워주기
+	$("#search").change(function(){
+		$("#word").val("");
+	});
+
 });//$function close
 </script>
 </head>
@@ -258,19 +266,20 @@ $(function(){
 			word="";
 	%>
 		<%-- 검색 폼 --%>
-<!-- 	  <select id="search" class="form-control"
+		<select id="search" class="form-control"
 			style="width: 100px;">
-		  <option value="all">전체</option>
-		  <option value="myid">아이디</option>
-		  <option value="subject">제목</option>
-		  <option value="content">내용</option>
-		</select> -->
+			<option value="all">전체</option>
+			<option value="myid">아이디</option>
+			<option value="subject">제목</option>
+			<option value="content">내용</option>
+		</select>
 		<%-- 검색 폼: 체크박스 --%>
-			<input type="checkbox" value="all" name="search" 
-			checked="checked" id="search">전체
-			<input type="checkbox" value="subject" name="search">제목
-			<input type="checkbox" value="content" name="search">내용
-			<input type="checkbox" value="date" name="search">작성일
+<!-- 		<input type="checkbox" value="all" name="search" 
+			checked="checked" id="all">전체
+			<input type="checkbox" value="subject" name="search"
+			id="subject">제목
+			<input type="checkbox" value="content" name="search"
+			id="content">내용		 -->
 		<%-- ajax에서 action호출하기 위한 id --%>
 		<input type="text" class="form-control" style="width: 200px;"
 			name="word" id="word" placeholder="검색단어입력"

@@ -29,6 +29,23 @@
 		font-family: 'Noto Serif KR', serif;
 	}
 </style>
+<script type="text/javascript">
+$(function(){
+	//공지글 삭제 이벤트
+	$("input.del").click(function(){
+		var gonnum=$(this).attr("gonnum");
+		var a=confirm("삭제하려면 [확인]을 눌러주세요");
+		if(a){
+			alert(gonnum);
+		}
+	});//공지글 삭제 이벤트 close
+});//$function close
+
+//사용자 함수
+function del(gonnum){
+	
+}
+</script>
 </head>
 <body>
 <%
@@ -77,14 +94,18 @@
 			</span>			
 		</td>
 	</tr>
+	<%-- 버튼들 --%>
 	<tr>
 		<td colspan="2" align="right">
 			<input type="button" class="btn btn-warning btn-xs"
-			  value="글쓰기" style="width: 120px;"
+			  value="글쓰기" style="width: 80px;"
 			  onclick="location.href='index.jsp?main=gonji/gonjiform.jsp'">
 			<input type="button" class="btn btn-info btn-xs"
-			  value="글목록" style="width: 120px;"
-			  onclick="location.href='index.jsp?main=gonji/gonjilist.jsp?pageNum=<%=pageNum%>'">			
+			  value="목록" style="width: 80px;"
+			  onclick="location.href='index.jsp?main=gonji/gonjilist.jsp?pageNum=<%=pageNum%>'">
+			<input type="button" class="del btn btn-danger btn-xs"
+			  value="삭제" style="width: 80px;"
+			  gonnum="<%=dto.getGonnum()%>">		
 		</td>
 	</tr>	
 </table>

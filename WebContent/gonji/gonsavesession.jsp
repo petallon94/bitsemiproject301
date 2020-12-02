@@ -6,6 +6,7 @@
 	String word=request.getParameter("word");
 	
 	//세션에 key,value로 저장
+	//key값은 같은 key로 주면 덮어쓴다
 	session.setAttribute("key", search);
 	session.setAttribute("value", word);
 %>
