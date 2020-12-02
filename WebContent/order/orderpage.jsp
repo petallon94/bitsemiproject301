@@ -24,14 +24,11 @@
 	String photo = request.getParameter("menuphoto");
 	
 	//로그인한 아이디 구하기 - 수정
-	String myid = (String)session.getAttribute("myid");
+	String id = (String)session.getAttribute("myid");
 	//아이디에 해당하는 멤버 테이블의 시퀀스 번호 가져오기
  	MemberDao mdao = new MemberDao();
 
-	//String loginnum = mdao.getNum(myid);
-
-	String loginnum = "7";
-	
+	//String loginnum = "7";
 	
 	//해당 상품에 대한 데이터 가져오기
 	OrderDao odao = new OrderDao();
@@ -40,20 +37,18 @@
 
 	DecimalFormat dmf = new DecimalFormat("###,###");
 	
-	System.out.println(medto.getMenuname());
 %>
 <body>
 <div id="ord_ctn">
 	<div class="img">
-		<%-- <img src="menusave/<%=medto.getMenuphoto()%>"> --%>
-		<img src="image/sumnail">
+		<img src="menusave/<%=medto.getMenuphoto()%>" width="480">
+		<!-- <img src="image/sumnail"> -->
 	</div>
 	<form action="order/orderprocess.jsp" class="ord_frm" id="frm" method="post">
 	<input type="hidden" name="menunum" value="<%=menunum %>">
-	<input type="hidden" name="loginnum" value="<%=loginnum%>">
 	<input type="hidden" name="mnname" value="<%=medto.getMenuname()%>">
 	<input type="hidden" name="orderprice" value="<%=medto.getMenuprice()%>">
-		<div class="info">
+		<div class="menuinfo">
 			<p class="main_t"><%=medto.getCategory()%> ) <%=medto.getMenuname() %></p>
 			<span class="sub_t"><%=medto.getMenudetail() %></span><br>
 		</div>
@@ -81,17 +76,19 @@
 		</div>
 		<div id="price"><b class="money"><%=medto.getMenuprice() %></b><span class="won"> 원</span></div>
 		<button type="button" id="btncart" class="btn btn-outline-warning">장바구니 담기</button>
-		<button type="submit" id="btnorder" class="btn btn-warning" onclick="location.href='index.jsp?main=order/orderfinish.jsp'">주문하기</button>
+		<button type="submit" id="btnorder" class="btn btn-warning">주문하기</button>
 	</form>
 </div>
 <script type="text/javascript">
 $("#btncart").click(function(){
 	//form태그의 모든 값을 가져오기
 	var formdata=$("#frm").serialize();
+	alert(formdata);
 	$.ajax({
 		type:"post",
 		dataType:"html",
-		url:"order/orderprocess.jsp",
+		data:formdata,
+		url:"order/orderaction.jsp",
 		success:function(data){
 			var a=confirm("장바구니에 저장하였습니다\n장바구니로 이동하시겠습니까?")
 			if(a){
