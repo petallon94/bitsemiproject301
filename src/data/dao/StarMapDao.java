@@ -7,22 +7,23 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
+import data.dto.BoardDto;
+import data.dto.MemberDto;
 import data.dto.StarMapDto;
 import mysql.db.MysqlConnect;
 
 public class StarMapDao {
-	
+
 	MysqlConnect db=new MysqlConnect();
-	
+
 	public StarMapDto getData(String shopnum)
 	{
-		String sql="select * from map where shopnum=?";
+		String sql="select * from map2 where shopnum=?";
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		StarMapDto dto=new StarMapDto();
-		
+
 		conn=db.getMyConnection();
 		try {
 			pstmt=conn.prepareStatement(sql);
@@ -48,11 +49,12 @@ public class StarMapDao {
 		}
 		return dto;
 	}
-	
+
 	public List<StarMapDto> getMainList()
 	{
-		
+
 		String sql="select * from map order by shopname asc";
+
 		List<StarMapDto> list=new ArrayList<StarMapDto>();
 		Connection conn=null;
 		PreparedStatement pstmt=null;
@@ -73,7 +75,7 @@ public class StarMapDao {
 				dto.setShopdetail(rs.getString("shopdetail"));
 				dto.setMpositionx(rs.getString("mpositionx"));
 				dto.setMpositiony(rs.getString("mpositiony"));
-				
+
 				list.add(dto);
 			}
 		} catch (SQLException e) {
@@ -83,6 +85,66 @@ public class StarMapDao {
 			db.dbClose(conn, pstmt, rs);
 		}
 		return list;
+	}
+
+	//insert
+	public void insertMap(StarMapDto dto) {
+		String sql="insert into map2 (shopname,shophp,shopaddr,shopaddrdetail,shopphoto,shopdetail,mpositionx,mpositiony) values (?,?,?,?,?,?,?,?)";
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+
+		conn=db.getMyConnection();
+
+		try {
+			pstmt=conn.prepareStatement(sql);
+			//���ε�
+
+			pstmt.setString(1, dto.getShopname());
+			String shophp=dto.getShophp1()+"-"+dto.getShophp2();
+			pstmt.setString(2, shophp);					
+			String shopaddr=dto.getShoppostcode()+","+dto.getShopaddr()+dto.getShopextraAddress();
+			pstmt.setString(3, shopaddr);
+			pstmt.setString(4, dto.getShopaddrdetail());		
+			pstmt.setString(5, dto.getShopphoto());
+			pstmt.setString(6, dto.getShopdetail());
+			pstmt.setString(7, dto.getMpositionx());
+			pstmt.setString(8, dto.getMpositiony());			
+
+			//����
+			pstmt.execute();			
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			db.dbClose(conn, pstmt);
+		}		
+	}
+	
+
+	//��ü ���� ���ϱ�
+	public int getTotalCount()
+	{
+		int tot=0;
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql="select count(*) from map2";
+		conn=db.getMyConnection();
+		try {
+			pstmt=conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			if(rs.next())
+			{
+				tot=rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			db.dbClose(conn, pstmt, rs);
+		}
+		return tot;
 	}
 }
 
