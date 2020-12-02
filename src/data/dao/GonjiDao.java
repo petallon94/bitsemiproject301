@@ -129,6 +129,7 @@ public class GonjiDao {
 	//num에 해당하는 dto반환: 내용보기&수정
 	public GonjiDto getData(String gonnum)
 	{
+		System.out.println("n="+gonnum);
 		GonjiDto dto=new GonjiDto();
 		Connection conn=null;
 		PreparedStatement pstmt=null;
@@ -141,7 +142,7 @@ public class GonjiDao {
 			//바인딩
 			pstmt.setString(1, gonnum);
 			rs=pstmt.executeQuery();
-			while(rs.next())
+			if(rs.next())
 			{
 				dto.setGonnum(rs.getString("gonnum"));
 				dto.setGonid(rs.getString("gonid"));
@@ -162,7 +163,7 @@ public class GonjiDao {
 	//내용보기시 조회수 1증가
 	public void updateReadcount(String gonnum)
 	{
-		String sql="update gonji set readcount=readcount+1 where gonnum=?";
+		String sql="update gonji set gonreadcount=gonreadcount+1 where gonnum=?";
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		conn=db.getMyConnection();

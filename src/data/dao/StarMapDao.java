@@ -53,7 +53,8 @@ public class StarMapDao {
 	public List<StarMapDto> getMainList()
 	{
 
-		String sql="select * from map2 order by shopname asc";
+		String sql="select * from map order by shopname asc";
+
 		List<StarMapDto> list=new ArrayList<StarMapDto>();
 		Connection conn=null;
 		PreparedStatement pstmt=null;
@@ -96,7 +97,7 @@ public class StarMapDao {
 
 		try {
 			pstmt=conn.prepareStatement(sql);
-			//¹ÙÀÎµù
+			//ï¿½ï¿½ï¿½Îµï¿½
 
 			pstmt.setString(1, dto.getShopname());
 			String shophp=dto.getShophp1()+"-"+dto.getShophp2();
@@ -109,7 +110,7 @@ public class StarMapDao {
 			pstmt.setString(7, dto.getMpositionx());
 			pstmt.setString(8, dto.getMpositiony());			
 
-			//½ÇÇà
+			//ï¿½ï¿½ï¿½ï¿½
 			pstmt.execute();			
 
 		} catch (SQLException e) {
@@ -121,7 +122,7 @@ public class StarMapDao {
 	}
 	
 
-	//ÀüÃ¼ °¹¼ö ±¸ÇÏ±â
+	//ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½
 	public int getTotalCount()
 	{
 		int tot=0;

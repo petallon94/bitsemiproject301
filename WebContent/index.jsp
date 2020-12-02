@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -8,6 +7,7 @@
 <!-- bootstrap4 -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
+
 <!-- 반응형 -->
 <!-- <style type="text/css"> 
 @media all and (max-width: 320px) {
@@ -15,8 +15,10 @@
         h1 { color: white; }
 }
 @media all and (min-width: 321px) and (max-width: 768px) {
+
+
+
         body { background-color: green; }
-        h1 { color: red; }
 }
 @media all and (min-width: 769px) {
         body { background-color: blue; }
@@ -44,6 +46,7 @@
 	
 	div.layout div.login{
 	display: flex;	
+	font-size: 15px;
 	justify-content: flex-end;
 	font-family: 'Gothic A1', sans-serif;
 	}
@@ -68,6 +71,9 @@
 	<div class="login">
 		<jsp:include page="layout/loginmenu.jsp"/>
 	</div>
+	
+	
+	
 	<div class="menu">
 		<jsp:include page="layout/menu.jsp"/>
 	</div>
