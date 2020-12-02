@@ -46,6 +46,7 @@
 	</div>
 	<form action="order/orderprocess.jsp" class="ord_frm" id="frm" method="post">
 	<input type="hidden" name="menunum" value="<%=menunum %>">
+	<input type="hidden" name="orderid" value="<%=id%>">
 	<input type="hidden" name="mnname" value="<%=medto.getMenuname()%>">
 	<input type="hidden" name="orderprice" value="<%=medto.getMenuprice()%>">
 		<div class="menuinfo">
