@@ -1,12 +1,11 @@
+<%@page import="data.dao.GonjiDao"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
-</head>
-<body>
-
-</body>
-</html>
+<%
+	//gonnum읽기
+	String gonnum=request.getParameter("gonnum");
+	//dao선언
+	GonjiDao dao=new GonjiDao();
+	//삭제 메서드 호출
+	dao.deleteGonji(gonnum);
+%>
