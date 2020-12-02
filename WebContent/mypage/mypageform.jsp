@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-ㄷㄷㄷ왜안돼!!!!!!!
+마이페이지 입니다.
 </body>
 </html>

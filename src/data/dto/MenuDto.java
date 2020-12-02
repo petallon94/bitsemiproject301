@@ -12,36 +12,6 @@ public class MenuDto {
 	private String menuphoto;
 	private String mipgoday;
 	private String menudetail;
-	private int menukcal;
-	private int menunat;
-	private int menusugar;
-	private int menucaff;
-	
-	
-	public int getMenukcal() {
-		return menukcal;
-	}
-	public void setMenukcal(int menukcal) {
-		this.menukcal = menukcal;
-	}
-	public int getMenunat() {
-		return menunat;
-	}
-	public void setMenunat(int menunat) {
-		this.menunat = menunat;
-	}
-	public int getMenusugar() {
-		return menusugar;
-	}
-	public void setMenusugar(int menusugar) {
-		this.menusugar = menusugar;
-	}
-	public int getMenucaff() {
-		return menucaff;
-	}
-	public void setMenucaff(int menucaff) {
-		this.menucaff = menucaff;
-	}
 	public int getMenunum() {
 		return menunum;
 	}

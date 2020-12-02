@@ -14,37 +14,37 @@ function execDaumPostcode() {
     new daum.Postcode({
         oncomplete: function(data) {
        
-            var addr = ''; // 주소 변수
-            var extraAddr = ''; // 참고항목 변수
+            var shopaddr = ''; // 주소 변수
+            var shopextraAddress = ''; // 참고항목 변수
 
             if (data.userSelectedType === 'R') { 
-                addr = data.roadAddress;
+            	shopaddr = data.roadAddress;
             } else { 
-                addr = data.jibunAddress;
+            	shopaddr = data.jibunAddress;
             }
            
             if(data.userSelectedType === 'R'){
               
                 if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
-                    extraAddr += data.bname;
+                	shopextraAddress += data.bname;
                 }
                
                 if(data.buildingName !== '' && data.apartment === 'Y'){
-                    extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                	shopextraAddress += (shopextraAddress !== '' ? ', ' + data.buildingName : data.buildingName);
                 }
              
-                if(extraAddr !== ''){
-                    extraAddr = ' (' + extraAddr + ')';
+                if(shopextraAddress !== ''){
+                	shopextraAddress = ' (' + shopextraAddress + ')';
                 }
                
-                document.getElementById("shopextraAddress").value = extraAddr;
+                document.getElementById("shopextraAddress").value = shopextraAddress;
             
             } else {
                 document.getElementById("shopextraAddress").value = '';
             }
           
             document.getElementById('shoppostcode').value = data.zonecode;
-            document.getElementById("shopaddr").value = addr;
+            document.getElementById("shopaddr").value = shopaddr;
            
             document.getElementById("shopaddrdetail").focus();
         }
@@ -81,7 +81,7 @@ function execDaumPostcode() {
 					<button class="btn btn-outline-warning" id="btnpost" onclick="execDaumPostcode()">주소검색</button><br><p></p>
 					<input type="text" class="w-75 form-control input-sm" id="shopaddr" name="shopaddr" placeholder="주소" style="background-color: #eee">
 					<input type="text" class="w-75 form-control input-sm" id="shopaddrdetail" name="shopaddrdetail" placeholder="상세주소" required="required">
-					<input type="text" class="w-75 form-control input-sm" id="shopextraAddress" name="shopextraaddr"placeholder="참고항목" style="background-color: #eee">
+					<input type="text" class="w-75 form-control input-sm" id="shopextraAddress" name="shopextraAddress"placeholder="참고항목" style="background-color: #eee">
 				</td>
 			</tr>
 			<tr>

@@ -20,7 +20,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: 'Noto Sans KR', sans-serif;}
 
 /*godetail*/
 
-.godetail img{cursor:pointer;}
+.godetail{cursor:pointer;}
 
 
 /* sub */
@@ -40,7 +40,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: 'Noto Sans KR', sans-serif;}
 <script>
 $(function(){
 	
-	$("img.godetail").click(function(e){
+	$("div.godetail").click(function(e){
 	  	  
 	   	 e.preventDefault(); 
 	   	 var menunum = $(this).attr("menunum");
@@ -61,6 +61,25 @@ $(function(){
 
 
 <body>
+
+
+
+
+<!-- <div class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" style="z-index:3;width:250px" id="mySidebar">
+  <div class="w3-container w3-display-container w3-padding-16">
+    <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i>
+    <h3 class="w3-wide"><b>LOGO</b></h3>
+  </div>
+  <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
+    <a href="#" class="w3-bar-item w3-button">신메뉴</a>
+    <a href="#" class="w3-bar-item w3-button">커피</a>
+    <a href="#" class="w3-bar-item w3-button">음료</a>
+    <a href="#" class="w3-bar-item w3-button">음료</a>
+    <a href="#" class="w3-bar-item w3-button">디저트</a>
+  </div>
+  <a href="#footer" onclick ="location.href='index.jsp?main=menu/menuinsertform.jsp'" class="w3-bar-item w3-button w3-padding">메뉴추가</a> 
+  
+</div> -->
   
 <div class="sub_visual bg-menu">
     <div class="txt">
@@ -68,11 +87,11 @@ $(function(){
         <p>오직 스타보틀에서만 만나보실 수 있는 시그니처 메뉴입니다.</p>
     </div>
     <ul class="page_tab st-2">
-		        <li><a onclick ="location.href='index.jsp?main=menu/menulist.jsp'">전체</a></li>
-		        <li><a onclick ="location.href='index.jsp?main=menu/menulistcoffee.jsp'">커피</a></li>
-		        <li><a onclick ="location.href='index.jsp?main=menu/menulistdrink.jsp'">음료</a></li>
-		        <li><a onclick ="location.href='index.jsp?main=menu/menulistdess.jsp'">디저트</a></li>
-		        <li><a onclick ="location.href='index.jsp?main=menu/menulistprep.jsp'">프라푸치노</a></li>
+		        <li ><a>전체</a></li>
+		        <li ><a>커피</a></li>
+		        <li ><a>음료</a></li>
+		        <li ><a>디저트</a></li>
+		        <li ><a>프라푸치노</a></li>
 		    </ul>
 		     
  
@@ -94,8 +113,8 @@ $(function(){
 	<%
 	
 		for(MenuDto dto : list){%>
-			<div class="w3-quarter godetail" >
-      		<img src ="menusave/<%=dto.getMenuphoto()%>" class ="godetail" menunum = "<%=dto.getMenunum()%>" style="width:100%;height :250px;margin-left:10px;marigin_top :10px;">
+			<div class="w3-quarter godetail">
+      		<img src ="menusave/<%=dto.getMenuphoto()%>" style="width:100%;height :250px;margin-left:10px;marigin_top :10px;">
       		<h3><%=dto.getMenuname() %></h3>
      		<input type="hidden" class="form-control" id="menunum"  name="menunum" value =<%=dto.getMenunum()%>>
  		   </div>
@@ -107,7 +126,7 @@ $(function(){
 </div>
 <div class="menu_footer w3-padding" style="max-width:1600px;margin-top:100px">
 <hr>
-<a  class="w3-bar-item w3-button w3-padding">메뉴추가</a>
+<a href="#footer" onclick ="location.href='index.jsp?main=menu/menuinsertform.jsp'" class="w3-bar-item w3-button w3-padding">메뉴추가</a>
 </div>
 
 

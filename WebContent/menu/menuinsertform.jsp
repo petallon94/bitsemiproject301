@@ -93,18 +93,6 @@ $(function(){
 		<input type= "date" name = "mipgoday" value = "<%=day %>" required = "required">
 					
     </div>
-    <div class ="menuinfo">
-    <label class="menuinfo"> 메뉴 영양정보</label><br>
-     <label class="menukcal"> 칼로리</label>
-      <input type="text" class="form-control" id="menukcal"  name="menukcal" required = "required" style ="width : 100px;">
-       <label class="menunat"> 나트륨</label>
-      <input type="text" class="form-control" id="menunat"  name="menunat" required = "required" style ="width : 100px;">
-       <label class="menusugar"> 당류</label>
-      <input type="text" class="form-control" id="menusugar"  name="menusugar" required = "required" style ="width : 100px;" >
-       <label class="menucaff"> 카페인</label>
-      <input type="text" class="form-control" id="menucaff"  name="menucaff" required = "required" style ="width : 100px;">
-    </div>
-    
     <br>
     <button type="submit" class="btn btn-primary" onclick ="location.href='index.jsp?main=menu/menulist.jsp'">추가</button>
   </form>

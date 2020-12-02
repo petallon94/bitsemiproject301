@@ -17,8 +17,8 @@
 var n=2;
 $(function(){
 	$("span.evcontentimage").click(function(){
-		if(n>5){
-			alert("이미지는 최대5개까지등록가능합니다");
+		if(n>3){
+			alert("이미지는 최대3개까지등록가능합니다");
 			return;
 		}
 		var tag="<input type='file' name='evcontentimage"+
@@ -34,7 +34,7 @@ $(function(){
 </script>
 <body>
 <div class="eventaddform">
-	<form action="event/eventaddaction.jsp" method="post" 
+	<form action="#" method="post" 
 	 enctype="multipart/form-data" class="form-inline">
 	 	<table class="table table-bordered" style="width: 800px;">
 	 		
@@ -96,9 +96,11 @@ $(function(){
 	 		<tr>
 	 			<td colspan="2" align="center">
 	 				<button type="submit" class="btn btn-outline-secondary"
-	 				style="width: 100px;" 
-	 				onclick ="location.href='index.jsp?main=event/eventlist.jsp'">추가하기</button>
-
+	 				style="width: 100px;">추가하기</button>
+	 				
+	 				<button type="button" class="btn btn-outline-secondary"
+	 				style="width: 100px;"
+	 				onclick="location.href='../event/eventlist.jsp'">목록</button>
 	 			</td>
 	 		</tr>
 	 		

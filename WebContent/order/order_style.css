@@ -6,27 +6,22 @@ body{
 	font-family: 'Roboto', sans-serif;
 }
 #ord_ctn{
-	width: 1100px;
-	margin:auto;
-	margin-top: 30px;
+	width: 1000px;
 }
 #ord_ctn .img{
 	float: left;
-	height: 680px;
-	line-height: 680px;
-	border: 1px solid #eee;
 }
 .ord_frm{
-	width: 520px;
+	width: 420px;
 	margin-left: 40px;
 	float: left;
 }
-.ord_frm .menuinfo .main_t{
+.ord_frm .info .main_t{
 	font-size: 24pt;
 	font-weight: 600;
 	margin: 0 10px 10px 0;
 }
-.ord_frm .menuinfo .sub_t{
+.ord_frm .info .sub_t{
 	font-size: 12pt;
 	font-weight: 300;
 	color: #999;
@@ -91,7 +86,7 @@ body{
 
 /*price css*/
 #ord_ctn #price{
-	margin: 35px 0 30px 0;
+	margin: 40px 0 45px 0;
 	width: 100%;
 	text-align: right;
 }
@@ -102,7 +97,7 @@ body{
 	font-size: 14pt;
 }
 #ord_ctn button{
-	width: 240px;
+	width: 200px;
 	height: 60px;
 	font-size: 14pt;
 	font-weight: 600;
@@ -111,5 +106,5 @@ body{
 	float: left;
 }
 #ord_ctn #btnorder{
-	margin-left: 20px;
+	float: right;
 }

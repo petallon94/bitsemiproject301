@@ -1,4 +1,3 @@
-<%@page import="data.dao.MemberDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -20,22 +19,11 @@ justify-content: center;
 </style>
 </head>
 <body>
-<%	
-
-	//세션에 저장된 아이디
-	String id=(String)session.getAttribute("myid"); 
-	//dao 선언
-	MemberDao dao=new MemberDao();
-	//아이디에 해당하는 이름 얻기
-	String name=dao.getName(id);
-
-	
- %>
-<input type="text" name="id" id="myid" value="<%=id%>">
 <img src="./image/congratulations.PNG">
-<div><%=name %> 고객님</div>
+<div>윤선영 고객님</div>
 <div>스타보틀커피 회원가입이 완료되었습니다.</div><br>
-<input type="button" class="btn btn-success" value="로그인하기" onclick="window.location='index.jsp?main=login/loginform.jsp'" >
-<input type="button" class="btn btn-info" value="마이페이지" onclick="window.location='index.jsp?main=mypage/mypageform.jsp'" >
+<input type="button" class="btn btn-success" value="로그인하기" onclick="window.location='../index.jsp?main=login/loginform.jsp'" >
+<input type="button" class="btn btn-info" value="마이페이지" onclick="window.location='../index.jsp?main=mypage/mypageform.jsp'" >
+
 </body>
 </html>

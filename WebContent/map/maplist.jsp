@@ -49,7 +49,8 @@
 	//               2페이지는 40
 	int no=totalCount-(currentPage-1)*perPage;
 	//mysql 에서 해당 페이지에 필요한 목록 가져오기
-	List<StarMapDto> getlist=db.getMainList();
+	List<StarMapDto> getlist=db.getList(start, perPage);
+	
     %>
 	<table>
 		<%for(StarMapDto dto:getlist)
@@ -75,11 +76,11 @@ if(totalCount>0)
 	  <%
 	  if(startPage>1)
 		{%>
-	    <li><a href="index.jsp?main=map/maplist.jsp?pageNum=<%=startPage-1%>">이전</a></li>
+	    <li><a href="index.jsp?main=map/map.jsp?pageNum=<%=startPage-1%>">이전</a></li>
 	    <%}
 	  for(int i=startPage;i<=endPage;i++)
 		{
-		  String url="index.jsp?main=map/maplist.jsp?pageNum="+i;//이동할 페이지 추가
+		  String url="index.jsp?main=map/map.jsp?pageNum="+i;//이동할 페이지 추가
 			if(i==currentPage)
 			{%>
 				<li><a href="<%=url%>"><%=i%></a></li>
@@ -90,7 +91,7 @@ if(totalCount>0)
 	    
 	  if(endPage<totalPage)
 		{%>
-			<li><a href="index.jsp?main=map/maplist.jsp?pageNum=<%=endPage+1%>">다음</a></li>
+			<li><a href="index.jsp?main=map/map.jsp?pageNum=<%=endPage+1%>">다음</a></li>
 		<%}
 	%>
 	  </ul>

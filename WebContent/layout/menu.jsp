@@ -12,24 +12,24 @@
 
 <style>
 nav.mainmenu {
-	width: 1100px;
-	height: 160px;
+width: 1100px;
+height: 100px;
+margin-top:50px;
 }
 
 nav.mainmenu ul{
 	display: flex;
 	justify-content: space-around;
 	list-style: none;
-	
 }
 nav.mainmenu ul li {
 	width: 120px;
 	height: 50px;
-	line-height: 160px;
-	text-align: center;
+	line-height: 50px;
+	text-align: center;	
 }
 nav.mainmenu ul li.mainmemu_title {
-
+	margin-top:30px;
 }
 nav.mainmenu ul li:hover{
 	width: 120px;
@@ -38,7 +38,8 @@ nav.mainmenu ul li:hover{
 }
 
 .logo {
-	width: 120px;
+width: 60px;
+height:70px;
 }
 
 
@@ -99,7 +100,7 @@ $(function() {
 		<a href="<%=url %>/index.jsp?main=gonji/gonjilist.jsp">공지사항</a>
 		</li>		
 		<li menu="menu3">
-		<a href="<%=url %>/index.jsp"><img class="logo" src="./image/sb_logo.jpg" alt=""></a>
+		<a href="<%=url %>/index.jsp"><img class="logo" src="./image/starbottle_logo.jpg" alt=""></a>
 		</li>
 		<li menu="menu4">
 		<a href="<%=url %>/index.jsp?main=map/map.jsp">매장위치</a>
