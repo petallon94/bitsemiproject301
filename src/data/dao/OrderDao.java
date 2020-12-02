@@ -53,19 +53,19 @@ public class OrderDao {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		
-		String sql="insert into morder (orderid,mnname,size,temp,orderprice,takeout,orderdate) values ('admin',?,?,?,?,?, now())";
+		String sql="insert into morder (orderid,mnname,size,temp,orderprice,takeout,orderdate) values (?,?,?,?,?,?, now())";
 		
 		conn = db.getMyConnection();
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
 			//바인딩
-			//pstmt.setString(1, dto.getOrderid());
-			pstmt.setString(1, dto.getMnname());
-			pstmt.setString(2, dto.getSize());
-			pstmt.setString(3, dto.getTemp());
-			pstmt.setInt(4, dto.getOrderprice());
-			pstmt.setString(5, dto.getTakeout());
+			pstmt.setString(1, dto.getOrderid());
+			pstmt.setString(2, dto.getMnname());
+			pstmt.setString(3, dto.getSize());
+			pstmt.setString(4, dto.getTemp());
+			pstmt.setInt(5, dto.getOrderprice());
+			pstmt.setString(6, dto.getTakeout());
 			
 			//실행
 			pstmt.execute();
@@ -80,8 +80,8 @@ public class OrderDao {
 	//장바구니 출력
 	public List<HashMap<String, String>> getOrderList(String id)
 	{
-		String sql="select m.menuname, m.menunum, m.menuphoto, m.menuprice, o.size, o.temp, o.takeout, o.orderdate "
-				+ "from morder o,Login l,menu m where o.mnname=m.menuname and o.orderid=l.id and l.id='admin'";
+		String sql="select m.menuname, m.menunum, m.menuphoto, m.menuprice, o.size, o.temp, o.takeout, o.orderdate, o.ordernum "
+				+ "from morder o,Login l,menu m where o.mnname=m.menuname and o.orderid=l.id and l.id=?";
 		List<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
 		
 		Connection conn = null;
@@ -107,7 +107,8 @@ public class OrderDao {
 				map.put("size", rs.getString("size"));
 				map.put("temp", rs.getString("temp"));
 				map.put("takeout", rs.getString("takeout"));
-				map.put("orderdate", rs.getString("orderdate").substring(0,10));
+				map.put("orderdate", rs.getString("orderdate"));
+				map.put("ordernum", rs.getString("ordernum"));
 				
 				//list에 추가
 				list.add(map);

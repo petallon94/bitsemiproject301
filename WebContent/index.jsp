@@ -7,8 +7,6 @@
 <!-- bootstrap4 -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link rel="stylesheet" type="text/css" href="map/css/map_menu.css">
-<link rel="stylesheet" type="text/css" href="map/css/map_window.css">
 
 <!-- 반응형 -->
 <!-- <style type="text/css"> 

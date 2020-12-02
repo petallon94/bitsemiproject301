@@ -1,5 +1,10 @@
-# Created by https://www.toptal.com/developers/gitignore/api/windows,java,eclipse
-# Edit at https://www.toptal.com/developers/gitignore?templates=windows,java,eclipse
+
+/bin/
+
+
+
+# Created by https://www.toptal.com/developers/gitignore/api/eclipse,java
+# Edit at https://www.toptal.com/developers/gitignore?templates=eclipse,java
 
 ### Eclipse ###
 .metadata
@@ -58,19 +63,14 @@ local.properties
 .cache-main
 .scala_dependencies
 .worksheet
-
+.classpath
 # Uncomment this line if you wish to ignore the project description file.
 # Typically, this file would be tracked if it contains build/dependency configurations:
 #.project
 
 ### Eclipse Patch ###
 # Spring Boot Tooling
-.sts4-cache
-
-# JDT-specific
-.classpath
-#Annotation processing
-.apt_generated
+.sts4-cache/
 
 ### Java ###
 # Compiled class file
@@ -97,30 +97,4 @@ local.properties
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
-### Windows ###
-# Windows thumbnail cache files
-Thumbs.db
-Thumbs.db:encryptable
-ehthumbs.db
-ehthumbs_vista.db
-
-# Dump file
-*.stackdump
-
-# Folder config file
-[Dd]esktop.ini
-
-# Recycle Bin used on file shares
-$RECYCLE.BIN/
-
-# Windows Installer files
-*.cab
-*.msi
-*.msix
-*.msm
-*.msp
-
-# Windows shortcuts
-*.lnk
-
-# End of https://www.toptal.com/developers/gitignore/api/windows,java,eclipse
+# End of https://www.toptal.com/developers/gitignore/api/eclipse,java

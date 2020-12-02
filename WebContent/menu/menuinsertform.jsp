@@ -103,8 +103,6 @@ $(function(){
       <input type="text" class="form-control" id="menusugar"  name="menusugar" required = "required" style ="width : 100px;" >
        <label class="menucaff"> 카페인</label>
       <input type="text" class="form-control" id="menucaff"  name="menucaff" required = "required" style ="width : 100px;">
-      
-    
     </div>
     
     <br>
