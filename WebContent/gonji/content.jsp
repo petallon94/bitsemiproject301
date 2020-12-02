@@ -36,14 +36,24 @@ $(function(){
 		var gonnum=$(this).attr("gonnum");
 		var a=confirm("삭제하려면 [확인]을 눌러주세요");
 		if(a){
-			alert(gonnum);
+			//alert(gonnum);
+			del(gonnum);
+			location.reload();
 		}
 	});//공지글 삭제 이벤트 close
 });//$function close
 
 //사용자 함수
 function del(gonnum){
-	
+	$.ajax({
+		type:"get",
+		url:"gonji/gondelete.jsp",
+		dataType:"html",
+		data:{"gonnum":gonnum},
+		success:function(d){
+			
+		}
+	});
 }
 </script>
 </head>

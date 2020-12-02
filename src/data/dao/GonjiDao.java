@@ -180,6 +180,29 @@ public class GonjiDao {
 			db.dbClose(conn, pstmt);
 		}
 	}
+	
+	//삭제
+	public void deleteGonji(String gonnum)
+	{
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		String sql="delete from gonji where gonnum=?";
+		
+		conn=db.getMyConnection();
+		try {
+			pstmt=conn.prepareStatement(sql);
+			//바인딩
+			pstmt.setString(1, gonnum);
+			//실행
+			pstmt.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			db.dbClose(conn, pstmt);
+		}
+		
+	}
 }
 
 
