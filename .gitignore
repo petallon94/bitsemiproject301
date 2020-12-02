@@ -64,6 +64,7 @@ local.properties
 .scala_dependencies
 .worksheet
 .classpath
+.settings
 # Uncomment this line if you wish to ignore the project description file.
 # Typically, this file would be tracked if it contains build/dependency configurations:
 #.project
