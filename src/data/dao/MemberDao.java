@@ -97,13 +97,15 @@ public class MemberDao {
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
 				MemberDto2 dto=new MemberDto2();
-				dto.setLoginnum(rs.getString("num"));
+				dto.setLoginnum(rs.getString("loginnum"));
 				dto.setId(rs.getString("id"));
 				dto.setName(rs.getString("name"));
 				dto.setAddress(rs.getString("address"));
 				dto.setAddrdetail(rs.getString("addrdetail"));
 				dto.setHp(rs.getString("hp"));
+				dto.setBirthday(rs.getString("birthday"));
 				dto.setEmail(rs.getString("email"));
+				dto.setBarcode(rs.getString("barcode"));
 				dto.setGaipday(rs.getTimestamp("gaipday"));
 
 				list.add(dto);				
@@ -123,7 +125,7 @@ public class MemberDao {
 	public MemberDto getData(String num)
 	{
 		MemberDto dto=new MemberDto();
-		String sql="select * from Login where num=?";
+		String sql="select * from Login where loginnum=?";
 
 		Connection conn=null;
 		PreparedStatement pstmt=null;
@@ -140,7 +142,7 @@ public class MemberDao {
 
 			while(rs.next())
 			{
-				dto.setLoginnum(rs.getString("num"));
+				dto.setLoginnum(rs.getString("loginnum"));
 				dto.setId(rs.getString("id"));
 				dto.setName(rs.getString("name"));
 				dto.setAddress(rs.getString("address"));
@@ -167,7 +169,7 @@ public class MemberDao {
 	public String getNum(String id)
 	{
 		String num="";
-		String sql="select num from Login where id=?";
+		String sql="select loginnum from Login where id=?";
 
 		Connection conn=null;
 		PreparedStatement pstmt=null;
@@ -184,7 +186,7 @@ public class MemberDao {
 
 			if(rs.next())
 			{
-				num=rs.getString("num");				
+				num=rs.getString("loginnum");				
 			}
 
 		}catch (SQLException e) {
@@ -200,7 +202,7 @@ public class MemberDao {
 	{
 		Connection conn=null;
 		PreparedStatement pstmt=null;
-		String sql="update Login set name=?, hp=?, email=?, address=?, addrdetail=? where num=?";
+		String sql="update Login set name=?, hp=?, email=?, address=?, addrdetail=? birthday=? where num=?";
 
 		conn=db.getMyConnection();
 
@@ -214,7 +216,8 @@ public class MemberDao {
 			pstmt.setString(3, email);	
 			pstmt.setString(4, dto.getAddress());
 			pstmt.setString(5, dto.getAddrdetail());
-			pstmt.setString(6, dto.getLoginnum());
+			pstmt.setString(6, dto.getBirthday());
+			pstmt.setString(7, dto.getLoginnum());
 
 			//실행
 			pstmt.execute();
@@ -227,13 +230,13 @@ public class MemberDao {
 	}
 
 	//아이디에 해당하는 비번이 맞으면 true반환 틀리면 false 반환
-	public boolean isIdPassCheck(String id, String pass)
+	public boolean isIdPassCheck(String id, String password)
 	{
 		boolean find=false;
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
-		String sql="select * from Login where id=? and pass=?";
+		String sql="select * from Login where id=? and password=?";
 
 		conn=db.getMyConnection();
 
@@ -241,7 +244,7 @@ public class MemberDao {
 			pstmt=conn.prepareStatement(sql);
 			//바인딩
 			pstmt.setString(1, id);
-			pstmt.setString(2, pass);
+			pstmt.setString(2, password);
 			rs=pstmt.executeQuery();
 			if(rs.next())
 				find=true;
@@ -283,14 +286,14 @@ public class MemberDao {
 	/*아이디가  DB 명단에 없을경우 1 반환
 	   아이디는 있는데 비번이 안맞는경우 2 반환
 	  아이디와 비번 모두 맞는경우 3 반환*/
-	public int loginProcess(String id, String pass)
+	public int loginProcess(String id, String password)
 	{
 		int ans=0;
 		if(this.isIdSearch(id))
 		{
 			//아이디가 존재하는 경우
 			//비번이 맞는지 체크하기
-			if(this.isIdPassCheck(id, pass)) {
+			if(this.isIdPassCheck(id, password)) {
 				//비번이 맞는경우
 				ans=3;
 			}else {

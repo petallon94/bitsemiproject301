@@ -1,8 +1,7 @@
 
 <%@page import="data.dto.StarMapDto"%>
-<%@page import="data.dao.StarMapDao"%>
 <%@page import="java.util.List"%>
-
+<%@page import="data.dao.StarMapDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -17,16 +16,70 @@
 <link rel="stylesheet" type="text/css" href="css/map_menu.css">
 <link rel="stylesheet" type="text/css" href="css/map_window.css">
 </head>
+<style>
+	#maphadan{
+		position: relative;
+		top: 150px;
+		left: -330px;
+		background-color: red;
+		width: 200px;
+		height: 200px;
+		border-radius: 100px;
+		float: left;
+		margin-left: 400px;
+		margin-top: 50px;
+	}
+	
+	#hadan{
+		position: relative;
+		left: 250px;
+		top: 30px;
+		width: 300px;
+		border: 1px solid gray;
+	
+	}
+	
+	#shopadd{
+		background-color: #ffcc00;
+		width: 150px;
+		height: 50px;
+		text-align: center;
+		text-shadow: black;
+		margin-bottom: 15px;
+	}
+	
+	#shopaddspan{
+		top: 25px;
+		font-weight: bolder;
+		color: white;
+		font-size: 30px;
+	}
+	
+</style>
 <body>
+<!-- 매장추가 -->
+	<div id="shopadd">
+		<span id="shopaddspan">매장추가</span>
+	</div>
+	<script type="text/javascript">
+		$(function() {
+			$("#shopadd").click(function() {
+				
+			});
+		});
+	</script>
+	<!-- 매장추가end -->
+	
+	
 	<div class="map_wrap">
 		<div id="map"
-			style="width: 1000px; height: 800px; position: relative; overflow: hidden;"></div>
+			style="width: 100%; height: 750px; position: relative; overflow: hidden;"></div>
 
 		<div id="menu_wrap" class="bg_white">
 			<div class="option">
 				<div>
 					<form onsubmit="searchPlaces(); return false;">
-						키워드 : <input type="text" value="" id="keyword" size="15">
+						매장: <input type="text" value="강남" id="title" size="15">
 						<button type="submit">검색하기</button>
 					</form>
 				</div>
@@ -36,6 +89,27 @@
 			<div id="pagination"></div>
 		</div>
 	</div>
+	
+	<%
+    	StarMapDao StarDao=new StarMapDao();
+    	//목록 가져오기
+    	List<StarMapDto> list=StarDao.getMainList();
+    	
+    	
+    %>
+	<table>
+		<%for(StarMapDto dto:list)
+		{%>
+		
+		<div id="maphadan">
+			<div id="hadan"><h3><%=dto.getShopname() %></h3></div>
+			<div id="hadan"><%=dto.getShopaddr() %></div>
+			<div id="hadan"><%=dto.getShopaddrdetail() %></div>
+			<div id="hadan"><%=dto.getShophp() %></div>
+			<div id="hadan"><%=dto.getShopdetail() %></div>
+		</div>
+		<%} %>
+	</table>
 <script type="text/javascript">
 		// 마커를 담을 배열입니다
 		var markers = [];
@@ -50,51 +124,59 @@
 		// 지도를 생성합니다    
 		var map = new kakao.maps.Map(mapContainer, mapOption);
 		
+		
+		/* // 원(Circle)의 옵션으로 넣어준 반지름
+		var radius = 100;
+
+		// 마커들이 담긴 배열
+		markers.forEach(function(m) {
+		    var c1 = map.getCenter();
+		    var c2 = m.getPosition();
+		    var poly = new Polyline({
+		      // map: map, 을 하지 않아도 거리는 구할 수 있다.
+		      path: [c1, c2]
+		    });
+		    var dist = poly.getLength(); // m 단위로 리턴
+
+		    if (dist < radius) {
+		        m.setMap(map);
+		    } else {
+		        m.setMap(null);
+		    }
+		}); */
+		
 		var geocoder = new kakao.maps.services.Geocoder();
 		
-		<%
-    	StarMapDao StarDao=new StarMapDao();
-    	//목록 가져오기
-    	List<StarMapDto> list=StarDao.getMainList();
-    
-    	%>
-    	//ov
-    		
-    		var positions = [
-    		                 
-							<%for(StarMapDto dto : list){ %>
-    		     		    {
-    		     		    	
-    		     		        title: '<%=dto.getShopname()%>',
-    		     		        content: '<div class="wrap">' + 
-    		     	            '    <div class="info">' + 
-    		     	            '        <div class="title">' + 
-    		     	            '            <%=dto.getShopname()%>' + 
-    		     	            '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' + 
-    		     	            '        </div>' + 
-    		     	            '        <div class="body">' + 
-    		     	            '            <div class="img">' +
-    		     	            '                <img src="https://cfile181.uf.daum.net/image/250649365602043421936D" width="73" height="70">' +
-    		     	            '           </div>' + 
-    		     	            '            <div class="desc">' + 
-    		     	            '                <div class="ellipsis"><%=dto.getShopaddr()%></div>' + 
-    		     	            '                <div class="jibun ellipsis"><%=dto.getShopaddrdetail()%></div>' + 
-    		     	             
-    		     	            '            </div>' + 
-    		     	            '        </div>' + 
-    		     	            '    </div>' +    
-    		     	            '</div>',
-    		     		        latlng: new kakao.maps.LatLng(<%=dto.getMpositionx()%>, <%=dto.getMpositiony()%>)
-    		     		    },
-    		     		   <%}
-					    	%>
-					    	
-    		     		]; 
-    		
-    		
-    	
-    	
-
+		
+		var positions = [ 
+		   <%for(StarMapDto dto:list){%>
+		   {
+		    	  title: '<%=dto.getShopname()%>',
+                  content: '<div class="wrap">' + 
+                   '    <div class="info">' + 
+                   '        <div class="title">' + 
+                   '            <%=dto.getShopname()%>' + 
+                   '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' + 
+                   '        </div>' + 
+                   '        <div class="body">' + 
+                   '            <div class="img">' +
+                   '                <img src="https://cfile181.uf.daum.net/image/250649365602043421936D" width="73" height="70">' +
+                   '           </div>' + 
+                   '            <div class="desc">' + 
+                   '                <div class="ellipsis"><%=dto.getShopaddr()%></div>' + 
+                   '                <div class="jibun ellipsis"><%=dto.getShopaddrdetail()%></div>' + 
+                   '				<div class="jibun ellipsis"><%=dto.getShophp()%></div>' +
+                   '				<div class="jibun ellipsis"><%=dto.getShopdetail()%></div>' +
+                   '            </div>' + 
+                   '        </div>' + 
+                   '    </div>' +    
+                   '</div>',
+                  latlng: new kakao.maps.LatLng(<%=dto.getMpositionx()%>, <%=dto.getMpositiony()%>)
+              },
+		   <%}%>
+          ]; 
+	
+		
     	
 	
 		var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png", // 마커이미지의 주소입니다    
@@ -104,11 +186,11 @@
 		// 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
 		var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
 	    
-		//★마커 찍어주는곳★//
+
 	    for (var i = 0; i < positions.length; i ++) {
 	        
 	        // 마커 이미지의 이미지 크기 입니다
-	        var imageSize = new kakao.maps.Size(24, 35); 
+	        var imageSize = new kakao.maps.Size(36, 58); 
 	        
 	        // 마커 이미지를 생성합니다    
 	        var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
@@ -129,13 +211,9 @@
 	        // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
 	        kakao.maps.event.addListener(marker, 'click', makeOverListener(map, marker, infowindow));
 	       /*  kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow)); */
+	       
 	    }
 	  
-	    
-	 	// 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
-	    function closeOverlay() {
-	        overlay.setMap(null);     
-	    }
 	 	
 	 	// 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
 	    function makeOverListener(map, marker, infowindow) {
@@ -174,7 +252,7 @@
 		// 키워드 검색을 요청하는 함수입니다
 		function searchPlaces() {
 
-			var keyword = document.getElementById('keyword').value;
+			var keyword = document.getElementById('title').value;
 
 			if (!keyword.replace(/^\s+|\s+$/g, '')) {
 				alert('키워드를 입력해주세요!');
@@ -226,7 +304,7 @@
 
 				// 마커를 생성하고 지도에 표시합니다
 				var placePosition = new kakao.maps.LatLng(places[i].y,
-						places[i].x),marker = addMarker(placePosition, i), itemEl = getListItem(
+						places[i].x), marker = addMarker(placePosition, i), itemEl = getListItem(
 						i, places[i]); // 검색 결과 항목 Element를 생성합니다
 
 				// 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
@@ -269,7 +347,7 @@
 
 		// 검색결과 항목을 Element로 반환하는 함수입니다
 		function getListItem(index, places) {
-
+			
 			var el = document.createElement('li'), itemStr = '<span class="markerbg marker_'
 					+ (index + 1)
 					+ '"></span>'
@@ -291,6 +369,7 @@
 			el.className = 'item';
 
 			return el;
+			
 		}
 
 		// 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
@@ -368,53 +447,8 @@
 				el.removeChild(el.lastChild);
 			}
 		}
-		
-	/* 	function Shoplist() {
-			$.ajax({
-		        type: 'GET',
-		        url: StorePositionlist.jsp,
-		        data: {},
-		        success: function (response) {
-		          if (response['result'] == 'success') {
-		            let shoplist = response['list'];
-		            var markerList = [];
-		            var infoWindowList = [];
-		            for (let i = 0; i < shoplist.length; i++) {
-		              var shop = { lat: shoplist[i]['mpositionx'], lng: shoplist[i]['mpositionx'] }
-		              var marker = new kakao.maps.Marker({ position: shop, map: map, title: shoplist[i]['shopname'] });
-		              //인포 윈도우 생성
-		              var contentString = '<div class="wrap">' + 
-			            '    <div class="info">' + 
-			            '        <div class="title">'$' + 
-			            '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' + 
-			            '        </div>' + 
-			            '        <div class="body">' + 
-			            '            <div class="img">' +
-			            '                <img src="https://cfile181.uf.daum.net/image/250649365602043421936D" width="73" height="70">' +
-			            '           </div>' + 
-			            '            <div class="desc">' + 
-			            '                <div class="ellipsis">제주특별자치도 제주시 첨단로 242</div>' + 
-			            '                <div class="jibun ellipsis">(우) 63309 (지번) 영평동 2181</div>' + 
-			            '                <div><a href="https://www.kakaocorp.com/main" target="_blank" class="link">홈페이지</a></div>' + 
-			            '            </div>' + 
-			            '        </div>' + 
-			            '    </div>' +    
-			            '</div>';
-		              var infowindow = new kakao.maps.InfoWindow({
-		                content: contentString
-		              });
-		              markerList.push(marker);
-		              infoWindowList.push(infowindow);
-		            }
-		            for (let i = 0; i < markerList.length; i++) {
-		              markerList[i].addListener('click', function () {
-		                infoWindowList[i].open(map, markerList[i]);
-		              });
-		            }
-		          }
-		        }
-		      });
-		} */
+
 </script>
 </body>
+
 </html>

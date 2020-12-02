@@ -95,14 +95,9 @@ $(function() {
 	});
 
 
-//아이디 입력시 메세지 지우기
-$("#id").keydown(function () {
-	$("b.idcheck").html("");
-	
-});
-
 //아이디 유효성 검사(1 = 중복 / 0 != 중복)
 $("#id").blur(function() {
+		
 		var id=$(this).val();//앞뒤공백제거
 		if(id.trim().length==0){
 			$(this).val('');
@@ -115,27 +110,28 @@ $("#id").blur(function() {
 			dataType:"xml",
 			data:{"id":id},
 			success:function(data){
-				$("#idcheck_btn").click(function() {
-				
-				//alert($(data).text());
+				//id 중복확인 버튼 클릭시
+				$("#idcheck_btn").one("click",function() {				
+
 				if($(data).text()=='yes'){
-					alert("이미 등록된 아이디 입니다.");
-					$("#id").val("");
 					
+					alert("이미 등록된 아이디 입니다.");
+					$("#id").val('');
+					$("#id").focus();	
+				
 										
 				}else{
-					alert("사용가능한 아이디입니다.");
-					$("#pwd").focus();
-					
-				}
-					return;	
-				})	
-				
-			}			
-		});		
-	});
-});
 
+					alert("사용가능한 아이디입니다.");
+					$("#pwd").focus();						
+				}
+			
+			});	
+			}
+		});	
+	});
+
+});
 //카카오 우편번호 API
 function execDaumPostcode() {
     new daum.Postcode({
@@ -189,8 +185,7 @@ function execDaumPostcode() {
 				<td class="table_title">아이디<b>*</b></td>
 				<td><input name="id" id="id" type="text"
 					autofocus="autofocus" class="w-50 form-control" required="required" placeholder="중복확인을 해주세요" >
-					<button class="btn btn-outline-warning" id="idcheck_btn">중복확인</button>
-					<b class="idcheck"></b>
+					<button class="btn btn-outline-warning" id="idcheck_btn">중복확인</button>					
 				</td>
 			</tr>
 			<tr>
