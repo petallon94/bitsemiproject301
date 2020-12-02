@@ -54,7 +54,7 @@ color:#ffb210;
 <%	
 
  	//프로젝트의 경로 구하기
-	 String url=request.getContextPath();	
+	String url=request.getContextPath();	
 	//세션 로그인상태
 	String loginok=(String)session.getAttribute("loginok");
 	//세션에 저장된 아이디
@@ -91,12 +91,13 @@ color:#ffb210;
 	<%}%>
 	<%
 	if(loginok!=null && myid.equals("admin")){%>
-	<span><a href="<%=url %>/index.jsp?main=mypage/memberlist.jsp" class="topmenu_btn">관리페이지</a></span> 
+	<span><a href="<%=url %>/index.jsp?main=mypage/adminpagemain.jsp" class="topmenu_btn">관리페이지</a></span> 
 	<%}else{%>
-   <span><a href="<%=url %>/index.jsp?main=mypage/mypageform.jsp" class="topmenu_btn">마이페이지</a></span> 
 
+   	<span><a href="<%=url %>/index.jsp?main=mypage/mypagemain.jsp" class="topmenu_btn">마이페이지</a></span> 
 	<%}%>
-   <span><a href="<%=url %>/index.jsp?main=order/orderlist.jsp" class="topmenu_btn"><i class="fas fa-shopping-cart"></i>주문
+   	<span><a href="<%=url %>/index.jsp?main=order/orderform.jsp" class="topmenu_btn"><i class="fas fa-shopping-cart"></i>주문
+
 	<%-- <span class="count"><%=cartSize%></span> --%>
 	</a></span>
 
