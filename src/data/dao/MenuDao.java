@@ -82,6 +82,53 @@ public class MenuDao {
 
 		return list;
 	}
+	
+	//메뉴 각 메뉴 페이지
+	
+	
+	public List<MenuDto> getoneMenus(String menuname) {
+		List<MenuDto> list = new ArrayList<MenuDto>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		String sql = "select * from menu where category =? order by menunum";
+
+		conn = db.getMyConnection();
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1,menuname);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+
+				MenuDto dto = new MenuDto();
+				dto.setCategory(rs.getString("category"));
+				dto.setMenudetail(rs.getString("menudetail"));
+				dto.setMenuid(rs.getString("menuid"));
+				dto.setMenuname(rs.getString("menuname"));
+				dto.setMenunum(rs.getInt("menunum"));
+				dto.setMenuphoto(rs.getString("menuphoto"));
+				dto.setMenuprice(rs.getInt("menuprice"));
+				dto.setMipgoday(rs.getString("mipgoday"));
+				list.add(dto);
+
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			db.dbClose(conn, pstmt, rs);
+		}
+
+		return list;
+	}
+	
+	////////// menu admin ////////////
+	
+	
 
 	// detailpage
 	
