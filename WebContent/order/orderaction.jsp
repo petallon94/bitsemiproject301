@@ -1,7 +1,7 @@
 <%@page import="data.dto.MemberDto"%>
+<%@page import="data.dto.MenuDto"%>
 <%@page import="data.dto.OrderDto"%>
 <%@page import="data.dao.OrderDao"%>
-<%@page import="data.dto.MenuDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -30,5 +30,4 @@
 	
 	dao.insertCart(odto);
 	
-	response.sendRedirect("../index.jsp?main=order/orderfinish.jsp");
 %>

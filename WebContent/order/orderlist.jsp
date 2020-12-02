@@ -16,8 +16,22 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <title>Insert title here</title>
 <style type="text/css">
-.table tr th{
+.ordlist .ordlthead tr th{
 	text-align: center;
+	background-color: #f6c244;
+}
+.ordlist .ordlthead tr{
+	height: 50px;
+}
+.ordlist .ordltbody tr{
+	height: 120px;
+	border-bottom: 1px solid #ddd;
+}
+.ordlist .ordltbody tr td .ordlmenu{
+	margin-left: 30px;
+}
+.ordlist .ordltbody tr td .ordlmenu b{
+	
 }
 </style>
 </head>
@@ -33,10 +47,10 @@
 	
 %>
 <body>
-<%-- <h4 class=""><%=id %>님의 장바구니</h4> --%>
-<h3 class="myid">admin님의 장바구니</h3>
-<table class="table" style="width: 920px;">
-	<thead class="thead-dark">
+<h3 class="myid"><%=id %>님의 장바구니</h3>
+<!-- <h3 class="myid">admin님의 장바구니</h3> -->
+<table class="ordlist" style="width: 920px;">
+	<thead class="ordlthead">
 	<tr>
 		<th style="width: 20px;"><input type="checkbox" id="allcheck"></th>
 		<th style="width: 500px;">음료정보</th>
@@ -51,15 +65,18 @@
 	for(int i=0; i<list.size(); i++){
 		HashMap<String,String> map = list.get(i);
 		String photo = map.get("menuphoto");
-		int p = Integer.parseInt(map.get("price"));
+		int p = Integer.parseInt(map.get("menuprice"));
 	%>
-		<tbody>
+		<tbody class="ordltbody">
 			<tr>
 				<td align="center" style="vertical-align: middle;">
-					<input type="checkbox" name="menunum" class="menunum" menunum="<%=map.get("menunum")%>">
+					<input type="checkbox" name="ordernum" class="ordernum" ordernum="<%=map.get("ordernum")%>">
 				</td>
 				<td>
-					<div ></div>
+					<div menunum="<%=map.get("menunum")%>" class="ordlmenu">
+					<img src="menusave/<%=photo%>" class="photo" align="left" hsapce="20" width="100">
+					<b><%=map.get("menuname") %></b>
+					</div>
 				</td>
 			</tr>
 		</tbody>
