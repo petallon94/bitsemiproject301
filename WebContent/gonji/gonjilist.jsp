@@ -285,8 +285,8 @@ $(function(){
 			name="word" id="word" placeholder="검색단어입력"
 			value="<%=word%>">
 		<%-- 검색버튼 --%>
-		<button type="button" class="btn btn-warning btn-sm"
-			id="btndatasearch">
+		<button type="button" class="btn btn-warning"
+			id="btndatasearch" style="width: 25px;">
 			<span class="fas fa-search"></span>
 		</button>
 	</div>

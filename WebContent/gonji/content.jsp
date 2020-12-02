@@ -38,7 +38,7 @@ $(function(){
 		if(a){
 			//alert(gonnum);
 			del(gonnum);
-			location.reload();
+			location.href="index.jsp?main=gonji/gonjilist.jsp";
 		}
 	});//공지글 삭제 이벤트 close
 });//$function close
@@ -75,7 +75,11 @@ function del(gonnum){
 	
 	//번호에 해당하는 dto 가져오기
 	GonjiDto dto=db.getData(gonnum);
-	System.out.println(dto.getGonwriteday());
+	
+	//제대로 넘어오는지 확인하기
+	//System.out.println(dto.getGoncontent());
+	//System.out.println(dto.getGonwriteday());
+	
 	//mysql에서는 시간까지 나오게 하려면 datetime이어야 한다
 	SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
 %>	
