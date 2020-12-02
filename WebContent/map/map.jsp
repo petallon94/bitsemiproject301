@@ -1,7 +1,8 @@
 
+<%@page import="data.dao.StarMapDao"%>
 <%@page import="data.dto.StarMapDto"%>
 <%@page import="java.util.List"%>
-<%@page import="data.dao.StarMapDao"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -17,60 +18,419 @@
 <link rel="stylesheet" type="text/css" href="css/map_window.css">
 </head>
 <style>
-	#maphadan{
-		position: relative;
-		top: 150px;
-		left: -330px;
-		background-color: red;
-		width: 200px;
-		height: 200px;
-		border-radius: 100px;
-		float: left;
-		margin-left: 400px;
-		margin-top: 50px;
-	}
-	
-	#hadan{
-		position: relative;
-		left: 250px;
-		top: 30px;
-		width: 300px;
-		border: 1px solid gray;
-	
-	}
-	
-	#shopadd{
-		background-color: #ffcc00;
-		width: 150px;
-		height: 50px;
-		text-align: center;
-		text-shadow: black;
-		margin-bottom: 15px;
-	}
-	
-	#shopaddspan{
-		top: 25px;
-		font-weight: bolder;
-		color: white;
-		font-size: 30px;
-	}
-	
+.wrap {
+	overflow: hidden;
+	font-size: 12px;
+	font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
+	line-height: 1.5;
+}
+
+.wrap * {
+	padding: 0;
+	margin: 0;
+}
+
+.wrap .mapinfo {
+	width: 286px;
+	height: 120px;
+	border-radius: 5px;
+	border-bottom: 2px solid #ccc;
+	border-right: 1px solid #ccc;
+	overflow: hidden;
+	background: #fff;
+}
+
+.wrap .mapinfo:nth-child(1) {
+	border: 0;
+	box-shadow: 0px 1px 2px #888;
+}
+
+.mapinfo .title {
+	padding: 5px 0 0 10px;
+	height: 30px;
+	background: #eee;
+	border-bottom: 1px solid #ddd;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.mapinfo .close {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	color: #888;
+	width: 17px;
+	height: 17px;
+	background:
+		url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');
+}
+
+.mapinfo .close:hover {
+	cursor: pointer;
+}
+
+.mapinfo .body {
+	position: relative;
+	overflow: hidden;
+}
+
+.mapinfo .desc {
+	position: relative;
+	margin: 13px 0 0 90px;
+	height: 75px;
+}
+
+.desc .ellipsis {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.desc .jibun {
+	font-size: 11px;
+	color: #888;
+	margin-top: -2px;
+}
+
+.mapinfo .img {
+	position: absolute;
+	top: 6px;
+	left: 5px;
+	width: 73px;
+	height: 71px;
+	border: 1px solid #ddd;
+	color: #888;
+	overflow: hidden;
+}
+
+.mapinfo:after {
+	content: '';
+	position: absolute;
+	margin-left: -12px;
+	left: 50%;
+	bottom: 0;
+	width: 22px;
+	height: 12px;
+	/* background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png') */
+}
+
+.mapinfo .link {
+	color: #5085BB;
+}
+/*   지도  */
+
+/* 지도 검색창 */
+.map_wrap, .map_wrap * {
+	margin: 0;
+	padding: 0;
+	font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
+	font-size: 12px;
+}
+
+.map_wrap a, .map_wrap a:hover, .map_wrap a:active {
+	color: #000;
+	text-decoration: none;
+}
+
+.map_wrap {
+	position: relative;
+	width: 100%;
+	height: 700px;
+}
+
+#menu_wrap {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	width: 250px;
+	margin: 10px 0 30px 10px;
+	padding: 5px;
+	overflow-y: auto;
+	background: rgba(255, 255, 255, 0.7);
+	z-index: 1;
+	font-size: 12px;
+	border-radius: 10px;
+}
+
+.bg_white {
+	background: #fff;
+}
+
+#menu_wrap hr {
+	display: block;
+	height: 1px;
+	border: 0;
+	border-top: 2px solid #5F5F5F;
+	margin: 3px 0;
+}
+
+#menu_wrap .option {
+	text-align: center;
+}
+
+#menu_wrap .option p {
+	margin: 10px 0;
+}
+
+#menu_wrap .option button {
+	margin-left: 5px;
+}
+
+#placesList li {
+	list-style: none;
+}
+
+#placesList .item {
+	position: relative;
+	border-bottom: 1px solid #888;
+	overflow: hidden;
+	cursor: pointer;
+	min-height: 65px;
+}
+
+#placesList .item span {
+	display: block;
+	margin-top: 4px;
+}
+
+#placesList .item h5, #placesList .item .info {
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+#placesList .item .info {
+	padding: 10px 0 10px 55px;
+}
+
+#placesList .info .gray {
+	color: #8a8a8a;
+}
+
+#placesList .info .jibun {
+	padding-left: 26px;
+	background:
+		url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_jibun.png)
+		no-repeat;
+}
+
+#placesList .info .tel {
+	color: #009900;
+}
+
+#placesList .item .markerbg {
+	float: left;
+	position: absolute;
+	width: 36px;
+	height: 37px;
+	margin: 10px 0 0 10px;
+	background:
+		url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png)
+		no-repeat;
+}
+
+#placesList .item .marker_1 {
+	background-position: 0 -10px;
+}
+
+#placesList .item .marker_2 {
+	background-position: 0 -56px;
+}
+
+#placesList .item .marker_3 {
+	background-position: 0 -102px
+}
+
+#placesList .item .marker_4 {
+	background-position: 0 -148px;
+}
+
+#placesList .item .marker_5 {
+	background-position: 0 -194px;
+}
+
+#placesList .item .marker_6 {
+	background-position: 0 -240px;
+}
+
+#placesList .item .marker_7 {
+	background-position: 0 -286px;
+}
+
+#placesList .item .marker_8 {
+	background-position: 0 -332px;
+}
+
+#placesList .item .marker_9 {
+	background-position: 0 -378px;
+}
+
+#placesList .item .marker_10 {
+	background-position: 0 -423px;
+}
+
+#placesList .item .marker_11 {
+	background-position: 0 -470px;
+}
+
+#placesList .item .marker_12 {
+	background-position: 0 -516px;
+}
+
+#placesList .item .marker_13 {
+	background-position: 0 -562px;
+}
+
+#placesList .item .marker_14 {
+	background-position: 0 -608px;
+}
+
+#placesList .item .marker_15 {
+	background-position: 0 -654px;
+}
+
+#pagination {
+	margin: 10px auto;
+	text-align: center;
+}
+
+#pagination a {
+	display: inline-block;
+	margin-right: 10px;
+}
+
+#pagination .on {
+	font-weight: bold;
+	cursor: default;
+	color: #777;
+}
+
+/* 매장추가,수정,삭제 */
+#maphadan {
+	position: relative;
+	top: 150px;
+	left: -330px;
+	background-color: red;
+	width: 200px;
+	height: 200px;
+	border-radius: 100px;
+	float: left;
+	margin-left: 400px;
+	margin-top: 50px;
+}
+
+#hadan {
+	position: relative;
+	left: 250px;
+	top: 30px;
+	width: 300px;
+	border: 1px solid gray;
+}
+
+#shopadd {
+	position: relative;
+	width: 635px;
+	height: 70px;
+	border: 1px solid #d5d5d5;
+	border-radius: 5px;
+	margin-bottom: 20px;
+	margin-left: 20px;
+}
+
+#shopplus {
+	position: absolute;
+	text-align: center;
+	margin-bottom: 15px;
+	top: 13px;
+	left: 50px;
+}
+
+#shopupdate {
+	position: absolute;
+	text-align: center;
+	margin-bottom: 15px;
+	top: 13px;
+	left: 245px;
+}
+
+#shopdelete {
+	position: absolute;
+	text-align: center;
+	margin-bottom: 15px;
+	top: 13px;
+	left: 440px;
+}
+
+#shopaddspan {
+	position: relative;
+	font-weight: bold;
+	color: #02a8da;
+	font-size: 25px;
+	top: 0px;
+	background-color: white;
+	border-radius: 5px;
+	padding: 3px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+#shopaddspan:hover {
+	cursor: pointer;
+	color: white;
+	background-color: #02a8da;
+}
+
+#mapadd {
+	left: 500px;
+}
+/* 매장추가,수정,삭제 */
 </style>
 <body>
-<!-- 매장추가 -->
+	<%
+	
+
+	//현재로그인상태를 세션으로부터 얻는다
+	String id=(String)session.getAttribute("id");
+	//로그인한 아이디를 세션으로부터 얻는다
+	String sessionId=(String)session.getAttribute("myid");
+%>
+<%-- <%
+	if(id == id.equals("admin")){
+
+%> --%>
+	<!-- 매장추가 -->
 	<div id="shopadd">
-		<span id="shopaddspan">매장추가</span>
+		<div id="shopplus">
+			<div id="shopaddspan">매장추가</div>
+		</div>
+		<div id="shopupdate">
+			<div id="shopaddspan">매장수정</div>
+		</div>
+		<div id="shopdelete">
+			<div id="shopaddspan">매장삭제</div>
+		</div>
 	</div>
+
+<%-- 	<%
+}
+%> --%>
+
+	<div align="center" id="mapadd">
+		<jsp:include page="../map/mapform.jsp"></jsp:include>
+	</div>
+
 	<script type="text/javascript">
 		$(function() {
+			$("#mapadd").hide();
+			
 			$("#shopadd").click(function() {
-				
+				$("#mapadd").toggle();
 			});
 		});
 	</script>
 	<!-- 매장추가end -->
-	
-	
+
 	<div class="map_wrap">
 		<div id="map"
 			style="width: 100%; height: 750px; position: relative; overflow: hidden;"></div>
@@ -89,7 +449,7 @@
 			<div id="pagination"></div>
 		</div>
 	</div>
-	
+
 	<%
     	StarMapDao StarDao=new StarMapDao();
     	//목록 가져오기
@@ -97,12 +457,14 @@
     	
     	
     %>
-	<table>
+    <table>
 		<%for(StarMapDto dto:list)
 		{%>
-		
+
 		<div id="maphadan">
-			<div id="hadan"><h3><%=dto.getShopname() %></h3></div>
+			<div id="hadan">
+				<h3><%=dto.getShopname() %></h3>
+			</div>
 			<div id="hadan"><%=dto.getShopaddr() %></div>
 			<div id="hadan"><%=dto.getShopaddrdetail() %></div>
 			<div id="hadan"><%=dto.getShophp() %></div>
@@ -110,7 +472,9 @@
 		</div>
 		<%} %>
 	</table>
-<script type="text/javascript">
+	
+	
+	<script type="text/javascript">
 		// 마커를 담을 배열입니다
 		var markers = [];
 
@@ -153,7 +517,7 @@
 		   {
 		    	  title: '<%=dto.getShopname()%>',
                   content: '<div class="wrap">' + 
-                   '    <div class="info">' + 
+                   '    <div class="mapinfo">' + 
                    '        <div class="title">' + 
                    '            <%=dto.getShopname()%>' + 
                    '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' + 

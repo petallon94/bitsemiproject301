@@ -68,11 +68,11 @@ $(function(){
         <p>오직 스타보틀에서만 만나보실 수 있는 시그니처 메뉴입니다.</p>
     </div>
     <ul class="page_tab st-2">
-		        <li ><a>전체</a></li>
-		        <li ><a>커피</a></li>
-		        <li ><a>음료</a></li>
-		        <li ><a>디저트</a></li>
-		        <li ><a>프라푸치노</a></li>
+		        <li><a onclick ="location.href='index.jsp?main=menu/menulist.jsp'">전체</a></li>
+		        <li><a onclick ="location.href='index.jsp?main=menu/menulistcoffee.jsp'">커피</a></li>
+		        <li><a onclick ="location.href='index.jsp?main=menu/menulistdrink.jsp'">음료</a></li>
+		        <li><a onclick ="location.href='index.jsp?main=menu/menulistdess.jsp'">디저트</a></li>
+		        <li><a onclick ="location.href='index.jsp?main=menu/menulistprep.jsp'">프라푸치노</a></li>
 		    </ul>
 		     
  
@@ -107,7 +107,7 @@ $(function(){
 </div>
 <div class="menu_footer w3-padding" style="max-width:1600px;margin-top:100px">
 <hr>
-<a href="#footer" onclick ="location.href='index.jsp?main=menu/menuinsertform.jsp'" class="w3-bar-item w3-button w3-padding">메뉴추가</a>
+<a  class="w3-bar-item w3-button w3-padding">메뉴추가</a>
 </div>
 
 
