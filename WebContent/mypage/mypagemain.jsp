@@ -20,13 +20,18 @@
 .my_page_menu {
 		position: absolute;
 		left: 20px;
-		top: 500px;
+		top: 700px;
 		padding: 20px;
 	}
-.my_page_menu li{
+.nav {
+	display: flex;
+	flex-direction: column;
+	}
+a{
 		width: 200px;
 		font-size: 17px;		
 	}
+	
 .my_page_content {width:100%;max-width:1200px;position : absolute;left:400px;border:2px solid #bfbfbf; margin-top:20px;}
 .my_page_content img{max-width:100%;height :200px;}
 
@@ -34,6 +39,7 @@
 .sub_visual{min-height:499px;padding:0 10px;text-align:center;background-repeat:no-repeat;background-size:cover;background-position:center;position:relative;}
 .sub_visual .txt{width:100%;position:absolute;top:148px;left:0;}
 .sub_visual .txt h1{margin:0;font-size:2.75rem;font-weight:300;}
+.sub_visual .txt h1:after{display:block;width:40px;height:2px;margin:32px auto;background:#202020;content:'';}
 .sub_visual .txt p{font-size:1.25rem;font-weight:300;}
 .sub_visual.bg-menu{background-image:url(./image/coffee-5132832_1920.jpg);} 
 </style> 
@@ -56,8 +62,9 @@
  		<h1>스타보틀</h1>
 		<p>스타보틀에 오신것을 환영합니다.</p>
 	</div>
-
-  <ul class="my_page_menu nav flex-column nav-tabs">
+</div>
+<div class="my_page_menu">
+  <ul class="nav nav-tabs nav-justified">
     <li><a href="#">개인정보수정</a></li>
     <li><a href="#">주문내역</a></li>
     <li><a href="#">회원탈퇴</a></li>
