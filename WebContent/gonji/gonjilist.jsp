@@ -14,7 +14,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-
+<%--글리피콘아이콘 --%>
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
 <title>Insert title here</title>
 <!-- <script src="https://code.jquery.com/jquery-1.10.2.js"></script> -->
 
@@ -46,6 +47,39 @@
 		height: 50px;
 	}
 </style>
+<script type="text/javascript">
+$(function(){
+	//전체 체크박스 체크,해제
+	$("#search").click(function(){
+		var a=$(this).is(":checked");
+		if(a){
+			//prop속성주는 것:체크속성줄 때는 arrt보다 prop이 정확
+			//name으로 줄때는 $("태그이름[name='']")으로 준다!
+			$("input[name='search']").prop("checked",true);
+		}else{
+			$("input[name='search']").prop("checked",false);
+		}
+	});//체크박스 전체 선택 해제 close
+	
+	//검색
+	$("#btndatasearch").click(function(){
+		//검색한 값이랑 단어의 값을 넣으면,
+		var search=$("#search").val();
+		var word=$("#word").val();
+		$.ajax({
+			type:"get",
+			dataType:"html",
+			url:"gonji/gonsavesession.jsp",
+			data:{"search":search,"word":word},
+			success:function(data){
+				//페이지 번호를 없애고 전체 새로고침한다
+				location.href="index.jsp?main=gonji/gonjilist.jsp"
+			}
+		});//$.ajax close
+	});//$("#btndatasearch") close
+	
+});//$function close
+</script>
 </head>
 <%
 	//페이징 처리를 위한 자바함수
@@ -212,7 +246,7 @@
 
 <%-- 검색창  --%>
 <form action="" class="form-inline">
-  <div style="width: 800px;text-align: center;">
+  <div style="width: 600px;">
 	<div class="form-group">
 	<%
 		//검색창에 검색한 단어 남아있게 해주기
@@ -223,18 +257,29 @@
 		if(word==null)
 			word="";
 	%>
-	<%-- 검색 폼 --%>
-		<select id="search" class="form-control"
+		<%-- 검색 폼 --%>
+<!-- 	  <select id="search" class="form-control"
 			style="width: 100px;">
 		  <option value="all">전체</option>
 		  <option value="myid">아이디</option>
 		  <option value="subject">제목</option>
 		  <option value="content">내용</option>
-		</select>
-	<%-- ajax에서 action호출하기 위한 id --%>
-		<input type="text" class="form-control" style="width: 150px;"
+		</select> -->
+		<%-- 검색 폼: 체크박스 --%>
+			<input type="checkbox" value="all" name="search" 
+			checked="checked" id="search">전체
+			<input type="checkbox" value="subject" name="search">제목
+			<input type="checkbox" value="content" name="search">내용
+			<input type="checkbox" value="date" name="search">작성일
+		<%-- ajax에서 action호출하기 위한 id --%>
+		<input type="text" class="form-control" style="width: 200px;"
 			name="word" id="word" placeholder="검색단어입력"
-			>
+			value="<%=word%>">
+		<%-- 검색버튼 --%>
+		<button type="button" class="btn btn-warning btn-sm"
+			id="btndatasearch">
+			<span class="fas fa-search"></span>
+		</button>
 	</div>
   </div>
 </form>
