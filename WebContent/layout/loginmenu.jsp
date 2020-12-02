@@ -16,7 +16,7 @@
 <style type="text/css">
 
 span {
-margin-right: 25px;
+	margin-right: 25px;
 }
 #login_oktitle {
 color:#ffb210;
@@ -94,8 +94,9 @@ color:#ffb210;
 	<span><a href="<%=url %>/index.jsp?main=mypage/memberlist.jsp" class="topmenu_btn">관리페이지</a></span> 
 	<%}else{%>
    <span><a href="<%=url %>/index.jsp?main=mypage/mypageform.jsp" class="topmenu_btn">마이페이지</a></span> 
+
 	<%}%>
-   <span><a href="<%=url %>/index.jsp?main=order/orderform.jsp" class="topmenu_btn"><i class="fas fa-shopping-cart"></i>주문
+   <span><a href="<%=url %>/index.jsp?main=order/orderlist.jsp" class="topmenu_btn"><i class="fas fa-shopping-cart"></i>주문
 	<%-- <span class="count"><%=cartSize%></span> --%>
 	</a></span>
 

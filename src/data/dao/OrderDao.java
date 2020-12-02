@@ -107,7 +107,7 @@ public class OrderDao {
 				map.put("size", rs.getString("size"));
 				map.put("temp", rs.getString("temp"));
 				map.put("takeout", rs.getString("takeout"));
-				map.put("orderdate", rs.getString("orderdate").substring(0,10));
+				map.put("orderdate", rs.getString("orderdate"));
 				
 				//list에 추가
 				list.add(map);
