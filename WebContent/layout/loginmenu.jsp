@@ -13,8 +13,8 @@
 <title>Insert title here</title>
 <style type="text/css">
 nav #topmenu {
-width: 100%;
-white-space: nowrap;
+	width: 100%;
+	white-space: nowrap;
 }
 
 nav #topmenu{
@@ -26,7 +26,7 @@ nav #topmenu{
     vertical-align: middle;
 }
 span {
-margin-right: 25px;
+	margin-right: 25px;
 }
 
 </style>
@@ -49,7 +49,7 @@ margin-right: 25px;
    <span><a href="<%=url %>/index.jsp?main=member/memberform.jsp" class="topmenu_btn">회원가입</a></span> 
    <span><a href="<%=url %>/index.jsp?main=login/loginform2.jsp" class="topmenu_btn">로그인</a></span>
    <span><a href="<%=url %>/index.jsp?main=mypage/mypageform.jsp" class="topmenu_btn">마이페이지</a></span> 
-   <span><a href="<%=url %>/index.jsp?main=order/orderform.jsp" class="topmenu_btn">주문</a></span>
+   <span><a href="<%=url %>/index.jsp?main=order/orderlist.jsp" class="topmenu_btn">주문</a></span>
    <!--카트아이콘 <i class="fas fa-shopping-cart"><i> -->
 </nav>
 
