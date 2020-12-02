@@ -35,9 +35,7 @@ justify-content: center;
 <img src="./image/congratulations.PNG">
 <div><%=name %> 고객님</div>
 <div>스타보틀커피 회원가입이 완료되었습니다.</div><br>
-<input type="button" class="btn btn-success" value="로그인하기" onclick="window.location='#loginModal'" >
+<input type="button" class="btn btn-success" value="로그인하기" onclick="window.location='index.jsp?main=login/loginform.jsp'" >
 <input type="button" class="btn btn-info" value="마이페이지" onclick="window.location='index.jsp?main=mypage/mypageform.jsp'" >
-
 </body>
-
 </html>
