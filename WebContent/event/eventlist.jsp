@@ -25,6 +25,7 @@ body,h1 {font-family: "Raleway", Arial, sans-serif}
 	}
 	div p{
 		margin-top: -5px;
+		font-size: ;
 	}
 	div .w3-third{
 		margin-bottom: 10px;
@@ -32,10 +33,18 @@ body,h1 {font-family: "Raleway", Arial, sans-serif}
 	
 	.ev_content{
 		cursor: pointer;
+		padding-bottom: 10px;
 	}
+	.ev_subject{
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	width: 100%;
+	overflow: hidden;
+	word-break: normal;
+	display: inline-block;
+	}
+	
 </style>
-
-
 <script type="text/javascript">
 $(function(){
 	$("div.ev_content").click(function(){
@@ -74,10 +83,6 @@ $(function(){
 	onclick="location.href='index.jsp?main=event/eventaddform.jsp'">
 	이벤트추가
 	</button>
-	<button type="button" class="btn btn-outline-secondary"
-	onclick="location.href='#'">
-	이벤트수정
-	</button>
   </div>
 </header>
 </div>
@@ -95,7 +100,7 @@ $(function(){
       		 eventnum="<%=dto.getEventnum()%>">
       		 <img src="eventsave/<%=dto.getEvlistimage()%>" 
       		 class="w3-round w3-margin-bottom" style="width:90%">
-      		  <p><%=dto.getEvsubject()%><br>
+      		  <p class="ev_subject"><%=dto.getEvsubject()%><br>
       		  <%=dto.getEvstartday()%>~<%=dto.getEvendday()%>
       		  </p>
       		 

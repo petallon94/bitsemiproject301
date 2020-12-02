@@ -21,8 +21,8 @@ public class EventDao {
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		String sql="insert into event"
-				+ " (id,evsubject,evlistimage,evcontent,evcontentimage,evstartday,evendday,evwriteday)"
-				+ " values ('admin',?,?,?,?,?,?,now())";
+				+ " (id,evsubject,evlistimage,evcontent,evcontentimage,evstartday,evendday,evreadcount,evwriteday)"
+				+ " values ('admin',?,?,?,?,?,?,0,now())";
 		conn=db.getMyConnection();
 		
 		try {
@@ -47,7 +47,7 @@ public class EventDao {
 	//조회수증가
 	public void updateReadCount(String num)
 	{
-		String sql="update event set readcount=readcount+1 where num=?";
+		String sql="update event set readcount=readcount+1 where eventnum=?";
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		conn=db.getMyConnection();
@@ -171,5 +171,50 @@ public class EventDao {
 		return dto;
 	}
 	
+	
+	public List<EventDto> getList(int start,int perpage)
+	{
+		String sql="select * from event order by eventnum desc limit ?,?";
+		List<EventDto> list=new ArrayList<EventDto>();
+		
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		conn=db.getMyConnection();
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			
+			//바인딩
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, perpage);
+			//실행
+			rs=pstmt.executeQuery();
+			
+			while(rs.next())
+			{
+				EventDto dto=new EventDto();
+				dto.setEventnum(rs.getString("eventnum"));
+				dto.setId(rs.getString("id"));
+				dto.setEvsubject(rs.getString("evsubject"));
+				dto.setEvlistimage(rs.getString("evlistimage"));
+				dto.setEvcontent(rs.getString("evcontent"));
+				dto.setEvcontentimage(rs.getString("evcontentimage"));
+				dto.setEvstartday(rs.getString("evstartday"));
+				dto.setEvendday(rs.getString("evendday"));
+				dto.setEvreadcount(rs.getInt("evreadcount"));
+				dto.setEvwriteday(rs.getTimestamp("evwriteday"));
+				
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			db.dbClose(conn, pstmt, rs);
+		}
+		return list;
+	}
 	
 }
