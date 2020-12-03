@@ -131,6 +131,11 @@ $(function(){
 	//dao 선언
 	GonjiDao db=new GonjiDao();
 
+	//검색을 위해
+	//세션으로부터 key,value가져오기
+	String key=(String)session.getAttribute("key");
+	String value=(String)session.getAttribute("value");
+	
 	//총 갯수 구하기
 	int totalCount=db.getTotalCount();
 	int perPage=10;//한 페이지당 보여질 글의 갯수
@@ -178,8 +183,12 @@ $(function(){
 	//총 50개일 경우 1페이지는 50, 2페이지는 40
 	int no=totalCount-(currentPage-1)*perPage;
 		
-	//mysql에서 해당 페이지에 필요한 목록 가져오기
+	//mysql에서 해당 페이지에 필요한 목록 가져오기:list페이지에서 페이징처리
 	List<GonjiDto> list=db.getList(start, perPage);
+	//검색 후 값 출력 및 페이징 처리
+	//검색을 위해 출력목록에 key,value값 필요
+	List<GonjiDto> list2=db.getSearchList(key, value, start, perPage);
+	
 %>
 <body>
 <%-- 공통 메인 디자인  --%>
