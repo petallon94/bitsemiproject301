@@ -103,7 +103,7 @@ $(function(){
 		//변수
 		var search=$("#search").val();
 		var word=$("#word").val();
-		alert(search+":"+word);
+		//alert(search+":"+word);
 		//검색한 값이랑 단어의 값을 넣으면
 		//전체 선택했을 경우,
 		$.ajax({
@@ -325,13 +325,12 @@ if(loginok!=null && myid.equals("StarBottle"))
   <div style="width: 600px;">
 	<div class="form-group">
 	<%
-		//검색창에 검색한 단어 남아있게 해주기
 		String search=(String)session.getAttribute("key");
 		String word=(String)session.getAttribute("value");
 		if(search==null)
 			search="all";
 		if(word==null)
-			word="";
+			word=""; 
 	%>
 		<%-- 검색 폼 --%>
 		<select id="search" class="form-control"
