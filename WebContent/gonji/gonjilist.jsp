@@ -25,7 +25,7 @@
 /*ÆùÆ® */
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300&display=swap');
 	
-	body{
+	div.gonlist{
 		display: flex;
 		width: 100%;
 		margin-left: 250px;	
