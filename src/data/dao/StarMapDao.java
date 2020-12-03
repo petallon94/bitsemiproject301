@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import data.dto.BoardDto;
 import data.dto.MemberDto;
 import data.dto.StarMapDto;
 import mysql.db.MysqlConnect;
@@ -18,7 +17,7 @@ public class StarMapDao {
 
 	public StarMapDto getData(String shopnum)
 	{
-		String sql="select * from map2 where shopnum=?";
+		String sql="select * from map where shopnum=?";
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
