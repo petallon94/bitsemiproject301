@@ -258,6 +258,38 @@ public class MemberDao {
 
 		return find;
 	}
+	
+	//admin에 해당하는 비번이 맞으면 true반환 틀리면 false 반환
+		public boolean isAdminPassCheck(String id, String password)
+		{
+			boolean find=false;
+			Connection conn=null;
+			PreparedStatement pstmt=null;
+			ResultSet rs=null;
+			String sql="select * from Login where id=? and password=?";
+
+			conn=db.getMyConnection();
+
+			try {
+				pstmt=conn.prepareStatement(sql);
+				//바인딩
+				pstmt.setString(1, id);
+				pstmt.setString(2, password);
+				rs=pstmt.executeQuery();
+				if(rs.next()) {
+					id="admin";
+				}
+					find=true;
+
+			} catch (SQLException e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}finally {
+				db.dbClose(conn, pstmt, rs);
+			}
+
+			return find;
+		}
 
 	//삭제하는 메서드
 	public void deleteMember(String id)
@@ -324,7 +356,7 @@ public class MemberDao {
 			pstmt.setString(1, id);
 			rs=pstmt.executeQuery();
 			if(rs.next())
-				name=rs.getString("name");
+			name=rs.getString("name");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -57,6 +57,15 @@ a{
 %>
 
 <body>
+<%
+if(loginok==null)
+{%>
+	<script type="text/javascript">
+		alert("로그인하셔야 본 서비스를 이용하실 수 있습니다.");
+		history.back();
+	</script>
+<%}else{
+%>
 <div class="sub_visual bg-menu">
  	<div class="txt">
  		<h1>스타보틀</h1>
@@ -75,6 +84,7 @@ a{
 <img src ="./image/welcom.jpg"><br>
 <a><%=name %>님 환영합니다!!!</a>
 </div>
+<%} %>
 </body>
 </html>
 

@@ -70,10 +70,7 @@
 <div class="layout">
 	<div class="login">
 		<jsp:include page="layout/loginmenu.jsp"/>
-	</div>
-	
-	
-	
+	</div>	
 	<div class="menu">
 		<jsp:include page="layout/menu.jsp"/>
 	</div>

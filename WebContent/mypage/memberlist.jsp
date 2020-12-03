@@ -25,12 +25,15 @@
 %>
 <body>
 <h4>회원 관리</h4>
-<table class="table table-bordered" style="width: 800px;">
+<table class="table table-bordered" style="width: 1200px;">
 <thead class="thead-light">
 <tr>
 	<th>아이디</th>
-	<th>관리</th>
-	<th colspan="2">정보</th>
+	<th>이름</th>
+	<th>핸드폰</th>
+	<th colspan="2" align="center">정보</th>	
+	<th>가입일</th>
+	<th>관리</th>	
 </tr>
 </thead>
 <tbody>
@@ -39,25 +42,30 @@
 	for(MemberDto2 dto:list){
 		%>
 		<tr>
-			<td rowspan="7">
-			<%=dto.getId()%>(<%=dto.getName()%>)
+			<td rowspan="5">
+			<%=dto.getId()%>
 			</td>
-			<td rowspan="7">
-			<button class="btn btn-info btn-sm" onclick="location.href='index.jsp?main=member/updateform.jsp?num=<%=dto.getLoginnum()%>'">정보수정</button><br>
-			<button type="button" class="btn btn-danger btn-sm"
-				 onclick="location.href='index.jsp?main=member/deletepassform.jsp?id=<%=dto.getId()%>'">
-				회원탈퇴</button>
-
-			</td>				
-		</tr>
-		<tr>
-			<td align="center">핸드폰</td>
-			<td><%=dto.getHp()%></td>
-		</tr>
+			<td rowspan="5">
+			<%=dto.getName()%>
+			</td>	
+			<td rowspan="5">
+			<%=dto.getHp()%>
+			</td>					
+		</tr>		
 		<tr>
 			<td align="center">주소</td>
 			<td><%=dto.getAddress()%>&nbsp;<%=dto.getAddrdetail()%></td>
-		</tr>
+			<td rowspan="5">
+			<%=sdf.format(dto.getGaipday())%>
+			</td>
+			<td rowspan="5">
+			<button class="btn btn-info btn-sm" 
+			onclick="location.href='index.jsp?main=mypage/adminupdateform.jsp?num=<%=dto.getLoginnum()%>'">정보수정</button><br>
+			<button type="button" class="btn btn-danger btn-sm"
+				 onclick="location.href='index.jsp?main=mypage/admindeleteform.jsp?id=<%=dto.getId()%>'">
+				회원탈퇴</button>
+			</td>
+		</tr>		
 		<tr>
 			<td align="center">이메일</td>
 			<td><%=dto.getEmail()%></td>
@@ -69,13 +77,6 @@
 		<tr>
 			<td align="center">생년월일</td>
 			<td><%=dto.getBirthday()%></td>
-		</tr>
-		<tr>
-			<td align="center">가입일</td>
-			<td><%=sdf.format(dto.getGaipday())%></td>
-		</tr>
-		<tr>
-				
 		</tr>
 	<%}%>
 </tbody>
