@@ -96,13 +96,14 @@ function del(gonnum){
 %>	
 <table class="table table-striped" style="width: 1000px;">
 	<tr>
-		<td width="650">
+		<td width="650" height="80">
 			<b><%=dto.getGonsubject()%></b>
 		</td>
 		<td>
 			<span style="color: #ccc;font-size: 9pt;float: right;">
 			<%=sdf.format(dto.getGonwriteday())%></span>
 		</td>
+		
 	</tr>
 	<tr height="350">
 		<td colspan="2" valign="top">
@@ -115,10 +116,10 @@ function del(gonnum){
 	<tr>
 		<td colspan="2">
 			<span style="color: gray;font-size: 9pt;float: right;">
-			조회수&nbsp; <%=dto.getGonreadcount()%>
-			</span>			
+			조회수&nbsp; <%=dto.getGonreadcount()%></span>		
 		</td>
 	</tr>
+	
 	<%-- 버튼들 --%>
 	<%
 		//myid가 StarBottle(관리자)인 경우에만 보이기
@@ -126,13 +127,13 @@ function del(gonnum){
 		{%>
 		<tr>
 			<td colspan="2" align="right">
-				<input type="button" class="btn btn-warning btn-xs"
+				<input type="button" class="btn btn-warning btn-lg"
 				  value="글쓰기" style="width: 80px;"
 				  onclick="location.href='index.jsp?main=gonji/gonjiform.jsp'">
-				<input type="button" class="btn btn-info btn-xs"
+				<input type="button" class="btn btn-info btn-lg"
 				  value="목록" style="width: 80px;"
 				  onclick="location.href='index.jsp?main=gonji/gonjilist.jsp?pageNum=<%=pageNum%>'">
-				<input type="button" class="del btn btn-danger btn-xs"
+				<input type="button" class="del btn btn-danger btn-lg"
 				  value="삭제" style="width: 80px;"
 				  gonnum="<%=dto.getGonnum()%>">		
 			</td>
@@ -140,8 +141,8 @@ function del(gonnum){
 		<%}else{%>
 		<tr>
 			<td colspan="2" align="right">			
-				<input type="button" class="btn btn-info btn-xs"
-				  value="목록" style="width: 80px;"
+				<input type="button" class="btn btn-info btn-lg"
+				  value="목록" style="width: 180px;"
 				  onclick="location.href='index.jsp?main=gonji/gonjilist.jsp?pageNum=<%=pageNum%>'">	
 			</td>
 		</tr>	

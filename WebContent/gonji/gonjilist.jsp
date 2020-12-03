@@ -194,26 +194,26 @@ $(function(){
 <h2 style="display: inline;">공지사항	</h2>
 <%-- 관리자로 로그인 했을 때만 보이는 페이지 --%>
 <%
-	//<관리자 로그인 id확인을 위한 자바함수>
-	//세션 로그인상태
-	String loginok=(String)session.getAttribute("loginok");
-	//세션에서 id 얻기
-	String myid=(String)session.getAttribute("myid");
-	//dao 선언
-	MemberDao dao=new MemberDao();
-	//아이디에 해당하는 이름 얻기
-	//String name=dao.getName(myid);
-	
-	//myid가 StarBottle(관리자)인 경우에만 보이기
-	if(loginok!=null && myid.equals("StarBottle"))
-	{%>
-		<b>	총 <span style="color: red;">
-		<%=totalCount%></span>개의 글이 있습니다</b>
-	    <input type="button" value="게시물등록"
-	    class="btn btn-warning btn-sm" 
-	   	style="width: 100px;float: right;margin-right: 100px;"
-	 	onclick="location.href='index.jsp?main=gonji/gonjiform.jsp'">  
- <br><br>
+//<관리자 로그인 id확인을 위한 자바함수>
+//세션 로그인상태
+String loginok=(String)session.getAttribute("loginok");
+//세션에서 id 얻기
+String myid=(String)session.getAttribute("myid");
+//dao 선언
+MemberDao dao=new MemberDao();
+//아이디에 해당하는 이름 얻기
+//String name=dao.getName(myid);
+
+//myid가 StarBottle(관리자)인 경우에만 보이기
+if(loginok!=null && myid.equals("StarBottle"))
+{%>
+	<b>	총 <span style="color: red;">
+	<%=totalCount%></span>개의 글이 있습니다</b>
+    <input type="button" value="게시물등록"
+    class="btn btn-warning btn-sm" 
+   	style="width: 100px;float: right;margin-right: 100px;"
+ 	onclick="location.href='index.jsp?main=gonji/gonjiform.jsp'">  
+<br><br>
  <%
  	SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
  %>
@@ -326,10 +326,10 @@ $(function(){
 		<%-- 검색 폼 --%>
 		<select id="search" class="form-control"
 			style="width: 100px;">
-			<option value="all">전체</option>
-			<option value="myid">아이디</option>
-			<option value="subject">제목</option>
-			<option value="content">내용</option>
+			<option value="all" <%=search.equals("all")?"selected":""%>>전체</option>
+			<option value="myid" <%=search.equals("myid")?"selected":""%>>아이디</option>
+			<option value="subject" <%=search.equals("subject")?"selected":""%>>제목</option>
+			<option value="content" <%=search.equals("content")?"selected":""%>>내용</option>
 		</select>
 		<%-- 검색 폼: 체크박스 --%>
 <!-- 		<input type="checkbox" value="all" name="search" 
@@ -344,7 +344,7 @@ $(function(){
 			value="<%=word%>">
 		<%-- 검색버튼 --%>
 		<button type="button" class="btn btn-warning"
-			id="btndatasearch" style="width: 25px;">
+			id="btndatasearch" style="width: 45px;">
 			<span class="fas fa-search"></span>
 		</button>
 	</div>
@@ -352,7 +352,7 @@ $(function(){
 </form>
 
 <%-- 관리자가 아닌 경우에 보이는 페이지 --%>
-	<%}else{%>
+<%}else{%>
  <br><br>
  <%
  	SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
@@ -467,10 +467,10 @@ $(function(){
 		<%-- 검색 폼 --%>
 		<select id="search" class="form-control"
 			style="width: 100px;">
-			<option value="all">전체</option>
-			<option value="myid">아이디</option>
-			<option value="subject">제목</option>
-			<option value="content">내용</option>
+			<option value="all" <%=search.equals("all")?"selected":""%>>전체</option>
+			<option value="myid" <%=search.equals("myid")?"selected":""%>>아이디</option>
+			<option value="subject" <%=search.equals("subject")?"selected":""%>>제목</option>
+			<option value="content" <%=search.equals("content")?"selected":""%>>내용</option>
 		</select>
 		<%-- 검색 폼: 체크박스 --%>
 <!-- 		<input type="checkbox" value="all" name="search" 
@@ -485,7 +485,7 @@ $(function(){
 			value="<%=word%>">
 		<%-- 검색버튼 --%>
 		<button type="button" class="btn btn-warning"
-			id="btndatasearch" style="width: 25px;">
+			id="btndatasearch" style="width: 45px;">
 			<span class="fas fa-search"></span>
 		</button>
 	</div>
