@@ -133,8 +133,8 @@ $(function(){
 	
 	//총 갯수 구하기
 	int totalCount=db.getTotalCount();
-	int perPage=10;//한 페이지당 보여질 글의 갯수
-	int perBlock=5;//한 블럭당 출력할 페이지의 갯수
+	int perPage=3;//한 페이지당 보여질 글의 갯수
+	int perBlock=2;//한 블럭당 출력할 페이지의 갯수
 	int totalPage;//총 페이지의 갯수
 	int startPage;//각 블럭당 시작할 페이지 번호
 	int endPage;//각 블럭당 끝 페이지 번호
@@ -272,13 +272,15 @@ if(loginok!=null && myid.equals("StarBottle"))
   if(totalCount>0)
   {%>
 	<div style="width: 900px; text-align: center;">
-	  <ul class="pagination">
+	  <ul class="pagination justify-content-center">
 		<%
 		//이전 페이지 표시
 		if(startPage>1)
 		{%>
-			<li class="page-item"><a class="page-link" href="index.jsp?main=gonji/gonjilist.jsp?pageNum=<%=startPage-1%>">
-			이전&gt;</a></li>
+			<li class="page-item">
+			  <a class="page-link" href="index.jsp?main=gonji/gonjilist.jsp?pageNum=<%=startPage-1%>">
+				&lt;</a>
+			</li>
 		<%}	
 			//페이지 블록 표시
 			for(int i=startPage; i<=endPage; i++)
@@ -295,7 +297,7 @@ if(loginok!=null && myid.equals("StarBottle"))
 				
 				if(i==currentPage)
 				{%>
-					<li class="page-item">
+					<li class="page-item active">
 					  <a class="page-link" href="<%=url%>"><%=i%></a>
 					</li>
 			  
@@ -311,7 +313,7 @@ if(loginok!=null && myid.equals("StarBottle"))
 			<%-- 부등호 기호(>)가 출력안될때: &gt; --%>
 			<li class="page-item">
 			  <a class="page-link" href="index.jsp?main=gonji/gonjilist.jsp?pageNum=<%=endPage+1%>">
-			다음&gt;</a>
+			&gt;</a>
 			</li>
 	  <%}%>
 	  </ul>
@@ -412,13 +414,15 @@ if(loginok!=null && myid.equals("StarBottle"))
   if(totalCount>0)
   {%>
 	<div style="width: 900px; text-align: center;">
-	  <ul class="pagination">
+	  <ul class="pagination justify-content-center">
 		<%
 		//이전 페이지 표시
 		if(startPage>1)
 		{%>
-			<li class="page-item"><a class="page-link" href="index.jsp?main=gonji/gonjilist.jsp?pageNum=<%=startPage-1%>">
-			이전&gt;</a></li>
+			<li class="page-item">
+			  <a class="page-link" href="index.jsp?main=gonji/gonjilist.jsp?pageNum=<%=startPage-1%>">
+			&gt;</a>
+			</li>
 		<%}	
 			//페이지 블록 표시
 			for(int i=startPage; i<=endPage; i++)
@@ -451,7 +455,7 @@ if(loginok!=null && myid.equals("StarBottle"))
 			<%-- 부등호 기호(>)가 출력안될때: &gt; --%>
 			<li class="page-item">
 			  <a class="page-link" href="index.jsp?main=gonji/gonjilist.jsp?pageNum=<%=endPage+1%>">
-			다음&gt;</a>
+			&gt;</a>
 			</li>
 	  <%}%>
 	  </ul>
