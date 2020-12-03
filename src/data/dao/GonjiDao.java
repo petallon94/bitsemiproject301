@@ -203,6 +203,30 @@ public class GonjiDao {
 		}
 		
 	}
+	
+	//수정
+	public void updateGonji(GonjiDto dto)
+	{
+		String sql="update gonji set gonsubject=?,goncontent=? where gonnum=?";
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		conn=db.getMyConnection();
+		try {
+			pstmt=conn.prepareStatement(sql);
+			//바인딩
+			pstmt.setString(1, dto.getGonsubject());
+			pstmt.setString(2, dto.getGoncontent());
+			pstmt.setString(3, dto.getGonnum());
+			//실행
+			pstmt.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			db.dbClose(conn, pstmt);
+		}
+		
+	}
 }
 
 
