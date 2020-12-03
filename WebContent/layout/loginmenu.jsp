@@ -15,11 +15,12 @@
 <title>Insert title here</title>
 <style type="text/css">
 
-span {
+span .topmenu_btn {
 	margin-right: 25px;
 }
 #login_oktitle {
-color:#ffb210;
+color:#f6c244;
+margin-right: 25px;
 }
 
 /* 로그인모달창 */
@@ -96,7 +97,7 @@ color:#ffb210;
 
    	<span><a href="<%=url %>/index.jsp?main=mypage/mypagemain.jsp" class="topmenu_btn">마이페이지</a></span> 
 	<%}%>
-   	<span><a href="<%=url %>/index.jsp?main=order/orderform.jsp" class="topmenu_btn">주문
+   	<span><a href="<%=url %>/index.jsp?main=order/orderlist.jsp" class="topmenu_btn">주문
 
 	<%-- <i class="fas fa-shopping-cart"></i><span class="count"><%=cartSize%></span> --%>
 	</a></span>
@@ -122,7 +123,7 @@ color:#ffb210;
         <div>아이디</div>
         <input type="text" class="form-control" id="login_id" name="login_id" placeholder="아이디를 입력해주세요" required="required">
 		<div>비밀번호</div>         
-		<input type="text" class="form-control" id="login_password" name="login_password" placeholder="비밀번호를 입력해주세요" required="required">
+		<input type="password" class="form-control" id="login_password" name="login_password" placeholder="비밀번호를 입력해주세요" required="required">
         <input type="checkbox" name="login_saveid" <%=saveid==null?"":"checked"%>>아이디저장
         <br>        
         <button type="submit" class="btn btn-warning btn-block" id="login_enterbtn">로그인</button>

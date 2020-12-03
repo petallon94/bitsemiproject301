@@ -60,7 +60,7 @@
 		mainPage=request.getParameter("main");
 	}else{%>
 	<script type="text/javascript">
-		localStorage.menu="menu1";
+		localStorage.menu="menu3";
 	</script>
 	<%}
 //include는 앞에 url이 들어가면 안된다. 

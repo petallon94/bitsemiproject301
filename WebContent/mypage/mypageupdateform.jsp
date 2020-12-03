@@ -14,10 +14,10 @@
   <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <title>Insert title here</title>
 <style type="text/css">
-#admin_updateform {
+#mypage_updateform {
 margin-top: 50px;
 }
-#admin_updateform p{
+#mypage_updateform p{
 margin-left: 450px;
 font-size: 0.7rem;
 }
@@ -114,7 +114,6 @@ function execDaumPostcode() {
 </script>
 </head>
 <%
-
 //세션에 저장된 로그인아이디
 String loginid=(String)session.getAttribute("myid");
 //num 읽기
@@ -125,12 +124,12 @@ MemberDto dto=dao.getData(loginnum);
 
 %>
 <body>
-<form action="mypage/adminupdateaction.jsp" method="post" id="admin_updateform" class="form-inline d-flex flex-column" name="memberform">
+<form action="mypage/mypageupdateaction.jsp" method="post" id="mypage_updateform" class="form-inline d-flex flex-column" name="memberform">
 		<!-- hidden -->
 		<input type="hidden" name="loginid" value="<%=loginid%>">
 		<input type="hidden" name="loginnum" value="<%=dto.getLoginnum()%>">
 		<input type="hidden" name="id" value="<%=dto.getId()%>">
-	<h3>회원정보수정</h3><br>
+	<h3>내정보수정</h3><br>
 	<table class="table" style="width: 550px;">	
 		<tr>
 				<td class="table_title">아이디</td>
@@ -193,14 +192,14 @@ MemberDto dto=dao.getData(loginnum);
 				<td><input name="birthday" type="text" class="form-control" placeholder="8자리입력" max="8" value="<%=dto.getBirthday()%>"></td>
 			</tr>
 			<tr>
-				<td align="center" width="100" style="color:red;">관리자<br>비밀번호확인</td>
+				<td align="center" width="100">비밀번호확인</td>
 				<td><input type="password" id="pass" name="pass" style="width: 100px;" class="form-control" required="required">
 				</td>
 			</tr>			
 			<tr>
 				<td colspan="2" align="center">
 				<button type="submit" class="btn btn-warning">
-				회원정보수정</button>
+				정보수정</button>
 				</td>
 			</tr>
 		</table>

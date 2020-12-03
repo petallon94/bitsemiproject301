@@ -21,7 +21,8 @@
 	//dao선언
 	MemberDao dao=new MemberDao();
 	//멤버목록 가져오기
-	List<MemberDto2> list=dao.getAllMembers();
+	List<MemberDto2> list=dao.getAllMembers();	
+	
 %>
 <body>
 <h4>회원 관리</h4>
@@ -59,9 +60,9 @@
 			<%=sdf.format(dto.getGaipday())%>
 			</td>
 			<td rowspan="5">
-			<button class="btn btn-info btn-sm" 
-			onclick="location.href='index.jsp?main=mypage/adminupdateform.jsp?num=<%=dto.getLoginnum()%>'">정보수정</button><br>
-			<button type="button" class="btn btn-danger btn-sm"
+			<button class="btn btn-outline-info btn-sm" 
+			onclick="location.href='index.jsp?main=mypage/adminupdateform.jsp?loginnum=<%=dto.getLoginnum()%>'">정보수정</button><br>
+			<button type="button" class="btn btn-outline-danger btn-sm"
 				 onclick="location.href='index.jsp?main=mypage/admindeleteform.jsp?id=<%=dto.getId()%>'">
 				회원탈퇴</button>
 			</td>

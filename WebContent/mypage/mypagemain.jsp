@@ -6,33 +6,17 @@
 <head>
 <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<title>Insert title here</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <title>Insert title here</title>
  <style>
-/* 
-.mp_menu_list {width:100%;padding:0 10px;font-size:0;position:absolute;left :50px; margin-top:20px;}
-.mp_menu_list li{width:20%;max-width:250px;height : 100px;padding:10px 0;border:1px solid #bfbfbf;margin-bottom:5px;font-size:1rem;color:#909090;background:#fff;}
-.mp_menu_list li a{display:block; text-align :center;top : 50%; }
-
-/*내용 나오는 곳*/
-.my_page_menu {
-		position: absolute;
-		left: 20px;
-		top: 700px;
-		padding: 20px;
-	}
-.nav {
-	display: flex;
-	flex-direction: column;
-	}
-a{
-		width: 200px;
-		font-size: 17px;		
-	}
+.my_page_menu {position: absolute; left: 20px; top: 700px; padding: 20px;}
+.nav {display: flex; flex-direction: column;}
+a {width: 200px;}
 	
-.my_page_content {width:100%;max-width:1200px;position : absolute;left:400px;border:2px solid #bfbfbf; margin-top:20px;}
+.my_page_content {width:100%;max-width:1200px;position : absolute;left:400px; margin-top:20px;}
 .my_page_content img{max-width:100%;height :200px;}
 
 /*submenu*/
@@ -43,6 +27,33 @@ a{
 .sub_visual .txt p{font-size:1.25rem;font-weight:300;}
 .sub_visual.bg-menu{background-image:url(./image/coffee-5132832_1920.jpg);} 
 </style> 
+<script>
+$(function() {
+
+  	
+/* $(document).ready(function() {
+	$("#mypage_nav-item1 a").click(function() {
+		$("#my_page_content").load("mypage/mypageupdateform.jsp #admin_updateform");
+		return false;
+	});
+	$("#mypage_nav-item2 a").click(function() {
+		$("#my_page_content").load("order/orderlist.jsp.part");
+		return false;
+	});
+	$("#mypage_nav-item3 a").click(function() {
+		$("#my_page_content").load("mypage/mypagedeleteform.jsp .alert");
+		return false;
+	});
+	
+}); */
+
+$(document).click(function(){
+    $("#mypage_tabs1").load("mypage/mypageupdateform.jsp");
+    $("#mypage_tabs2").load("order/orderlist.jsp");
+    $("#mypage_tabs3").load("mypage/mypagedeleteform.jsp");
+}); 
+}); 
+</script>
 </head>
 
 <%
@@ -73,16 +84,18 @@ if(loginok==null)
 	</div>
 </div>
 <div class="my_page_menu">
-  <ul class="nav nav-tabs nav-justified">
-    <li><a href="#">개인정보수정</a></li>
-    <li><a href="#">주문내역</a></li>
-    <li><a href="#">회원탈퇴</a></li>
+  <ul class="nav nav-tabs nav-justified" role="tablist">
+  	<li id="mypage_nav-item1"><a class="nav-link active" data-toggle="tab" href="#mypage_tabs1">개인정보수정</a></li>
+    <li id="mypage_nav-item2"><a class="nav-link" data-toggle="tab" href="#mypage_tabs2">주문내역</a></li>
+    <li id="mypage_nav-item3"><a class="nav-link" data-toggle="tab" href="#mypage_tabs3">회원탈퇴</a></li>
   </ul>
 </div>
-
 <div class="my_page_content">
 <img src ="./image/welcom.jpg"><br>
 <a><%=name %>님 환영합니다!!!</a>
+<div id="mypage_tabs1" class="container tab-pane active"></div>
+<div id="mypage_tabs2" class="container tab-pane fade"></div>
+<div id="mypage_tabs3" class="container tab-pane fade"></div>
 </div>
 <%} %>
 </body>

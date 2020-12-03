@@ -13,17 +13,21 @@
   <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <title>회원가입완료</title>
 <style type="text/css">
-body {
-display: flex;
-justify-content: center;
+#successpage_form {
+display:flex;
+flex-direction: column;
+align-items: center;
+margin-top: 50px;
+
 }
+
 </style>
 </head>
 <body>
 <%	
 
-	//세션에 저장된 아이디
-	String id=(String)session.getAttribute("myid"); 
+	
+	String id=request.getParameter("id");
 	//dao 선언
 	MemberDao dao=new MemberDao();
 	//아이디에 해당하는 이름 얻기
@@ -31,10 +35,10 @@ justify-content: center;
 
 	
  %>
-<input type="text" name="id" id="myid" value="<%=id%>">
-<img src="./image/congratulations.PNG">
-<div><%=name %> 고객님</div>
-<div>스타보틀커피 회원가입이 완료되었습니다.</div><br>
+<div id="successpage_form">
+<img src="./image/congratulations.PNG"><br>
+<h4>스타보틀커피 회원가입이 완료되었습니다.</h4><br>
 <input type="button" class="btn btn-success" value="로그인하기" onclick="window.location='index.jsp?main=login/loginform.jsp'" >
+</div>
 </body>
 </html>

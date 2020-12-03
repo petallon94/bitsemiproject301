@@ -21,7 +21,7 @@ System.out.print(dto.getId());
 
 if(find){
 dao.updateMember(dto);	
-response.sendRedirect("../index.jsp?main=member/memberlist.jsp");
+response.sendRedirect("../index.jsp?main=mypage/memberlist.jsp");
 }else{%>
 <script type="text/javascript">
 alert("비밀번호가 맞지 않습니다.");
