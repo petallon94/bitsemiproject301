@@ -130,11 +130,6 @@ $(function(){
 	//<페이징 처리를 위한 자바함수>
 	//dao 선언
 	GonjiDao db=new GonjiDao();
-
-	//검색을 위해
-	//세션으로부터 key,value가져오기
-	String key=(String)session.getAttribute("key");
-	String value=(String)session.getAttribute("value");
 	
 	//총 갯수 구하기
 	int totalCount=db.getTotalCount();
@@ -183,11 +178,17 @@ $(function(){
 	//총 50개일 경우 1페이지는 50, 2페이지는 40
 	int no=totalCount-(currentPage-1)*perPage;
 		
+	//페이징 처리만을 위한 부분->검색과 페이징으로 합침
 	//mysql에서 해당 페이지에 필요한 목록 가져오기:list페이지에서 페이징처리
-	List<GonjiDto> list=db.getList(start, perPage);
+	//List<GonjiDto> list=db.getList(start, perPage);
+		
+	//<검색>
+	//세션으로부터 key,value가져오기
+	String key=(String)session.getAttribute("key");
+	String value=(String)session.getAttribute("value");
 	//검색 후 값 출력 및 페이징 처리
 	//검색을 위해 출력목록에 key,value값 필요
-	List<GonjiDto> list2=db.getSearchList(key, value, start, perPage);
+	List<GonjiDto> list=db.getSearchList(key, value, start, perPage);
 	
 %>
 <body>
@@ -369,7 +370,7 @@ if(loginok!=null && myid.equals("StarBottle"))
  <div class="gonlist">
  <%--테이블로 제목넣기--%>
  	<table class="table" style="width: 1000px;">
- 		<tr class="gontitle" style="text-align: center; ">
+ 		<tr class="gontitle" style="text-align: center;">
  		 	<th width="40">번호</th>
  		 	<th width="400">제 목</th>
  		 	<th width="60">작성자</th>

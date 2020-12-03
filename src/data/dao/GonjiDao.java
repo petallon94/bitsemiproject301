@@ -89,7 +89,8 @@ public class GonjiDao {
 	}
 	
 	//페이징 처리한 리스트 목록 반환
-	public List<GonjiDto> getList(int start, int perpage)
+	//검색시 페이징 처리되는 부분으로 대체함 getSearchList
+/*	public List<GonjiDto> getList(int start, int perpage)
 	{
 		List<GonjiDto> list=new ArrayList<GonjiDto>();
 		//limit 시작,갯수
@@ -126,6 +127,7 @@ public class GonjiDao {
 		}
 		return list;
 	}
+	*/
 	
 	//검색결과 리스트 중 한 페이지에서 필요한만큼 반환하기
 	public List<GonjiDto> getSearchList(String key,
