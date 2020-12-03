@@ -1,3 +1,4 @@
+<%@page import="data.dao.MemberDao"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="data.dto.GonjiDto"%>
 <%@page import="data.dao.GonjiDao"%>
@@ -82,6 +83,16 @@ function del(gonnum){
 	
 	//mysql에서는 시간까지 나오게 하려면 datetime이어야 한다
 	SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
+	
+	//<관리자 로그인 id확인을 위한 자바함수>
+	//세션 로그인상태
+	String loginok=(String)session.getAttribute("loginok");
+	//세션에서 id 얻기
+	String myid=(String)session.getAttribute("myid");
+	//dao 선언
+	MemberDao dao=new MemberDao();
+	//아이디에 해당하는 이름 얻기
+	//String name=dao.getName(myid);
 %>	
 <table class="table table-striped" style="width: 1000px;">
 	<tr>
@@ -109,19 +120,34 @@ function del(gonnum){
 		</td>
 	</tr>
 	<%-- 버튼들 --%>
-	<tr>
-		<td colspan="2" align="right">
-			<input type="button" class="btn btn-warning btn-xs"
-			  value="글쓰기" style="width: 80px;"
-			  onclick="location.href='index.jsp?main=gonji/gonjiform.jsp'">
-			<input type="button" class="btn btn-info btn-xs"
-			  value="목록" style="width: 80px;"
-			  onclick="location.href='index.jsp?main=gonji/gonjilist.jsp?pageNum=<%=pageNum%>'">
-			<input type="button" class="del btn btn-danger btn-xs"
-			  value="삭제" style="width: 80px;"
-			  gonnum="<%=dto.getGonnum()%>">		
-		</td>
-	</tr>	
+	<%
+		//myid가 StarBottle(관리자)인 경우에만 보이기
+		if(loginok!=null && myid.equals("StarBottle"))
+		{%>
+		<tr>
+			<td colspan="2" align="right">
+				<input type="button" class="btn btn-warning btn-xs"
+				  value="글쓰기" style="width: 80px;"
+				  onclick="location.href='index.jsp?main=gonji/gonjiform.jsp'">
+				<input type="button" class="btn btn-info btn-xs"
+				  value="목록" style="width: 80px;"
+				  onclick="location.href='index.jsp?main=gonji/gonjilist.jsp?pageNum=<%=pageNum%>'">
+				<input type="button" class="del btn btn-danger btn-xs"
+				  value="삭제" style="width: 80px;"
+				  gonnum="<%=dto.getGonnum()%>">		
+			</td>
+		</tr>	
+		<%}else{%>
+		<tr>
+			<td colspan="2" align="right">			
+				<input type="button" class="btn btn-info btn-xs"
+				  value="목록" style="width: 80px;"
+				  onclick="location.href='index.jsp?main=gonji/gonjilist.jsp?pageNum=<%=pageNum%>'">	
+			</td>
+		</tr>	
+			
+		<%}
+	%>	
 </table>
 </body>
 </html>
