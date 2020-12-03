@@ -46,6 +46,42 @@
 		border-right: none;
 		height: 50px;
 	}
+	
+	/* 공통 메인 디자인 css  */
+	.sub_visual{
+		min-height:499px;
+		padding:0 10px;
+		text-align:center;
+		background-repeat:no-repeat;
+		background-size:cover;
+		background-position:center;
+		position:relative;
+	}
+	.sub_visual .txt{
+		width:100%;
+		position:absolute;
+		top:148px;left:0;
+	}
+	.sub_visual .txt h1{
+		margin:0;font-size:2.75rem;
+		font-weight:300;
+	}
+	.sub_visual .txt h1:after{
+		display:block;
+		width:40px;
+		height:2px;
+		margin:32px auto;
+		background:#202020;
+		content:'';
+	}
+	.sub_visual .txt p{
+		font-size:1.25rem;
+		font-weight:300;
+	}
+	.sub_visual.bg-menu{
+		background-image:url(./image/coffee-5132832_1920.jpg);
+	}
+	
 </style>
 <script type="text/javascript">
 $(function(){
@@ -145,6 +181,13 @@ $(function(){
 	List<GonjiDto> list=db.getList(start, perPage);
 %>
 <body>
+<%-- 공통 메인 디자인  --%>
+<div class="sub_visual bg-menu">
+    <div class="txt">
+        <h1>스타보틀</h1>
+        <p>오직 스타보틀에서만 만나보실 수 있는 시그니처 메뉴입니다.</p>
+    </div>
+</div>
 <%--공지사항 리스트 페이지 --%>
 <h2 style="display: inline;">공지사항	</h2>
 <b>	총 <span style="color: red;">
