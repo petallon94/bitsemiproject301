@@ -16,7 +16,7 @@
 .nav {display: flex; flex-direction: column;}
 a {width: 200px;}
 	
-.my_page_content {width:100%;max-width:1200px;position : absolute;left:400px; margin-top:20px;}
+.my_page_content {width:100%; position : absolute;left:400px; margin-top:20px;}
 .my_page_content img{max-width:100%;height :200px;}
 
 /*submenu*/
@@ -30,29 +30,21 @@ a {width: 200px;}
 <script>
 $(function() {
 
-  	
-/* $(document).ready(function() {
-	$("#mypage_nav-item1 a").click(function() {
-		$("#my_page_content").load("mypage/mypageupdateform.jsp #admin_updateform");
-		return false;
-	});
-	$("#mypage_nav-item2 a").click(function() {
-		$("#my_page_content").load("order/orderlist.jsp.part");
-		return false;
-	});
-	$("#mypage_nav-item3 a").click(function() {
-		$("#my_page_content").load("mypage/mypagedeleteform.jsp .alert");
+	$("#mypage_nav-item1").click(function() {
+		$(".my_page_content").load("mypage/mypageupdateform.jsp");		 
 		return false;
 	});
 	
-}); */
+	$("#mypage_nav-item2").click(function() {
+		$(".my_page_content").load("order/orderlist.jsp");		 
+		return false;
+	});
+	$("#mypage_nav-item3").click(function() {
+		$(".my_page_content").load("mypage/mypagedeleteform.jsp");		 
+		return false;
+	});
+});
 
-$(document).click(function(){
-    $("#mypage_tabs1").load("mypage/mypageupdateform.jsp");
-    $("#mypage_tabs2").load("order/orderlist.jsp");
-    $("#mypage_tabs3").load("mypage/mypagedeleteform.jsp");
-}); 
-}); 
 </script>
 </head>
 
@@ -85,17 +77,15 @@ if(loginok==null)
 </div>
 <div class="my_page_menu">
   <ul class="nav nav-tabs nav-justified" role="tablist">
-  	<li id="mypage_nav-item1"><a class="nav-link active" data-toggle="tab" href="#mypage_tabs1">개인정보수정</a></li>
-    <li id="mypage_nav-item2"><a class="nav-link" data-toggle="tab" href="#mypage_tabs2">주문내역</a></li>
-    <li id="mypage_nav-item3"><a class="nav-link" data-toggle="tab" href="#mypage_tabs3">회원탈퇴</a></li>
+  	<li id="mypage_nav-item1"><a class="nav-link active">개인정보수정</a></li>
+    <li id="mypage_nav-item2"><a class="nav-link" >주문내역</a></li>
+    <li id="mypage_nav-item3"><a class="nav-link">회원탈퇴</a></li>
   </ul>
 </div>
 <div class="my_page_content">
+<div id="mypage_main">
 <img src ="./image/welcom.jpg"><br>
-<a><%=name %>님 환영합니다!!!</a>
-<div id="mypage_tabs1" class="container tab-pane active"></div>
-<div id="mypage_tabs2" class="container tab-pane fade"></div>
-<div id="mypage_tabs3" class="container tab-pane fade"></div>
+<a><%=name %>님 환영합니다!!!</a></div>
 </div>
 <%} %>
 </body>

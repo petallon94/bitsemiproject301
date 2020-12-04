@@ -18,7 +18,7 @@
 .nav {display: flex; flex-direction: column;}
 a {width: 200px;}
 	
-.admin_page_content {width:1200px; height: 100%; position : absolute;left:400px; margin-top:20px;}
+.admin_page_content {width:1200px; height: 100%; position : absolute;left:400px; margin-top:50px;}
 .admin_page_content img{max-width:100%;height :200px;}
 
 /*submenu*/
@@ -30,6 +30,24 @@ a {width: 200px;}
 .sub_visual.bg-menu{background-image:url(./image/coffee-5132832_1920.jpg);} 
 
 </style> 
+<script>
+$(function() {
+
+	$("#admin_nav-item1").click(function() {
+		$(".admin_page_content").load("menu/menuinsertform.jsp");		 
+		return false;
+	});
+	
+	$("#admin_nav-item2").click(function() {
+		$(".admin_page_content").load("mypage/memberlist.jsp");		 
+		return false;
+	});
+	$("#admin_nav-item3").click(function() {
+		$(".admin_page_content").load("mypage/memberlist.jsp");		 
+		return false;
+	});
+});
+</script>
 </head>
 <%
 	//프로젝트의 경로 구하기
@@ -45,13 +63,12 @@ a {width: 200px;}
 </div>
 <div class="admin_page_menu">
   <ul class="nav nav-tabs nav-justified" role="tablist">
-  	<li class="nav-item"><a class="nav-link active" data-toggle="tab" href="index.jsp?main=menu/menulist.jsp">메뉴관리</a></li>
-    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="index.jsp?main=mypage/memberlist.jsp">지점관리</a></li>
-    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="index.jsp?main=mypage/memberlist.jsp">회원관리</a></li>
+  	<li id="admin_nav-item1"><a class="nav-link active">메뉴관리</a></li>
+    <li id="admin_nav-item2"><a class="nav-link">지점관리</a></li>
+    <li id="admin_nav-item3"><a class="nav-link">회원관리</a></li>
   </ul>
 </div>
 <div class="admin_page_content">
-<div id="adminpage_tabs1" class="container tab-pane active"></div>
 </div>
 </body>
 </html>

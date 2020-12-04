@@ -25,16 +25,16 @@
 	
 %>
 <body>
-<h4>회원 관리</h4>
+<h4 style="margin: 20px;">회원 관리</h4>
 <table class="table table-bordered" style="width: 1200px;">
 <thead class="thead-light">
 <tr>
 	<th>아이디</th>
 	<th>이름</th>
-	<th>핸드폰</th>
+	<th width="150">핸드폰</th>
 	<th colspan="2" align="center">정보</th>	
-	<th>가입일</th>
-	<th>관리</th>	
+	<th width="130">가입일</th>
+	<th width="100">관리</th>	
 </tr>
 </thead>
 <tbody>

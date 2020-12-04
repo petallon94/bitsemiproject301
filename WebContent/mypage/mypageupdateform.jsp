@@ -114,21 +114,20 @@ function execDaumPostcode() {
 </script>
 </head>
 <%
-//세션에 저장된 로그인아이디
 String loginid=(String)session.getAttribute("myid");
 //num 읽기
-String loginnum=request.getParameter("loginnum");
+String num=request.getParameter("loginnum");
 //db로 부터 get data 호출후 폼안에 값 넣어주기
 MemberDao dao=new MemberDao();
-MemberDto dto=dao.getData(loginnum);
+MemberDto dto=dao.getData(num);
 
 %>
 <body>
 <form action="mypage/mypageupdateaction.jsp" method="post" id="mypage_updateform" class="form-inline d-flex flex-column" name="memberform">
 		<!-- hidden -->
-		<input type="hidden" name="loginid" value="<%=loginid%>">
-		<input type="hidden" name="loginnum" value="<%=dto.getLoginnum()%>">
-		<input type="hidden" name="id" value="<%=dto.getId()%>">
+		<input type="text" name="loginid" value="<%=loginid%>">
+		<input type="text" name="num" value="<%=dto.getLoginnum()%>">
+		<input type="text" name="id" value="<%=dto.getId()%>">
 	<h3>내정보수정</h3><br>
 	<table class="table" style="width: 550px;">	
 		<tr>
@@ -145,11 +144,11 @@ MemberDto dto=dao.getData(loginnum);
 				<td class="table_title">핸드폰</td>
 				<td>
 					<div class="form-group">
-						<select name="hp1" class="form-control" style="margin-right: 10px;">
+						<%-- <select name="hp1" id="hp1" class="form-control" style="margin-right: 10px;">
 							<option value="010" <%=dto.getHp1().equals("010")?"selected":""%>>010</option>
 							<option value="011" <%=dto.getHp1().equals("011")?"selected":""%>>011</option>
 							<option value="019" <%=dto.getHp1().equals("019")?"selected":""%>>019</option>
-						</select> 
+						</select>  --%>
 						<input type="text" name="hp2" id="hp2" 
 						class="form-control"
 						maxlength="4" style="width: 80px;" required="required" value="<%=dto.getHp2()%>"> 

@@ -161,7 +161,7 @@ MemberDto dto=dao.getData(loginnum);
 				</td>
 			</tr>
 			<tr>
-				<td class="table_title">이메일<b>*</b></td>
+				<td class="table_title">이메일</td>
 				<td>
 					<div class="form-group">
 					<input type="text" name="email1" style="width: 100px;"
@@ -193,7 +193,7 @@ MemberDto dto=dao.getData(loginnum);
 				<td><input name="birthday" type="text" class="form-control" placeholder="8자리입력" max="8" value="<%=dto.getBirthday()%>"></td>
 			</tr>
 			<tr>
-				<td align="center" width="100" style="color:red;">관리자<br>비밀번호확인</td>
+				<td width="100" style="color:red;">관리자<br>비밀번호확인</td>
 				<td><input type="password" id="pass" name="pass" style="width: 100px;" class="form-control" required="required">
 				</td>
 			</tr>			
