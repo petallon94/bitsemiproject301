@@ -1,3 +1,4 @@
+<%@page import="data.dao.MemberDao"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.text.NumberFormat"%>
@@ -19,18 +20,20 @@
 <title>Insert title here</title>
 <style type="text/css">
 	#ordchkl{
-		width: 800px;
+		width: 100%;
+		margin-top: 40px;
+		text-align: center;
 	}
 	#ordchkl table tr td{
 		text-align: center;
-		height: 60px;
+		height: 80px;
 		border-bottom: 1px solid #eee;
 	}
 	#ordchkl table tr th{
 		font-weight: 500;
 		font-size: 12pt;
 		background-color: #f6c244;
-		height: 40px;
+		height: 50px;
 		text-align: center;
 	}
 	
@@ -39,6 +42,11 @@
 	}
 	.container ul li a{
 		width:38px;
+	}
+	#ordchkl .ordname{
+		font-size: 24pt;
+		font-weight: 500;
+		margin-bottom: 20px;
 	}
 </style>
 </head>
@@ -50,8 +58,8 @@
 	String orderid = (String)session.getAttribute("myid");
 
 	int totalCount=db.getTotalCount(orderid); //총 글의 갯수
-	int perPage=3; //한페이지당 보여지는 글의 갯수
-	int perBlock=3; //한블럭당 보여지는 페이지번호의 수
+	int perPage=5; //한페이지당 보여지는 글의 갯수
+	int perBlock=5; //한블럭당 보여지는 페이지번호의 수
 	int currentPage;//현재페이지,만약 널값이면 1로 줌
 	int totalPage; //총 페이지의 갯수
 	int startNum;//한페이지당 보여지는 시작번호
@@ -90,8 +98,13 @@
 	
 	DecimalFormat df = new DecimalFormat("###,###");
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	
+	MemberDao dao=new MemberDao();
+	//아이디에 해당하는 이름 얻기
+	String name=dao.getName(orderid);
 %>
 <div id="ordchkl">
+	<div class="ordname"><%=name %>님의 주문내역</div>
 	<table width="800">
 		<tr>
 			<th width="10%">No</th>
@@ -147,5 +160,8 @@
 		$(".my_page_content").load("mypage/orderchecklist.jsp?pageNum="+pn);
 	}
 </script>
+<div id="ordchkl_ad">
+	<img src="">
+</div>
 </body>
 </html>
