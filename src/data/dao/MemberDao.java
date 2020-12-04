@@ -62,7 +62,7 @@ public class MemberDao {
 
 			pstmt.setString(1, dto.getId());
 			pstmt.setString(2, dto.getPassword());				
-			String address=dto.getPostcode()+dto.getAddress()+dto.getExtraaddr();
+			String address=dto.getPostcode()+" "+dto.getAddress()+" "+dto.getExtraaddr();
 			pstmt.setString(3, address);
 			pstmt.setString(4, dto.getAddrdetail());			
 			pstmt.setString(5, dto.getBirthday());
@@ -122,7 +122,7 @@ public class MemberDao {
 	}
 
 	//num에 해당하는 dto 반환
-	public MemberDto getData(String num)
+	public MemberDto getData(String loginnum)
 	{
 		MemberDto dto=new MemberDto();
 		String sql="select * from Login where loginnum=?";
@@ -136,7 +136,7 @@ public class MemberDao {
 		try {
 			pstmt=conn.prepareStatement(sql);
 			//바인딩
-			pstmt.setString(1, num);
+			pstmt.setString(1, loginnum);
 			//실행
 			rs=pstmt.executeQuery();
 
@@ -145,7 +145,10 @@ public class MemberDao {
 				dto.setLoginnum(rs.getString("loginnum"));
 				dto.setId(rs.getString("id"));
 				dto.setName(rs.getString("name"));
-				dto.setAddress(rs.getString("address"));
+				String []address=rs.getString("address").split(" ");
+				dto.setPostcode(address[0]);
+				dto.setAddress(address[1]);
+				dto.setExtraaddr(address[2]);
 				dto.setAddrdetail(rs.getString("addrdetail"));
 				String []hp=rs.getString("hp").split("-");
 				dto.setHp1(hp[0]);
@@ -154,6 +157,7 @@ public class MemberDao {
 				String []email=rs.getString("email").split("@");
 				dto.setEmail1(email[0]);
 				dto.setEmail2(email[1]);
+				dto.setBirthday(rs.getString("birthday"));
 			}
 
 		}catch (SQLException e) {
@@ -202,7 +206,7 @@ public class MemberDao {
 	{
 		Connection conn=null;
 		PreparedStatement pstmt=null;
-		String sql="update Login set name=?, hp=?, email=?, address=?, addrdetail=? birthday=? where num=?";
+		String sql="update Login set name=?, hp=?, email=?, address=?, addrdetail=?, birthday=? where loginnum=?";
 
 		conn=db.getMyConnection();
 
@@ -213,9 +217,10 @@ public class MemberDao {
 			String hp=dto.getHp1()+"-"+dto.getHp2()+"-"+dto.getHp3();
 			pstmt.setString(2, hp);
 			String email=dto.getEmail1()+"@"+dto.getEmail2();
-			pstmt.setString(3, email);	
-			pstmt.setString(4, dto.getAddress());
-			pstmt.setString(5, dto.getAddrdetail());
+			pstmt.setString(3, email);
+			String address=dto.getPostcode()+" "+dto.getAddress()+" "+dto.getExtraaddr();
+			pstmt.setString(4, address);
+			pstmt.setString(5, dto.getAddrdetail());			
 			pstmt.setString(6, dto.getBirthday());
 			pstmt.setString(7, dto.getLoginnum());
 
@@ -245,6 +250,7 @@ public class MemberDao {
 			//바인딩
 			pstmt.setString(1, id);
 			pstmt.setString(2, password);
+			System.out.println(id+"   "+ password);
 			rs=pstmt.executeQuery();
 			if(rs.next())
 				find=true;
@@ -258,7 +264,7 @@ public class MemberDao {
 
 		return find;
 	}
-
+	
 	//삭제하는 메서드
 	public void deleteMember(String id)
 	{
@@ -324,7 +330,7 @@ public class MemberDao {
 			pstmt.setString(1, id);
 			rs=pstmt.executeQuery();
 			if(rs.next())
-				name=rs.getString("name");
+			name=rs.getString("name");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -333,6 +339,55 @@ public class MemberDao {
 		}
 		return name;
 	}
+	
+	
+	//num에 해당하는 dto 반환
+		public MemberDto getDataID(String id)
+		{
+			MemberDto dto=new MemberDto();
+			String sql="select * from Login where id=?";
+
+			Connection conn=null;
+			PreparedStatement pstmt=null;
+			ResultSet rs=null;
+
+			conn=db.getMyConnection();
+
+			try {
+				pstmt=conn.prepareStatement(sql);
+				//바인딩
+				pstmt.setString(1, id);
+				//실행
+				rs=pstmt.executeQuery();
+
+				while(rs.next())
+				{
+					dto.setLoginnum(rs.getString("loginnum"));
+					dto.setId(rs.getString("id"));
+					dto.setName(rs.getString("name"));
+					String []address=rs.getString("address").split(" ");
+					dto.setPostcode(address[0]);
+					dto.setAddress(address[1]);
+					dto.setExtraaddr(address[2]);
+					dto.setAddrdetail(rs.getString("addrdetail"));
+					String []hp=rs.getString("hp").split("-");
+					dto.setHp1(hp[0]);
+					dto.setHp2(hp[1]);
+					dto.setHp3(hp[2]);
+					String []email=rs.getString("email").split("@");
+					dto.setEmail1(email[0]);
+					dto.setEmail2(email[1]);
+					dto.setBirthday(rs.getString("birthday"));
+				}
+
+			}catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				db.dbClose(conn, pstmt, rs);
+			}
+			return dto;
+
+		}
 
 
 

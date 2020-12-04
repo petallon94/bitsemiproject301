@@ -65,7 +65,7 @@
 		
 		dao.insertEvent(dto);
 		
-		response.sendRedirect("../event/eventaddform.jsp");
+		response.sendRedirect("../index.jsp?main=event/eventlist.jsp");
 		
 	}catch(Exception e){
 		System.out.println("업로드 오류:"+e.getMessage());

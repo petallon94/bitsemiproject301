@@ -97,7 +97,7 @@ $(function(){
 	 			<td colspan="2" align="center">
 	 				<button type="submit" class="btn btn-outline-secondary"
 	 				style="width: 100px;" 
-	 				onclick ="location.href='index.jsp?main=event/eventlist.jsp'">추가하기</button>
+	 				>추가하기</button>
 
 	 			</td>
 	 		</tr>

@@ -69,7 +69,7 @@
         <div>아이디</div>
         <input type="text" class="form-control" id="login_id" name="login_id" placeholder="아이디를 입력해주세요" required="required">
 		<div>비밀번호</div>         
-		<input type="text" class="form-control" id="login_password" name="login_password" placeholder="비밀번호를 입력해주세요" required="required">
+		<input type="password" class="form-control" id="login_password" name="login_password" placeholder="비밀번호를 입력해주세요" required="required">
         <input type="checkbox" name="login_saveid" <%=saveid==null?"":"checked"%>>아이디저장
         <br>        
         <button type="submit" class="btn btn-warning btn-block" id="login_enterbtn">로그인</button>

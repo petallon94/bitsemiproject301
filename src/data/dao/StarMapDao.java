@@ -6,9 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-
-
 import data.dto.StarMapDto;
 import mysql.db.MysqlConnect;
 
@@ -93,6 +90,48 @@ public class StarMapDao {
 		}
 		return list;
 	}
+	
+	
+	
+	public List<StarMapDto> getRandomList()
+	{
+
+		String sql="select * from map order by rand() limit 4";
+
+		List<StarMapDto> list=new ArrayList<StarMapDto>();
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		conn=db.getMyConnection();
+		try {
+			pstmt=conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			while(rs.next())
+			{
+				StarMapDto dto=new StarMapDto();
+				dto.setShopnum(rs.getString("shopnum"));
+				dto.setShopname(rs.getString("shopname"));
+				dto.setShophp(rs.getString("shophp"));
+				dto.setShopaddr(rs.getString("shopaddr"));
+				dto.setShopaddrdetail(rs.getString("shopaddrdetail"));
+				dto.setShopphoto(rs.getString("shopphoto"));
+				dto.setShopdetail(rs.getString("shopdetail"));
+				dto.setMpositionx(rs.getString("mpositionx"));
+				dto.setMpositiony(rs.getString("mpositiony"));
+
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			db.dbClose(conn, pstmt, rs);
+		}
+		return list;
+	}
+	
+	
+	
 
 	//insert
 	public void insertMap(StarMapDto dto) {
@@ -104,7 +143,7 @@ public class StarMapDao {
 
 		try {
 			pstmt=conn.prepareStatement(sql);
-			//¹ÙÀÎµù
+			//ï¿½ï¿½ï¿½Îµï¿½
 
 			pstmt.setString(1, dto.getShopname());
 			String shophp=dto.getShophp1()+"-"+dto.getShophp2();
@@ -117,7 +156,7 @@ public class StarMapDao {
 			pstmt.setString(7, dto.getMpositionx());
 			pstmt.setString(8, dto.getMpositiony());			
 
-			//½ÇÇà
+			//ï¿½ï¿½ï¿½ï¿½
 			pstmt.execute();			
 
 		} catch (SQLException e) {
@@ -129,7 +168,7 @@ public class StarMapDao {
 	}
 	
 
-	//ÀüÃ¼ °¹¼ö ±¸ÇÏ±â
+	//ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½
 	public int getTotalCount()
 	{
 		int tot=0;
@@ -156,8 +195,8 @@ public class StarMapDao {
 	
 	public List<StarMapDto> getList(int start,int perpage)
 	{
-		//±×·ìº¯¼öÀÇ ³»¸²Â÷¼ø,°°Àº ±×·ìÀÎ°æ¿ì step ÀÇ ¿À¸§Â÷¼ø Ãâ·Â
-		//limit ·Î ½ÃÀÛ¹øÁö¿Í ¸î°³¸£ °¡Á®¿ÃÁö ¹ÙÀÎµù
+		//ï¿½×·ìº¯ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ ï¿½×·ï¿½ï¿½Î°ï¿½ï¿½ step ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+		//limit ï¿½ï¿½ ï¿½ï¿½ï¿½Û¹ï¿½ï¿½ï¿½ï¿½ ï¿½î°³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Îµï¿½
 		String sql="select * from map order by shopnum desc limit ?,?";
 		List<StarMapDto> list=new ArrayList<StarMapDto>();
 		Connection conn=null;
@@ -225,7 +264,7 @@ public class StarMapDao {
 	{
 		String sql="delete from map where shopname=?";
 		
-		System.out.println("È£ÃâÀº µÇ´Ï?");
+		System.out.println("È£ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½?");
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		conn=db.getMyConnection();
@@ -253,7 +292,7 @@ public class StarMapDao {
 		conn=db.getMyConnection();
 		try {
 			pstmt=conn.prepareStatement(sql);
-			//¹ÙÀÎµù
+			//ï¿½ï¿½ï¿½Îµï¿½
 			pstmt.setString(1, shopname);
 			rs=pstmt.executeQuery();
 			if(rs.next())

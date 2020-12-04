@@ -1,3 +1,4 @@
+<%@page import="data.dao.MemberDao"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="data.dto.GonjiDto"%>
 <%@page import="java.util.List"%>
@@ -25,7 +26,7 @@
 /*폰트 */
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300&display=swap');
 	
-	body{
+	div.gonlist{
 		display: flex;
 		width: 100%;
 		margin-left: 250px;	
@@ -34,10 +35,11 @@
 	
 	/*리스트의 제목 부분 */
 	tr.gontitle{
-		background-color: #fffee9;
 		text-align: center; 
 		height:65px;
 		line-height: 65px;
+		border-top: 2px solid gray;
+		border-bottom: 2px solid gray;
 	}
 	
 	table.table{
@@ -46,6 +48,42 @@
 		border-right: none;
 		height: 50px;
 	}
+	
+	/* 공통 메인 디자인 css  */
+	.sub_visual{
+		min-height:499px;
+		padding:0 10px;
+		text-align:center;
+		background-repeat:no-repeat;
+		background-size:cover;
+		background-position:center;
+		position:relative;
+	}
+	.sub_visual .txt{
+		width:100%;
+		position:absolute;
+		top:148px;left:0;
+	}
+	.sub_visual .txt h1{
+		margin:0;font-size:2.75rem;
+		font-weight:300;
+	}
+	.sub_visual .txt h1:after{
+		display:block;
+		width:40px;
+		height:2px;
+		margin:32px auto;
+		background:#202020;
+		content:'';
+	}
+	.sub_visual .txt p{
+		font-size:1.25rem;
+		font-weight:300;
+	}
+	.sub_visual.bg-menu{
+		background-image:url(./image/coffee-5132832_1920.jpg);
+	}
+	
 </style>
 <script type="text/javascript">
 $(function(){
@@ -66,7 +104,7 @@ $(function(){
 		//변수
 		var search=$("#search").val();
 		var word=$("#word").val();
-		alert(search+":"+word);
+		//alert(search+":"+word);
 		//검색한 값이랑 단어의 값을 넣으면
 		//전체 선택했을 경우,
 		$.ajax({
@@ -90,14 +128,14 @@ $(function(){
 </script>
 </head>
 <%
-	//페이징 처리를 위한 자바함수
+	//<페이징 처리를 위한 자바함수>
 	//dao 선언
 	GonjiDao db=new GonjiDao();
-
+	
 	//총 갯수 구하기
 	int totalCount=db.getTotalCount();
 	int perPage=10;//한 페이지당 보여질 글의 갯수
-	int perBlock=5;//한 블럭당 출력할 페이지의 갯수
+	int perBlock=2;//한 블럭당 출력할 페이지의 갯수
 	int totalPage;//총 페이지의 갯수
 	int startPage;//각 블럭당 시작할 페이지 번호
 	int endPage;//각 블럭당 끝 페이지 번호
@@ -141,20 +179,52 @@ $(function(){
 	//총 50개일 경우 1페이지는 50, 2페이지는 40
 	int no=totalCount-(currentPage-1)*perPage;
 		
-	//mysql에서 해당 페이지에 필요한 목록 가져오기
-	List<GonjiDto> list=db.getList(start, perPage);
+	//페이징 처리만을 위한 부분->검색과 페이징으로 합침
+	//mysql에서 해당 페이지에 필요한 목록 가져오기:list페이지에서 페이징처리
+	//List<GonjiDto> list=db.getList(start, perPage);
+		
+	//<검색>
+	//세션으로부터 key,value가져오기
+	String key=(String)session.getAttribute("key");
+	String value=(String)session.getAttribute("value");
+	//검색 후 값 출력 및 페이징 처리
+	//검색을 위해 출력목록에 key,value값 필요
+	List<GonjiDto> list=db.getSearchList(key, value, start, perPage);
+	
 %>
 <body>
+<%-- 공통 메인 디자인  --%>
+<div class="sub_visual bg-menu">
+    <div class="txt">
+        <h1>스타보틀</h1>
+        <p>오직 스타보틀에서만 만나보실 수 있는 시그니처 메뉴입니다.</p>
+    </div>
+</div>
+
 <%--공지사항 리스트 페이지 --%>
 <h2 style="display: inline;">공지사항	</h2>
-<b>	총 <span style="color: red;">
-<%=totalCount%></span>개의 글이 있습니다</b>
- <input type="button" value="게시물등록"
- class="btn btn-warning btn-sm" 
-  style="width: 100px;float: right;margin-right: 100px;"
- onclick="location.href='index.jsp?main=gonji/gonjiform.jsp'">  
- 
- <br><br>
+<%-- 관리자로 로그인 했을 때만 보이는 페이지 --%>
+<%
+//<관리자 로그인 id확인을 위한 자바함수>
+//세션 로그인상태
+String loginok=(String)session.getAttribute("loginok");
+//세션에서 id 얻기
+String myid=(String)session.getAttribute("myid");
+//dao 선언
+MemberDao dao=new MemberDao();
+//아이디에 해당하는 이름 얻기
+//String name=dao.getName(myid);
+
+//myid가 StarBottle(관리자)인 경우에만 보이기
+if(loginok!=null && myid.equals("StarBottle"))
+{%>
+	<b>	총 <span style="color: red;">
+	<%=totalCount%></span>개의 글이 있습니다</b>
+    <input type="button" value="게시물등록"
+    class="btn btn-warning btn-sm" 
+   	style="width: 100px;float: right;margin-right: 100px;"
+ 	onclick="location.href='index.jsp?main=gonji/gonjiform.jsp'">  
+<br><br>
  <%
  	SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
  %>
@@ -162,6 +232,147 @@ $(function(){
  <%--테이블로 제목넣기--%>
  	<table class="table" style="width: 1000px;">
  		<tr class="gontitle" style="text-align: center; ">
+ 		 	<th width="40">번호</th>
+ 		 	<th width="400">제 목</th>
+ 		 	<th width="60">작성자</th>
+ 		 	<th width="50">조회수</th>
+ 		 	<th width="70">작성일</th> 		 	
+ 		</tr>
+ 	<%
+ 	if(totalCount==0)
+ 	{%>
+ 		<tr align="center" height="50">
+ 		  <td colspan="5">
+ 		    <b>등록된 글이 없습니다</b>
+ 		  </td>
+ 		</tr>
+ 	<%}
+ 	%>
+ 	<%for(GonjiDto dto:list)//list로부터 dto를 가져온다
+ 	{%>
+		<tr>
+			<td align="center"><%=no--%></td>
+			<td>
+				<a style="color: black;text-align: left;" 
+				href="index.jsp?main=gonji/content.jsp?num=<%=dto.getGonnum()%>&pageNum=<%=currentPage%>&key=list">
+				<%=dto.getGonsubject()%></a>
+			</td>	
+			<td align="center"><%=dto.getGonid()%></td>
+			<td align="center"><%=dto.getGonreadcount()%></td>
+			<td align="center">
+				<%=sdf.format(dto.getGonwriteday())%>
+			</td>
+		</tr>			
+ 	<%}
+ %>
+    </table>
+</div>    
+
+<%--페이징 처리--%>
+<%
+  if(totalCount>0)
+  {%>
+	<div style="width: 900px; text-align: center;">
+	  <ul class="pagination justify-content-center">
+		<%
+		//이전 페이지 표시
+		if(startPage>1)
+		{%>
+			<li class="page-item">
+			  <a class="page-link" href="index.jsp?main=gonji/gonjilist.jsp?pageNum=<%=startPage-1%>">
+				&lt;</a>
+			</li>
+		<%}	
+			//페이지 블록 표시
+			for(int i=startPage; i<=endPage; i++)
+			{
+				//메인 인덱스를 통해서 방명록이 출력 / i:이동할 페이지 추가(url주소 끝에 추가됨)
+				String url="index.jsp?main=gonji/gonjilist.jsp?pageNum="+i;
+			
+	/* 			//각 페이지에서 출력할 시작번호
+				//총 50개일 경우 1페이지는 50, 2페이지는 40
+				int no=totalCount-(currentPage-1)*perPage;
+					
+				//mysql에서 해당 페이지에 필요한 목록 가져오기
+				List<BoardDto> list=db.getList(start, perPage); */
+				
+				if(i==currentPage)
+				{%>
+					<li class="page-item active">
+					  <a class="page-link" href="<%=url%>"><%=i%></a>
+					</li>
+			  
+			  <%}else{%>
+					<li class="page-item">
+					  <a class="page-link" href="<%=url%>"><%=i%></a>
+					</li>
+			  <%}
+			}//for문 close
+		//다음 페이지 표시
+		if(endPage<totalPage)
+		{%>
+			<%-- 부등호 기호(>)가 출력안될때: &gt; --%>
+			<li class="page-item">
+			  <a class="page-link" href="index.jsp?main=gonji/gonjilist.jsp?pageNum=<%=endPage+1%>">
+			&gt;</a>
+			</li>
+	  <%}%>
+	  </ul>
+	</div>
+<%}//if문 close
+%> 
+<%-- 페이징 끝 --%>
+
+<%-- 검색창  --%>
+<form action="" class="form-inline">
+  <div style="width: 600px;">
+	<div class="form-group">
+	<%
+		String search=(String)session.getAttribute("key");
+		String word=(String)session.getAttribute("value");
+		if(search==null)
+			search="all";
+		if(word==null)
+			word=""; 
+	%>
+		<%-- 검색 폼 --%>
+		<select id="search" class="form-control"
+			style="width: 100px;">
+			<option value="all" <%=search.equals("all")?"selected":""%>>전체</option>
+			<option value="myid" <%=search.equals("myid")?"selected":""%>>아이디</option>
+			<option value="subject" <%=search.equals("subject")?"selected":""%>>제목</option>
+			<option value="content" <%=search.equals("content")?"selected":""%>>내용</option>
+		</select>
+		<%-- 검색 폼: 체크박스 --%>
+<!-- 		<input type="checkbox" value="all" name="search" 
+			checked="checked" id="all">전체
+			<input type="checkbox" value="subject" name="search"
+			id="subject">제목
+			<input type="checkbox" value="content" name="search"
+			id="content">내용		 -->
+		<%-- ajax에서 action호출하기 위한 id --%>
+		<input type="text" class="form-control" style="width: 200px;"
+			name="word" id="word" placeholder="검색단어입력"
+			value="<%=word%>">
+		<%-- 검색버튼 --%>
+		<button type="button" class="btn btn-warning"
+			id="btndatasearch" style="width: 45px;">
+			<span class="fas fa-search"></span>
+		</button>
+	</div>
+  </div>
+</form>
+
+<%-- 관리자가 아닌 경우에 보이는 페이지 --%>
+<%}else{%>
+ <br><br>
+ <%
+ 	SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+ %>
+ <div class="gonlist">
+ <%--테이블로 제목넣기--%>
+ 	<table class="table" style="width: 1000px;">
+ 		<tr class="gontitle" style="text-align: center;">
  		 	<th width="40">번호</th>
  		 	<th width="400">제 목</th>
  		 	<th width="60">작성자</th>
@@ -204,13 +415,15 @@ $(function(){
   if(totalCount>0)
   {%>
 	<div style="width: 900px; text-align: center;">
-	  <ul class="pagination">
+	  <ul class="pagination justify-content-center">
 		<%
 		//이전 페이지 표시
 		if(startPage>1)
 		{%>
-			<li class="page-item"><a class="page-link" href="index.jsp?main=gonji/gonjilist.jsp?pageNum=<%=startPage-1%>">
-			이전&gt;</a></li>
+			<li class="page-item">
+			  <a class="page-link" href="index.jsp?main=gonji/gonjilist.jsp?pageNum=<%=startPage-1%>">
+			&gt;</a>
+			</li>
 		<%}	
 			//페이지 블록 표시
 			for(int i=startPage; i<=endPage; i++)
@@ -243,7 +456,7 @@ $(function(){
 			<%-- 부등호 기호(>)가 출력안될때: &gt; --%>
 			<li class="page-item">
 			  <a class="page-link" href="index.jsp?main=gonji/gonjilist.jsp?pageNum=<%=endPage+1%>">
-			다음&gt;</a>
+			&gt;</a>
 			</li>
 	  <%}%>
 	  </ul>
@@ -268,10 +481,10 @@ $(function(){
 		<%-- 검색 폼 --%>
 		<select id="search" class="form-control"
 			style="width: 100px;">
-			<option value="all">전체</option>
-			<option value="myid">아이디</option>
-			<option value="subject">제목</option>
-			<option value="content">내용</option>
+			<option value="all" <%=search.equals("all")?"selected":""%>>전체</option>
+			<option value="myid" <%=search.equals("myid")?"selected":""%>>아이디</option>
+			<option value="subject" <%=search.equals("subject")?"selected":""%>>제목</option>
+			<option value="content" <%=search.equals("content")?"selected":""%>>내용</option>
 		</select>
 		<%-- 검색 폼: 체크박스 --%>
 <!-- 		<input type="checkbox" value="all" name="search" 
@@ -285,13 +498,15 @@ $(function(){
 			name="word" id="word" placeholder="검색단어입력"
 			value="<%=word%>">
 		<%-- 검색버튼 --%>
-		<button type="button" class="btn btn-warning btn-sm"
-			id="btndatasearch">
+		<button type="button" class="btn btn-warning"
+			id="btndatasearch" style="width: 45px;">
 			<span class="fas fa-search"></span>
 		</button>
 	</div>
   </div>
 </form>
+<%} //else close
+%>
 </body>
 </html>
 

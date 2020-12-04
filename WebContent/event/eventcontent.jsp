@@ -8,9 +8,13 @@
 <html>
 <title>Insert title here</title>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 .w3-bar-block .w3-bar-item {padding:20px}
@@ -20,9 +24,6 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 	}
 	span.writedate,span.readcount{
 		font-size: 0.6em;
-		float: right;
-	}
-	button.goevlist{
 		float: right;
 	}
 	div.ev_list{
@@ -36,13 +37,36 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 	word-break: normal;
 	display: inline-block;
 	}
+	div.ev_container{
+		float: right;
+	}
+	
+	
+		/* sub */
+.sub_visual{min-height:499px;padding:0 10px;text-align:center;background-repeat:no-repeat;background-size:cover;background-position:center;position:relative;}
+.sub_visual .txt{width:100%;position:absolute;top:148px;left:0;}
+.sub_visual .txt h1{margin:0;font-size:2.75rem;font-weight:300;}
+.sub_visual .txt h1:after{display:block;width:40px;height:2px;margin:32px auto;background:#202020;content:'';}
+.sub_visual .txt p{font-size:1.25rem;font-weight:300;}
+.sub_visual .page_tab{width:100%;padding:0 10px;font-size:0;position:absolute;bottom:41px;left:0;}
+.sub_visual .page_tab li{display:inline-block;width:20%;max-width:170px;padding:10px 0;border:1px solid #bfbfbf;border-left:0;font-size:1rem;color:#909090;background:#fff;}
+.sub_visual .page_tab li:first-child{border-left:1px solid #bfbfbf;}
+.sub_visual .page_tab li a{display:block;}
+.sub_visual .page_tab li.on, .sub_visual .page_tab li:hover{color:#000;background:#ffe600;transition:background .3s ease;-webkit-transition:background .3s ease;}
+.sub_visual.bg-menu{background-image:url(./image/coffee-5132832_1920.jpg);}
+	
+	
+	
+	
+	
+	
 </style>
 
 <%
 
 	EventDao db=new EventDao();
 	//페이징 처리에 필요한 변수들	
-	int totalCount=db.getTotalCount(); //총 글의 갯수
+	int totalCount=db.getIngTotalCount(); //총 글의 갯수
 	int perPage=4; //한페이지당 보여지는 글의 갯수
 	int perBlock=4; //한블럭당 보여지는 페이지번호의 수
 	int currentPage;//현재페이지,만약 널값이면 1로 줌
@@ -79,26 +103,34 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 
 	
 	String eventnum=request.getParameter("eventnum");
-	
+	String key=request.getParameter("key");
 	EventDao dao=new EventDao();
 	
 	EventDto dto=dao.getData(eventnum);
+	if(key!=null)
+		dao.updateReadCount(eventnum);
 	SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 	String []evcontentimage=dto.getEvcontentimage().split(",");
+	
+	
+	
+	
+	
+	//세션로그인 상태
+	String loginok=(String)session.getAttribute("loginok");
+	//세션에저장된 아이디
+	String myid=(String)session.getAttribute("myid");	
+	
 %>
 
 <script type="text/javascript">
 $(function(){
 	$("div.ev_list").click(function(){
 		var eventnum=$(this).attr("eventnum");
-		location.href="index.jsp?main=event/eventcontent.jsp?eventnum="+eventnum;
+		location.href="index.jsp?main=event/eventcontent.jsp?eventnum="+eventnum+"&key=a";
 	});
 
-	$("#ev_focus").click(function(){
-		alert(this);
-		$("#ev_page").scrollTop($("#ev_page")[0].scrollHeight);
-	});
-	
+
 	
 });
 
@@ -111,7 +143,12 @@ $(function(){
 <body>
 
 
-
+<div class="sub_visual bg-menu">
+    <div class="txt">
+        <h1>스타보틀</h1>
+        <p>오직 스타보틀에서만 만나보실 수 있는 시그니처 메뉴입니다.</p>
+    </div>
+</div>
 
   
 <!-- !PAGE CONTENT! -->
@@ -128,7 +165,7 @@ $(function(){
   <h3><%=dto.getEvsubject()%><span class="date"><br>
     <%=dto.getEvstartday()%> ~ <%=dto.getEvendday()%></span>
     <span class="writedate">작성일 &nbsp;<%=sdf.format(dto.getEvwriteday())%></span><br>
-    <span class="readcount">조회수 &nbsp;</span>
+    <span class="readcount">조회수 &nbsp;<%=dto.getEvreadcount()%></span>
   </h3>
   <hr id="about">
 
@@ -155,21 +192,88 @@ $(function(){
   <hr>
   
   <!-- 수정,삭제버튼 admin계정만 보이게 하기 -->
+ 
+
+
+
   
-    <button type="button" class="goevlist btn btn-outline-secondary"
-  	onclick="history.back()">
-  	목록</button>
-  	<button type="button" class="goevlist btn btn-outline-secondary"
-  	onclick="#">
-  	삭제</button>
-  	<button type="button" class="goevlist btn btn-outline-secondary"
-  	onclick="#">
-  	수정</button>
+  
+  
+  
+<div class="ev_container">
+
+
+  
+  <!-- Button to Open the Modal -->
+  <%
+  if(loginok!=null && myid.equals("admin")){%>
+  <button type="button" class="btn btn-outline-secondary"
+  onclick="location.href='index.jsp?main=event/eventupdateform.jsp?eventnum=<%=eventnum%>'">
+    수정
+  </button>
+  <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#myModal">
+    삭제
+  </button>
+  <button type="button" class="btn btn-outline-secondary"
+  onclick="location.href='index.jsp?main=event/eventlist.jsp'">
+    목록
+  </button>
+  <%}else{%>
+  	<button type="button" class="btn btn-outline-secondary"
+  	onclick="location.href='index.jsp?main=event/eventlist.jsp'">
+    목록
+  	</button>
+  <%}%>
+  
+  
+  
+  <!-- The Modal -->
+  <div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          삭제하시겠습니까?
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal"
+           onclick="location.href='event/eventdeleteaction.jsp?eventnum=<%=eventnum%>'">
+          확인</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">
+          취소</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+</div>
+  
+
   	
  
-<br><br><br>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+<br><br><br><br><br>
+<p>진행중인 다른이벤트</p>
+<hr style="margin-top: -10px;">
 
-
+<a id="test"></a>
   <!-- First Photo Grid-->
   <div class="w3-row-padding w3-padding-16 w3-center" id="food">
   
@@ -197,7 +301,7 @@ $(function(){
     <%
     if(startPage>1)
     {%>
-      <a href="index.jsp?main=event/eventcontent.jsp?eventnum=<%=dto.getEventnum()%>&pageNum=<%=startPage-1%>" 
+      <a href="index.jsp?main=event/eventcontent.jsp?eventnum=<%=dto.getEventnum()%>&pageNum=<%=startPage-1%>#test" 
       class="w3-bar-item w3-button w3-hover-black">«</a>
    <%}
     %>
@@ -205,7 +309,7 @@ $(function(){
     <%
     for(int i=startPage;i<=endPage;i++)
     {%>
-      <a href="index.jsp?main=event/eventcontent.jsp?eventnum=<%=dto.getEventnum()%>&pageNum=<%=i%>" 
+      <a href="index.jsp?main=event/eventcontent.jsp?eventnum=<%=dto.getEventnum()%>&pageNum=<%=i%>#test" 
       class="w3-bar-item w3-black w3-button"><%=i%></a>
     <%}
     %>
@@ -214,7 +318,7 @@ $(function(){
 	<%
 	if(endPage<totalPage)
 	{%>
-      <a href="index.jsp?main=event/eventcontent.jsp?eventnum=<%=dto.getEventnum()%>&pageNum=<%=endPage+1%>" 
+      <a href="index.jsp?main=event/eventcontent.jsp?eventnum=<%=dto.getEventnum()%>&pageNum=<%=endPage+1%>#test" 
       class="w3-bar-item w3-button w3-hover-black">»</a>
     <%}
 	%>
