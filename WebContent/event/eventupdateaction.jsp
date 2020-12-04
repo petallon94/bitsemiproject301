@@ -20,19 +20,31 @@
 		multi=new MultipartRequest(request,uploadPath,uploadSize,
 				"utf-8",new DefaultFileRenamePolicy());
 		
+		String eventnum=multi.getParameter("eventnum");
 		String id=multi.getParameter("id");
 		String evsubject=multi.getParameter("evsubject");
 		
+		
+		
+		//evnetlist이미지(작은사진, 1개만 업로드가능)
 		//evnetlist이미지(작은사진, 1개만 업로드가능)
 		String evlistimage="";
 		Enumeration en=multi.getFileNames();
 		String file1=(String)en.nextElement();
 		evlistimage=multi.getFilesystemName(file1);
-	
+		
+		
+		
+		
+		
+		
+		
 		String evcontent=multi.getParameter("evcontent");
 		
+		String evcontentimage=multi.getParameter("evcontentimage");
+		
 		//본문에 들어갈사진(3개까지 업로드가능)
-		String evcontentimage="";
+		String newevcontentimage="";
 		
 		while(en.hasMoreElements())
 		{
@@ -41,10 +53,10 @@
 			
 			if(fileName2!=null)
 			{
-			if(evcontentimage.length()==0)
-				evcontentimage=fileName2;
+			if(newevcontentimage.length()==0)
+				newevcontentimage=fileName2;
 			else
-				evcontentimage+=","+fileName2;
+				newevcontentimage+=","+fileName2;
 			}
 		}
 		
@@ -55,17 +67,22 @@
 		EventDao dao=new EventDao();
 		EventDto dto=new EventDto();
 		
+		
 		dto.setId(id);
+		dto.setEventnum(eventnum);
 		dto.setEvsubject(evsubject);
+		//dto.setEvlistimage(evlistimage);
+		//dto.setEvlistimage(newevlistimage);
 		dto.setEvlistimage(evlistimage);
 		dto.setEvcontent(evcontent);
-		dto.setEvcontentimage(evcontentimage);
+		dto.setEvcontentimage(newevcontentimage);
 		dto.setEvstartday(evstartday);
 		dto.setEvendday(evendday);
 		
-		dao.insertEvent(dto);
+		dao.updateEvent(dto);
 		
-		response.sendRedirect("../index.jsp?main=event/eventlist.jsp");
+		
+		response.sendRedirect("../index.jsp?main=event/eventlist.jsp?eventnum="+eventnum);
 		
 	}catch(Exception e){
 		System.out.println("업로드 오류:"+e.getMessage());

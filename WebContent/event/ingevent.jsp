@@ -65,8 +65,9 @@ body,h1 {font-family: "Raleway", Arial, sans-serif}
 <script type="text/javascript">
 $(function(){
 	$("div.ev_content").click(function(){
+		
 		var eventnum=$(this).attr("eventnum");
-		location.href="index.jsp?main=event/eventcontent.jsp?eventnum="+eventnum+"&key=a";
+		location.href="index.jsp?main=event/eventcontent.jsp?eventnum="+eventnum;
 		
 	});
 	
@@ -75,9 +76,9 @@ $(function(){
 </script>
 <%
 	EventDao dao=new EventDao();
-	List<EventDto> list=dao.getAllEvent();
+
 	List<EventDto> ilist=dao.getIngEvent();
-	List<EventDto> elist=dao.getEndEvent();
+
 	
 %>
 
@@ -102,6 +103,7 @@ $(function(){
   <div class="w3-padding-32">
   
   	<!--이벤트탭들 이름에맞게 출력되게 수정-->
+    <!--이벤트탭들 이름에맞게 출력되게 수정-->
     <div class="w3-bar w3-border">
       <a href="index.jsp?main=event/eventlist.jsp" class="w3-bar-item w3-button">전체 이벤트</a>
       <a href="index.jsp?main=event/ingevent.jsp" class="w3-bar-item w3-button w3-light-grey">진행중인 이벤트</a>
@@ -121,20 +123,24 @@ $(function(){
 
 
   <!--각 이벤트들 반복문으로 출력하기-->
-  <!--전체-->
-<div id="ev_tabs-1">
+
+
+
+
+<!--진행중-->
+<div id="ev_tabs-2">
   <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="band">
     <div class="w3-row w3-padding-32">
     
       <%
-      	for(EventDto dto:list)
+      	for(EventDto idto:ilist)
       	{%>
       		<div class="ev_content w3-third"
-      		 eventnum="<%=dto.getEventnum()%>">
-      		 <img src="eventsave/<%=dto.getEvlistimage()%>" 
+      		 eventnum="<%=idto.getEventnum()%>">
+      		 <img src="eventsave/<%=idto.getEvlistimage()%>" 
       		 class="w3-round w3-margin-bottom" style="width:90%">
-      		  <p class="ev_subject"><%=dto.getEvsubject()%><br>
-      		  <%=dto.getEvstartday()%>~<%=dto.getEvendday()%>
+      		  <p class="ev_subject"><%=idto.getEvsubject()%><br>
+      		  <%=idto.getEvstartday()%>~<%=idto.getEvendday()%>
       		  </p>
       		 
       		</div> 
@@ -143,7 +149,6 @@ $(function(){
     </div>
   </div>
 </div>
-
 
 
 
