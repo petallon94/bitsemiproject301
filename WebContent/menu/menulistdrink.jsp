@@ -1,7 +1,7 @@
 <%@page import="data.dto.MenuDto"%>
 <%@page import="java.util.List"%>
 <%@page import="data.dao.MenuDao"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <head>
 <html>
@@ -9,10 +9,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap" rel="stylesheet">
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: 'Noto Sans KR', sans-serif;}
@@ -29,7 +31,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: 'Noto Sans KR', sans-serif;}
 .sub_visual .txt h1{margin:0;font-size:2.75rem;font-weight:300;}
 .sub_visual .txt h1:after{display:block;width:40px;height:2px;margin:32px auto;background:#202020;content:'';}
 .sub_visual .txt p{font-size:1.25rem;font-weight:300;}
-.sub_visual .page_tab{width:100%;padding:0 10px;font-size:0;position:absolute;bottom:41px;left:0;}
+.sub_visual .page_tab{width:100%;padding:0 10px;font-size:0;position:absolute;bottom:41px;left:0;cursor : pointer;}
 .sub_visual .page_tab li{display:inline-block;width:20%;max-width:170px;padding:10px 0;border:1px solid #bfbfbf;border-left:0;font-size:1rem;color:#909090;background:#fff;}
 .sub_visual .page_tab li:first-child{border-left:1px solid #bfbfbf;}
 .sub_visual .page_tab li a{display:block;}
@@ -106,8 +108,6 @@ $(function(){
 <!-- End page content -->
 </div>
 <div class="menu_footer w3-padding" style="max-width:1600px;margin-top:100px">
-<hr>
-<a href="#footer" onclick ="location.href='index.jsp?main=menu/menuinsertform.jsp'" class="w3-bar-item w3-button w3-padding">메뉴추가</a>
 </div>
 
 

@@ -45,9 +45,9 @@ public class EventDao {
 	}
 	
 	//조회수증가
-	public void updateReadCount(String num)
+	public void updateReadCount(String eventnum)
 	{
-		String sql="update event set readcount=readcount+1 where eventnum=?";
+		String sql="update event set evreadcount=evreadcount+1 where eventnum=?";
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		conn=db.getMyConnection();
@@ -55,7 +55,7 @@ public class EventDao {
 		try {
 			pstmt=conn.prepareStatement(sql);
 			
-			pstmt.setString(1, num);
+			pstmt.setString(1, eventnum);
 
 			pstmt.execute();
 		} catch (SQLException e) {
@@ -106,6 +106,95 @@ public class EventDao {
 		}
 		return list;
 	}
+	
+	//진행중이벤트
+	public List<EventDto> getIngEvent()
+	{
+		List<EventDto> list=new ArrayList<EventDto>();
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		String sql="select * from event where evendday>DATE_sub(NOW(),INTERVAL 1 DAY)";
+		
+		conn=db.getMyConnection();
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			
+			while(rs.next())
+			{
+				EventDto dto=new EventDto();
+				dto.setEventnum(rs.getString("eventnum"));
+				dto.setId(rs.getString("id"));
+				dto.setEvsubject(rs.getString("evsubject"));
+				dto.setEvlistimage(rs.getString("evlistimage"));
+				dto.setEvcontent(rs.getString("evcontent"));
+				dto.setEvcontentimage(rs.getString("evcontentimage"));
+				dto.setEvstartday(rs.getString("evstartday"));
+				dto.setEvendday(rs.getString("evendday"));
+				dto.setEvreadcount(rs.getInt("evreadcount"));
+				dto.setEvwriteday(rs.getTimestamp("evwriteday"));
+				
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			db.dbClose(conn, pstmt, rs);
+		}
+		
+		return list;
+	}
+	
+	
+	
+	//종료이벤트
+	public List<EventDto> getEndEvent()
+	{
+		List<EventDto> list=new ArrayList<EventDto>();
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		String sql="select * from event where evendday<DATE_sub(NOW(),INTERVAL 1 DAY)";
+		
+		conn=db.getMyConnection();
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			
+			while(rs.next())
+			{
+				EventDto dto=new EventDto();
+				dto.setEventnum(rs.getString("eventnum"));
+				dto.setId(rs.getString("id"));
+				dto.setEvsubject(rs.getString("evsubject"));
+				dto.setEvlistimage(rs.getString("evlistimage"));
+				dto.setEvcontent(rs.getString("evcontent"));
+				dto.setEvcontentimage(rs.getString("evcontentimage"));
+				dto.setEvstartday(rs.getString("evstartday"));
+				dto.setEvendday(rs.getString("evendday"));
+				dto.setEvreadcount(rs.getInt("evreadcount"));
+				dto.setEvwriteday(rs.getTimestamp("evwriteday"));
+				
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			db.dbClose(conn, pstmt, rs);
+		}
+		
+		return list;
+	}
+	
+	
+	
 	
 	//총갯수
 	public int getTotalCount()
@@ -216,5 +305,62 @@ public class EventDao {
 		}
 		return list;
 	}
+	
+	
+	//삭제
+	public void deleteEvent(String eventnum)
+	{
+		String sql="delete from event where eventnum=?";
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		
+		conn=db.getMyConnection();
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setString(1, eventnum);
+			
+			pstmt.execute();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			db.dbClose(conn, pstmt);
+		}
+	}
+	
+	
+	//수정
+	public void updateEvent(EventDto dto)
+	{
+		String sql="update event set evsubject=?,evlistimage=?,evcontent=?,"
+				+ "evcontentimage=?,evstartday=?,evendday=? where eventnum=?";
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		
+		conn=db.getMyConnection();
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setString(1, dto.getEvsubject());
+			pstmt.setString(2, dto.getEvlistimage());
+			pstmt.setString(3, dto.getEvcontent());
+			pstmt.setString(4, dto.getEvcontentimage());
+			pstmt.setString(5, dto.getEvstartday());
+			pstmt.setString(6, dto.getEvendday());
+			pstmt.setString(7, dto.getEventnum());
+			
+			pstmt.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			db.dbClose(conn, pstmt);
+		}
+	}
+	
 	
 }

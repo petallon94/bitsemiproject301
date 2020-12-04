@@ -1,3 +1,5 @@
+<%@page import="data.dto.EventDto"%>
+<%@page import="data.dao.EventDao"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -13,6 +15,15 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
+
+<%
+	String eventnum=request.getParameter("eventnum");
+	EventDao dao=new EventDao();
+	EventDto dto=dao.getData(eventnum);
+%>
+
+
+
 <script type="text/javascript">
 var n=2;
 $(function(){
@@ -31,20 +42,25 @@ $(function(){
 	});
 });
 
+
+
+
 </script>
 <body>
-<div class="eventaddform">
-	<form action="event/eventaddaction.jsp" method="post" 
+<div class="eventupdateform">
+	<form action="event/eventupdateaction.jsp" method="post" 
 	 enctype="multipart/form-data" class="form-inline">
+	  <!-- hidden -->
+ 	<input type="hidden" name="eventnum" value="<%=dto.getEventnum()%>">
+ 	<input type="hidden" name="id" value="<%=dto.getId()%>">
 	 	<table class="table table-bordered" style="width: 800px;">
-	 		
 	 		<tr>
 	 			<td style="width: 120px;">
 	 			<b>이벤트명</b>
 	 			</td>
 	 			<td>
 	 				<input type="text" name="evsubject" class="form-control"
-	 				style="width: 300px;" placeholder="입력해주세요"
+	 				style="width: 300px;" value="<%=dto.getEvsubject()%>"
 	 				required="required">
 	 			</td>
 	 		</tr>
@@ -55,8 +71,12 @@ $(function(){
 	 			<td>
 	 				<div class="form-group">
 	 					<input type="file" name="evlistimage"
-	 					style="width: 300px;" class="form-control" required="required" >
+	 					style="width: 300px;" class="form-control" 
+	 					>
 	 				</div>
+	 				<b>수정전 이미지:&nbsp; <%=dto.getEvlistimage() %></b>
+
+	 				
 	 			</td>
 	 		</tr>
 	 		<tr>
@@ -64,9 +84,11 @@ $(function(){
 	 			<b>기간</b>
 	 			</td>
 	 			<td>
-	 				<input type="date" name="evstartday" required="required">
+	 				<input type="date" name="evstartday" required="required"
+	 				value="<%=dto.getEvstartday()%>">
 	 				~
-	 				<input type="date" name="evendday" required="required">
+	 				<input type="date" name="evendday" required="required"
+	 				value="<%=dto.getEvendday()%>">
 	 			</td>
 	 		</tr>
 	 		<tr>
@@ -76,11 +98,13 @@ $(function(){
 	 			<td>
 	 				<div class="form-group">
 	 					<input type="file" name="evcontentimage1"
-	 					style="width: 300px;" class="form-control" required="required" >
+	 					style="width: 300px;" class="form-control" >
 	 					<span class="fas fa-plus evcontentimage"
 	 					style="margin-left: 20px;font-size: 1.2em;cursor: pointer;"></span>	
 	 				</div>
+	 				<b>수정전 이미지:&nbsp; <%=dto.getEvcontentimage() %></b>
 	 				<div class="addimage"></div>
+	 				
 	 			</td>
 	 		</tr>
 	 		<tr>
@@ -90,14 +114,14 @@ $(function(){
 				<td>
 					<textarea style="width: 650px;height: 400px;"
 					name="evcontent" required="required"
-					class="form-control"></textarea>
+					class="form-control"><%=dto.getEvcontent()%></textarea>
 				</td>
 			</tr>
 	 		<tr>
 	 			<td colspan="2" align="center">
 	 				<button type="submit" class="btn btn-outline-secondary"
 	 				style="width: 100px;" 
-	 				>추가하기</button>
+	 				>수정</button>
 
 	 			</td>
 	 		</tr>

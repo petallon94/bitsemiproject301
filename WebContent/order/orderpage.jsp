@@ -17,6 +17,14 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<style type="text/css">
+.ordsub_visual{min-height:399px;padding:0 10px;text-align:center;background-repeat:no-repeat;background-size:cover;background-position:center;position:relative;}
+.ordsub_visual .txt{width:100%;position:absolute;top:120px;left:0;}
+.ordsub_visual .txt h1{margin:0;font-size:2.75rem;font-weight:500;}
+.ordsub_visual .txt h1:after{display:block;width:40px;height:4px;margin:32px auto;background:#202020;content:'';}
+.ordsub_visual .txt p{font-size:1.25rem;font-weight:300;}
+.ordsub_visual.bg-menu{background-image:url(./image/coffee-5132832_1920.jpg);}
+</style>
 </head>
 <%
 	String menunum = request.getParameter("menunum");
@@ -39,6 +47,12 @@
 	
 %>
 <body>
+<div class="ordsub_visual bg-menu">
+    <div class="txt">
+        <h1>스타보틀</h1>
+        <p>오직 스타보틀에서만 만나보실 수 있는 시그니처 메뉴입니다.</p>
+    </div>
+</div>
 <div id="ord_ctn">
 	<div class="img">
 		<img src="menusave/<%=medto.getMenuphoto()%>" width="480">
@@ -54,8 +68,8 @@
 			<span class="sub_t"><%=medto.getMenudetail() %></span><br>
 		</div>
 		<p class="ord_label s">Size</p>
-		<select id="size" name="size">
-			<option value="hide">---- Size ----</option>
+		<select id="size" name="size" required>
+			<option value="">---- Size ----</option>
 		    <option value="S" >Small</option>
 		    <option value="M">Medium</option>
 		    <option value="L">Large</option>
@@ -63,9 +77,9 @@
 		</select>
 		<p class="ord_label hc">Hot / Cold</p>
 		<div class="switch-field">
-			<input type="radio" id="radio-one" name="temp" value="H" checked/>
+			<input type="radio" id="radio-one" name="temp" value="Hot" checked/>
 			<label for="radio-one">H</label>
-			<input type="radio" id="radio-two" name="temp" value="C" />
+			<input type="radio" id="radio-two" name="temp" value="Cold" />
 			<label for="radio-two">C</label>
 		</div>
 		<p class="ord_label oi">Take Out / Eat In</p>
@@ -82,9 +96,14 @@
 </div>
 <script type="text/javascript">
 $("#btncart").click(function(){
+	var select = $("#size").val();
+	if(select==""){
+		alert("사이즈를 선택해주세요");
+		return;
+	}
 	//form태그의 모든 값을 가져오기
 	var formdata=$("#frm").serialize();
-	alert(formdata);
+	//alert(formdata);
 	$.ajax({
 		type:"post",
 		dataType:"html",
