@@ -96,7 +96,7 @@ color:#ffb210;
 
    	<span><a href="<%=url %>/index.jsp?main=mypage/mypagemain.jsp" class="topmenu_btn">마이페이지</a></span> 
 	<%}%>
-   	<span><a href="<%=url %>/index.jsp?main=order/orderform.jsp" class="topmenu_btn"><i class="fas fa-shopping-cart"></i>주문
+   	<span><a href="<%=url %>/index.jsp?main=order/orderlist.jsp" class="topmenu_btn"><i class="fas fa-shopping-cart"></i>주문
 
 	<%-- <span class="count"><%=cartSize%></span> --%>
 	</a></span>
