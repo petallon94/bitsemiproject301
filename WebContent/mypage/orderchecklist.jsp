@@ -33,6 +33,13 @@
 		height: 40px;
 		text-align: center;
 	}
+	
+	.container{
+		margin: 20px 0 40px 0;
+	}
+	.container ul li a{
+		width:38px;
+	}
 </style>
 </head>
 <body>
@@ -43,8 +50,8 @@
 	String orderid = (String)session.getAttribute("myid");
 
 	int totalCount=db.getTotalCount(orderid); //총 글의 갯수
-	int perPage=5; //한페이지당 보여지는 글의 갯수
-	int perBlock=5; //한블럭당 보여지는 페이지번호의 수
+	int perPage=3; //한페이지당 보여지는 글의 갯수
+	int perBlock=3; //한블럭당 보여지는 페이지번호의 수
 	int currentPage;//현재페이지,만약 널값이면 1로 줌
 	int totalPage; //총 페이지의 갯수
 	int startNum;//한페이지당 보여지는 시작번호
@@ -114,27 +121,31 @@
 		 <%
 		  	if(startPage>1)
 			{%>
-				<li class="page-item"><a class="page-link" href="index.jsp?main=mypage/orderchecklist.jsp?pageNum=<%=startPage-1%>">&lt;이전</a></li>
+				<li class="page-item"><a class="page-link" href="javascript:paging(<%=startPage-1%>)">&lt;이전</a></li>
 			<%}
 	  		for(int i=startPage; i<=endPage; i++)
 			{
-			String url="index.jsp?main=mypage/orderchecklist.jsp?pageNum="+i;
-			
 			if(i==currentPage)
 			{%>
-				<li class="page-item"><a class="page-link" href="<%=url %>"><%=i %></a></li>
+				<li class="page-item active"><a class="page-link" href="javascript:paging(<%=i%>)"><%=i %></a></li>
 			<%}else{%>
-				<li class="page-item"><a class="page-link" href="<%=url %>"><%=i %></a></li>
+				<li class="page-item"><a class="page-link" href="javascript:paging(<%=i%>)"><%=i %></a></li>
 			<%}
 			}
 	  		if(endPage<totalPage)
 			{%>
-				<li class="page-item"><a class="page-link" href="index.jsp?main=mypage/orderchecklist.jsp?pageNum=<%=endPage+1%>">다음&gt;</a></li>
+				<li class="page-item"><a class="page-link" href="javascript:paging(<%=endPage+1%>)">다음&gt;</a></li>
 			<%}
 	  	%>
 	  </ul>
 
 	</div>
 </div>
+<script type="text/javascript">
+	function paging(pn)
+	{
+		$(".my_page_content").load("mypage/orderchecklist.jsp?pageNum="+pn);
+	}
+</script>
 </body>
 </html>
