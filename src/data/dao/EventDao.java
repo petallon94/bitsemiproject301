@@ -115,7 +115,7 @@ public class EventDao {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		
-		String sql="select * from event where evendday>DATE_sub(NOW(),INTERVAL 1 DAY)";
+		String sql="select * from event where evendday>DATE_sub(NOW(),INTERVAL 1 DAY) order by eventnum desc";
 		
 		conn=db.getMyConnection();
 		
@@ -159,7 +159,7 @@ public class EventDao {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		
-		String sql="select * from event where evendday<DATE_sub(NOW(),INTERVAL 1 DAY)";
+		String sql="select * from event where evendday<DATE_sub(NOW(),INTERVAL 1 DAY) order by eventnum desc";
 		
 		conn=db.getMyConnection();
 		
@@ -197,10 +197,10 @@ public class EventDao {
 	
 	
 	//ÃÑ°¹¼ö
-	public int getTotalCount()
+	public int getIngTotalCount()
 	{
 		int tot=0;
-		String sql="select count(*) from event";
+		String sql="select count(*) from event where evendday>DATE_sub(NOW(),INTERVAL 1 DAY)";
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -263,7 +263,8 @@ public class EventDao {
 	
 	public List<EventDto> getList(int start,int perpage)
 	{
-		String sql="select * from event order by eventnum desc limit ?,?";
+		String sql="select * from event where evendday>DATE_sub(NOW(),"
+				+ "INTERVAL 1 DAY) order by eventnum desc limit ?,?";
 		List<EventDto> list=new ArrayList<EventDto>();
 		
 		Connection conn=null;

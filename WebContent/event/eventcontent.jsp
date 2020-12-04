@@ -66,7 +66,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 
 	EventDao db=new EventDao();
 	//페이징 처리에 필요한 변수들	
-	int totalCount=db.getTotalCount(); //총 글의 갯수
+	int totalCount=db.getIngTotalCount(); //총 글의 갯수
 	int perPage=4; //한페이지당 보여지는 글의 갯수
 	int perBlock=4; //한블럭당 보여지는 페이지번호의 수
 	int currentPage;//현재페이지,만약 널값이면 1로 줌
@@ -111,6 +111,16 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
 		dao.updateReadCount(eventnum);
 	SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 	String []evcontentimage=dto.getEvcontentimage().split(",");
+	
+	
+	
+	
+	
+	//세션로그인 상태
+	String loginok=(String)session.getAttribute("loginok");
+	//세션에저장된 아이디
+	String myid=(String)session.getAttribute("myid");	
+	
 %>
 
 <script type="text/javascript">
@@ -182,15 +192,21 @@ $(function(){
   <hr>
   
   <!-- 수정,삭제버튼 admin계정만 보이게 하기 -->
-  
-  
+ 
+
+
+
   
   
   
   
 <div class="ev_container">
+
+
   
   <!-- Button to Open the Modal -->
+  <%
+  if(loginok!=null && myid.equals("admin")){%>
   <button type="button" class="btn btn-outline-secondary"
   onclick="location.href='index.jsp?main=event/eventupdateform.jsp?eventnum=<%=eventnum%>'">
     수정
@@ -202,6 +218,15 @@ $(function(){
   onclick="location.href='index.jsp?main=event/eventlist.jsp'">
     목록
   </button>
+  <%}else{%>
+  	<button type="button" class="btn btn-outline-secondary"
+  	onclick="location.href='index.jsp?main=event/eventlist.jsp'">
+    목록
+  	</button>
+  <%}%>
+  
+  
+  
   <!-- The Modal -->
   <div class="modal" id="myModal">
     <div class="modal-dialog">
@@ -244,7 +269,9 @@ $(function(){
  
  
  
-<br><br><br>
+<br><br><br><br><br>
+<p>진행중인 다른이벤트</p>
+<hr style="margin-top: -10px;">
 
 <a id="test"></a>
   <!-- First Photo Grid-->

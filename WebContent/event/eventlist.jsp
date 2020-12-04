@@ -45,7 +45,17 @@ body,h1 {font-family: "Raleway", Arial, sans-serif}
 	}
 	
 	
-	
+		.ev_endpng{
+		margin-left : 10px;
+		width: 232px;
+		height: 230px;
+		background: #000;
+		display: block;
+		opacity: 0.7;
+		filter:alpha(opacity=70);
+		position:absolute;
+		border-radius: 4px;
+	}
 	
 	
 	
@@ -79,6 +89,16 @@ $(function(){
 	List<EventDto> ilist=dao.getIngEvent();
 	List<EventDto> elist=dao.getEndEvent();
 	
+	
+	
+	
+	//세션로그인 상태
+	String loginok=(String)session.getAttribute("loginok");
+	//세션에저장된 아이디
+	String myid=(String)session.getAttribute("myid");
+	
+	
+	
 %>
 
 <body>
@@ -91,7 +111,7 @@ $(function(){
 </div>
 
 
-
+	
 
 
 
@@ -108,12 +128,19 @@ $(function(){
       <a href="index.jsp?main=event/endevent.jsp" class="w3-bar-item w3-button">종료된 이벤트</a>
     </div>
     
+    
+    
+    
+    
     <!--이벤트추가버튼 admin 계정으로만 보이게-->
     <br><br>
+    <%
+    if(loginok!=null && myid.equals("admin")){%>
     <button type="button" class="btn btn-outline-secondary"
 	onclick="location.href='index.jsp?main=event/eventaddform.jsp'">
 	이벤트추가
 	</button>
+	<%}%>
   </div>
 </header>
 </div>
@@ -124,23 +151,57 @@ $(function(){
   <!--전체-->
 <div id="ev_tabs-1">
   <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="band">
+  
+  <p style="margin-right: 650px;float: right;">진행중인 이벤트</p><br>
+  <hr>
     <div class="w3-row w3-padding-32">
     
       <%
-      	for(EventDto dto:list)
+      	for(EventDto idto:ilist)
       	{%>
       		<div class="ev_content w3-third"
-      		 eventnum="<%=dto.getEventnum()%>">
-      		 <img src="eventsave/<%=dto.getEvlistimage()%>" 
+      		 eventnum="<%=idto.getEventnum()%>">
+      		 <img src="eventsave/<%=idto.getEvlistimage()%>" 
       		 class="w3-round w3-margin-bottom" style="width:90%">
-      		  <p class="ev_subject"><%=dto.getEvsubject()%><br>
-      		  <%=dto.getEvstartday()%>~<%=dto.getEvendday()%>
+      		  <p class="ev_subject"><%=idto.getEvsubject()%><br>
+      		  <%=idto.getEvstartday()%>~<%=idto.getEvendday()%>
       		  </p>
       		 
       		</div> 
       	<%}
       %>
     </div>
+    <br><br><br>
+    
+    
+   <p style="margin-right: 650px;">종료된 이벤트</p>
+   <hr>
+     <div class="w3-row w3-padding-32">
+    	
+    	
+    	<%
+      	for(EventDto edto:elist)
+      	{%>
+      		<div class="ev_content w3-third"
+      		 eventnum="<%=edto.getEventnum()%>">
+      		 <a>
+      		 <span class="ev_endpng">
+      		 <img src="./image/end_event.png" style="position:absolute;margin-left:-17%;margin-top: 33%;
+      		 ">
+      		 </span>
+      		 
+      		 <img src="eventsave/<%=edto.getEvlistimage()%>" class="w3-round w3-margin-bottom" style="width:90%">
+      		 </a> 
+      		  <p class="ev_subject"><%=edto.getEvsubject()%><br>
+      		  <%=edto.getEvstartday()%>~<%=edto.getEvendday()%>
+      		  </p>
+      		 
+      		</div> 
+      	<%}
+      %>
+    
+    
+     </div>
   </div>
 </div>
 
