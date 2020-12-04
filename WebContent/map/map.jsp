@@ -1,4 +1,5 @@
 
+
 <%@page import="data.dao.StarMapDao"%>
 <%@page import="data.dto.StarMapDto"%>
 <%@page import="java.util.List"%>
@@ -225,9 +226,9 @@
 	width: 36px;
 	height: 37px;
 	margin: 10px 0 0 10px;
-	background:
+	/* background:
 		url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png)
-		no-repeat;
+		no-repeat; */
 }
 
 #placesList .item .marker_1 {
@@ -290,28 +291,13 @@
 	background-position: 0 -654px;
 }
 
-#pagination {
-	margin: 10px auto;
-	text-align: center;
-}
-
-#pagination a {
-	display: inline-block;
-	margin-right: 10px;
-}
-
-#pagination .on {
-	font-weight: bold;
-	cursor: default;
-	color: #777;
-}
-
 /* 매장추가,수정,삭제 */
 #maphadan {
 	position: relative;
 	top: 150px;
 	left: -330px;
-	background-color: red;
+	background: url(https://rimage.gnst.jp/livejapan.com/public/article/detail/a/00/00/a0000917/img/basic/a0000917_main.jpg)
+		no-repeat;
 	width: 200px;
 	height: 200px;
 	border-radius: 100px;
@@ -325,7 +311,6 @@
 	left: 250px;
 	top: 30px;
 	width: 300px;
-	border: 1px solid gray;
 }
 
 #shopadd {
@@ -385,17 +370,47 @@
 	left: 500px;
 }
 /* 매장추가,수정,삭제 */
+.pagepage {
+	width: 100%;
+	text-align: center;
+	margin: 0px auto;
+	height: 500px;
+	position: relative;
+}
+
+.pagepage div {
+	position: absolute;
+	left: 70%;
+	top: 100%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+	bottom: auto;
+}
+
+.hadanhadan {
+	width: auto; text-align : center;
+	margin: 0px auto;
+	position: relative;
+	text-align: center;
+}
+
+.hadanhadan div {
+	width: auto;
+	height: auto;
+}
+
 </style>
 <body>
 	<%
+	StarMapDao StarDao = new StarMapDao();
+	//목록 가져오기
+	List<StarMapDto> list = StarDao.getMainList();
+	String shopnum=request.getParameter("shopnum");
+	String shopname=request.getParameter("shopname");
+	%>
 	
-
-	//현재로그인상태를 세션으로부터 얻는다
-	String id=(String)session.getAttribute("id");
-	//로그인한 아이디를 세션으로부터 얻는다
-	String sessionId=(String)session.getAttribute("myid");
-%>
-<%-- <%
+	
+	<%-- <%
 	if(id == id.equals("admin")){
 
 %> --%>
@@ -412,21 +427,28 @@
 		</div>
 	</div>
 
-<%-- 	<%
+	<%-- 	<%
 }
 %> --%>
-
-	<div align="center" id="mapadd">
-		<jsp:include page="../map/mapform.jsp"></jsp:include>
-	</div>
-
+	
+	
 	<script type="text/javascript">
 		$(function() {
 			$("#mapadd").hide();
+			$("#updatemap").hide();
 			
 			$("#shopadd").click(function() {
-				$("#mapadd").toggle();
+				window.open("map/mapform.jsp","","left=800px,top=100px,width=620px,height=680px");
 			});
+			$("#shopupdate").click(function() {
+				 var shopnum=$("#shopnum").val();
+				 window.open("map/updatemapform.jsp?shopnum="+shopnum,"","left=800px,top=100px,width=620px,height=680px"); 
+			 	/* location.href="index.jsp?main=map/updatemapform.jsp?shopnum="+shopnum; */
+			});
+			$("#shopdelete").click(function() {
+				window.open("map/deletemapform.jsp","","left=800px,top=100px,width=600px,height=230px");
+			});
+			<%-- onclick="location.href='index.jsp?main=member/updateform.jsp?num=<%=dto.getNum()%>'" --%>
 		});
 	</script>
 	<!-- 매장추가end -->
@@ -450,30 +472,117 @@
 		</div>
 	</div>
 
-	<%
-    	StarMapDao StarDao=new StarMapDao();
-    	//목록 가져오기
-    	List<StarMapDto> list=StarDao.getMainList();
-    	
-    	
-    %>
-    <table>
-		<%for(StarMapDto dto:list)
-		{%>
+	
 
-		<div id="maphadan">
-			<div id="hadan">
-				<h3><%=dto.getShopname() %></h3>
-			</div>
-			<div id="hadan"><%=dto.getShopaddr() %></div>
-			<div id="hadan"><%=dto.getShopaddrdetail() %></div>
-			<div id="hadan"><%=dto.getShophp() %></div>
-			<div id="hadan"><%=dto.getShopdetail() %></div>
+	<!-- 매장정보 페이지 -->
+	<%
+		StarMapDao db = new StarMapDao();
+
+	int totalCount = db.getTotalCount();
+	int perPage = 3; //한 페이지당 보여지는 글의 갯수
+	int perBlock = 4; //한 블럭당 출력할 페이지의 갯수
+	int totalPage; //총 페이지의 갯수
+	int startPage; //각 블럭당 시작 페이지 번호
+	int endPage; //각 블럭당 끝 페이지 번호
+	int start; //각 블럭당 불러올 글의 시작번호
+	int end; //각 블럭당 불러올 글의 끝번호
+	int currentPage; //현재 보여질 페이지번호
+
+	//현재 페이지 번호 구하기
+	String pageNum = request.getParameter("pageNum");
+	if (pageNum == null)
+		currentPage = 1;//페이지번호가 없을 경우 무조건 1페이지로 간다
+	else
+		currentPage = Integer.parseInt(pageNum);
+
+	//총 페이지 구하기(예: 총글수가 9 이구 한페이지당 2개씩 볼 경우)
+	totalPage = totalCount / perPage + (totalCount % perPage > 0 ? 1 : 0);
+	//시작페이지와 끝페이지 구하기
+	//예: 한페이지당 3개만 볼경우 현재 페이지가 2라면 sp:1, ep:3
+	//현재 페이지가 7이라면 sp:7 ep:9
+	startPage = (currentPage - 1) / perBlock * perBlock + 1;
+	endPage = startPage + perBlock - 1;
+	//마지막 블럭은 endPage 를 totalPage 로 해놔야한다
+	if (endPage > totalPage)
+		endPage = totalPage;
+	//mysql 은 첫 글이 0번(오라클은 1번)
+	start = (currentPage - 1) * perPage;
+
+	//각 페이지에서 출력할 시작번호
+	//총 50개일 경우 1페이지는 50
+	//               2페이지는 40
+	int no = totalCount - (currentPage - 1) * perPage;
+	//mysql 에서 해당 페이지에 필요한 목록 가져오기
+	List<StarMapDto> getlist = db.getList(start, perPage);
+	%>
+
+
+	<%
+		if (totalCount > 0) {
+	%>
+	<div class="hadanhadan">
+		<div>
+			<table>
+				<%
+					for (StarMapDto dto : getlist) {
+				%>
+					
+				<div id="maphadan" align="left">
+					<input id="shopnum" type="hidden" name="shopnum" value="<%=dto.getShopnum()%>">
+					<div id="hadan">
+						<h3><%=dto.getShopname()%></h3>
+					</div>
+					<div id="hadan"><%=dto.getShopaddr()%></div>
+					<div id="hadan"><%=dto.getShopaddrdetail()%></div>
+					<div id="hadan"><%=dto.getShophp()%></div>
+					<div id="hadan"><%=dto.getShopdetail()%></div>
+				</div>
+				<%
+					}
+				%>
+			</table>
 		</div>
-		<%} %>
-	</table>
-	
-	
+	</div>
+	<div class="pagepage">
+		<div class="container" id="mappagination">
+			<ul class="pagination">
+				<%
+					if (startPage > 1) {
+				%>
+				<li class="page-item mappage"><a class="page-link"
+					href="index.jsp?main=map/map.jsp?pageNum=<%=startPage - 1%>#mappage">이전</a></li>
+				<%
+					}
+				for (int i = startPage; i <= endPage; i++) {
+				String url = "index.jsp?main=map/map.jsp?pageNum=" + i;//이동할 페이지 추가
+				if (i == currentPage) {
+				%>
+				<li class="page-item mappage"><a class="page-link"
+					href="<%=url%>#mappage"><%=i%></a></li>
+				<%
+					} else {
+				%>
+				<li class="page-item mappage"><a class="page-link"
+					href="<%=url%>#mappage"><%=i%></a></li>
+				<%
+					}
+				}
+
+				if (endPage < totalPage) {
+				%>
+				<li class="page-item mappage"><a class="page-link"
+					href="index.jsp?main=map/map.jsp?pageNum=<%=endPage + 1%>#mappage">다음</a></li>
+				<%
+					}
+				%>
+			</ul>
+		</div>
+	</div>
+	<%}%>
+	<a id="mappage"></a>
+	<!-- 매장정보 페이지-->
+
+
 	<script type="text/javascript">
 		// 마커를 담을 배열입니다
 		var markers = [];
@@ -513,14 +622,14 @@
 		
 		
 		var positions = [ 
-		   <%for(StarMapDto dto:list){%>
+		   <%for (StarMapDto dto : list) {%>
 		   {
 		    	  title: '<%=dto.getShopname()%>',
                   content: '<div class="wrap">' + 
                    '    <div class="mapinfo">' + 
                    '        <div class="title">' + 
                    '            <%=dto.getShopname()%>' + 
-                   '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' + 
+                   '            <div class="close" id="mapexit" title="닫기"></div>' + 
                    '        </div>' + 
                    '        <div class="body">' + 
                    '            <div class="img">' +
@@ -543,7 +652,7 @@
 		
     	
 	
-		var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png", // 마커이미지의 주소입니다    
+		var imageSrc = "//caffebene.com/images/common/s-pin.png", // 마커이미지의 주소입니다    
 	    imageSize = new kakao.maps.Size(24, 35), // 마커이미지의 크기입니다
 	    imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 	      
@@ -554,7 +663,7 @@
 	    for (var i = 0; i < positions.length; i ++) {
 	        
 	        // 마커 이미지의 이미지 크기 입니다
-	        var imageSize = new kakao.maps.Size(36, 58); 
+	        var imageSize = new kakao.maps.Size(70, 84); 
 	        
 	        // 마커 이미지를 생성합니다    
 	        var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
@@ -574,7 +683,7 @@
 	        // 이벤트 리스너로는 클로저를 만들어 등록합니다 
 	        // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
 	        kakao.maps.event.addListener(marker, 'click', makeOverListener(map, marker, infowindow));
-	       /*  kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow)); */
+	        kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
 	       
 	    }
 	  
@@ -668,7 +777,7 @@
 
 				// 마커를 생성하고 지도에 표시합니다
 				var placePosition = new kakao.maps.LatLng(places[i].y,
-						places[i].x), marker = addMarker(placePosition, i), itemEl = getListItem(
+						places[i].x), itemEl = getListItem(
 						i, places[i]); // 검색 결과 항목 Element를 생성합니다
 
 				// 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
@@ -814,5 +923,4 @@
 
 </script>
 </body>
-
 </html>
