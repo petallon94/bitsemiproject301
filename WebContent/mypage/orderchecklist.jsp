@@ -50,8 +50,8 @@
 	String orderid = (String)session.getAttribute("myid");
 
 	int totalCount=db.getTotalCount(orderid); //총 글의 갯수
-	int perPage=3; //한페이지당 보여지는 글의 갯수
-	int perBlock=3; //한블럭당 보여지는 페이지번호의 수
+	int perPage=5; //한페이지당 보여지는 글의 갯수
+	int perBlock=5; //한블럭당 보여지는 페이지번호의 수
 	int currentPage;//현재페이지,만약 널값이면 1로 줌
 	int totalPage; //총 페이지의 갯수
 	int startNum;//한페이지당 보여지는 시작번호
