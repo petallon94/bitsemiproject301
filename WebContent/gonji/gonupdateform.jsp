@@ -18,6 +18,7 @@
 	//변수명gonnum이 getdata 변수명(gonnum)이랑 같아야 한다
 	String gonnum=request.getParameter("num");
 	String pageNum=request.getParameter("pageNum");
+	String gonid=request.getParameter("gonid");
 	//num에 해당하는 dto가져오기
 	GonjiDao dao=new GonjiDao();
 	GonjiDto dto=dao.getData(gonnum);
@@ -32,14 +33,15 @@
 	    <input type="hidden" name="num" value="<%=gonnum%>">
 	    <input type="hidden" name="pageNum" value="<%=pageNum%>">
 	    
-	    <%-- 수정폼 --%>
+	    <%-- 수정폼 : 중요한 건 value값--%>
 	    <table class="table table-bordered">
+	      <caption><b>게시글 수정</b></caption>
 		 	<tr>
 		 		<th width="100" bgcolor="#ddd">작성자</th>
 		 		<td>
 		 			<input type="text" class="form-control"
 		 			  style="width: 120px;" required="required"
-		 			  name="gonid" placeholder="작성자">		 			  
+		 			  name="gonid" value="<%=dto.getGonid()%>">		 			  
 		 		</td>
 		 	</tr>
 		 	<tr>
@@ -47,7 +49,7 @@
 		 		<td>
 		 			<input type="text" class="form-control"
 		 			  style="width: 300px;" required="required"
-		 			  name="gonsubject" placeholder="제목">		 			  
+		 			  name="gonsubject" value="<%=dto.getGonsubject()%>">		 			  
 		 		</td>
 		 	</tr>
 		 	
@@ -56,12 +58,13 @@
 		 		<td>
 		 		  <textarea class="form-control"	 			 
 		 			 style="width:100%; height:300px; display:none;"
-		 			 name="goncontent" id="goncontent"></textarea>
+		 			 name="goncontent" id="goncontent">
+		 			 <%=dto.getGoncontent()%></textarea>
 		 	</tr>
 		 	<tr>
 		 		<td colspan="2" align="center">
 		 			<input type="button" value="글수정"
-		 			 class="btn btn-warning btn-sm"
+		 			 class="btn btn-dark btn-sm"
 		 			  style="width: 100px;"
 		 			  onclick="submitContents(this)">
 		 			  
