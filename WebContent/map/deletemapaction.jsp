@@ -23,4 +23,9 @@
 	System.out.println(shopname);
 	dao.deleteShop(shopname);
 	}
+	%>
+	<script type="text/javascript">
+	window.open("about:blank","_self").close();
+	</script>
+	<%
 %>

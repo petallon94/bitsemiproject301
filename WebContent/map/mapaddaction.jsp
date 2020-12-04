@@ -1,5 +1,3 @@
-
-
 <%@page import="data.dto.StarMapDto"%>
 <%@page import="data.dao.StarMapDao"%>
 <%@page import="java.util.Enumeration"%>
@@ -10,7 +8,7 @@
 <%
 	
 	//업로드 할 경로 구하기(shopsave 폴더 생성후 거기에 업로드)
-	String uploadPath=getServletContext().getRealPath("/shopmapsave2");
+	String uploadPath=getServletContext().getRealPath("/shopmapsave");
 	//업로드 할 이미지의 사이즈
 	
 	int uploadSize=1024*1024*2;//2mb;
@@ -68,8 +66,14 @@
 		//db에 추가
 		starDao.insertMap(starDto);
 		
-		//다시 상품폼으로 이동
-		response.sendRedirect("../index.jsp?main=map/map.jsp");
+		//윈도우 창 닫기
+		
+		%>
+		<script type="text/javascript">
+		window.open("about:blank","_self").close();
+		</script>
+		<%
+		
 	}catch(Exception e){
 		System.out.println("업로드 오류 :"+e.getMessage());
 	}

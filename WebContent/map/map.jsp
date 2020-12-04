@@ -226,9 +226,9 @@
 	width: 36px;
 	height: 37px;
 	margin: 10px 0 0 10px;
-	background:
+	/* background:
 		url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png)
-		no-repeat;
+		no-repeat; */
 }
 
 #placesList .item .marker_1 {
@@ -438,16 +438,15 @@
 			$("#updatemap").hide();
 			
 			$("#shopadd").click(function() {
-				window.open("map/mapform.jsp","",
-				"left=800px,top=100px,width=620px,height=680px");
+				window.open("map/mapform.jsp","","left=800px,top=100px,width=620px,height=680px");
 			});
 			$("#shopupdate").click(function() {
-				window.open("map/updatemapform.jsp?shopnum=<%=shopnum%>","",
-				"left=800px,top=100px,width=620px,height=680px");
+				 var shopnum=$("#shopnum").val();
+				 window.open("map/updatemapform.jsp?shopnum="+shopnum,"","left=800px,top=100px,width=620px,height=680px"); 
+			 	/* location.href="index.jsp?main=map/updatemapform.jsp?shopnum="+shopnum; */
 			});
 			$("#shopdelete").click(function() {
-				window.open("map/deletemapform.jsp","",
-				"left=800px,top=100px,width=600px,height=230px");
+				window.open("map/deletemapform.jsp","","left=800px,top=100px,width=600px,height=230px");
 			});
 			<%-- onclick="location.href='index.jsp?main=member/updateform.jsp?num=<%=dto.getNum()%>'" --%>
 		});
@@ -529,7 +528,7 @@
 				%>
 					
 				<div id="maphadan" align="left">
-					<input type="hidden" name="shopnum" value="<%=dto.getShopnum()%>">
+					<input id="shopnum" type="hidden" name="shopnum" value="<%=dto.getShopnum()%>">
 					<div id="hadan">
 						<h3><%=dto.getShopname()%></h3>
 					</div>
@@ -778,7 +777,7 @@
 
 				// 마커를 생성하고 지도에 표시합니다
 				var placePosition = new kakao.maps.LatLng(places[i].y,
-						places[i].x), marker = addMarker(placePosition, i), itemEl = getListItem(
+						places[i].x), itemEl = getListItem(
 						i, places[i]); // 검색 결과 항목 Element를 생성합니다
 
 				// 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해

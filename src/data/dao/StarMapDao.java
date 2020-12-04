@@ -16,9 +16,9 @@ public class StarMapDao {
 
 	MysqlConnect db=new MysqlConnect();
 
-	public StarMapDto getData(String shopname)
+	public StarMapDto getData(String shopnum)
 	{
-		String sql="select * from map where shopname=?";
+		String sql="select * from map where shopnum=?";
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -27,7 +27,7 @@ public class StarMapDao {
 		conn=db.getMyConnection();
 		try {
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, shopname);
+			pstmt.setString(1, shopnum);
 			rs=pstmt.executeQuery();
 			while(rs.next())
 			{
@@ -42,6 +42,7 @@ public class StarMapDao {
 				dto.setShoppostcode(shopaddr[0]);
 				dto.setShopaddr(shopaddr[1]);
 				dto.setShopextraAddress(shopaddr[2]);
+				
 				dto.setShopaddrdetail(rs.getString("shopaddrdetail"));
 				dto.setShopphoto(rs.getString("shopphoto"));
 				dto.setShopdetail(rs.getString("shopdetail"));
@@ -210,6 +211,7 @@ public class StarMapDao {
 			pstmt.setString(6, dto.getShopdetail());
 			pstmt.setString(7, dto.getMpositionx());
 			pstmt.setString(8, dto.getMpositiony());
+			pstmt.setString(9, dto.getShopnum());
 			pstmt.execute();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
