@@ -80,6 +80,15 @@ $(function(){
 	List<EventDto> ilist=dao.getIngEvent();
 
 	
+	
+	//세션로그인 상태
+	String loginok=(String)session.getAttribute("loginok");
+	//세션에저장된 아이디
+	String myid=(String)session.getAttribute("myid");
+	
+	
+	
+	
 %>
 
 <body>
@@ -112,10 +121,13 @@ $(function(){
     
     <!--이벤트추가버튼 admin 계정으로만 보이게-->
     <br><br>
+    <%
+    if(loginok!=null && myid.equals("admin")){%>
     <button type="button" class="btn btn-outline-secondary"
 	onclick="location.href='index.jsp?main=event/eventaddform.jsp'">
 	이벤트추가
 	</button>
+	<%}%>
   </div>
 </header>
 </div>
@@ -130,6 +142,10 @@ $(function(){
 <!--진행중-->
 <div id="ev_tabs-2">
   <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="band">
+    
+   <p style="margin-right: 650px;float: right;">진행중인 이벤트</p><br>
+   <hr>
+    
     <div class="w3-row w3-padding-32">
     
       <%

@@ -1,3 +1,4 @@
+
 package data.dao;
 
 import java.sql.Connection;
@@ -15,7 +16,7 @@ public class EventDao {
 	MysqlConnect db=new MysqlConnect();
 
 	
-	//이벤트 추가
+	//�̺�Ʈ �߰�
 	public void insertEvent(EventDto dto)
 	{
 		Connection conn=null;
@@ -44,7 +45,7 @@ public class EventDao {
 		}
 	}
 	
-	//조회수증가
+	//�ȸ����
 	public void updateReadCount(String eventnum)
 	{
 		String sql="update event set evreadcount=evreadcount+1 where eventnum=?";
@@ -66,7 +67,7 @@ public class EventDao {
 		}
 	}
 	
-	//목록
+	//���
 	public List<EventDto> getAllEvent()
 	{
 		List<EventDto> list=new ArrayList<EventDto>();
@@ -107,62 +108,16 @@ public class EventDao {
 		return list;
 	}
 	
-  //메인화면 이벤트
-  
-  public List<EventDto> getMainEvent()
-	{
-		List<EventDto> list=new ArrayList<EventDto>();
-		Connection conn=null;
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
-		
-		String sql="select * from event order by eventnum desc limit 4";
-		
-		conn=db.getMyConnection();
-		
-		try {
-			pstmt=conn.prepareStatement(sql);
-			rs=pstmt.executeQuery();
-			
-			while(rs.next())
-			{
-				EventDto dto=new EventDto();
-				dto.setEventnum(rs.getString("eventnum"));
-				dto.setId(rs.getString("id"));
-				dto.setEvsubject(rs.getString("evsubject"));
-				dto.setEvlistimage(rs.getString("evlistimage"));
-				dto.setEvcontent(rs.getString("evcontent"));
-				dto.setEvcontentimage(rs.getString("evcontentimage"));
-				dto.setEvstartday(rs.getString("evstartday"));
-				dto.setEvendday(rs.getString("evendday"));
-				dto.setEvreadcount(rs.getInt("evreadcount"));
-				dto.setEvwriteday(rs.getTimestamp("evwriteday"));
-				
-				list.add(dto);
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			db.dbClose(conn, pstmt, rs);
-		}
-		return list;
-	}
-  
-  
-
-	//진행중이벤트
+	//�������̺�Ʈ
 	public List<EventDto> getIngEvent()
-
 	{
 		List<EventDto> list=new ArrayList<EventDto>();
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		
-
-		String sql="select * from event where evendday>DATE_sub(NOW(),INTERVAL 1 DAY)";
-
+		String sql="select * from event where evendday>DATE_sub(NOW(),INTERVAL 1 DAY) order by eventnum desc";
+		
 		conn=db.getMyConnection();
 		
 		try {
@@ -191,14 +146,13 @@ public class EventDao {
 		}finally {
 			db.dbClose(conn, pstmt, rs);
 		}
-
+		
 		return list;
 	}
 	
 	
 	
-
-	//종료이벤트
+	//����̺�Ʈ
 	public List<EventDto> getEndEvent()
 	{
 		List<EventDto> list=new ArrayList<EventDto>();
@@ -206,7 +160,7 @@ public class EventDao {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		
-		String sql="select * from event where evendday<DATE_sub(NOW(),INTERVAL 1 DAY)";
+		String sql="select * from event where evendday<DATE_sub(NOW(),INTERVAL 1 DAY) order by eventnum desc";
 		
 		conn=db.getMyConnection();
 		
@@ -240,15 +194,14 @@ public class EventDao {
 		return list;
 	}
 	
-
 	
 	
 	
-	//총갯수
-	public int getTotalCount()
+	//�Ѱ���
+	public int getIngTotalCount()
 	{
 		int tot=0;
-		String sql="select count(*) from event";
+		String sql="select count(*) from event where evendday>DATE_sub(NOW(),INTERVAL 1 DAY)";
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -311,7 +264,8 @@ public class EventDao {
 	
 	public List<EventDto> getList(int start,int perpage)
 	{
-		String sql="select * from event order by eventnum desc limit ?,?";
+		String sql="select * from event where evendday>DATE_sub(NOW(),"
+				+ "INTERVAL 1 DAY) order by eventnum desc limit ?,?";
 		List<EventDto> list=new ArrayList<EventDto>();
 		
 		Connection conn=null;
@@ -323,10 +277,10 @@ public class EventDao {
 		try {
 			pstmt=conn.prepareStatement(sql);
 			
-			//바인딩
+			//���ε�
 			pstmt.setInt(1, start);
 			pstmt.setInt(2, perpage);
-			//실행
+			//����
 			rs=pstmt.executeQuery();
 			
 			while(rs.next())
@@ -355,7 +309,7 @@ public class EventDao {
 	}
 	
 	
-	//삭제
+	//���
 	public void deleteEvent(String eventnum)
 	{
 		String sql="delete from event where eventnum=?";
@@ -380,7 +334,7 @@ public class EventDao {
 	}
 	
 	
-	//수정
+	//���
 	public void updateEvent(EventDto dto)
 	{
 		String sql="update event set evsubject=?,evlistimage=?,evcontent=?,"
@@ -409,6 +363,48 @@ public class EventDao {
 			db.dbClose(conn, pstmt);
 		}
 	}
+  
+  public List<EventDto> getMainEvent()
+	{
+		List<EventDto> list=new ArrayList<EventDto>();
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		String sql="select * from event order by eventnum desc limit 4";
+		
+		conn=db.getMyConnection();
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			
+			while(rs.next())
+			{
+				EventDto dto=new EventDto();
+				dto.setEventnum(rs.getString("eventnum"));
+				dto.setId(rs.getString("id"));
+				dto.setEvsubject(rs.getString("evsubject"));
+				dto.setEvlistimage(rs.getString("evlistimage"));
+				dto.setEvcontent(rs.getString("evcontent"));
+				dto.setEvcontentimage(rs.getString("evcontentimage"));
+				dto.setEvstartday(rs.getString("evstartday"));
+				dto.setEvendday(rs.getString("evendday"));
+				dto.setEvreadcount(rs.getInt("evreadcount"));
+				dto.setEvwriteday(rs.getTimestamp("evwriteday"));
+				
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			db.dbClose(conn, pstmt, rs);
+		}
+		return list;
+	}
+  
+  
 	
 	
 }

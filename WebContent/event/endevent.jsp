@@ -46,13 +46,14 @@ body,h1 {font-family: "Raleway", Arial, sans-serif}
 	
 	.ev_endpng{
 		margin-left : 10px;
-		width: 230px;
+		width: 232px;
 		height: 230px;
 		background: #000;
 		display: block;
 		opacity: 0.7;
 		filter:alpha(opacity=70);
 		position:absolute;
+		border-radius: 4px;
 	}
 	
 	
@@ -87,6 +88,20 @@ $(function(){
 	EventDao dao=new EventDao();
 	List<EventDto> elist=dao.getEndEvent();
 	
+	
+	
+	
+	
+	
+	//세션로그인 상태
+	String loginok=(String)session.getAttribute("loginok");
+	//세션에저장된 아이디
+	String myid=(String)session.getAttribute("myid");
+	
+	
+	
+	
+	
 %>
 
 <body>
@@ -115,13 +130,15 @@ $(function(){
       <a href="index.jsp?main=event/ingevent.jsp" class="w3-bar-item w3-button w3-light-grey">진행중인 이벤트</a>
       <a href="index.jsp?main=event/endevent.jsp" class="w3-bar-item w3-button">종료된 이벤트</a>
     </div>
-    
+
     <!--이벤트추가버튼 admin 계정으로만 보이게-->
-    <br><br>
+    <%
+    if(loginok!=null && myid.equals("admin")){%>
     <button type="button" class="btn btn-outline-secondary"
 	onclick="location.href='index.jsp?main=event/eventaddform.jsp'">
 	이벤트추가
 	</button>
+	<%}%>
   </div>
 </header>
 </div>
@@ -136,6 +153,9 @@ $(function(){
 <!--종료-->
 <div id="ev_tabs-3">
   <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="band">
+    
+   <p style="margin-right: 650px;float: right;">종료된 이벤트</p><br>
+   <hr> 
     <div class="w3-row w3-padding-32">
     
       <%
@@ -145,7 +165,7 @@ $(function(){
       		 eventnum="<%=edto.getEventnum()%>">
       		 <a>
       		 <span class="ev_endpng">
-      		 <img src="./image/end_event.png" style="position:absolute;margin-left:-17%;
+      		 <img src="./image/end_event.png" style="position:absolute;margin-left:-17%;margin-top: 33%;
       		 ">
       		 </span>
       		 

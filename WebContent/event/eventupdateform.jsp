@@ -37,7 +37,7 @@ $(function(){
 		//기존 html에 추가하는부분
 		$("div.addimage").html(function(idx,html){
 			return html+tag;
-			
+			//adfasdfasdfsdf
 		});
 	});
 });
