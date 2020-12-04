@@ -51,7 +51,7 @@
 	
 	/* 공통 메인 디자인 css  */
 	.sub_visual{
-		min-height:499px;
+		min-height:399px;
 		padding:0 10px;
 		text-align:center;
 		background-repeat:no-repeat;

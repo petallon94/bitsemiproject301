@@ -23,7 +23,8 @@
 	try{
 		multi=new MultipartRequest(request,realFolder,
 				uploadSize,"utf-8",new DefaultFileRenamePolicy());
-		String gonsubject=multi.getParameter("gonsubject");
+		//제목에 html태그 안되게 < >특수기호로 변경(문자열text)로 저장한다
+		String gonsubject=multi.getParameter("gonsubject").replace("<", "&lt;").replace(">", "&gt;");
 		String gonid=multi.getParameter("gonid");
 		String goncontent=multi.getParameter("goncontent");
 		
