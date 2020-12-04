@@ -15,7 +15,7 @@
 #joinform {
 margin-top: 50px;
 }
-#joinform p{
+#joinform #must{
 margin-left: 450px;
 font-size: 0.7rem;
 }
@@ -46,6 +46,19 @@ color: red;
 .btn {
 text-size: 0.8em;
 }
+/* .step_style{
+list-style: none;
+}
+.step_style li{
+	float:left;
+    text-align: center;
+}
+.step_style li img{
+    width: 80px;
+    height: 80px;
+    background-color: lightgray;
+    border-radius: 100px;
+    } */
 </style>
 <script type="text/javascript">
 $(function() {
@@ -177,9 +190,22 @@ function execDaumPostcode() {
 </script>
 </head>
 <body>
+
+<br>	
 <form action="member/insertaction.jsp" method="post" id="joinform" class="form-inline d-flex flex-column" name="memberform">
-	<h3>회원가입</h3><br>
-	<p><b>*</b>필수입력사항</p>		
+<!-- <ul class="step_style">
+			<li>
+			<img src="./image/pencil.png" alt="회원정보입력" id="pc" style="padding:10px;"/>					
+			<p>회원정보입력</p>
+			</li>
+			<li>ㅡ</li>
+			<li>
+				<img src="./image/sb_symbol.jpg" alt="가입완료" id="sb"/>
+			<p>가입완료</p>
+			</li>
+		</ul> -->
+<h3>회원가입</h3><br>
+	<p id="must"><b>*</b>필수입력사항</p>		
 	<table class="table" style="width: 550px;">	
 		<tr>
 				<td class="table_title">아이디<b>*</b></td>

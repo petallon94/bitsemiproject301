@@ -20,7 +20,7 @@ String loginid=(String)session.getAttribute("myid");
 <form action="mypage/mypagedeleteaction.jsp" method="post">
   <div id="mypagedeleteform">
   <!-- hidden -->
-  <input type="text" name="loginid" value="<%=loginid%>">
+  <input type="hidden" name="loginid" value="<%=loginid%>">
 
     <div class="mypagedelete-dialog">
       <div class="mypagedelete-content">   
