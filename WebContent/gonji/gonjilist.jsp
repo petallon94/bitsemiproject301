@@ -35,10 +35,11 @@
 	
 	/*府胶飘狼 力格 何盒 */
 	tr.gontitle{
-		background-color: #fffee9;
 		text-align: center; 
 		height:65px;
 		line-height: 65px;
+		border-top: 2px solid gray;
+		border-bottom: 2px solid gray;
 	}
 	
 	table.table{
