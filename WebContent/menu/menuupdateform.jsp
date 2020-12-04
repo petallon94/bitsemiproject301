@@ -92,12 +92,13 @@ $(function(){
     </div>
     <div class="menuform">
       <label for="upmenupthoto">상품 사진 ※ 반드시 사진은 재업로드 요망</label>
-      <input type="file" class="form-control" id="upmenuphoto"  name="upmenuphoto" required = "required" >
+      <input type="file" class="form-control" id="upmenuphoto"  name="upmenuphoto"  >
+      <span id="premenuphoto" name="premenuphoto">전에 선택했던 사진 <%=medto.getMenuphoto()%></span>
     </div>
     <br>
     <div class="upmenuform">
       <label class="menudetail"> 메뉴소개</label>
-      <input type="text" class="form-control" id="upmenudetail"  name="upmenudetail" required = "required" value =<%=medto.getMenudetail()%>>
+      <input type="text" class="form-control" id="upmenudetail"  name="upmenudetail" value =<%=medto.getMenudetail()%>>
       
     </div>
     <br>
@@ -122,7 +123,7 @@ $(function(){
     </div>
     
     <br>
-    <button type="submit" class="btn btn-primary" onclick ="location.href='index.jsp?main=menu/menuadmin.jsp'">추가</button>
+    <button type="submit" class="btn btn-primary" onclick ="menuadmin.jsp'">추가</button>
   </form>
 </div>
 

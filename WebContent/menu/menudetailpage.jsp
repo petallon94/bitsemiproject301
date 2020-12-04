@@ -63,6 +63,12 @@ $(function(){
 		
 	});
 	
+	$("div.product_view_order2").click(function(e){
+		
+		alert("로그인 후 주문해 주세요!");
+		
+	});
+	
 
 });
 </script>
@@ -94,6 +100,9 @@ $(function(){
 	MenuDao medao = new MenuDao();
 	MenuDto medto = medao.getdata(menunum);
 	//String menunum = medao.getNum("menunum");
+	
+	String loginok=(String)session.getAttribute("loginok");
+
 
 %>
 
@@ -156,8 +165,13 @@ $(function(){
 								</fieldset>
 							</form>
 							<br></br>
+							<% if(loginok==null){%>
+							<div class="product_view_order2" style="cursor:pointer;">주문하기</div>
+							<%}else{%>
 							<div class="product_view_order" style="cursor:pointer;">주문하기</div>
+							<%}%>
 							</div>
+							
 						</div>
 						
 						
