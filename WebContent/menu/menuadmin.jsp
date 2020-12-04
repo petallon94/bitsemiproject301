@@ -171,7 +171,7 @@
 				</ul>
 			</div>
 			<div class = 'menu_update'>
-			<button onclick = "location.href ='index.jsp?main=memu/menuupdateform.jsp?num=<%=dto.getMenunum()%>'" >메뉴 수정</button>
+			<button onclick = "location.href ='menuupdateform.jsp?num=<%=dto.getMenunum()%>'" >메뉴 수정</button>
 			<button onclick = "location.href ='menudeleteform.jsp?num=<%=dto.getMenunum()%>'">메뉴 삭제</button>
 		</div>	
       </div>

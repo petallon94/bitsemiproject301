@@ -33,8 +33,6 @@
 	
 	//로그인한 아이디 구하기 - 수정
 	String id = (String)session.getAttribute("myid");
-	//아이디에 해당하는 멤버 테이블의 시퀀스 번호 가져오기
- 	MemberDao mdao = new MemberDao();
 
 	//String loginnum = "7";
 	

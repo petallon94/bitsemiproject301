@@ -27,7 +27,6 @@
 		
 		
 		//evnetlist이미지(작은사진, 1개만 업로드가능)
-		//evnetlist이미지(작은사진, 1개만 업로드가능)
 		String evlistimage="";
 		Enumeration en=multi.getFileNames();
 		String file1=(String)en.nextElement();

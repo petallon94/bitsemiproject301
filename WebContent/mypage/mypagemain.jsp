@@ -29,12 +29,31 @@ a {width: 200px;}
 .sub_visual .txt p{font-size:1.25rem;font-weight:300;}
 .sub_visual.bg-menu{background-image:url(./image/coffee-5132832_1920.jpg);} 
 
+
 .card_title > h3 {
     margin: 50px 0px;
     font-family: 'Montserrat', sans-serif;
     font-size: 2.667em;
     color: rgb(63,18,20);
 </style> 
+<script>
+	$("#mypage_nav-item1").click(function() {
+		$(".my_page_content").load("mypage/mypageupdateform.jsp");		 
+		return false;
+	});
+	
+	$("#mypage_nav-item2").click(function() {
+		$(".my_page_content").load("mypage/orderchecklist.jsp");		 
+		return false;
+	});
+	$("#mypage_nav-item3").click(function() {
+		$(".my_page_content").load("mypage/mypagedeleteform.jsp");		 
+		return false;
+	});
+});
+
+</script>
+
 </head>
 
 <%
