@@ -18,7 +18,7 @@
 .nav {display: flex; flex-direction: column;}
 a {width: 200px;}
 	
-.my_page_content {width:100%; position : absolute;left:400px; margin-top:20px;}
+.my_page_content {position : absolute;left:400px; margin-top:20px;}
 .my_page_content img{max-width:100%;height :200px;}
 
 /*submenu*/
