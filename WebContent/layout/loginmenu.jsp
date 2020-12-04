@@ -91,16 +91,18 @@ color:#ffb210;
 	<%}%>
 	<%
 	if(loginok!=null && myid.equals("admin")){%>
-	<span><a href="<%=url %>/index.jsp?main=mypage/adminpagemain.jsp" class="topmenu_btn">관리페이지</a></span> 
+		<span><a href="<%=url %>/index.jsp?main=mypage/adminpagemain.jsp" class="topmenu_btn">관리페이지</a></span> 
 	<%}else{%>
-
-   	<span><a href="<%=url %>/index.jsp?main=mypage/mypagemain.jsp" class="topmenu_btn">마이페이지</a></span> 
+   		<span><a href="<%=url %>/index.jsp?main=mypage/mypagemain.jsp" class="topmenu_btn">마이페이지</a></span> 
 	<%}%>
-   	<span><a href="<%=url %>/index.jsp?main=order/orderlist.jsp" class="topmenu_btn"><i class="fas fa-shopping-cart"></i>주문
+	<%
+	if(loginok!=null){%>
+   		<span><a href="<%=url %>/index.jsp?main=order/orderlist.jsp" class="topmenu_btn"><i class="fas fa-shopping-cart"></i>주문
+	<%}else{%>
+	<%} %>
 
 	<%-- <span class="count"><%=cartSize%></span> --%>
 	</a></span>
-
 </div>
 <!-- 로그인 모달창 -->
 <form action="login/loginaction.jsp" method="post" id="loginform" name="loginform">

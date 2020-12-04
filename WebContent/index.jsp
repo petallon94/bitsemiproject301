@@ -49,6 +49,7 @@
 	font-size: 15px;
 	justify-content: flex-end;
 	font-family: 'Gothic A1', sans-serif;
+	margin-right: 40px;
 	}
 	
 </style>
