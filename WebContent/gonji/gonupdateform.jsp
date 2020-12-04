@@ -18,7 +18,6 @@
 	//변수명gonnum이 getdata 변수명(gonnum)이랑 같아야 한다
 	String gonnum=request.getParameter("num");
 	String pageNum=request.getParameter("pageNum");
-	String gonid=request.getParameter("gonid");
 	//num에 해당하는 dto가져오기
 	GonjiDao dao=new GonjiDao();
 	GonjiDto dto=dao.getData(gonnum);

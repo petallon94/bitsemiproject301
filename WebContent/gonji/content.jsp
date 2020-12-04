@@ -172,18 +172,18 @@ function del(gonnum){
 	{%>
 	<tr>
 		<td colspan="2" align="right">
-			<input type="button" class="btn btn-warning"
-			  value="글쓰기" style="width: 80px;"
-			  onclick="location.href='index.jsp?main=gonji/gonjiform.jsp'">
-			<input type="button" class="btn btn-info"
-			  value="목록" style="width: 80px;"
-			  onclick="location.href='index.jsp?main=gonji/gonjilist.jsp?pageNum=<%=pageNum%>'">
-			<input type="button" class="update btn btn-dark"
+		  <input type="button" class="btn btn-warning"
+		    value="글쓰기" style="width: 80px;"
+		    onclick="location.href='index.jsp?main=gonji/gonjiform.jsp'">
+		  <input type="button" class="btn btn-info"
+		    value="목록" style="width: 80px;"
+		    onclick="location.href='index.jsp?main=gonji/gonjilist.jsp?pageNum=<%=pageNum%>'">
+		  <input type="button" class="update btn btn-dark"
 			onclick="location.href='index.jsp?main=gonji/gonupdateform.jsp?num=<%=gonnum%>&pageNum=<%=pageNum%>'"
 			style="width: 80px;" value="수정">
-			<input type="button" class="del btn btn-danger"
-			  value="삭제" style="width: 80px;"
-			  gonnum="<%=dto.getGonnum()%>">		
+		  <input type="button" class="del btn btn-danger"
+		    value="삭제" style="width: 80px;"
+		    gonnum="<%=dto.getGonnum()%>">		
 		</td>
 	</tr>	
 	<%//로그인 안한 경우,일반회원의 경우 보이는 페이지
