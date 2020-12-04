@@ -22,8 +22,8 @@ a {width: 200px;}
 .my_page_content img{max-width:100%;height :200px;}
 
 /*submenu*/
-.sub_visual{min-height:499px;padding:0 10px;text-align:center;background-repeat:no-repeat;background-size:cover;background-position:center;position:relative;}
-.sub_visual .txt{width:100%;position:absolute;top:148px;left:0;}
+.sub_visual{min-height:399px;padding:0 10px;text-align:center;background-repeat:no-repeat;background-size:cover;background-position:center;position:relative;}
+.sub_visual .txt{width:100%;position:absolute;top:120px;left:0;}
 .sub_visual .txt h1{margin:0;font-size:2.75rem;font-weight:300;}
 .sub_visual .txt h1:after{display:block;width:40px;height:2px;margin:32px auto;background:#202020;content:'';}
 .sub_visual .txt p{font-size:1.25rem;font-weight:300;}
