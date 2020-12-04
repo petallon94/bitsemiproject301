@@ -1,3 +1,4 @@
+
 package data.dao;
 
 import java.sql.Connection;
@@ -15,7 +16,7 @@ public class EventDao {
 	MysqlConnect db=new MysqlConnect();
 
 	
-	//ÀÌº¥Æ® Ãß°¡
+	//ï¿½Ìºï¿½Æ® ï¿½ß°ï¿½
 	public void insertEvent(EventDto dto)
 	{
 		Connection conn=null;
@@ -44,7 +45,7 @@ public class EventDao {
 		}
 	}
 	
-	//Á¶È¸¼öÁõ°¡
+	//ï¿½È¸ï¿½ï¿½ï¿½ï¿½
 	public void updateReadCount(String eventnum)
 	{
 		String sql="update event set evreadcount=evreadcount+1 where eventnum=?";
@@ -66,7 +67,7 @@ public class EventDao {
 		}
 	}
 	
-	//¸ñ·Ï
+	//ï¿½ï¿½ï¿½
 	public List<EventDto> getAllEvent()
 	{
 		List<EventDto> list=new ArrayList<EventDto>();
@@ -107,7 +108,7 @@ public class EventDao {
 		return list;
 	}
 	
-	//ÁøÇàÁßÀÌº¥Æ®
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìºï¿½Æ®
 	public List<EventDto> getIngEvent()
 	{
 		List<EventDto> list=new ArrayList<EventDto>();
@@ -151,7 +152,7 @@ public class EventDao {
 	
 	
 	
-	//Á¾·áÀÌº¥Æ®
+	//ï¿½ï¿½ï¿½ï¿½Ìºï¿½Æ®
 	public List<EventDto> getEndEvent()
 	{
 		List<EventDto> list=new ArrayList<EventDto>();
@@ -196,7 +197,7 @@ public class EventDao {
 	
 	
 	
-	//ÃÑ°¹¼ö
+	//ï¿½Ñ°ï¿½ï¿½ï¿½
 	public int getIngTotalCount()
 	{
 		int tot=0;
@@ -276,10 +277,10 @@ public class EventDao {
 		try {
 			pstmt=conn.prepareStatement(sql);
 			
-			//¹ÙÀÎµù
+			//ï¿½ï¿½ï¿½Îµï¿½
 			pstmt.setInt(1, start);
 			pstmt.setInt(2, perpage);
-			//½ÇÇà
+			//ï¿½ï¿½ï¿½ï¿½
 			rs=pstmt.executeQuery();
 			
 			while(rs.next())
@@ -308,7 +309,7 @@ public class EventDao {
 	}
 	
 	
-	//»èÁ¦
+	//ï¿½ï¿½ï¿½
 	public void deleteEvent(String eventnum)
 	{
 		String sql="delete from event where eventnum=?";
@@ -333,7 +334,7 @@ public class EventDao {
 	}
 	
 	
-	//¼öÁ¤
+	//ï¿½ï¿½ï¿½
 	public void updateEvent(EventDto dto)
 	{
 		String sql="update event set evsubject=?,evlistimage=?,evcontent=?,"
@@ -362,6 +363,48 @@ public class EventDao {
 			db.dbClose(conn, pstmt);
 		}
 	}
+  
+  public List<EventDto> getMainEvent()
+	{
+		List<EventDto> list=new ArrayList<EventDto>();
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		String sql="select * from event order by eventnum desc limit 4";
+		
+		conn=db.getMyConnection();
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			
+			while(rs.next())
+			{
+				EventDto dto=new EventDto();
+				dto.setEventnum(rs.getString("eventnum"));
+				dto.setId(rs.getString("id"));
+				dto.setEvsubject(rs.getString("evsubject"));
+				dto.setEvlistimage(rs.getString("evlistimage"));
+				dto.setEvcontent(rs.getString("evcontent"));
+				dto.setEvcontentimage(rs.getString("evcontentimage"));
+				dto.setEvstartday(rs.getString("evstartday"));
+				dto.setEvendday(rs.getString("evendday"));
+				dto.setEvreadcount(rs.getInt("evreadcount"));
+				dto.setEvwriteday(rs.getTimestamp("evwriteday"));
+				
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			db.dbClose(conn, pstmt, rs);
+		}
+		return list;
+	}
+  
+  
 	
 	
 }

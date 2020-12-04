@@ -122,4 +122,120 @@ public class OrderDao {
 		return list;
 	}
 	
+	//장바구니 삭제 버튼 이벤
+	public void deleteOrder(int ordernum)
+	{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		String sql="delete from morder where ordernum=?";
+		conn = db.getMyConnection();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			//ε
+			pstmt.setInt(1, ordernum);
+			//
+			pstmt.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			db.dbClose(conn, pstmt);
+		}
+	}
+
+	//체크한 항목 데이터 가져오기
+	public List<OrderDto> getFinishOrder(int ordernum)
+	{
+		List<OrderDto> list = new ArrayList<OrderDto>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql="select * from morder where ordernum=?";
+		
+		conn=db.getMyConnection();
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, ordernum);
+			rs=pstmt.executeQuery();
+			while(rs.next())
+			{
+				OrderDto dto = new OrderDto();
+				dto.setOrderid(rs.getString("orderid"));
+				dto.setMnname(rs.getString("mnname"));
+				dto.setSize(rs.getString("size"));
+				dto.setTemp(rs.getString("temp"));
+				dto.setOrderdate(rs.getTimestamp("orderdate"));
+				dto.setOrderprice(rs.getInt("orderprice"));
+				
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			db.dbClose(conn, pstmt, rs);
+		}
+		return list;
+	}
+	
+	public OrderDto getOrderData(int ordernum)
+	{
+		OrderDto dto = new OrderDto();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql="select * from morder where ordernum=?";
+		
+		conn=db.getMyConnection();
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, ordernum);
+			rs=pstmt.executeQuery();
+			if(rs.next())
+			{
+				//dto.setMenunum(Integer.parseInt(rs.getString("menunum")));
+				dto.setOrderid(rs.getString("orderid"));
+				dto.setMnname(rs.getString("mnname"));
+				dto.setSize(rs.getString("size"));
+				dto.setTemp(rs.getString("temp"));
+				dto.setOrderprice(rs.getInt("orderprice"));
+				dto.setOrderdate(rs.getTimestamp("orderdate"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			db.dbClose(conn, pstmt, rs);
+		}
+		return dto;
+	}
+	
+	//체크한 항목 데이터 insert하기
+	public void insertFinishOrder(OrderDto dto)
+	{
+		String sql="insert into forder (forderid, fmnname, fsize, ftemp, forderdate, forderprice) values (?,?,?,?,?,?)";
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		conn = db.getMyConnection();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			//바인딩
+			pstmt.setString(1, dto.getOrderid());
+			pstmt.setString(2, dto.getMnname());
+			pstmt.setString(3, dto.getSize());
+			pstmt.setString(4, dto.getTemp());
+			pstmt.setTimestamp(5, dto.getOrderdate());
+			pstmt.setInt(6, dto.getOrderprice());
+			
+			//실행
+			pstmt.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			db.dbClose(conn, pstmt);
+		}
+	}
 }

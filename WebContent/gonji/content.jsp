@@ -1,3 +1,4 @@
+<%@page import="data.dao.MemberDao"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="data.dto.GonjiDto"%>
 <%@page import="data.dao.GonjiDao"%>
@@ -38,7 +39,7 @@ $(function(){
 		if(a){
 			//alert(gonnum);
 			del(gonnum);
-			location.reload();
+			location.href="index.jsp?main=gonji/gonjilist.jsp";
 		}
 	});//공지글 삭제 이벤트 close
 });//$function close
@@ -75,19 +76,34 @@ function del(gonnum){
 	
 	//번호에 해당하는 dto 가져오기
 	GonjiDto dto=db.getData(gonnum);
-	System.out.println(dto.getGonwriteday());
+	
+	//제대로 넘어오는지 확인하기
+	//System.out.println(dto.getGoncontent());
+	//System.out.println(dto.getGonwriteday());
+	
 	//mysql에서는 시간까지 나오게 하려면 datetime이어야 한다
 	SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
+	
+	//<관리자 로그인 id확인을 위한 자바함수>
+	//세션 로그인상태
+	String loginok=(String)session.getAttribute("loginok");
+	//세션에서 id 얻기
+	String myid=(String)session.getAttribute("myid");
+	//dao 선언
+	MemberDao dao=new MemberDao();
+	//아이디에 해당하는 이름 얻기
+	//String name=dao.getName(myid);
 %>	
 <table class="table table-striped" style="width: 1000px;">
 	<tr>
-		<td width="650">
+		<td width="650" height="80">
 			<b><%=dto.getGonsubject()%></b>
 		</td>
 		<td>
 			<span style="color: #ccc;font-size: 9pt;float: right;">
 			<%=sdf.format(dto.getGonwriteday())%></span>
 		</td>
+		
 	</tr>
 	<tr height="350">
 		<td colspan="2" valign="top">
@@ -100,24 +116,43 @@ function del(gonnum){
 	<tr>
 		<td colspan="2">
 			<span style="color: gray;font-size: 9pt;float: right;">
-			조회수&nbsp; <%=dto.getGonreadcount()%>
-			</span>			
+			조회수&nbsp; <%=dto.getGonreadcount()%></span>		
 		</td>
 	</tr>
+	
 	<%-- 버튼들 --%>
-	<tr>
-		<td colspan="2" align="right">
-			<input type="button" class="btn btn-warning btn-xs"
-			  value="글쓰기" style="width: 80px;"
-			  onclick="location.href='index.jsp?main=gonji/gonjiform.jsp'">
-			<input type="button" class="btn btn-info btn-xs"
-			  value="목록" style="width: 80px;"
-			  onclick="location.href='index.jsp?main=gonji/gonjilist.jsp?pageNum=<%=pageNum%>'">
-			<input type="button" class="del btn btn-danger btn-xs"
-			  value="삭제" style="width: 80px;"
-			  gonnum="<%=dto.getGonnum()%>">		
-		</td>
-	</tr>	
+	<%
+		//myid가 StarBottle(관리자)인 경우에만 보이기
+		if(loginok!=null && myid.equals("StarBottle"))
+		{%>
+		<tr>
+			<td colspan="2" align="right">
+				<input type="button" class="btn btn-warning"
+				  value="글쓰기" style="width: 80px;"
+				  onclick="location.href='index.jsp?main=gonji/gonjiform.jsp'">
+				<input type="button" class="btn btn-info"
+				  value="목록" style="width: 80px;"
+				  onclick="location.href='index.jsp?main=gonji/gonjilist.jsp?pageNum=<%=pageNum%>'">
+				<input type="button" class="update btn btn-dark"
+				onclick="location.href='index.jsp?main=gonji/gonupdateform.jsp?num=<%=gonnum%>&pageNum=<%=pageNum%>'"
+				style="width: 80px;" value="수정">
+				<input type="button" class="del btn btn-danger"
+				  value="삭제" style="width: 80px;"
+				  gonnum="<%=dto.getGonnum()%>">		
+			</td>
+		</tr>	
+		<%//로그인 안한 경우,일반회원의 경우 보이는 페이지
+		}else{%>
+		<tr>
+			<td colspan="2" align="right">			
+				<input type="button" class="btn btn-info btn-lg"
+				  value="목록" style="width: 180px;"
+				  onclick="location.href='index.jsp?main=gonji/gonjilist.jsp?pageNum=<%=pageNum%>'">	
+			</td>
+		</tr>	
+			
+		<%}
+	%>	
 </table>
 </body>
 </html>

@@ -1,3 +1,10 @@
+<%@page import="data.dto.StarMapDto"%>
+<%@page import="data.dao.StarMapDao"%>
+<%@page import="data.dto.EventDto"%>
+<%@page import="data.dao.EventDao"%>
+<%@page import="java.util.List"%>
+<%@page import="data.dao.MenuDao"%>
+<%@page import="data.dto.MenuDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -10,6 +17,10 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  
+  
+  
 <style>
 body{
 font-family: 'Gothic A1', sans-serif;
@@ -66,8 +77,17 @@ width: 100%;
 #topbutton span{
 text-align: center;
 }
-
 </style>
+<script type="text/javascript">
+
+//공지사항 롤링 함수(안쓸수도 있음)
+
+$("#gonji_roll").rolling(490,290,{autoscroll:1, delay:1500});
+
+
+</script>
+
+
 <body>
 <!-- 메인 사진 -->
 <div style="width:100%; margin:0 auto; display:flex;">
@@ -109,69 +129,85 @@ text-align: center;
 </div>
 </div>
 
-<!-- 신메뉴 또는 베스트메뉴 -->
-<div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
-  <div class="w3-row-padding w3-padding-16 w3-center" id="food">
-  <h2>신메뉴</h2>
-    <div class="w3-quarter">
-      <img src="./image/new1.jpg" alt="Sandwich" style="width:100%">
-      <h3>The Perfect Sandwich, A Real NYC Classic</h3>
-      <p>Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.</p>
-    </div>
-    <div class="w3-quarter">
-      <img src="./image/new3.jpg" alt="Steak" style="width:100%">
-      <h3>Let Me Tell You About This Steak</h3>
-      <p>Once again, some random text to lorem lorem lorem lorem ipsum text praesent tincidunt ipsum lipsum.</p>
-    </div>
-    <div class="w3-quarter">
-      <img src="./image/new4.jpg" alt="Cherries" style="width:100%">
-      <h3>Cherries, interrupted</h3>
-      <p>Lorem ipsum text praesent tincidunt ipsum lipsum.</p>
-      <p>What else?</p>
-    </div>
-    <div class="w3-quarter">
-      <img src="./image/new2.jpg" alt="Pasta and Wine" style="width:100%">
-      <h3>Once Again, Robust Wine and Vegetable Pasta</h3>
-      <p>Lorem ipsum text praesent tincidunt ipsum lipsum.</p>
-    </div>
+<!-- 사이트 메인 중앙 컨텐츠 -->
+<div class= "tabb" style="width:100%; margin-top : 100px; display:flex; justify-content : center">
+<div class=" w3-bar-block w3-light-grey " style="width:200px">
+  <button class="w3-bar-item w3-button tablink" style ="height : 33%; text-align:center;" onclick="openMenu(event, 'Menu')">메뉴</button>
+  <button class="w3-bar-item w3-button tablink" style ="height : 33%; text-align:center;" onclick="openMenu(event, 'Event')">이벤트</button>
+  <button class="w3-bar-item w3-button tablink" style ="height : 33%; text-align:center;" onclick="openMenu(event, 'Shop')">매장</button>
+</div>
+
+<%
+	//메뉴 dao 선언
+	MenuDao medao = new MenuDao();
+	List<MenuDto> list = medao.getRandomMenus();
+	//event dao 선언
+	EventDao edao = new EventDao();
+	List<EventDto> liste = edao.getMainEvent();
+	//매장 dto 선언
+	StarMapDao smdao = new StarMapDao();
+	List<StarMapDto> listsm = smdao.getRandomList();
+	
+%>
+<div style="width:1200px;height : 450px;background-color : #eee;">
+  <div id="Menu" class="w3-container tabs">
+    <h2>스타보틀 메뉴</h2>
+   	<div style ="display : flex;justify-content : space-between;">
+   	<%
+	
+		for(MenuDto medto : list){%>
+		<div style ="width 270px;height 300px;">
+   		<img src ="menusave/<%=medto.getMenuphoto() %>" style ="width : 250px;height:250px;">
+   		<p><%=medto.getMenuname() %></p>
+   		</div>
+		 <%} %>
+   	
+   	</div>
   </div>
-  
- <!--모든 메뉴-->
-  <div class="w3-row-padding w3-padding-16 w3-center">
-  <h2>모든메뉴</h2>
-    <div class="w3-quarter">
-      <img src="./image/1.jpg" alt="Popsicle" style="width:100%">
-      <h3>All I Need Is a Popsicle</h3>
-      <p>Lorem ipsum text praesent tincidunt ipsum lipsum.</p>
-    </div>
-    <div class="w3-quarter">
-      <img src="./image/2.jpg" alt="Salmon" style="width:100%">
-      <h3>Salmon For Your Skin</h3>
-      <p>Once again, some random text to lorem lorem lorem lorem ipsum text praesent tincidunt ipsum lipsum.</p>
-    </div>
-    <div class="w3-quarter">
-      <img src="./image/new2.jpg" alt="Sandwich" style="width:100%">
-      <h3>The Perfect Sandwich, A Real Classic</h3>
-      <p>Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.</p>
-    </div>
-    <div class="w3-quarter">
-      <img src="./image/new4.jpg" alt="Croissant" style="width:100%">
-      <h3>Le French</h3>
-      <p>Lorem lorem lorem lorem ipsum text praesent tincidunt ipsum lipsum.</p>
+
+  <div id="Event" class="w3-container tabs" style="display:none">
+    <h2>이벤트 안내</h2>
+    <div style ="display : flex;justify-content : space-between;">
+    <%
+	
+		for(EventDto evdto : liste){%>
+		<div style ="width 270px;height 300px;">
+   		<img src ="eventsave/<%=evdto.getEvlistimage() %>" style ="width : 250px;height:250px;">
+   		<p style ="width:250px"><%=evdto.getEvsubject() %></p>
+   		</div>
+		 <%} %>
+	</div>
+  </div>
+
+  <div id="Shop" class="w3-container tabs" style="display:none">
+    <h2>매장소개</h2>
+    <div style ="display : flex;justify-content : space-between;">
+    <%
+	
+		for(StarMapDto smdto : listsm){%>
+		<div style ="width 270px;height 300px;">
+   		<img src ="eventsave/<%=smdto.getShopphoto() %>" style ="width : 250px;height:250px; border-radius:125px;border : 1px solid black">
+   		<p><%=smdto.getShopname() %></p>
+   		</div>
+		 <%} %>
+    
+    
     </div>
   </div>
 
-  <!-- Pagination -->
-  <div class="w3-center w3-padding-32">
-    <div class="w3-bar">
-      <a href="#" class="w3-bar-item w3-button w3-hover-black">«</a>
-      <a href="#" class="w3-bar-item w3-black w3-button">1</a>
-      <a href="#" class="w3-bar-item w3-button w3-hover-black">2</a>
-      <a href="#" class="w3-bar-item w3-button w3-hover-black">3</a>
-      <a href="#" class="w3-bar-item w3-button w3-hover-black">4</a>
-      <a href="#" class="w3-bar-item w3-button w3-hover-black">»</a>
-    </div>
-  </div>
+</div>
+
+</div>
+
+
+
+<!-- 신메뉴 또는 베스트메뉴 -->
+
+<div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
+  
+  
+  
+
   
   <!-- 매장위치 -->
   <div class="main_location"> 매장위치</div>
@@ -191,5 +227,22 @@ text-align: center;
 <div class="fixed-btn">
 <button type="button" class="top" id="topbutton" onclick="scrollMov(0, 200);"><span>TOP</span></button>
 </div>
+<script>
+function openMenu(evt, cityName) {
+  var i, x, tablinks;
+  x = document.getElementsByClassName("tabs");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < x.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" w3-red", ""); 
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " w3-red";
+}
+</script>
+
+
 </body>
 </html>
