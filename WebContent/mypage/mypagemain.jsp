@@ -36,7 +36,7 @@ $(function() {
 	});
 	
 	$("#mypage_nav-item2").click(function() {
-		$(".my_page_content").load("order/orderlist.jsp");		 
+		$(".my_page_content").load("mypage/orderchecklist.jsp");		 
 		return false;
 	});
 	$("#mypage_nav-item3").click(function() {
