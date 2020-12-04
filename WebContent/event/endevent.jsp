@@ -44,7 +44,16 @@ body,h1 {font-family: "Raleway", Arial, sans-serif}
 	display: inline-block;
 	}
 	
-	
+	.ev_endpng{
+		margin-left : 10px;
+		width: 230px;
+		height: 230px;
+		background: #000;
+		display: block;
+		opacity: 0.7;
+		filter:alpha(opacity=70);
+		position:absolute;
+	}
 	
 	
 	
@@ -65,8 +74,9 @@ body,h1 {font-family: "Raleway", Arial, sans-serif}
 <script type="text/javascript">
 $(function(){
 	$("div.ev_content").click(function(){
+		
 		var eventnum=$(this).attr("eventnum");
-		location.href="index.jsp?main=event/eventcontent.jsp?eventnum="+eventnum+"&key=a";
+		location.href="index.jsp?main=event/eventcontent.jsp?eventnum="+eventnum;
 		
 	});
 	
@@ -75,8 +85,6 @@ $(function(){
 </script>
 <%
 	EventDao dao=new EventDao();
-	List<EventDto> list=dao.getAllEvent();
-	List<EventDto> ilist=dao.getIngEvent();
 	List<EventDto> elist=dao.getEndEvent();
 	
 %>
@@ -121,20 +129,30 @@ $(function(){
 
 
   <!--각 이벤트들 반복문으로 출력하기-->
-  <!--전체-->
-<div id="ev_tabs-1">
+
+
+
+
+<!--종료-->
+<div id="ev_tabs-3">
   <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="band">
     <div class="w3-row w3-padding-32">
     
       <%
-      	for(EventDto dto:list)
+      	for(EventDto edto:elist)
       	{%>
       		<div class="ev_content w3-third"
-      		 eventnum="<%=dto.getEventnum()%>">
-      		 <img src="eventsave/<%=dto.getEvlistimage()%>" 
-      		 class="w3-round w3-margin-bottom" style="width:90%">
-      		  <p class="ev_subject"><%=dto.getEvsubject()%><br>
-      		  <%=dto.getEvstartday()%>~<%=dto.getEvendday()%>
+      		 eventnum="<%=edto.getEventnum()%>">
+      		 <a>
+      		 <span class="ev_endpng">
+      		 <img src="./image/end_event.png" style="position:absolute;margin-left:-17%;
+      		 ">
+      		 </span>
+      		 
+      		 <img src="eventsave/<%=edto.getEvlistimage()%>" class="w3-round w3-margin-bottom" style="width:90%">
+      		 </a> 
+      		  <p class="ev_subject"><%=edto.getEvsubject()%><br>
+      		  <%=edto.getEvstartday()%>~<%=edto.getEvendday()%>
       		  </p>
       		 
       		</div> 
@@ -143,8 +161,6 @@ $(function(){
     </div>
   </div>
 </div>
-
-
 
 
 

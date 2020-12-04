@@ -8,13 +8,14 @@ body{
 #ord_ctn{
 	width: 1100px;
 	margin:auto;
-	margin-top: 30px;
+	margin-top: 40px;
 }
 #ord_ctn .img{
 	float: left;
 	height: 680px;
 	line-height: 680px;
 	border: 1px solid #eee;
+	margin-bottom: 40px;
 }
 .ord_frm{
 	width: 520px;
