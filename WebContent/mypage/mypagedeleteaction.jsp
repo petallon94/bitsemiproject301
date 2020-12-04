@@ -6,11 +6,6 @@
 	String id=request.getParameter("id");
 	String pass=request.getParameter("pass");
 	
-	%>
-	<script type="text/javascript">
-		alert("id");
-	</script>
-<%
 	//dao 선언
 	MemberDao dao=new MemberDao();
 
@@ -20,7 +15,7 @@
 		//비번이 맞는경우 삭제
 		dao.deleteMember(id);
 		session.removeAttribute("loginok");
-		response.sendRedirect("../index.jsp?main=mypage/memberlist.jsp");		
+		
 	}else{%>
 		<script type="text/javascript">
 			alert("비밀번호가 틀렸습니다");

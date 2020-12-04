@@ -339,6 +339,55 @@ public class MemberDao {
 		}
 		return name;
 	}
+	
+	
+	//num에 해당하는 dto 반환
+		public MemberDto getDataID(String id)
+		{
+			MemberDto dto=new MemberDto();
+			String sql="select * from Login where id=?";
+
+			Connection conn=null;
+			PreparedStatement pstmt=null;
+			ResultSet rs=null;
+
+			conn=db.getMyConnection();
+
+			try {
+				pstmt=conn.prepareStatement(sql);
+				//바인딩
+				pstmt.setString(1, id);
+				//실행
+				rs=pstmt.executeQuery();
+
+				while(rs.next())
+				{
+					dto.setLoginnum(rs.getString("loginnum"));
+					dto.setId(rs.getString("id"));
+					dto.setName(rs.getString("name"));
+					String []address=rs.getString("address").split(" ");
+					dto.setPostcode(address[0]);
+					dto.setAddress(address[1]);
+					dto.setExtraaddr(address[2]);
+					dto.setAddrdetail(rs.getString("addrdetail"));
+					String []hp=rs.getString("hp").split("-");
+					dto.setHp1(hp[0]);
+					dto.setHp2(hp[1]);
+					dto.setHp3(hp[2]);
+					String []email=rs.getString("email").split("@");
+					dto.setEmail1(email[0]);
+					dto.setEmail2(email[1]);
+					dto.setBirthday(rs.getString("birthday"));
+				}
+
+			}catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				db.dbClose(conn, pstmt, rs);
+			}
+			return dto;
+
+		}
 
 
 

@@ -1,3 +1,4 @@
+<%@page import="data.dto.MemberDto"%>
 <%@page import="data.dao.MemberDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -10,6 +11,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
   <title>Insert title here</title>
  <style>
 .my_page_menu {position: absolute; left: 20px; top: 700px; padding: 20px;}
@@ -26,37 +28,25 @@ a {width: 200px;}
 .sub_visual .txt h1:after{display:block;width:40px;height:2px;margin:32px auto;background:#202020;content:'';}
 .sub_visual .txt p{font-size:1.25rem;font-weight:300;}
 .sub_visual.bg-menu{background-image:url(./image/coffee-5132832_1920.jpg);} 
+
+.card_title > h3 {
+    margin: 50px 0px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.667em;
+    color: rgb(63,18,20);
 </style> 
-<script>
-$(function() {
-
-	$("#mypage_nav-item1").click(function() {
-		$(".my_page_content").load("mypage/mypageupdateform.jsp");		 
-		return false;
-	});
-	
-	$("#mypage_nav-item2").click(function() {
-		$(".my_page_content").load("order/orderlist.jsp");		 
-		return false;
-	});
-	$("#mypage_nav-item3").click(function() {
-		$(".my_page_content").load("mypage/mypagedeleteform.jsp");		 
-		return false;
-	});
-});
-
-</script>
 </head>
 
 <%
 	//세션 로그인상태
 	String loginok=(String)session.getAttribute("loginok");
+
 	//세션에서 id 얻기
-	String myid=(String)session.getAttribute("myid");
+	String id=(String)session.getAttribute("myid");
 	//dao 선언
 	MemberDao dao=new MemberDao();
-	//아이디에 해당하는 이름 얻기
-	String name=dao.getName(myid);
+	String name=dao.getName(id);
+
 %>
 
 <body>
@@ -77,18 +67,45 @@ if(loginok==null)
 </div>
 <div class="my_page_menu">
   <ul class="nav nav-tabs nav-justified" role="tablist">
-  	<li id="mypage_nav-item1"><a class="nav-link active">개인정보수정</a></li>
+  	<li id="mypage_nav-item1"><a class="nav-link">개인정보수정</a></li>
     <li id="mypage_nav-item2"><a class="nav-link" >주문내역</a></li>
     <li id="mypage_nav-item3"><a class="nav-link">회원탈퇴</a></li>
   </ul>
 </div>
 <div class="my_page_content">
 <div id="mypage_main">
-<img src ="./image/welcom.jpg"><br>
-<a><%=name %>님 환영합니다!!!</a></div>
-</div>
+<div class="card_title">
+<h3> WELCOME TO STARBOTTLE </h3>
+<a><%=name %>님 환영합니다!!!</a></div><br><br>
+<button class="btn btn-outline-warning" id="show_card">나의 스타보틀카드보기</button><br>
+<div class="card" style="width:400px; height:250px; margin:30px;">
+<img src="./image/card.png">
+<div>바코드</div></div>
+</div></div>
 <%} %>
 </body>
+<script>
+	
+
+	$("#mypage_nav-item1").click(function() {
+		$(".my_page_content").load("mypage/mypageupdateform.jsp");		 
+		return false;
+	});
+	
+	$("#mypage_nav-item2").click(function() {
+		$(".my_page_content").load("order/orderlist.jsp");		 
+		return false;
+	});
+	$("#mypage_nav-item3").click(function() {
+		$(".my_page_content").load("mypage/mypagedeleteform.jsp");		 
+		return false;
+	});
+	
+	$("#show_card").click(function() {
+		$(".card").toggle();
+	});
+
+</script>
 </html>
 
 

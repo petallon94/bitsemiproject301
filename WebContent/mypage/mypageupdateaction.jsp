@@ -13,6 +13,7 @@ request.setCharacterEncoding("utf-8");
 
 <%
 //isIdPassCheck 호출
+String loginnum = request.getParameter("loginnum");
 String password = request.getParameter("pass");
 String loginid = request.getParameter("loginid");
 
@@ -20,7 +21,7 @@ boolean find=dao.isIdPassCheck(loginid, password);
 
 if(find){
 dao.updateMember(dto);	
-response.sendRedirect("../index.jsp?main=mypage/memberlist.jsp");
+response.sendRedirect("../index.jsp?main=mypage/mypagemain.jsp");
 }else{%>
 <script type="text/javascript">
 alert("비밀번호가 맞지 않습니다.");

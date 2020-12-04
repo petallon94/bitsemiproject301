@@ -99,7 +99,7 @@ margin-right: 25px;
 
 	<%
 	if(loginok!=null){%>
-   		<span><a href="<%=url %>/index.jsp?main=order/orderlist.jsp" class="topmenu_btn"><i class="fas fa-shopping-cart"></i>주문
+   		<span><a href="<%=url %>/index.jsp?main=order/orderlist.jsp" class="topmenu_btn">주문
 	<%}else{%>
 	<%} %>
 

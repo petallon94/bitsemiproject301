@@ -115,19 +115,19 @@ function execDaumPostcode() {
 </head>
 <%
 String loginid=(String)session.getAttribute("myid");
-//num 읽기
-String num=request.getParameter("loginnum");
+
 //db로 부터 get data 호출후 폼안에 값 넣어주기
 MemberDao dao=new MemberDao();
-MemberDto dto=dao.getData(num);
+//아이디에 해당하는 이름 얻기
+MemberDto dto=dao.getDataID(loginid);
 
 %>
 <body>
 <form action="mypage/mypageupdateaction.jsp" method="post" id="mypage_updateform" class="form-inline d-flex flex-column" name="memberform">
 		<!-- hidden -->
-		<input type="text" name="loginid" value="<%=loginid%>">
-		<input type="text" name="num" value="<%=dto.getLoginnum()%>">
-		<input type="text" name="id" value="<%=dto.getId()%>">
+		<input type="hidden" name="loginid" value="<%=loginid%>">
+		<input type="hidden" name="loginnum" value="<%=dto.getLoginnum()%>">
+		<input type="hidden" name="id" value="<%=dto.getId()%>">
 	<h3>내정보수정</h3><br>
 	<table class="table" style="width: 550px;">	
 		<tr>
