@@ -29,7 +29,22 @@
 		margin-left: 230px;	
 		font-family: 'Noto Serif KR', serif;
 	}
+	
+	/* 테이블  */
+	#subject{
+		width:650px;
+		height:80px;
+		line-height: 80px;
+	}
+	#datereadcount{
+		color: gray;
+		font-size: 9pt;
+		float: right;
+		padding-top: 35px;
+	}
+	
 </style>
+
 <script type="text/javascript">
 $(function(){
 	//공지글 삭제 이벤트
@@ -95,31 +110,39 @@ function del(gonnum){
 	//String name=dao.getName(myid);
 %>	
 <table class="table table-striped" style="width: 1000px;">
-	<tr>
-		<td width="650" height="80">
-			<b><%=dto.getGonsubject()%></b>
+	<tr style="background-color: #fffee9;">
+		<%--제목폼--%>
+		<td id="subject">
+			<b style="font-size: 1.5em;margin-left: 25px;">
+			  <%=dto.getGonsubject()%></b>
 		</td>
-		<td>
-			<span style="color: #ccc;font-size: 9pt;float: right;">
-			<%=sdf.format(dto.getGonwriteday())%></span>
+		<%--날짜/조회수폼 --%>
+		<td id="datereadcount">
+			<span style="display: block;">
+			<%=sdf.format(dto.getGonwriteday())%>
+			<br><br>
+			조회수&nbsp; <%=dto.getGonreadcount()%>
+			</span>
 		</td>
-		
 	</tr>
-	<tr height="350">
+	<%--아이디출력폼 --%>
+	<tr>
 		<td colspan="2" valign="top">
-			<img src="image/chr15.gif" width="30">
+			<img src="image/sb_logo.jpg" width="30">
 			<b><%=dto.getGonid()%></b>
-			<br><br>			
-			<pre><%=dto.getGoncontent()%></pre>	
 		</td>
 	</tr>
-	<tr>
-		<td colspan="2">
-			<span style="color: gray;font-size: 9pt;float: right;">
-			조회수&nbsp; <%=dto.getGonreadcount()%></span>		
-		</td>
+	<br><br>
+	<%--내용폼:자동줄넘김 적용하기(style) --%>		
+	<tr height="350">	
+		<pre style="white-space: pre-wrap;
+		word-wrap:break-word;border: none;">
+	<%-- 	  <%=dto.getGoncontent()%> --%>
+		</pre>	
 	</tr>
 	
+
+
 	<%-- 버튼들 --%>
 	<%
 		//myid가 StarBottle(관리자)인 경우에만 보이기

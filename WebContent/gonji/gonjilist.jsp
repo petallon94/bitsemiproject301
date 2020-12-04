@@ -133,7 +133,7 @@ $(function(){
 	
 	//총 갯수 구하기
 	int totalCount=db.getTotalCount();
-	int perPage=3;//한 페이지당 보여질 글의 갯수
+	int perPage=10;//한 페이지당 보여질 글의 갯수
 	int perBlock=2;//한 블럭당 출력할 페이지의 갯수
 	int totalPage;//총 페이지의 갯수
 	int startPage;//각 블럭당 시작할 페이지 번호
