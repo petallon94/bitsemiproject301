@@ -529,7 +529,7 @@
 				%>
 					
 				<div id="maphadan" align="left">
-					<input type="text" name="shopnum" value="<%=dto.getShopnum()%>">
+					<input type="hidden" name="shopnum" value="<%=dto.getShopnum()%>">
 					<div id="hadan">
 						<h3><%=dto.getShopname()%></h3>
 					</div>

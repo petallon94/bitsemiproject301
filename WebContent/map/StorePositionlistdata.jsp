@@ -18,7 +18,8 @@
 <%
 	for(StarMapDto dto:list)
 	{%>
-		<store num="<%=dto.getShopnum()%>">
+		<store>
+			<shopnum><%=dto.getShopnum()%></shopnum>
 			<shopname><%=dto.getShopname() %></shopname>
 			<shophp1><%=dto.getShophp1() %></shophp1>
 			<shophp2><%=dto.getShophp2() %></shophp2>

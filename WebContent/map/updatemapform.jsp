@@ -38,7 +38,9 @@
 			success: function(data) {
 				alert(data.shopname);
 				$(data).find("store").each(function(i, element) {
-					
+					var n=$(element);
+					var info = $(this).find("shopnum").val();
+					$("#shopnum").append(info);
 							});
 						}
 					});
@@ -108,7 +110,7 @@ function execDaumPostcode() {
 <div class="updatemapform">
 	<form action="updatemapaction.jsp" method="post" class="form-inline">
 		<!-- hidden -->
-		<input type="text" id="shopnum" name="shopnum" value="<%=dto.getShopnum()%>">
+		<input type="text" id="shopnum" name="shopnum">
 		
 		<table class="table table-bordered" style="width: 600px;">
 			<tr>
@@ -124,7 +126,7 @@ function execDaumPostcode() {
 						<option value="<%=starDto.getShopnum()%>"><%=starDto.getShopname()%></option>
 					<%}%>
 					</select>
-					<input type="text" class="form-control" id="mapcategory2"  name="mapcategory2" value="">
+					<input type="text" class="form-control" id="mapcategory2"  name="mapcategory2">
 					
 				</td>
 			</tr>
@@ -133,21 +135,21 @@ function execDaumPostcode() {
 				<td align="left">
 					<div class="form-group">
 						<input type="text" name="shophp1" class="form-control" maxlength="4"
-						style="width: 80px;" id="shophp1" required="required" value="<%=dto.getShophp1()%>">
+						style="width: 80px;" id="shophp1" required="required">
 						<b>&nbsp;&nbsp;-&nbsp;&nbsp;</b>
 						<input type="text" name="shophp2" class="form-control" maxlength="4"
-						style="width: 80px;" id="shophp2" required="required" value="<%=dto.getShophp2() %>">
+						style="width: 80px;" id="shophp2" required="required">
 					</div>
 				</td>
 			</tr>
 			<tr>
 				<td class="mapaddr" style="width: 150px; background-color: #02a8da"><b>주 소</b></td>
 				<td>					
-					<input type="text" class="form-control input-sm" id="shoppostcode" name="shoppostcode" value="<%=dto.getShoppostcode() %>" style="background-color: #eee; width: 80px;">&nbsp;
+					<input type="text" class="form-control input-sm" id="shoppostcode" name="shoppostcode" style="background-color: #eee; width: 80px;">&nbsp;
 					<button class="btn btn-outline-warning" id="btnpost" onclick="execDaumPostcode()">주소검색</button><br><p></p>
-					<input type="text" class="w-75 form-control input-sm" id="shopaddr" name="shopaddr" value="<%=dto.getShopaddr() %>" style="background-color: #eee">
-					<input type="text" class="w-75 form-control input-sm" id="shopaddrdetail" name="shopaddrdetail" value="<%=dto.getShopaddrdetail() %>" required="required">
-					<input type="text" class="w-75 form-control input-sm" id="shopextraAddress" name="shopextraAddress" value="<%=dto.getShopextraAddress() %>" style="background-color: #eee">
+					<input type="text" class="w-75 form-control input-sm" id="shopaddr" name="shopaddr"  style="background-color: #eee">
+					<input type="text" class="w-75 form-control input-sm" id="shopaddrdetail" name="shopaddrdetail" required="required">
+					<input type="text" class="w-75 form-control input-sm" id="shopextraAddress" name="shopextraAddress" style="background-color: #eee">
 				</td>
 			</tr>
 			<tr>
@@ -164,21 +166,21 @@ function execDaumPostcode() {
 				<td style="width: 150px; background-color: #02a8da">
 				<b>샵정보</b></td>
 				<td align="left">
-					<input type="text" name="shopdetail" class="form-control" style="width: 180px;" value="<%=dto.getShopdetail() %>" required="required">
+					<input type="text" name="shopdetail" class="form-control" style="width: 180px;" required="required">
 				</td>
 			</tr>
 			<tr>
 				<td style="width: 150px; background-color: #02a8da">
 				<b>위도</b></td>
 				<td align="left">
-					<input type="text" name="mpositionx" class="form-control" style="width: 180px;" value="<%=dto.getMpositionx() %>" required="required">
+					<input type="text" name="mpositionx" class="form-control" style="width: 180px;" required="required">
 				</td>
 			</tr>
 			<tr>
 				<td style="width: 150px; background-color: #02a8da">
 				<b>경도</b></td>
 				<td align="left">
-					<input type="text" name="mpositiony" class="form-control" style="width: 180px;" value="<%=dto.getMpositiony() %>" required="required">
+					<input type="text" name="mpositiony" class="form-control" style="width: 180px;" required="required">
 				</td>
 			</tr>
 			<tr>
