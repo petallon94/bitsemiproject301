@@ -37,6 +37,7 @@
 		//최근 추가된 num구하기
 		int gonnum=db.getMaxNum();
 		//글 올린 내용보기로 바로 이동하기
+		//content의 String gonnum=request.getParameter("num");파라미터 num과 일치
 		String path="../index.jsp?main=gonji/content.jsp?num="+gonnum+"&pageNum=1";
 		response.sendRedirect(path);
 		
