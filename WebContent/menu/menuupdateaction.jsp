@@ -45,12 +45,15 @@
 		int menucaff =Integer.parseInt(multi.getParameter("upmenucaff"));
 		
 		
+		
+		
+		
 		String menuphoto = ""; //사진
 		
 		
+		String premenuphoto = multi.getParameter("premenuphoto");
 		
-		
-		
+		///사진/////
 		
 		Enumeration en = multi.getFileNames();
 		while(en.hasMoreElements()){
@@ -64,7 +67,7 @@
 				menuphoto = fileName;
 				
 			}else
-				menuphoto +=","+fileName;
+				menuphoto = premenuphoto;
 			
 		}
 	}
@@ -90,7 +93,7 @@
 		dao.updateMenu(dto);
 		
 		
-		response.sendRedirect("../index.jsp?main=menu/menuadmin.jsp");
+		response.sendRedirect("../index.jsp?main=mypage/adminpagemain.jsp");
 		
 		
 	}catch(Exception e){

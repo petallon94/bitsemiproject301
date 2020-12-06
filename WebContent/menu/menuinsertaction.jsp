@@ -84,7 +84,7 @@
 		dao.insertMenu(dto);
 		
 		
-		response.sendRedirect("../index.jsp?main=menu/menulist.jsp");
+		response.sendRedirect("../index.jsp?main=mypage/adminpagemain.jsp");
 		
 		
 	}catch(Exception e){

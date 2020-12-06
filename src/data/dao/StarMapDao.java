@@ -104,7 +104,7 @@ public class StarMapDao {
 
 		try {
 			pstmt=conn.prepareStatement(sql);
-			//바인딩
+
 
 			pstmt.setString(1, dto.getShopname());
 			String shophp=dto.getShophp1()+"-"+dto.getShophp2();
@@ -117,7 +117,7 @@ public class StarMapDao {
 			pstmt.setString(7, dto.getMpositionx());
 			pstmt.setString(8, dto.getMpositiony());			
 
-			//실행
+
 			pstmt.execute();			
 
 		} catch (SQLException e) {
@@ -129,7 +129,7 @@ public class StarMapDao {
 	}
 	
 
-	//전체 갯수 구하기
+
 	public int getTotalCount()
 	{
 		int tot=0;
@@ -156,8 +156,7 @@ public class StarMapDao {
 	
 	public List<StarMapDto> getList(int start,int perpage)
 	{
-		//그룹변수의 내림차순,같은 그룹인경우 step 의 오름차순 출력
-		//limit 로 시작번지와 몇개르 가져올지 바인딩
+
 		String sql="select * from map order by shopnum desc limit ?,?";
 		List<StarMapDto> list=new ArrayList<StarMapDto>();
 		Connection conn=null;
@@ -225,7 +224,7 @@ public class StarMapDao {
 	{
 		String sql="delete from map where shopname=?";
 		
-		System.out.println("호출은 되니?");
+
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		conn=db.getMyConnection();
@@ -253,7 +252,7 @@ public class StarMapDao {
 		conn=db.getMyConnection();
 		try {
 			pstmt=conn.prepareStatement(sql);
-			//바인딩
+
 			pstmt.setString(1, shopname);
 			rs=pstmt.executeQuery();
 			if(rs.next())
