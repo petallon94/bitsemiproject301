@@ -398,9 +398,22 @@
 	width: auto;
 	height: auto;
 }
-
+/* 배너 */
+.ordsub_visual{min-height:399px;padding:0 10px;text-align:center;background-repeat:no-repeat;background-size:cover;background-position:center;position:relative;}
+.ordsub_visual .txt{width:100%;position:absolute;top:120px;left:0;}
+.ordsub_visual .txt h1{margin:0;font-size:2.75rem;font-weight:500;}
+.ordsub_visual .txt h1:after{display:block;width:40px;height:4px;margin:32px auto;background:#202020;content:'';}
+.ordsub_visual .txt p{font-size:1.25rem;font-weight:300;}
+.ordsub_visual.bg-menu{background-image:url(./image/coffee-5132832_1920.jpg);}
+/* 배너 */
 </style>
 <body>
+	<div class="ordsub_visual bg-menu">
+	    <div class="txt">
+	        <h1>스타보틀</h1>
+	        <p>오직 스타보틀에서만 만나보실 수 있는 시그니처 메뉴입니다.</p>
+	    </div>
+	</div>
 	<%
 	StarMapDao StarDao = new StarMapDao();
 	//목록 가져오기
@@ -442,7 +455,8 @@
 			});
 			$("#shopupdate").click(function() {
 				 var shopnum=$("#shopnum").val();
-				 window.open("map/updatemapform.jsp?shopnum="+shopnum,"","left=800px,top=100px,width=620px,height=680px"); 
+			/* 	 window.open("map/updatemapform.jsp?shopnum="+shopnum,"","left=800px,top=100px,width=620px,height=680px");  */
+				 window.open("map/updatemapform.jsp","","left=800px,top=100px,width=620px,height=680px"); 
 			 	/* location.href="index.jsp?main=map/updatemapform.jsp?shopnum="+shopnum; */
 			});
 			$("#shopdelete").click(function() {
@@ -455,7 +469,7 @@
 
 	<div class="map_wrap">
 		<div id="map"
-			style="width: 100%; height: 750px; position: relative; overflow: hidden;"></div>
+			style="width: 95%; height: 750px; position: relative; overflow: hidden; margin-left: 50px;" ></div>
 
 		<div id="menu_wrap" class="bg_white">
 			<div class="option">
