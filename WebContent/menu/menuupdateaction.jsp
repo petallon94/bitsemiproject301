@@ -93,7 +93,7 @@
 		dao.updateMenu(dto);
 		
 		
-		response.sendRedirect("menuadmin.jsp");
+		response.sendRedirect("../index.jsp?main=mypage/adminpagemain.jsp");
 		
 		
 	}catch(Exception e){

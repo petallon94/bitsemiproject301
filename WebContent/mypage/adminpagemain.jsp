@@ -34,7 +34,7 @@ a {width: 200px;}
 $(function() {
 
 	$("#admin_nav-item1").click(function() {
-		$(".admin_page_content").load("menu/menuinsertform.jsp");		 
+		$(".admin_page_content").load("menu/menuadmin.jsp");		 
 		return false;
 	});
 	
