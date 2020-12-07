@@ -18,10 +18,13 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  
+<!--   slick api -->
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
   
+<!--   카카오 api -->
+  <script type="text/javascript"
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b6754d93f8d097bb07dd758c1b12ba4c&libraries=services,clusterer,drawing"></script>
 <style>
 body{
 font-family: 'Gothic A1', sans-serif;
@@ -107,8 +110,14 @@ text-align: center;
 .promotion_slide {
 width: 1200px;
 }
-#Menu, #Event, #Shop{
+#Menu, #Event, #Shop {
 margin-top: 80px;
+}
+
+#main_location{
+width: 1000px; 
+height: 500px;
+margin: 200px 500px;
 }
 </style>
 <script>
@@ -121,26 +130,13 @@ $(function(){
 	   	 location.href ="index.jsp?main=event/eventcontent.jsp?eventnum="+eventnum;
 	   	  
 	     });
-	function openMenu(evt, cityName) {
-		  var i, x, tablinks;
-		  x = document.getElementsByClassName("tabs");
-		  for (i = 0; i < x.length; i++) {
-		    x[i].style.display = "none";
-		  }
-		  tablinks = document.getElementsByClassName("tablink");
-		  for (i = 0; i < x.length; i++) {
-		    tablinks[i].className = tablinks[i].className.replace(" w3-red", ""); 
-		  }
-		  document.getElementById(cityName).style.display = "block";
-		  evt.currentTarget.className += " w3-red";
-		}
 
 		jQuery('.promotion_slide > div').slick({
 			infinite: true,	
 			arrows: false,
 			autoplay: true,
-			autoplaySpeed: 4000,
-			speed: 3000,
+			autoplaySpeed: 2000,
+			speed: 1500,
 			pauseOnHover : false,
 			slidesToShow: 4,
 			slidesToScroll: 2,
@@ -280,7 +276,7 @@ $(function(){
 
  
   <!-- 매장위치 -->
-  <div class="main_location"> 매장위치</div>
+  <div class="main_location" id="main_location"> 매장위치</div>
 
 
 <!-- End page content -->
@@ -289,7 +285,31 @@ $(function(){
 <div class="fixed-btn">
 <button type="button" class="top" id="topbutton" onclick="scrollMov(0, 200);"><span>TOP</span></button>
 </div>
+<script type="text/javascript">
+function openMenu(evt, cityName) {
+	  var i, x, tablinks;
+	  x = document.getElementsByClassName("tabs");
+	  for (i = 0; i < x.length; i++) {
+	    x[i].style.display = "none";
+	  }
+	  tablinks = document.getElementsByClassName("tablink");
+	  for (i = 0; i < x.length; i++) {
+	    tablinks[i].className = tablinks[i].className.replace(" w3-red", ""); 
+	  }
+	  document.getElementById(cityName).style.display = "block";
+	  evt.currentTarget.className += " w3-red";
+	}
+	
+var container = document.getElementById('main_location');
+var options = {
+	center: new kakao.maps.LatLng(33.450701, 126.570667),
+	level: 3
+};
 
+var map = new kakao.maps.Map(container, options);
+	
+	
+</script>
 
 </body>
 </html>
