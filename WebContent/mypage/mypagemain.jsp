@@ -35,24 +35,7 @@ a {width: 200px;}
     font-family: 'Montserrat', sans-serif;
     font-size: 2.667em;
     color: rgb(63,18,20);
-</style> 
-<script>
-	$("#mypage_nav-item1").click(function() {
-		$(".my_page_content").load("mypage/mypageupdateform.jsp");		 
-		return false;
-	});
-	
-	$("#mypage_nav-item2").click(function() {
-		$(".my_page_content").load("mypage/orderchecklist.jsp");		 
-		return false;
-	});
-	$("#mypage_nav-item3").click(function() {
-		$(".my_page_content").load("mypage/mypagedeleteform.jsp");		 
-		return false;
-	});
-});
-
-</script>
+</style>
 
 </head>
 
@@ -112,7 +95,7 @@ if(loginok==null)
 	});
 	
 	$("#mypage_nav-item2").click(function() {
-		$(".my_page_content").load("order/orderlist.jsp");		 
+		$(".my_page_content").load("mypage/orderchecklist.jsp");		 
 		return false;
 	});
 	$("#mypage_nav-item3").click(function() {

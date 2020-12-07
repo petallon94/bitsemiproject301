@@ -18,9 +18,9 @@
 .ordf_logo img{width: 200px;}
 .ordf_info{font-size: 24pt; text-align: center; font-weight: 700; margin-top: 20px;}
 .ordf_myid{color: #f6c244; font-size: 27pt; font-weight: 800;}
-.ordf_info2{font-size: 24pt; color: #bbb; text-align: center; font-weight: 600;}
+.ordf_info2{font-size: 24pt; text-align: center; font-weight: 500;}
 .ordf_btn{text-align: center; margin: 30px 0 150px 0;}
-.ordf_btn button{width: 200px; height: 60px; font-size: 16pt;}
+.ordf_btn button{width: 200px; height: 60px; font-size: 14pt;}
 </style>
 <%
 	//로그인한 아이디 얻기
@@ -39,9 +39,9 @@
 <div class="ordfinish">
 	<div class="ordf_logo"><img src="image/sb_symbol.jpg"></div>
 	<div class="ordf_info"><span class="ordf_myid"><%=id %></span>님의 주문이 완료되었습니다.</div>
-	<div class="ordf_info2"><span>주문하신 음료 / 음식을 받으셨다면 포인트를 적립하세요!</span></div>
+	<div class="ordf_info2"><span>오늘도 행복한 하루 스타보틀과 함께하세요!</span></div>
 	<div class="ordf_btn">
-		<button type="button" class="btn btn-warning">적립하기</button>
+		<button type="button" class="btn btn-warning" onclick="location.href='index.jsp'">메인으로 돌아가기</button>
 	</div>
 </div>
 </body>
