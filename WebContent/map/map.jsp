@@ -427,18 +427,6 @@
 	if(id == id.equals("admin")){
 
 %> --%>
-	<!-- 매장추가 -->
-	<div id="shopadd">
-		<div id="shopplus">
-			<div id="shopaddspan">매장추가</div>
-		</div>
-		<div id="shopupdate">
-			<div id="shopaddspan">매장수정</div>
-		</div>
-		<div id="shopdelete">
-			<div id="shopaddspan">매장삭제</div>
-		</div>
-	</div>
 
 	<%-- 	<%
 }
@@ -529,7 +517,7 @@
 
 	<div class="map_wrap">
 		<div id="map"
-			style="width: 95%; height: 750px; position: relative; overflow: hidden; margin-left: 50px;" ></div>
+			style="width: 100%; height: 750px; position: relative; overflow: hidden;margin-top: 50px;" ></div>
 
 		<div id="menu_wrap" class="bg_white">
 			<div class="map-search">
@@ -538,7 +526,7 @@
 					<option value="shopname">매장명</option>
 					<option value="shopaddr">매장주소</option>
 				</select> 
-				<input type="text" id="mapsearch" name="mapsearch">
+				<input type="hidden" id="mapsearch" name="mapsearch">
 				<input type="text" style="width: 200px;" name="word" id="word" class = "word" placeholder="검색단어입력"> 
 				<button type="button" class="btn btn-warning" id="mapbutton"
 					style="width: 45px;">
