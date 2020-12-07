@@ -277,7 +277,7 @@ $(function(){
 						<div>
 							<a href="index.jsp?main=event/eventcontent.jsp?eventnum=<%=evdto.getEventnum()%>" target="_self">
 								<p class="photo">
-									<img src="menusave/<%=evdto.getEvlistimage() %>" style ="width : 250px; height:250px;" class="t_hidden m_hidden"/>									
+									<img src="eventsave/<%=evdto.getEvlistimage() %>" style ="width : 250px; height:250px;" class="t_hidden m_hidden"/>									
 								</p>
 								<p class="desc_box">
 									<span class="subject"><%=evdto.getEvsubject() %></span>									

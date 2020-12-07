@@ -19,7 +19,9 @@
 	}else{%>
 		<script type="text/javascript">
 			alert("비밀번호가 틀렸습니다");
-			history.back();
+			location.href="../index.jsp?main=mypage/mypagemain.jsp";
+			const content=document.getElementsByClassName("my_page_content");
+			content.load("mypage/mypagedeleteform.jsp");	
 		</script>
 	<%}
 %>

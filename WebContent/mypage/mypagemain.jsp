@@ -19,14 +19,14 @@
 .nav {display: flex; flex-direction: column;}
 a {width: 200px;}
 	
-<<<<<<< HEAD
+
 .my_page_content {display:flex;left:400px; margin-top:20px; float: left;}
 .my_page_content img{max-width:100%;}
-=======
+
 .my_page_content {display:flex;margin-left:100px; margin-top:20px; float: left;}
 
 .my_page_content img{max-width:100%;height :200px;}
->>>>>>> branch 'feature/3' of https://github.com/petallon94/bitsemiproject301.git
+
 div#mypage_main {margin-bottom: 200px;}
 /*submenu*/
 .sub_visual{min-height:399px;padding:0 10px;text-align:center;background-repeat:no-repeat;background-size:cover;background-position:center;position:relative;margin-bottom: 30px;}
