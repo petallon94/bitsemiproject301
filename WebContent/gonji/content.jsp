@@ -61,7 +61,19 @@
 		height: 350px;
 		background-color: white;
 		width: 1000px;
+		
 	}
+	
+	
+	
+		/* sub */
+.ordsub_visual{min-height:399px;padding:0 10px;text-align:center;background-repeat:no-repeat;background-size:cover;background-position:center;position:relative;}
+.ordsub_visual .txt{width:100%;position:absolute;top:120px;left:0;}
+.ordsub_visual .txt h1{margin:0;font-size:2.75rem;font-weight:500;}
+.ordsub_visual .txt h1:after{display:block;width:40px;height:4px;margin:32px auto;background:#202020;content:'';}
+.ordsub_visual .txt p{font-size:1.25rem;font-weight:300;color:white;}
+.ordsub_visual.bg-menu{background-image:url(./image/people-coffee-shop-wide.jpg);}
+	
 	
 </style>
 
@@ -94,6 +106,18 @@ function del(gonnum){
 </script>
 </head>
 <body>
+
+
+<div class="ordsub_visual bg-menu">
+    <div class="txt">
+        <h1>스타보틀</h1>
+        <p>스타보틀의 공지사항입니다.</p>
+    </div>
+</div>
+
+
+
+
 <%
 	//이부분이 formaction의 String path="../index.jsp?main=gonji/content.jsp?num="
 	//에서 변수명이 마지막 num으로 넘어감
@@ -129,8 +153,9 @@ function del(gonnum){
 	//아이디에 해당하는 이름 얻기
 	//String name=dao.getName(myid);
 %>	
-
-<table class="table table-striped" style="width: 1000px;">
+<br><br><br><br><br>
+<h2 style="display: inline;margin-left: 410px;">공지사항	</h2>
+<table class="table table-striped" style="width: 1000px;margin-left: 410px;">
 <tbody>
  <tr>
 	<%--제목폼--%>
