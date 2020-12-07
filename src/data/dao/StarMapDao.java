@@ -346,54 +346,7 @@ public class StarMapDao {
 			db.dbClose(conn, pstmt, rs);	
 		}	
 		return list;	
-	}
-	
-
-
-
-
-
-	
-	
-	public List<StarMapDto> getRandomList()	
-	{	
-
-		String sql="select * from map order by rand() limit 4";	
-
-		List<StarMapDto> list=new ArrayList<StarMapDto>();	
-		Connection conn=null;	
-		PreparedStatement pstmt=null;	
-		ResultSet rs=null;	
-		conn=db.getMyConnection();	
-		try {	
-			pstmt=conn.prepareStatement(sql);	
-			rs=pstmt.executeQuery();	
-			while(rs.next())	
-			{	
-				StarMapDto dto=new StarMapDto();	
-				dto.setShopnum(rs.getString("shopnum"));	
-				dto.setShopname(rs.getString("shopname"));	
-				dto.setShophp(rs.getString("shophp"));	
-				dto.setShopaddr(rs.getString("shopaddr"));	
-				dto.setShopaddrdetail(rs.getString("shopaddrdetail"));	
-				dto.setShopphoto(rs.getString("shopphoto"));	
-				dto.setShopdetail(rs.getString("shopdetail"));	
-				dto.setMpositionx(rs.getString("mpositionx"));	
-				dto.setMpositiony(rs.getString("mpositiony"));	
-
-				list.add(dto);	
-			}	
-		} catch (SQLException e) {	
-			// TODO Auto-generated catch block	
-			e.printStackTrace();	
-		}finally {	
-			db.dbClose(conn, pstmt, rs);	
-		}	
-		return list;	
-	}
-	
-	
-	
+	}	
 	
 	//검색결과 리스트 중 한 페이지에서 필요한만큼 반환하기
 		public List<StarMapDto> getSearchList(String key,String value)

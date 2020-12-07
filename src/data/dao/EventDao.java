@@ -15,7 +15,7 @@ public class EventDao {
 	MysqlConnect db=new MysqlConnect();
 
 	
-	//¿Ã∫•∆Æ √ﬂ∞°
+
 	public void insertEvent(EventDto dto)
 	{
 		Connection conn=null;
@@ -44,7 +44,7 @@ public class EventDao {
 		}
 	}
 	
-	//¡∂»∏ºˆ¡ı∞°
+
 	public void updateReadCount(String eventnum)
 	{
 		String sql="update event set evreadcount=evreadcount+1 where eventnum=?";
@@ -65,8 +65,7 @@ public class EventDao {
 			db.dbClose(conn, pstmt);
 		}
 	}
-	
-	//∏Ò∑œ
+
 	public List<EventDto> getAllEvent()
 	{
 		List<EventDto> list=new ArrayList<EventDto>();
@@ -107,7 +106,7 @@ public class EventDao {
 		return list;
 	}
 	
-	//¡¯«‡¡ﬂ¿Ã∫•∆Æ
+
 	public List<EventDto> getIngEvent()
 	{
 		List<EventDto> list=new ArrayList<EventDto>();
@@ -151,7 +150,7 @@ public class EventDao {
 	
 	
 	
-	//¡æ∑·¿Ã∫•∆Æ
+
 	public List<EventDto> getEndEvent()
 	{
 		List<EventDto> list=new ArrayList<EventDto>();
@@ -196,7 +195,7 @@ public class EventDao {
 	
 	
 	
-	//√—∞πºˆ
+
 	public int getIngTotalCount()
 	{
 		int tot=0;
@@ -276,10 +275,12 @@ public class EventDao {
 		try {
 			pstmt=conn.prepareStatement(sql);
 			
-			//πŸ¿Œµ˘
+
+			//Î∞îÏù∏Îî©
 			pstmt.setInt(1, start);
 			pstmt.setInt(2, perpage);
-			//Ω««‡
+			//Ïã§Ìñâ
+
 			rs=pstmt.executeQuery();
 			
 			while(rs.next())
@@ -308,7 +309,7 @@ public class EventDao {
 	}
 	
 	
-	//ªË¡¶
+
 	public void deleteEvent(String eventnum)
 	{
 		String sql="delete from event where eventnum=?";
@@ -333,13 +334,13 @@ public class EventDao {
 	}
 	
 	
-	//ºˆ¡§
+
 	public void updateEvent(EventDto dto)
 	{
 		String sql="";
 		Connection conn=null;
 		PreparedStatement pstmt=null;
-		
+
 		conn=db.getMyConnection();
 		
 		try {
