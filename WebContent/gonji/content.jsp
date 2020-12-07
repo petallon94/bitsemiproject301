@@ -150,7 +150,7 @@ function del(gonnum){
   <%--아이디출력폼 --%>
   <tr id="id">
 	<td colspan="2" valign="top">
-		<img src="image/sb_logo.jpg" width="30">
+		<img src="image/sb_symbol.jpg" width="30">
 		<b><%=dto.getGonid()%></b>
 	</td>
   </tr>

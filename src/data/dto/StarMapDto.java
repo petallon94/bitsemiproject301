@@ -1,3 +1,4 @@
+
 package data.dto;
 
 
@@ -96,5 +97,5 @@ public class StarMapDto {
 		this.mpositiony = mpositiony;
 	}
 	
-	
+
 }

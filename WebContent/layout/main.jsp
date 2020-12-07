@@ -1,3 +1,4 @@
+
 <%@page import="data.dto.StarMapDto"%>
 <%@page import="data.dao.StarMapDao"%>
 <%@page import="data.dto.EventDto"%>
@@ -31,9 +32,6 @@ font-family: 'Gothic A1', sans-serif;
 }
 h1,h2,h3 {
 font-family: "Karma", sans-serif
-}
-h2{
-margin-bottom: 20px;
 }
 .carousel-container{
 width: 50%;
@@ -105,6 +103,7 @@ width: 100%;
     overflow: hidden;   
 }
 
+
 .promotion_slide {
 width: 1200px;
 }
@@ -112,11 +111,13 @@ width: 1200px;
 margin-top: 40px;
 }
 
+
 #main_location{
 width: 1000px; 
 height: 500px;
 margin: 200px 500px;
 }
+
 .slide_container{
 width:1260px; 
 height : 450px;
@@ -126,6 +127,7 @@ margin-bottom: 100px;
 .slide_title{
 text-align: center;
 }
+
 
 </style>
 <script>
@@ -231,6 +233,7 @@ $(function(){
 
 <!-- 사이트 메인 중앙 컨텐츠 -->
 <div class= "tabb" style="width:100%; margin-top : 100px; display:flex; justify-content : center">
+
 <%
 	//메뉴 dao 선언
 	MenuDao medao = new MenuDao();
@@ -243,10 +246,12 @@ $(function(){
 	List<StarMapDto> listsm = smdao.getRandomList();
 	
 %>
+
 <div style="width:1260px; height : 100%;">
 <div class="slide_container" style="background-color : #eee;">
 	<h2 class="slide_title">메뉴</h2>
  	<div class="promotion_slide1 w3-container tabs" id="Menu">  			
+
 				<div class="slide_box" >        
 						<%for(MenuDto medto : list){%>
 						<div>
@@ -283,6 +288,7 @@ $(function(){
 				</div> 
 			<a style="cursor :pointer" onclick ="location.href='index.jsp?main=event/eventlist.jsp'">더보기</a>
    	</div>	 
+
    	 </div>
 <div class="slide_container">
    	<h2 class="slide_title">매장</h2>	
@@ -299,6 +305,7 @@ $(function(){
 		 <%} %>   
 		 <a style="cursor :pointer" onclick ="location.href='index.jsp?main=map/map.jsp'">더보기</a> 
 	
+
 </div>
 </div>
 </div>
@@ -340,5 +347,6 @@ var options = {
 var map = new kakao.maps.Map(container, options);
 	 */
 </script>
+
 
 </html>

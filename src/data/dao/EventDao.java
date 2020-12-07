@@ -1,4 +1,3 @@
-
 package data.dao;
 
 import java.sql.Connection;
@@ -16,7 +15,7 @@ public class EventDao {
 	MysqlConnect db=new MysqlConnect();
 
 	
-	//占싱븝옙트 占쌩곤옙
+
 	public void insertEvent(EventDto dto)
 	{
 		Connection conn=null;
@@ -45,7 +44,7 @@ public class EventDao {
 		}
 	}
 	
-	//占싫몌옙占쏙옙占�
+
 	public void updateReadCount(String eventnum)
 	{
 		String sql="update event set evreadcount=evreadcount+1 where eventnum=?";
@@ -66,8 +65,7 @@ public class EventDao {
 			db.dbClose(conn, pstmt);
 		}
 	}
-	
-	//占쏙옙占�
+
 	public List<EventDto> getAllEvent()
 	{
 		List<EventDto> list=new ArrayList<EventDto>();
@@ -108,7 +106,7 @@ public class EventDao {
 		return list;
 	}
 	
-	//占쏙옙占쏙옙占쏙옙占싱븝옙트
+
 	public List<EventDto> getIngEvent()
 	{
 		List<EventDto> list=new ArrayList<EventDto>();
@@ -152,7 +150,7 @@ public class EventDao {
 	
 	
 	
-	//占쏙옙占쏙옙遣占싣�
+
 	public List<EventDto> getEndEvent()
 	{
 		List<EventDto> list=new ArrayList<EventDto>();
@@ -197,7 +195,7 @@ public class EventDao {
 	
 	
 	
-	//占싼곤옙占쏙옙
+
 	public int getIngTotalCount()
 	{
 		int tot=0;
@@ -277,10 +275,12 @@ public class EventDao {
 		try {
 			pstmt=conn.prepareStatement(sql);
 			
-			//占쏙옙占싸듸옙
+
+			//바인딩
 			pstmt.setInt(1, start);
 			pstmt.setInt(2, perpage);
-			//占쏙옙占쏙옙
+			//실행
+
 			rs=pstmt.executeQuery();
 			
 			while(rs.next())
@@ -309,7 +309,7 @@ public class EventDao {
 	}
 	
 	
-	//占쏙옙占�
+
 	public void deleteEvent(String eventnum)
 	{
 		String sql="delete from event where eventnum=?";
@@ -334,27 +334,65 @@ public class EventDao {
 	}
 	
 	
-	//占쏙옙占�
+
 	public void updateEvent(EventDto dto)
 	{
-		String sql="update event set evsubject=?,evlistimage=?,evcontent=?,"
-				+ "evcontentimage=?,evstartday=?,evendday=? where eventnum=?";
+		String sql="";
 		Connection conn=null;
 		PreparedStatement pstmt=null;
-		
+
 		conn=db.getMyConnection();
 		
 		try {
-			pstmt=conn.prepareStatement(sql);
+			if(dto.getEvlistimage()==null && dto.getEvcontentimage().length()<2)
+			{
+				sql="update event set evsubject=?,evcontent=?,evstartday=?,evendday=? where eventnum=?";
+				pstmt=conn.prepareStatement(sql);
+				
+				pstmt.setString(1, dto.getEvsubject());
+				pstmt.setString(2, dto.getEvcontent());
+				pstmt.setString(3, dto.getEvstartday());
+				pstmt.setString(4, dto.getEvendday());
+				pstmt.setString(5, dto.getEventnum());
+			}else if(dto.getEvlistimage()!=null  && dto.getEvcontentimage().length()<2)
+			{
+				sql="update event set evsubject=?,evlistimage=?,evcontent=?,evstartday=?,evendday=? where eventnum=?";
+				pstmt=conn.prepareStatement(sql);
 			
-			pstmt.setString(1, dto.getEvsubject());
-			pstmt.setString(2, dto.getEvlistimage());
-			pstmt.setString(3, dto.getEvcontent());
-			pstmt.setString(4, dto.getEvcontentimage());
-			pstmt.setString(5, dto.getEvstartday());
-			pstmt.setString(6, dto.getEvendday());
-			pstmt.setString(7, dto.getEventnum());
-			
+				pstmt.setString(1, dto.getEvsubject());
+				pstmt.setString(2, dto.getEvlistimage());
+				pstmt.setString(3, dto.getEvcontent());
+				pstmt.setString(4, dto.getEvstartday());
+				pstmt.setString(5, dto.getEvendday());
+				pstmt.setString(6, dto.getEventnum());
+				
+			}else if(dto.getEvlistimage()==null && dto.getEvcontentimage()!=null) 
+			{
+				sql="update event set evsubject=?,evcontent=?,evcontentimage=?,evstartday=?,evendday=? where eventnum=?";
+				pstmt=conn.prepareStatement(sql);
+				
+				pstmt.setString(1, dto.getEvsubject());
+				pstmt.setString(2, dto.getEvcontent());
+				pstmt.setString(3, dto.getEvcontentimage());
+				pstmt.setString(4, dto.getEvstartday());
+				pstmt.setString(5, dto.getEvendday());
+				pstmt.setString(6, dto.getEventnum());
+				
+				
+			}else if(dto.getEvlistimage()!=null  &&  dto.getEvcontentimage()!=null)
+			{
+				sql="update event set evsubject=?,evlistimage=?,evcontent=?,evcontentimage=?,evstartday=?,evendday=? where eventnum=?";
+				pstmt=conn.prepareStatement(sql);
+				
+				pstmt.setString(1, dto.getEvsubject());
+				pstmt.setString(2, dto.getEvlistimage());
+				pstmt.setString(3, dto.getEvcontent());
+				pstmt.setString(4, dto.getEvcontentimage());
+				pstmt.setString(5, dto.getEvstartday());
+				pstmt.setString(6, dto.getEvendday());
+				pstmt.setString(7, dto.getEventnum());
+				
+			}
 			pstmt.execute();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -363,48 +401,6 @@ public class EventDao {
 			db.dbClose(conn, pstmt);
 		}
 	}
-  
-  public List<EventDto> getMainEvent()
-	{
-		List<EventDto> list=new ArrayList<EventDto>();
-		Connection conn=null;
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
-		
-		String sql="select * from event order by eventnum desc limit 8";
-		
-		conn=db.getMyConnection();
-		
-		try {
-			pstmt=conn.prepareStatement(sql);
-			rs=pstmt.executeQuery();
-			
-			while(rs.next())
-			{
-				EventDto dto=new EventDto();
-				dto.setEventnum(rs.getString("eventnum"));
-				dto.setId(rs.getString("id"));
-				dto.setEvsubject(rs.getString("evsubject"));
-				dto.setEvlistimage(rs.getString("evlistimage"));
-				dto.setEvcontent(rs.getString("evcontent"));
-				dto.setEvcontentimage(rs.getString("evcontentimage"));
-				dto.setEvstartday(rs.getString("evstartday"));
-				dto.setEvendday(rs.getString("evendday"));
-				dto.setEvreadcount(rs.getInt("evreadcount"));
-				dto.setEvwriteday(rs.getTimestamp("evwriteday"));
-				
-				list.add(dto);
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			db.dbClose(conn, pstmt, rs);
-		}
-		return list;
-	}
-  
-  
 	
 	
 }
