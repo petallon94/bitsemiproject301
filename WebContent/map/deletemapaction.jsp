@@ -20,12 +20,9 @@
 		alert("입력하신 매장을 삭제하였습니다");
 		</script>
 		<%
-	System.out.println(shopname);
+	/* System.out.println(shopname); */
 	dao.deleteShop(shopname);
 	}
-	%>
-	<script type="text/javascript">
-	window.open("about:blank","_self").close();
-	</script>
-	<%
+	response.sendRedirect("../index.jsp?main=mypage/adminpagemain.jsp");
 %>
+	

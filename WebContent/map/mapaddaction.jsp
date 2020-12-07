@@ -68,11 +68,7 @@
 		
 		//윈도우 창 닫기
 		
-		%>
-		<script type="text/javascript">
-		window.open("about:blank","_self").close();
-		</script>
-		<%
+		response.sendRedirect("../index.jsp?main=mypage/adminpagemain.jsp");
 		
 	}catch(Exception e){
 		System.out.println("업로드 오류 :"+e.getMessage());

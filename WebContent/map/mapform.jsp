@@ -57,7 +57,7 @@ function execDaumPostcode() {
 }
 </script>
 <div class="mapform">
-	<form action="mapaddaction.jsp" method="post" enctype="multipart/form-data" class="form-inline">
+	<form action="map/mapaddaction.jsp" method="post" enctype="multipart/form-data" class="form-inline">
 		<table class="table table-bordered" style="width: 600px;">
 			<tr>
 				<td style="width: 150px; background-color: #02a8da">
@@ -123,7 +123,7 @@ function execDaumPostcode() {
 				<td colspan="2" align="center">
 					<button type="submit" class="btn btn-info" style="width: 100px;"><b>매장저장</b></button>
 					<button type="button" class="btn btn-info" style="width: 100px;" 
-					onclick="location.href='index.jsp?main=map/maplist.jsp'"><b>매장목록</b></button>
+					onclick="location.href='index.jsp?main=map/map.jsp'"><b>매장목록</b></button>
 				</td>
 			</tr>
 		</table>
