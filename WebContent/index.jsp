@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <!-- bootstrap4 -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
+<link rel="icon" href="image/sb_symbol.jpg">
 
 <!-- 반응형 -->
 <!-- <style type="text/css"> 

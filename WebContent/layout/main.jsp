@@ -28,7 +28,9 @@ font-family: 'Gothic A1', sans-serif;
 h1,h2,h3 {
 font-family: "Karma", sans-serif
 }
-h2{margin:50px 0 20px 33px;}
+h2{
+margin-bottom: 20px;
+}
 .carousel-container{
 width: 50%;
 }
@@ -75,14 +77,58 @@ width: 100%;
 #topbutton span{
 text-align: center;
 }
+
+.event_div {
+	overflow: hidden;
+}
+.event_div img {
+    -webkit-transform:scale(1);
+    -moz-transform:scale(1);
+    -ms-transform:scale(1); 
+    -o-transform:scale(1);  
+    transform:scale(1);
+    -webkit-transition:.3s;
+    -moz-transition:.3s;
+    -ms-transition:.3s;
+    -o-transition:.3s;
+    transition:.3s;
+    overflow: hidden;
+}
+.event_div:hover img {
+    -webkit-transform:scale(1.2);
+    -moz-transform:scale(1.2);
+    -ms-transform:scale(1.2);   
+    -o-transform:scale(1.2);
+    transform:scale(1.2);
+    
+}
+
+
+
 </style>
-<script type="text/javascript">
-
-//공지사항 롤링 함수(안쓸수도 있음)
-
-$("#gonji_roll").rolling(490,290,{autoscroll:1, delay:1500});
-
-
+<script>
+$(function(){
+	
+	$("div.menudetail").click(function(e){
+	  	  
+	   	 e.preventDefault(); 
+	   	 var menunum = $(this).attr("menunum");
+	   	 location.href ="index.jsp?main=menu/menudetailpage.jsp?menunum="+menunum;
+	   	  
+	     });
+	
+	$("div.eventdetail").click(function(e){
+	  	  
+	   	 e.preventDefault(); 
+	   	 var eventnum = $(this).attr("eventnum");
+	   	 location.href ="index.jsp?main=event/eventcontent.jsp?eventnum="+eventnum;
+	   	  
+	     });
+	
+	
+	
+	
+});
 </script>
 
 
@@ -149,42 +195,46 @@ $("#gonji_roll").rolling(490,290,{autoscroll:1, delay:1500});
 %>
 <div style="width:1200px;height : 450px;background-color : #eee;">
   <div id="Menu" class="w3-container tabs">
-    <h2>스타보틀 메뉴</h2>
-   	<div style ="display : flex;">
+   	<div style ="display : flex;justify-content : space-between;">
    	<%
 	
 		for(MenuDto medto : list){%>
-		<div style ="width 270px;height 300px;margin-left: 33px;">
-   		<img src ="menusave/<%=medto.getMenuphoto() %>" style ="width : 250px;height:250px;margin-bottom: 8px;">
+		<div style ="width 270px;height 300px; cursor:pointer;" class ="menudetail" menunum = "<%=medto.getMenunum()%>">
+   		<img src ="menusave/<%=medto.getMenuphoto() %>" style ="width : 250px;height:250px;">
    		<p><%=medto.getMenuname() %></p>
+   		
    		</div>
 		 <%} %>
-   	
+   	<a style="cursor :pointer	" onclick ="location.href='index.jsp?main=menu/menulist.jsp'">더보기</a>
    	</div>
   </div>
 
   <div id="Event" class="w3-container tabs" style="display:none">
-    <h2>이벤트 안내</h2>
-    <div style ="display : flex;">
+    <div style ="display : flex;justify-content : space-between;">
     <%
 	
 		for(EventDto evdto : liste){%>
-		<div style ="width 270px;height 300px; margin-left: 33px;">
-   		<img src ="eventsave/<%=evdto.getEvlistimage() %>" style ="width : 250px;height:250px; margin-bottom: 8px;">
+		
+		<div style ="width 270px;height 300px;cursor:pointer;" class ="eventdetail" eventnum = "<%=evdto.getEventnum()%>">
+   		<div class ="event_div">
+   		<img src ="eventsave/<%=evdto.getEvlistimage() %>" style ="width : 250px;height:250px;">
+   		</div>
    		<p style ="width:250px"><%=evdto.getEvsubject() %></p>
    		</div>
 		 <%} %>
-	</div>
+	
+		<a style="cursor :pointer" onclick ="location.href='index.jsp?main=event/eventlist.jsp'">더보기</a>
+  </div>
   </div>
 
   <div id="Shop" class="w3-container tabs" style="display:none">
-    <h2>매장소개</h2>
-    <div style ="display : flex;">
+ 
+    <div style ="display : flex;justify-content : space-between;">
     <%
 	
 		for(StarMapDto smdto : listsm){%>
-		<div style ="width 270px;height 300px;margin-left: 33px;">
-   		<img src ="eventsave/<%=smdto.getShopphoto() %>" style ="width : 250px;height:250px; border-radius:125px;border : 1px solid black; margin-bottom: 8px;">
+		<div style ="width 270px;height 300px;">
+   		<img src ="eventsave/<%=smdto.getShopphoto() %>" style ="width : 250px;height:250px; border-radius:125px;border : 1px solid black">
    		<p><%=smdto.getShopname() %></p>
    		</div>
 		 <%} %>

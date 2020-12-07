@@ -107,13 +107,13 @@ $(function(){
 	</div>
 <!-- End page content -->
 </div>
-<div class="menu_footer w3-padding" style="max-width:1600px;margin-top:100px">
-<hr>
-<a  class="w3-bar-item w3-button w3-padding">메뉴추가</a>
-</div>
 
 
 
+
+
+
+</body>
 <script>
 // Script to open and close sidebar
 function w3_open() {
@@ -127,5 +127,5 @@ function w3_close() {
 
 </script>
 
-</body>
+
 </html>
