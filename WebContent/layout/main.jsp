@@ -64,22 +64,22 @@ width: 100%;
 
 }
 
-.fixed-btn {
-    position: fixed;
-    z-index: 49;
-    right: 0;
-    bottom: 0;
+#pageTop {
     overflow: hidden;
+    position: fixed;
+    z-index: 300;
+    right: 31px;
+    bottom: 0;
+    width: 58px;
+    height: 58px;
+    border: 0;
+    background: url('./image/backtotop_icon.png') no-repeat 50% 50%;
+    font-size: 0;
+    line-height: 0;
+    text-indent: -9999px;
+    opacity: 0;
+    transition: background .2s;
 }
-.fixed-btn #pageTop {
-    width: 60px;
-    height: 60px;
-    background: url('./image/backtotop_icon.png') no-repeat center;
-    background-size: cover;
-    vertical-align: middle;
-    text-align: center;
-}
-
 .shop_div {
 	overflow: hidden;
 }
@@ -307,10 +307,10 @@ $(function(){
   <!-- 매장위치 카카오맵
   <div class="main_location" id="main_location"> 매장위치</div>-->
 
-<!-- top button 작동안됨 -->
-<div class="fixed-btn">
-<a href="#top" class="on" style="opacity:1;"><span id="pageTop" >TOP</span></a>
-</div>
+
+
+<a href="#top" id="pageTop" class="on" style="opacity:1;">맨 위로 가기</a>
+
 </div>
 </div>
 
