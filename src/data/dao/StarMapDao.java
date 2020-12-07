@@ -116,7 +116,6 @@ public class StarMapDao {
 			pstmt.setString(7, dto.getMpositionx());
 			pstmt.setString(8, dto.getMpositiony());			
 
-
 			pstmt.execute();			
 
 		} catch (SQLException e) {
@@ -397,11 +396,11 @@ public class StarMapDao {
 	
 	
 	
-	//°Ë»ö°á°ú ¸®½ºÆ® Áß ÇÑ ÆäÀÌÁö¿¡¼­ ÇÊ¿äÇÑ¸¸Å­ ¹İÈ¯ÇÏ±â
+	//ê²€ìƒ‰ê²°ê³¼ ë¦¬ìŠ¤íŠ¸ ì¤‘ í•œ í˜ì´ì§€ì—ì„œ í•„ìš”í•œë§Œí¼ ë°˜í™˜í•˜ê¸°
 		public List<StarMapDto> getSearchList(String key,String value)
 		{
 			List<StarMapDto> list=new ArrayList<StarMapDto>();
-			//allÀÏ °æ¿ì
+			//allì¼ ê²½ìš°
 			String s="";
 			if(key!=null)
 			{
@@ -418,11 +417,11 @@ public class StarMapDao {
 			conn=db.getMyConnection();
 			try {
 				pstmt=conn.prepareStatement(sql);
-				//¹ÙÀÎµù
+				//ë°”ì¸ë”©
 				/*
 				 * pstmt.setString(1, key); pstmt.setString(2, value);
 				 */
-				//½ÇÇà
+				//ì‹¤í–‰
 				rs=pstmt.executeQuery();
 				while(rs.next())
 				{

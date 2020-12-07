@@ -1,3 +1,4 @@
+
 <%@page import="data.dto.StarMapDto"%>
 <%@page import="data.dao.StarMapDao"%>
 <%@page import="data.dto.EventDto"%>
@@ -320,4 +321,5 @@ var map = new kakao.maps.Map(container, options);
 </script>
 
 </body>
+
 </html>

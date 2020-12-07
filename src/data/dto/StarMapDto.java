@@ -96,5 +96,5 @@ public class StarMapDto {
 		this.mpositiony = mpositiony;
 	}
 	
-	
+
 }
