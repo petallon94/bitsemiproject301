@@ -15,7 +15,14 @@ public class MemberDto {
 	private String extraaddr;
 	private String email1;
 	private String email2;
+	private String barcode;
 	
+	public String getBarcode() {
+		return barcode;
+	}
+	public void setBarcode(String barcode) {
+		this.barcode = barcode;
+	}
 	public String getLoginnum() {
 		return loginnum;
 	}

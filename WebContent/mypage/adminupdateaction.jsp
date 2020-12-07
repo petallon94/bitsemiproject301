@@ -20,7 +20,12 @@ boolean find=dao.isIdPassCheck(loginid, password);
 
 if(find){	
 dao.updateMember(dto);	
-response.sendRedirect("../index.jsp?main=mypage/memberlist.jsp");
+response.sendRedirect("../index.jsp?main=mypage/adminpagemain.jsp");
+%>
+<script type="text/javascript">
+$(".admin_page_content").load("mypage/memberlist.jsp");		 
+</script>
+<%
 }else{%>
 <script type="text/javascript">
 alert("비밀번호가 맞지 않습니다.");
