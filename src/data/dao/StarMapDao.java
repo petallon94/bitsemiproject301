@@ -7,8 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
+import data.dto.GonjiDto;
 import data.dto.StarMapDto;
 import mysql.db.MysqlConnect;
 
@@ -117,7 +116,6 @@ public class StarMapDao {
 			pstmt.setString(7, dto.getMpositionx());
 			pstmt.setString(8, dto.getMpositiony());			
 
-
 			pstmt.execute();			
 
 		} catch (SQLException e) {
@@ -128,7 +126,6 @@ public class StarMapDao {
 		}		
 	}
 	
-
 
 	public int getTotalCount()
 	{
@@ -349,54 +346,67 @@ public class StarMapDao {
 			db.dbClose(conn, pstmt, rs);	
 		}	
 		return list;	
+
 	}
 	
+     //�˻��� ����Ʈ �� �� ������� �ʿ��Ѹ�ŭ ��ȯ�ϱ�
+     		public List<StarMapDto> getSearchList(String key,String value)
+     		{
+     			List<StarMapDto> list=new ArrayList<StarMapDto>();
+     			//all�� ���
+     			String s="";
+     			if(key!=null)
+     			{
+     				if(key.equals("shopname"))
+     					s="where shopname like '%"+value+"%'";
+     				else if(key.equals("shopaddr"))
+     					s="where shopaddr like '%"+value+"%'";	
+     			}
+     			String sql="select * from map "+s+" order by shopnum desc ";
+     			
+     			Connection conn=null;
+     			PreparedStatement pstmt=null;
+     			ResultSet rs=null;
+     			conn=db.getMyConnection();
+     			try {
+     				pstmt=conn.prepareStatement(sql);
+     				//���ε�
+     				/*
+     				 * pstmt.setString(1, key); pstmt.setString(2, value);
+     				 */
+     				//����
+     				rs=pstmt.executeQuery();
+     				while(rs.next())
+     				{
+     					StarMapDto dto=new StarMapDto();
+     					dto.setShopnum(rs.getString("shopnum"));
+     					dto.setShopname(rs.getString("shopname"));
+     					dto.setShophp(rs.getString("shophp"));
+     					dto.setShopaddr(rs.getString("shopaddr"));
+     					dto.setShopaddrdetail(rs.getString("shopaddrdetail"));
+     					dto.setShopphoto(rs.getString("shopphoto"));
+     					dto.setShopdetail(rs.getString("shopdetail"));
+     					dto.setMpositionx(rs.getString("mpositionx"));
+     					dto.setMpositiony(rs.getString("mpositiony"));
 
+     					list.add(dto);
+     				}
+     			} catch (SQLException e) {
+     				// TODO Auto-generated catch block
+     				e.printStackTrace();
+     			} finally {
+     				db.dbClose(conn, pstmt, rs);
+     			}
+     			return list;
+     			
+
+     		}
 
 
 
 
 	
-	
-	public List<StarMapDto> getRandomList()	
-	{	
 
-		String sql="select * from map order by rand() limit 4";	
-
-		List<StarMapDto> list=new ArrayList<StarMapDto>();	
-		Connection conn=null;	
-		PreparedStatement pstmt=null;	
-		ResultSet rs=null;	
-		conn=db.getMyConnection();	
-		try {	
-			pstmt=conn.prepareStatement(sql);	
-			rs=pstmt.executeQuery();	
-			while(rs.next())	
-			{	
-				StarMapDto dto=new StarMapDto();	
-				dto.setShopnum(rs.getString("shopnum"));	
-				dto.setShopname(rs.getString("shopname"));	
-				dto.setShophp(rs.getString("shophp"));	
-				dto.setShopaddr(rs.getString("shopaddr"));	
-				dto.setShopaddrdetail(rs.getString("shopaddrdetail"));	
-				dto.setShopphoto(rs.getString("shopphoto"));	
-				dto.setShopdetail(rs.getString("shopdetail"));	
-				dto.setMpositionx(rs.getString("mpositionx"));	
-				dto.setMpositiony(rs.getString("mpositiony"));	
-
-				list.add(dto);	
-			}	
-		} catch (SQLException e) {	
-			// TODO Auto-generated catch block	
-			e.printStackTrace();	
-		}finally {	
-			db.dbClose(conn, pstmt, rs);	
-		}	
-		return list;	
-	}
-	
-	
-	
 	
 }
 
