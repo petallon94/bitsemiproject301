@@ -144,7 +144,7 @@
 	top: 0;
 	left: 0;
 	bottom: 0;
-	width: 250px;
+	width: 300px;
 	margin: 10px 0 30px 10px;
 	padding: 5px;
 	overflow-y: auto;
@@ -292,7 +292,7 @@
 }
 
 /* 매장추가,수정,삭제 */
-#maphadan {
+/* #maphadan {
 	position: relative;
 	top: 150px;
 	left: -330px;
@@ -312,7 +312,7 @@
 	top: 30px;
 	width: 300px;
 }
-
+ */
 #shopadd {
 	position: relative;
 	width: 635px;
@@ -387,17 +387,8 @@
 	bottom: auto;
 }
 
-.hadanhadan {
-	width: auto; text-align : center;
-	margin: 0px auto;
-	position: relative;
-	text-align: center;
-}
 
-.hadanhadan div {
-	width: auto;
-	height: auto;
-}
+
 /* 배너 */
 .ordsub_visual{min-height:399px;padding:0 10px;text-align:center;background-repeat:no-repeat;background-size:cover;background-position:center;position:relative;}
 .ordsub_visual .txt{width:100%;position:absolute;top:120px;left:0;}
@@ -490,7 +481,7 @@
 						
 							$(data).find("store").each(function(i, element){	
 								var n=$(element);
-								s +="<div><img src='//caffebene.com/images/common/s-pin.png' width='55' height='58'>";
+								s +="<div style ='border-bottom : 2px solid gray;cursor : pointer'><img src='//caffebene.com/images/common/s-pin.png' width='55' height='58'>";
 								  var shopname = n.find("shopname").text();
 								  var shopaddr= n.find("shopaddr").text();
 								  var shophp = n.find("shophp").text();
@@ -534,7 +525,7 @@
 				</button>
 			</div>
 			<hr>
-			<div id = "searchlist" style="border: 0px solid gray;">
+			<div id = "searchlist" style="">
 				
 
 			</div>
@@ -588,19 +579,26 @@
 	<%
 		if (totalCount > 0) {
 	%>
-	<div class="hadanhadan">
+	<div class="hadanhadan" style ="float:left;">
 		<div>
-			<table>
+
 				<%
 					for (StarMapDto dto : getlist) {
 				%>
 					
-				<div id="maphadan" align="left">
+				<div id="maphadan" align="left" style ="border:1px solid gray;width:300px;height:300px;">
+				
+					<img id ="maphadanimg" src = "/shopmapsave/<%=dto.getShopphoto() %>">
+				
 					<input id="shopnum" type="hidden" name="shopnum" value="<%=dto.getShopnum()%>">
 					<div id="hadan">
 						<h3><%=dto.getShopname()%></h3>
 					</div>
-					<div id="hadan"><%=dto.getShopaddr()%></div>
+					<div id="hadan">
+					
+					
+					
+					<%=dto.getShopaddr()%></div>
 					<div id="hadan"><%=dto.getShopaddrdetail()%></div>
 					<div id="hadan"><%=dto.getShophp()%></div>
 					<div id="hadan"><%=dto.getShopdetail()%></div>
@@ -608,9 +606,13 @@
 				<%
 					}
 				%>
-			</table>
+
 		</div>
 	</div>
+	
+	
+	
+	
 	<div class="pagepage">
 		<div class="container" id="mappagination">
 			<ul class="pagination">
