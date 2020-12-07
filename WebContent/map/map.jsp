@@ -463,6 +463,66 @@
 				window.open("map/deletemapform.jsp","","left=800px,top=100px,width=600px,height=230px");
 			});
 			<%-- onclick="location.href='index.jsp?main=member/updateform.jsp?num=<%=dto.getNum()%>'" --%>
+			
+			
+			//map search 선언 후 옮기기
+			
+			var mapsearch;
+			//var word = $("#word").val();
+			//var word2 = $('.word2').val();
+			
+			$("#shopsearch").change(function() {
+				var shopsearch2=$(this).val();
+				mapsearch =shopsearch2;
+				//alert(shopnum);
+				if(shopsearch2=='-'){
+					$("#mapsearch").val("");
+					$("#mapsearch").focus();
+				}else{
+					$("#mapsearch").val(shopsearch2);
+				}
+			});
+			
+			//search 구현하기
+			
+			$("#mapbutton").click(function(){
+			
+				var word = $("#word").val();
+				//var word = $(".word").val();
+				//var word = $("input[name=word]").val();
+				//var search;
+				 $.ajax({
+					type : "post",
+					url : "./map/mapsearch.jsp",
+					data : {"mapsearch":mapsearch,"word":word},
+					dataType : "xml",
+					success : function(data){
+						
+						var s = "";
+						
+							$(data).find("store").each(function(i, element){	
+								var n=$(element);
+								s +="<div><img src='//caffebene.com/images/common/s-pin.png' width='55' height='58'>";
+								  var shopname = n.find("shopname").text();
+								  var shopaddr= n.find("shopaddr").text();
+								  var shophp = n.find("shophp").text();
+								  var shopdetail = n.find("shopdetail").text();
+								
+								 s += "<a id='shopname'>지점명 : "+shopname+"</a><br>";
+								 s += "<a id='shopaddr'>주소 : "+shopaddr+"</a><br>";
+								 s += "<a id='shophp'>매장번호 : "+shophp+"</a><br>";
+								 s += "<a id='shopdetail'>영업시간 : "+shopdetail+"</a><br>";
+								 s+="</div>";
+			                 });
+							
+								$("#searchlist").html(s);
+					}
+					
+				});
+				
+				
+			});
+			
 		});
 	</script>
 	<!-- 매장추가end -->
@@ -472,18 +532,24 @@
 			style="width: 95%; height: 750px; position: relative; overflow: hidden; margin-left: 50px;" ></div>
 
 		<div id="menu_wrap" class="bg_white">
-			<div class="option">
-				<div>
-					<form onsubmit="searchPlaces(); return false;">
-						매장: <input type="text" value="강남" id="title" size="15">
-						<button type="submit">검색하기</button>
-					</form>
-				</div>
+			<div class="map-search">
+				<select id="shopsearch">
+					<option selected disabled hidden>검색방법을 선택해주세요</option>
+					<option value="shopname">매장명</option>
+					<option value="shopaddr">매장주소</option>
+				</select> 
+				<input type="text" id="mapsearch" name="mapsearch">
+				<input type="text" style="width: 200px;" name="word" id="word" class = "word" placeholder="검색단어입력"> 
+				<button type="button" class="btn btn-warning" id="mapbutton"
+					style="width: 45px;">
+					<span class="fas fa-search">검색</span>
+				</button>
 			</div>
 			<hr>
-			<ul id="placesList"></ul>
-			<div id="pagination"></div>
-		</div>
+			<div id = "searchlist" style="border: 0px solid gray;">
+				
+
+			</div>
 	</div>
 
 	
