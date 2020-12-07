@@ -28,9 +28,7 @@ font-family: 'Gothic A1', sans-serif;
 h1,h2,h3 {
 font-family: "Karma", sans-serif
 }
-h2{
-margin-bottom: 20px;
-}
+h2{margin:50px 0 20px 33px;}
 .carousel-container{
 width: 50%;
 }
@@ -152,12 +150,12 @@ $("#gonji_roll").rolling(490,290,{autoscroll:1, delay:1500});
 <div style="width:1200px;height : 450px;background-color : #eee;">
   <div id="Menu" class="w3-container tabs">
     <h2>스타보틀 메뉴</h2>
-   	<div style ="display : flex;justify-content : space-between;">
+   	<div style ="display : flex;">
    	<%
 	
 		for(MenuDto medto : list){%>
-		<div style ="width 270px;height 300px;">
-   		<img src ="menusave/<%=medto.getMenuphoto() %>" style ="width : 250px;height:250px;">
+		<div style ="width 270px;height 300px;margin-left: 33px;">
+   		<img src ="menusave/<%=medto.getMenuphoto() %>" style ="width : 250px;height:250px;margin-bottom: 8px;">
    		<p><%=medto.getMenuname() %></p>
    		</div>
 		 <%} %>
@@ -167,12 +165,12 @@ $("#gonji_roll").rolling(490,290,{autoscroll:1, delay:1500});
 
   <div id="Event" class="w3-container tabs" style="display:none">
     <h2>이벤트 안내</h2>
-    <div style ="display : flex;justify-content : space-between;">
+    <div style ="display : flex;">
     <%
 	
 		for(EventDto evdto : liste){%>
-		<div style ="width 270px;height 300px;">
-   		<img src ="eventsave/<%=evdto.getEvlistimage() %>" style ="width : 250px;height:250px;">
+		<div style ="width 270px;height 300px; margin-left: 33px;">
+   		<img src ="eventsave/<%=evdto.getEvlistimage() %>" style ="width : 250px;height:250px; margin-bottom: 8px;">
    		<p style ="width:250px"><%=evdto.getEvsubject() %></p>
    		</div>
 		 <%} %>
@@ -181,12 +179,12 @@ $("#gonji_roll").rolling(490,290,{autoscroll:1, delay:1500});
 
   <div id="Shop" class="w3-container tabs" style="display:none">
     <h2>매장소개</h2>
-    <div style ="display : flex;justify-content : space-between;">
+    <div style ="display : flex;">
     <%
 	
 		for(StarMapDto smdto : listsm){%>
-		<div style ="width 270px;height 300px;">
-   		<img src ="eventsave/<%=smdto.getShopphoto() %>" style ="width : 250px;height:250px; border-radius:125px;border : 1px solid black">
+		<div style ="width 270px;height 300px;margin-left: 33px;">
+   		<img src ="eventsave/<%=smdto.getShopphoto() %>" style ="width : 250px;height:250px; border-radius:125px;border : 1px solid black; margin-bottom: 8px;">
    		<p><%=smdto.getShopname() %></p>
    		</div>
 		 <%} %>
