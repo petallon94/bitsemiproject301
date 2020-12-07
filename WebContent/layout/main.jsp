@@ -19,7 +19,8 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   
-  
+  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
   
 <style>
 body{
@@ -103,19 +104,15 @@ text-align: center;
     
 }
 
-
-
+.promotion_slide {
+width: 1200px;
+}
+#Menu, #Event, #Shop{
+margin-top: 80px;
+}
 </style>
 <script>
 $(function(){
-	
-	$("div.menudetail").click(function(e){
-	  	  
-	   	 e.preventDefault(); 
-	   	 var menunum = $(this).attr("menunum");
-	   	 location.href ="index.jsp?main=menu/menudetailpage.jsp?menunum="+menunum;
-	   	  
-	     });
 	
 	$("div.eventdetail").click(function(e){
 	  	  
@@ -124,10 +121,46 @@ $(function(){
 	   	 location.href ="index.jsp?main=event/eventcontent.jsp?eventnum="+eventnum;
 	   	  
 	     });
-	
-	
-	
-	
+	function openMenu(evt, cityName) {
+		  var i, x, tablinks;
+		  x = document.getElementsByClassName("tabs");
+		  for (i = 0; i < x.length; i++) {
+		    x[i].style.display = "none";
+		  }
+		  tablinks = document.getElementsByClassName("tablink");
+		  for (i = 0; i < x.length; i++) {
+		    tablinks[i].className = tablinks[i].className.replace(" w3-red", ""); 
+		  }
+		  document.getElementById(cityName).style.display = "block";
+		  evt.currentTarget.className += " w3-red";
+		}
+
+		jQuery('.promotion_slide > div').slick({
+			infinite: true,	
+			arrows: false,
+			autoplay: true,
+			autoplaySpeed: 4000,
+			speed: 3000,
+			pauseOnHover : false,
+			slidesToShow: 4,
+			slidesToScroll: 2,
+			responsive: [
+				{
+				  breakpoint: 1200,
+				  settings: {
+					slidesToShow: 2,
+					slidesToScroll: 2
+				  }
+				},
+				{
+				  breakpoint: 768,
+				  settings: {
+					slidesToShow: 1,
+					slidesToScroll: 1
+				  }
+				}
+			]
+		});	
 });
 </script>
 
@@ -175,10 +208,10 @@ $(function(){
 
 <!-- 사이트 메인 중앙 컨텐츠 -->
 <div class= "tabb" style="width:100%; margin-top : 100px; display:flex; justify-content : center">
-<div class=" w3-bar-block w3-light-grey " style="width:200px">
-  <button class="w3-bar-item w3-button tablink" style ="height : 33%; text-align:center;" onclick="openMenu(event, 'Menu')">메뉴</button>
-  <button class="w3-bar-item w3-button tablink" style ="height : 33%; text-align:center;" onclick="openMenu(event, 'Event')">이벤트</button>
-  <button class="w3-bar-item w3-button tablink" style ="height : 33%; text-align:center;" onclick="openMenu(event, 'Shop')">매장</button>
+<div class=" w3-bar-block w3-light-grey " style="width:100px">
+  <button class="w3-bar-item w3-button tablink" style ="height : 33%; text-align:center; font-size: 14pt;" onclick="openMenu(event, 'Menu')">메뉴</button>
+  <button class="w3-bar-item w3-button tablink" style ="height : 33%; text-align:center; font-size: 14pt;" onclick="openMenu(event, 'Event')">이벤트</button>
+  <button class="w3-bar-item w3-button tablink" style ="height : 33%; text-align:center; font-size: 14pt;" onclick="openMenu(event, 'Shop')">매장</button>
 </div>
 
 <%
@@ -193,28 +226,29 @@ $(function(){
 	List<StarMapDto> listsm = smdao.getRandomList();
 	
 %>
-<div style="width:1200px;height : 450px;background-color : #eee;">
-  <div id="Menu" class="w3-container tabs">
-   	<div style ="display : flex;justify-content : space-between;">
-   	<%
-	
-		for(MenuDto medto : list){%>
-		<div style ="width 270px;height 300px; cursor:pointer;" class ="menudetail" menunum = "<%=medto.getMenunum()%>">
-   		<img src ="menusave/<%=medto.getMenuphoto() %>" style ="width : 250px;height:250px;">
-   		<p><%=medto.getMenuname() %></p>
-   		
-   		</div>
-		 <%} %>
-   	<a style="cursor :pointer	" onclick ="location.href='index.jsp?main=menu/menulist.jsp'">더보기</a>
-   	</div>
-  </div>
-
+<div style="width:1260px; height : 450px;background-color : #eee;">
+ 	<div class="promotion_slide w3-container tabs" id="Menu">  			
+				<div class="slide_box" >        
+						<%for(MenuDto medto : list){%>
+						<div>
+							<a href="index.jsp?main=menu/menudetailpage.jsp?menunum=<%=medto.getMenunum()%>" target="_self">
+								<p class="photo">
+									<img src="menusave/<%=medto.getMenuphoto() %>" class="t_hidden m_hidden"/>									
+								</p>
+								<p class="desc_box">
+									<span class="subject"><%=medto.getMenuname() %></span>									
+								</p>
+							</a>						
+						</div>
+						 <%} %>
+				</div> 
+			<a style="cursor :pointer	" onclick ="location.href='index.jsp?main=menu/menulist.jsp'">더보기</a>		 	
+   	</div>	 
   <div id="Event" class="w3-container tabs" style="display:none">
     <div style ="display : flex;justify-content : space-between;">
     <%
 	
-		for(EventDto evdto : liste){%>
-		
+		for(EventDto evdto : liste){%>		
 		<div style ="width 270px;height 300px;cursor:pointer;" class ="eventdetail" eventnum = "<%=evdto.getEventnum()%>">
    		<div class ="event_div">
    		<img src ="eventsave/<%=evdto.getEvlistimage() %>" style ="width : 250px;height:250px;">
@@ -223,7 +257,7 @@ $(function(){
    		</div>
 		 <%} %>
 	
-		<a style="cursor :pointer" onclick ="location.href='index.jsp?main=event/eventlist.jsp'">더보기</a>
+		<a style="align-item:flex-end; cursor :pointer" onclick ="location.href='index.jsp?main=event/eventlist.jsp'">더보기</a>
   </div>
   </div>
 
@@ -237,37 +271,17 @@ $(function(){
    		<img src ="eventsave/<%=smdto.getShopphoto() %>" style ="width : 250px;height:250px; border-radius:125px;border : 1px solid black">
    		<p><%=smdto.getShopname() %></p>
    		</div>
-		 <%} %>
-    
-    
+		 <%} %>    
     </div>
   </div>
-
+</div>
 </div>
 
-</div>
 
-
-
-<!-- 신메뉴 또는 베스트메뉴 -->
-
-<div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
-  
-  
-  
-
-  
+ 
   <!-- 매장위치 -->
   <div class="main_location"> 매장위치</div>
 
-  <!-- Footer -->
-  <footer class="footer">
-  <i class="fa fa-facebook-official w3-hover-opacity"></i>
-  <i class="fa fa-instagram w3-hover-opacity"></i>
-  <i class="fa fa-pinterest-p w3-hover-opacity"></i>
-  <i class="fa fa-twitter w3-hover-opacity"></i>
-  <i class="fa fa-linkedin w3-hover-opacity"></i>
-  </footer>
 
 <!-- End page content -->
 </div>
@@ -275,21 +289,6 @@ $(function(){
 <div class="fixed-btn">
 <button type="button" class="top" id="topbutton" onclick="scrollMov(0, 200);"><span>TOP</span></button>
 </div>
-<script>
-function openMenu(evt, cityName) {
-  var i, x, tablinks;
-  x = document.getElementsByClassName("tabs");
-  for (i = 0; i < x.length; i++) {
-    x[i].style.display = "none";
-  }
-  tablinks = document.getElementsByClassName("tablink");
-  for (i = 0; i < x.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" w3-red", ""); 
-  }
-  document.getElementById(cityName).style.display = "block";
-  evt.currentTarget.className += " w3-red";
-}
-</script>
 
 
 </body>
