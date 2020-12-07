@@ -1,5 +1,5 @@
-package data.dto;
 
+package data.dto;
 
 
 public class StarMapDto {
@@ -97,5 +97,5 @@ public class StarMapDto {
 		this.mpositiony = mpositiony;
 	}
 	
-	
+
 }

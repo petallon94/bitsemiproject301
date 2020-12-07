@@ -15,7 +15,7 @@
 <title>Insert title here</title>
 <style type="text/css">
 #mypage_updateform {
-margin-top: 50px;
+margin: 50px 0px 50px 100px;
 }
 #mypage_updateform p{
 margin-left: 450px;
@@ -144,11 +144,11 @@ MemberDto dto=dao.getDataID(loginid);
 				<td class="table_title">핸드폰</td>
 				<td>
 					<div class="form-group">
-						<%-- <select name="hp1" id="hp1" class="form-control" style="margin-right: 10px;">
+						<select name="hp1" id="hp1" class="form-control" style="margin-right: 10px;">
 							<option value="010" <%=dto.getHp1().equals("010")?"selected":""%>>010</option>
 							<option value="011" <%=dto.getHp1().equals("011")?"selected":""%>>011</option>
 							<option value="019" <%=dto.getHp1().equals("019")?"selected":""%>>019</option>
-						</select>  --%>
+						</select>
 						<input type="text" name="hp2" id="hp2" 
 						class="form-control"
 						maxlength="4" style="width: 80px;" required="required" value="<%=dto.getHp2()%>"> 

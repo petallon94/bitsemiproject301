@@ -21,7 +21,6 @@
 <style type="text/css">
 	#ordchkl{
 		width: 100%;
-		margin-top: 40px;
 		text-align: center;
 	}
 	#ordchkl table tr td{
