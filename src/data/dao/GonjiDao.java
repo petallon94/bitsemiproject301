@@ -290,6 +290,7 @@ public class GonjiDao {
 	}
 	
 	//최신원글 3개 리턴용
+	//공지사항 메인에 롤링
 	public List<GonjiDto> getNewList()
 	{
 		List<GonjiDto> list=new ArrayList<GonjiDto>();

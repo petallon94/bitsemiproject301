@@ -79,12 +79,37 @@ width: 100%;
 #topbutton span{
 text-align: center;
 }
+
+/* 공지사항 css */
+	#notice_gonji{
+		overflow: hidden;
+		height: 50px;
+	}
+	#rolling{
+		position: relative;
+	}
+	#rolling li{
+		height: 50px;
+		line-height: 50px;
+	}
+	#span.badge{
+		cursor: pointer;
+	}
+	
 </style>
 <script type="text/javascript">
 
 //공지사항 롤링 함수(안쓸수도 있음)
 
 $("#gonji_roll").rolling(490,290,{autoscroll:1, delay:1500});
+
+
+$(function(){
+	//공지 게시판 갯수 누르면 상품목록으로 이동하도록
+	$("span.badge").click(function(){
+		location.href="index.jsp?main=gonji/gonjilist.jsp";
+	});
+});
 
 
 </script>
@@ -149,9 +174,6 @@ $("#gonji_roll").rolling(490,290,{autoscroll:1, delay:1500});
 	//매장 dto 선언
 	StarMapDao smdao = new StarMapDao();
 	List<StarMapDto> listsm = smdao.getRandomList();
-	//공지 게시판 dao 선언
-	GonjiDao gdao=new GonjiDao();
-
 	
 %>
 <div style="width:1200px;height : 450px;background-color : #eee;">
@@ -212,6 +234,32 @@ $("#gonji_roll").rolling(490,290,{autoscroll:1, delay:1500});
   
   
   
+
+<!-- 공지사항 출력 -->
+<%
+	//공지 게시판 dao 선언
+	GonjiDao gdao=new GonjiDao();
+	//getNewList에서 목록 가져오기
+	List<GonjiDto> glist=gdao.getNewList();
+	//totalcount 값 구하기(+대신)
+	int totalcount=gdao.getTotalCount();
+%>
+<div class="notice_gonji">
+    <ul class="rolling list-group">
+    <%
+    	for(GonjiDto gdto:glist)
+    	{%>
+    	<%-- 롤링 제목  --%>
+    	<li class="list-group-item d-flex justify-content-between align-items-center">
+		    <b>공지사항</b>
+		    <a href="index.jsp?main=gonji/content.jsp?num=<%=gdto.getGonnum()%>&pageNum=1&key=a">
+		   	<%=gdto.getGonsubject()%></a>
+		    <span class="badge badge-primary badge-pill"><%=totalcount%></span>
+	    </li>
+    	<%}
+    %> 
+	</ul>
+</div>
 
   
   <!-- 매장위치 -->
