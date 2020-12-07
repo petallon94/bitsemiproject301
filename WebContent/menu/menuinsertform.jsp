@@ -119,4 +119,13 @@ $(function(){
 
 
 </body>
+<script type="text/javascript">
+	function paging(go)
+	{
+		$(".admin_page_content").load("menu/menuadmin.jsp");
+	}
+	
+</script>
+
+
 </html>

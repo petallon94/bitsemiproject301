@@ -78,7 +78,6 @@ width: 100%;
 text-align: center;
 }
 
-
 .event_div {
 	overflow: hidden;
 }
@@ -95,7 +94,6 @@ text-align: center;
     transition:.3s;
     overflow: hidden;
 }
-
 .event_div:hover img {
     -webkit-transform:scale(1.2);
     -moz-transform:scale(1.2);
@@ -107,12 +105,10 @@ text-align: center;
 
 
 
-
 </style>
 <script type="text/javascript">
 
 //공지사항 롤링 함수(안쓸수도 있음)
-
 
 </script>
 
@@ -180,7 +176,6 @@ text-align: center;
 %>
 <div style="width:1200px;height : 450px;background-color : #eee;">
   <div id="Menu" class="w3-container tabs">
-
    	<div style ="display : flex;justify-content : space-between;">
    	<%
 	
@@ -195,7 +190,6 @@ text-align: center;
   </div>
 
   <div id="Event" class="w3-container tabs" style="display:none">
-   
     <div style ="display : flex;justify-content : space-between;">
     <%
 	
@@ -206,6 +200,7 @@ text-align: center;
    		<img src ="eventsave/<%=evdto.getEvlistimage() %>" style ="width : 250px;height:250px;">
    		</div>
    		<p style ="width:250px"><%=evdto.getEvsubject() %></p>
+   		</div>
    		</div>
 		 <%} %>
 	</div>
