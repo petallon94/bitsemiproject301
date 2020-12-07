@@ -71,15 +71,13 @@ width: 100%;
     bottom: 0;
     overflow: hidden;
 }
-.fixed-btn #topbutton {
+.fixed-btn #pageTop {
     width: 60px;
     height: 60px;
     background: url('./image/backtotop_icon.png') no-repeat center;
     background-size: cover;
     vertical-align: middle;
-}
-#topbutton span{
-text-align: center;
+    text-align: center;
 }
 
 .shop_div {
@@ -132,14 +130,6 @@ text-align: center;
 </style>
 <script>
 $(function(){
- 	
-	$("div.shopdetail").click(function(e){
-	  	  
-	   	 e.preventDefault(); 
-	   	 var shopnum = $(this).attr("shopnum");
-	   	 location.href ="index.jsp?main=map/maplist.jsp?shopnum="+shopnum;
-	   	  
-	     }); 
 
 		jQuery('.promotion_slide1 > div').slick({
 			infinite: true,	
@@ -307,7 +297,7 @@ $(function(){
    		<p style ="width:250px"><%=smdto.getShopname() %></p>   		
    		</div>
 		 <%} %>   
-		 <a style="cursor :pointer" onclick ="location.href='index.jsp?main=map/maplist.jsp'">더보기</a> 
+		 <a style="cursor :pointer" onclick ="location.href='index.jsp?main=map/map.jsp'">더보기</a> 
 	
 </div>
 </div>
@@ -319,7 +309,7 @@ $(function(){
 
 <!-- top button 작동안됨 -->
 <div class="fixed-btn">
-<a href="#top" id="pageTop" class="on" style="opacity:1; bottom: 15px;">맨 위로 가기</a>
+<a href="#top" class="on" style="opacity:1;"><span id="pageTop" >TOP</span></a>
 </div>
 </div>
 </div>
