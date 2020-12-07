@@ -1,5 +1,6 @@
 package data.dto;
 
+
 public class StarMapDto {
 	
 	private String shopnum;
@@ -95,5 +96,5 @@ public class StarMapDto {
 		this.mpositiony = mpositiony;
 	}
 	
-	
+
 }

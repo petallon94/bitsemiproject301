@@ -1,17 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <%@page import="data.dto.StarMapDto"%>
 <%@page import="data.dao.StarMapDao"%>
 <%@page import="java.util.List"%>
-
 <%@ page language="java" contentType="text/xml; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
 <%
+
+    String shopnum=request.getParameter("shopnum");
+	System.out.println(shopnum);
+
 	//dao선언
 	StarMapDao StarDao=new StarMapDao();
 	//목록 가져오기
-	List<StarMapDto> list=StarDao.getHp1Hp2List();
+	List<StarMapDto> list=StarDao.getHp1Hp2List(shopnum);
+	/* for(StarMapDto dto:list){
+		System.out.println(dto.getMpositionx());
+		System.out.println(dto.getMpositiony());
+		System.out.println(dto.getShopdetail());
+	} */
 	%>
 	
 <list>

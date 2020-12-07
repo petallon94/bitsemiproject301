@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <!-- bootstrap4 -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
+<link rel="icon" href="image/sb_symbol.jpg">
 
 <!-- 반응형 -->
 <!-- <style type="text/css"> 
@@ -51,7 +51,15 @@
 	font-family: 'Gothic A1', sans-serif;
 	margin-right: 40px;
 	}
-	
+	div.layout div.footer{
+	display:flex;
+	width: 100%;
+	height:210px;
+	font-family: 'Gothic A1', sans-serif;
+	left: 0;
+	bottom: 0;
+	margin-top: 60px;
+	}
 </style>
 </head>
 <%
@@ -77,6 +85,9 @@
 	</div>
 	<div class="main">
 		<jsp:include page="<%=mainPage%>"/>
+	</div>
+ 	<div class="footer">
+		<jsp:include page="layout/footer.jsp"/>
 	</div>
 </div>
 </body>

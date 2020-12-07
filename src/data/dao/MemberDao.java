@@ -50,10 +50,11 @@ public class MemberDao {
 
 	//insert
 	public void insertMember(MemberDto dto) {
-		String sql="insert into Login (id, password, address, addrdetail, birthday, gaipday, email, name, hp) values (?,?,?,?,?,now(),?,?,?)";
+		String sql="insert into Login (id, password, address, addrdetail, birthday, gaipday, email, name, barcode, hp) values (?,?,?,?,?,now(),?,?,?,?)";
 		Connection conn=null;
 		PreparedStatement pstmt=null;
-
+		
+		int barcode = (int) (Math.random()*100000000)+1;
 		conn=db.getMyConnection();
 
 		try {
@@ -70,7 +71,8 @@ public class MemberDao {
 			pstmt.setString(6, email);
 			pstmt.setString(7, dto.getName());
 			String hp=dto.getHp1()+"-"+dto.getHp2()+"-"+dto.getHp3();
-			pstmt.setString(8, hp);			
+			pstmt.setInt(8, barcode);	
+			pstmt.setString(9, hp);		
 
 			//실행
 			pstmt.execute();			
@@ -158,6 +160,7 @@ public class MemberDao {
 				dto.setEmail1(email[0]);
 				dto.setEmail2(email[1]);
 				dto.setBirthday(rs.getString("birthday"));
+				dto.setBarcode(rs.getString("barcode"));
 			}
 
 		}catch (SQLException e) {
@@ -341,7 +344,7 @@ public class MemberDao {
 	}
 	
 	
-	//num에 해당하는 dto 반환
+	//id에 해당하는 dto 반환
 		public MemberDto getDataID(String id)
 		{
 			MemberDto dto=new MemberDto();
@@ -378,6 +381,7 @@ public class MemberDao {
 					dto.setEmail1(email[0]);
 					dto.setEmail2(email[1]);
 					dto.setBirthday(rs.getString("birthday"));
+					dto.setBarcode(rs.getString("barcode"));
 				}
 
 			}catch (SQLException e) {
