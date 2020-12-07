@@ -14,11 +14,11 @@
 	StarMapDao StarDao=new StarMapDao();
 	//목록 가져오기
 	List<StarMapDto> list=StarDao.getHp1Hp2List(shopnum);
-	for(StarMapDto dto:list){
+	/* for(StarMapDto dto:list){
 		System.out.println(dto.getMpositionx());
 		System.out.println(dto.getMpositiony());
 		System.out.println(dto.getShopdetail());
-	}
+	} */
 	%>
 	
 <list>
