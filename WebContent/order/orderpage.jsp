@@ -53,7 +53,7 @@
 </div>
 <div id="ord_ctn">
 	<div class="img">
-		<img src="menusave/<%=medto.getMenuphoto()%>" width="480">
+		<img src="menusave/<%=medto.getMenuphoto()%>" style="height: 640px; width: 480px;">
 		<!-- <img src="image/sumnail"> -->
 	</div>
 	<form action="order/orderprocess.jsp" class="ord_frm" id="frm" method="post">

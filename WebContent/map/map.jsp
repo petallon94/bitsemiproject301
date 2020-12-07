@@ -1,5 +1,4 @@
 
-
 <%@page import="data.dao.StarMapDao"%>
 <%@page import="data.dto.StarMapDto"%>
 <%@page import="java.util.List"%>
@@ -993,4 +992,5 @@
 
 </script>
 </body>
+
 </html>
