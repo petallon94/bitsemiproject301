@@ -42,12 +42,10 @@ width: 50%;
 width: 100%;
 height: 100%;
 }
-
 #image-container_bg{
 position: relative;
 width: 100%;
 }
-
 #image-container_title{
     height: 104px;
     left: 50%;
@@ -58,9 +56,7 @@ width: 100%;
     z-index: 4;
     color: #ffffff;
     font-family: "Karma", sans-serif
-
 }
-
 .fixed-btn {
     position: fixed;
     z-index: 49;
@@ -78,7 +74,6 @@ width: 100%;
 #topbutton span{
 text-align: center;
 }
-
 .event_div {
 	overflow: hidden;
 }
@@ -103,22 +98,18 @@ text-align: center;
     transform:scale(1.2);
     
 }
-
-
 .promotion_slide {
 width: 1200px;
 }
 #Menu, #Event, #Shop {
-margin-top: 80px;
+margin-top: 60px;
 }
-
-
 #main_location{
 width: 1000px; 
 height: 500px;
 margin: 200px 500px;
 }
-
+.plus{width: 25px;}
 </style>
 <script>
 $(function(){
@@ -130,7 +121,6 @@ $(function(){
 	   	 location.href ="index.jsp?main=event/eventcontent.jsp?eventnum="+eventnum;
 	   	  
 	     });
-
 		jQuery('.promotion_slide > div').slick({
 			infinite: true,	
 			arrows: false,
@@ -225,23 +215,23 @@ $(function(){
 	
 %>
 
-<div style="width:1260px; height : 450px;background-color : #eee;">
- 	<div class="promotion_slide w3-container tabs" id="Menu">  			
-				<div class="slide_box" >        
+<div style="width:1300px; height : 450px;background-color : #eee;">
+ 	<div class="promotion_slide w3-container tabs" id="Menu" style="width: 1200px; margin-right: 0; float: left;">  			
+				<div class="slide_box">        
 						<%for(MenuDto medto : list){%>
 						<div>
-							<a href="index.jsp?main=menu/menudetailpage.jsp?menunum=<%=medto.getMenunum()%>" target="_self">
+							<a href="index.jsp?main=menu/menudetailpage.jsp?menunum=<%=medto.getMenunum()%>" target="_self" style="margin-left: 33px;">
 								<p class="photo">
-									<img src="menusave/<%=medto.getMenuphoto() %>" class="t_hidden m_hidden"/>									
+									<img src="menusave/<%=medto.getMenuphoto() %>" class="t_hidden m_hidden" style="width: 270px; height: 270px;"/>									
 								</p>
-								<p class="desc_box">
+								<p class="desc_box" style="width: 270px; height: 50px; font-size: 14pt;">
 									<span class="subject"><%=medto.getMenuname() %></span>									
 								</p>
 							</a>						
 						</div>
 						 <%} %>
 				</div> 
-			<a style="cursor :pointer	" onclick ="location.href='index.jsp?main=menu/menulist.jsp'">더보기</a>		 	
+			<a style="cursor :pointer;" onclick ="location.href='index.jsp?main=menu/menulist.jsp'"><img src="image/plus.png" class="plus" style=""></a>		 	
    	</div>	 
   <div id="Event" class="w3-container tabs" style="display:none">
     <div style ="display : flex;justify-content : space-between;">
@@ -253,12 +243,12 @@ $(function(){
    		<div class ="event_div">
    		<img src ="eventsave/<%=evdto.getEvlistimage() %>" style ="width : 250px;height:250px;margin-bottom: 8px;">
    		</div>
-   		<p style ="width:250px; height: 50px;font-size: 14pt;"><%=evdto.getEvsubject() %></p>
+   		<p style ="width:250px; height: 50px; font-size: 14pt;"><%=evdto.getEvsubject() %></p>
    		</div>
 		 <%} %>
 	
 
-		<a style="align-item:flex-end; cursor :pointer" onclick ="location.href='index.jsp?main=event/eventlist.jsp'">더보기</a>
+		<a style="align-item:flex-end; cursor :pointer" onclick ="location.href='index.jsp?main=event/eventlist.jsp'"><img src="image/plus.png" class="plus"></a>
 
   </div>
   </div>
@@ -275,7 +265,7 @@ $(function(){
    		</div>
 
 		 <%} %>    
-
+		<a style="align-item:flex-end; cursor :pointer" onclick ="location.href='index.jsp?main=event/eventlist.jsp'"><img src="image/plus.png" class="plus"></a>
     </div>
   </div>
 </div>
@@ -313,7 +303,6 @@ var options = {
 	center: new kakao.maps.LatLng(33.450701, 126.570667),
 	level: 3
 };
-
 var map = new kakao.maps.Map(container, options);
 	
 	

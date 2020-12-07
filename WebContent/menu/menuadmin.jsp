@@ -107,6 +107,7 @@
 	
 
 %>
+<div>
 	<div class ='menu_total'><h4>총 <%=totalcount %>개의 메뉴가 있습니다.</h4></div>
 	<div class='menu_stat'>
 		
@@ -211,7 +212,7 @@ if(totalcount>0)
 	</div>	
 	
 <%} %>
-   
+   </div>
 </body>
 <script type="text/javascript">
 	function paging(pn)
