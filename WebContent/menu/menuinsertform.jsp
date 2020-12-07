@@ -109,7 +109,13 @@ $(function(){
     <button type="submit" class="btn btn-primary" onclick ="location.href='javascript:pagego()'">추가</button>
   </form>
 </div>
-
+<script type="text/javascript">
+	function paging(go)
+	{
+		$(".admin_page_content").load("menu/menuadmin.jsp");
+	}
+	
+</script>
 
 
 </body>

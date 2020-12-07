@@ -55,14 +55,14 @@
 <body>
 <!-- 로그인 모달창 -->
 <form action="menu/menudeleteaction.jsp" method="post" id="deleteform" name="deleteform">
-	  <div class="modal fade" id="deleteModal"> 
-	   <div class="modal-dialog">    
+
+  <div class="modal fade" id="deleteModal">
+    <div class="modal-dialog">    
       <div class="modal-content">
-      
-           
         <!-- Modal body -->
         <div class="modal-body">
-           <input type="hide" class="form-control" id="menunum"  name="menunum" value =<%=num%>>
+        <input type="hide" class="form-control" id="menunum"  name="menunum" value =<%=num%>>
+
         <div>정말 삭제하겠습니까?</div>
         <div class ="button-body">
         <button type="submit" class="btn btn-warning btn-block" id="menu_enterbtn">확인</button>

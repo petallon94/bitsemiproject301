@@ -171,7 +171,7 @@
 				</ul>
 			</div>
 			<div class = 'menu_update'>
-			<button onclick = "location.href ='javascript:pageupdate(<%=dto.getMenunum()%>)'" >메뉴 수정</button>			
+		<button onclick = "location.href ='javascript:pageupdate(<%=dto.getMenunum()%>)'" >메뉴 수정</button>
 			<button onclick = "location.href ='javascript:pagedelete(<%=dto.getMenunum()%>)'">메뉴 삭제</button>
 		</div>	
       </div>
@@ -234,7 +234,6 @@ if(totalcount>0)
 	}
 	
 </script>
-
 
 
 </html>

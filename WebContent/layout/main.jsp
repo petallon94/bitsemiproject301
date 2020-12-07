@@ -78,7 +78,7 @@ width: 100%;
 text-align: center;
 }
 
-	.event_div {
+.event_div {
 	overflow: hidden;
 }
 .event_div img {
@@ -194,8 +194,11 @@ text-align: center;
     <%
 	
 		for(EventDto evdto : liste){%>
-		<div style ="width 270px;height 300px;"><div class ="event_div">
+		
+		<div style ="width 270px;height 300px;">
+   		<div class ="event_div">
    		<img src ="eventsave/<%=evdto.getEvlistimage() %>" style ="width : 250px;height:250px;">
+   		</div>
    		<p style ="width:250px"><%=evdto.getEvsubject() %></p>
    		</div>
    		</div>
@@ -204,7 +207,7 @@ text-align: center;
   </div>
 
   <div id="Shop" class="w3-container tabs" style="display:none">
-    <h2>매장소개</h2>
+ 
     <div style ="display : flex;justify-content : space-between;">
     <%
 	
