@@ -39,7 +39,7 @@ $(function(){
 	
 	
 	
-	$("#shopsearch").click(function() {
+	$("#mapcategory").change(function() {
 		$.ajax({
 			type: "post",
 			url: "storepositionlistdata.jsp",
@@ -142,6 +142,7 @@ function execDaumPostcode() {
 	
 		<table class="table table-bordered" style="width: 600px;">
 			<tr>
+				<td style="width: 150px; background-color: #02a8da"><b>매장명</b></td>
 				<td align="left">
 				
 					<select style="width: 200px;" name="mapcategory" class="form-control" id="mapcategory">
@@ -150,8 +151,9 @@ function execDaumPostcode() {
 						<option value="<%=starDto.getShopnum()%>"><%=starDto.getShopname()%></option>
 					<%}%>
 					</select>
-					<button type="button" id="shopsearch" name="shopsearch" class="shopsearch" >매장검색</button>
-					<input type="text" class="form-control" id="mapcategory2"  name="mapcategory2" >
+					<!-- 버튼 -->
+				<!-- 	<button type="button" id="shopsearch" name="shopsearch" class="shopsearch" >매장검색</button> -->
+					<input type="hidden" class="form-control" id="mapcategory2"  name="mapcategory2" >
 					
 				</td>
 			</tr>
