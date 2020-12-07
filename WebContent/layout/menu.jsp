@@ -36,7 +36,14 @@ nav.mainmenu ul li:hover{
 	height: 50px;	
 	cursor: pointer;
 }
-
+nav.mainmenu ul li a, a:hover, a:active{
+	text-decoration: none;
+	color: black;
+}
+nav.mainmenu ul li a:hover{
+	text-decoration: none;
+	color: #00979f;
+}
 .logo {
 	width: 120px;
 }
