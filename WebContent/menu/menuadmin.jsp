@@ -132,7 +132,7 @@
 	</div>
 	<br>
 		<div class = 'menu_insert'>
-	<button onclick ="location.href='../index.jsp?main=menu/menuinsertform.jsp'">메뉴 추가</button>
+	<button onclick ="location.href='javascript:pageinsert()'">메뉴 추가</button>
 	</div>
 	
 	<!--  메뉴 리스트 출력 -->
@@ -171,8 +171,8 @@
 				</ul>
 			</div>
 			<div class = 'menu_update'>
-			<button onclick = "location.href ='menuupdateform.jsp?num=<%=dto.getMenunum()%>'" >메뉴 수정</button>
-			<button onclick = "location.href ='menudeleteform.jsp?num=<%=dto.getMenunum()%>'">메뉴 삭제</button>
+		<button onclick = "location.href ='javascript:pageupdate(<%=dto.getMenunum()%>)'" >메뉴 수정</button>
+			<button onclick = "location.href ='javascript:pagedelete(<%=dto.getMenunum()%>)'">메뉴 삭제</button>
 		</div>	
       </div>
     </div>
@@ -189,24 +189,22 @@ if(totalcount>0)
 	<ul class = "pagination">
 	<%
 		if(startPage>1){ %>
-		<li class="page-item"><a href = "menuadmin.jsp?pageNum=<%=startPage-1 %> "></a>
+		<li class="page-item"><a href = "javascript:paging(<%=startPage-1 %>)"></a>
 		</li>
 	<%}
 	
 	for(int i = startPage;i<=endPage;i++){
 		
-		String url = "menuadmin.jsp?pageNum="+i;
-		
 		if(i==currentPage) {%>
 		<li class = "page-item active">
-			<a href = "<%=url %>"><%=i %></a></li>
+			<a href = "javascript:paging(<%=i %>)"><%=i %></a></li>
 		<% }else {%>
-		<li><a href = "<%=url %>"><%=i %></a></li>
+		<li><a href = "javascript:paging(<%=i %>)"><%=i %></a></li>
 		<%} 
 	}
 	
 	if(endPage<totalPage){%>
-	<li class="page-item"><a href = "menuadmin.jsp?pageNum=<%=endPage+1 %>">다음</a></li>
+	<li class="page-item"><a href = "javascript:paging(<%=endPage+1 %>)">다음</a></li>
 	<% }%>
 	
 	</ul>
@@ -215,4 +213,27 @@ if(totalcount>0)
 <%} %>
    
 </body>
+<script type="text/javascript">
+	function paging(pn)
+	{
+		$(".admin_page_content").load("menu/menuadmin.jsp?pageNum="+pn);
+	}
+	
+	function pageupdate(num1){
+		
+		$(".admin_page_content").load("menu/menuupdateform.jsp?num="+num1);
+	}
+	function pagedelete(num2){
+		
+		$(".admin_page_content").load("menu/menudeleteform.jsp?num="+num2);
+	}
+	
+	function pageinsert(){
+		
+		$(".admin_page_content").load("menu/menuinsertform.jsp");
+	}
+	
+</script>
+
+
 </html>

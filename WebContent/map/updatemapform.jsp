@@ -39,7 +39,11 @@ $(function(){
 	
 	
 	
+
 	$("#mapcategory").change(function() {
+
+
+
 		$.ajax({
 			type: "post",
 			url: "storepositionlistdata.jsp",

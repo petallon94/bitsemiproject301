@@ -16,7 +16,12 @@
 	if(find){
 		//비번이 맞는경우 삭제
 		dao.deleteMember(id);
-		response.sendRedirect("../index.jsp?main=mypage/memberlist.jsp");		//페이지 처리 다시
+		response.sendRedirect("../index.jsp?main=mypage/adminpagemain.jsp");
+		%>
+		<script type="text/javascript">
+		$(".admin_page_content").load("mypage/memberlist.jsp");		 
+		</script>
+		<%
 	}else{%>
 		<script type="text/javascript">
 			alert("비밀번호가 틀렸습니다");

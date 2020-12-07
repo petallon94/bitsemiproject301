@@ -103,7 +103,7 @@ public class StarMapDao {
 
 		try {
 			pstmt=conn.prepareStatement(sql);
-			//바인딩
+
 
 			pstmt.setString(1, dto.getShopname());
 			String shophp=dto.getShophp1()+"-"+dto.getShophp2();
@@ -116,7 +116,7 @@ public class StarMapDao {
 			pstmt.setString(7, dto.getMpositionx());
 			pstmt.setString(8, dto.getMpositiony());			
 
-			//실행
+
 			pstmt.execute();			
 
 		} catch (SQLException e) {
@@ -128,7 +128,7 @@ public class StarMapDao {
 	}
 	
 
-	//전체 갯수 구하기
+
 	public int getTotalCount()
 	{
 		int tot=0;
@@ -155,8 +155,7 @@ public class StarMapDao {
 	
 	public List<StarMapDto> getList(int start,int perpage)
 	{
-		//그룹변수의 내림차순,같은 그룹인경우 step 의 오름차순 출력
-		//limit 로 시작번지와 몇개르 가져올지 바인딩
+
 		String sql="select * from map order by shopnum desc limit ?,?";
 		List<StarMapDto> list=new ArrayList<StarMapDto>();
 		Connection conn=null;
@@ -224,7 +223,7 @@ public class StarMapDao {
 	{
 		String sql="delete from map where shopname=?";
 		
-		System.out.println("호출은 되니?");
+
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		conn=db.getMyConnection();
@@ -241,6 +240,7 @@ public class StarMapDao {
 			db.dbClose(conn, pstmt);
 		}
 	}
+	
 	public boolean isShopPassCheck(String shopname)
 	{
 		boolean find=false;
@@ -252,7 +252,7 @@ public class StarMapDao {
 		conn=db.getMyConnection();
 		try {
 			pstmt=conn.prepareStatement(sql);
-			//바인딩
+
 			pstmt.setString(1, shopname);
 			rs=pstmt.executeQuery();
 			if(rs.next())
@@ -311,6 +311,91 @@ public class StarMapDao {
 		}
 		return list;
 	}
+
+
+       public List<StarMapDto> getRandomList()	
+	{	
+
+		String sql="select * from map order by rand() limit 4";	
+
+		List<StarMapDto> list=new ArrayList<StarMapDto>();	
+		Connection conn=null;	
+		PreparedStatement pstmt=null;	
+		ResultSet rs=null;	
+		conn=db.getMyConnection();	
+		try {	
+			pstmt=conn.prepareStatement(sql);	
+			rs=pstmt.executeQuery();	
+			while(rs.next())	
+			{	
+				StarMapDto dto=new StarMapDto();	
+				dto.setShopnum(rs.getString("shopnum"));	
+				dto.setShopname(rs.getString("shopname"));	
+				dto.setShophp(rs.getString("shophp"));	
+				dto.setShopaddr(rs.getString("shopaddr"));	
+				dto.setShopaddrdetail(rs.getString("shopaddrdetail"));	
+				dto.setShopphoto(rs.getString("shopphoto"));	
+				dto.setShopdetail(rs.getString("shopdetail"));	
+				dto.setMpositionx(rs.getString("mpositionx"));	
+				dto.setMpositiony(rs.getString("mpositiony"));	
+
+				list.add(dto);	
+			}	
+		} catch (SQLException e) {	
+			// TODO Auto-generated catch block	
+			e.printStackTrace();	
+		}finally {	
+			db.dbClose(conn, pstmt, rs);	
+		}	
+		return list;	
+	}
+	
+
+
+
+
+
+	
+	
+	public List<StarMapDto> getRandomList()	
+	{	
+
+		String sql="select * from map order by rand() limit 4";	
+
+		List<StarMapDto> list=new ArrayList<StarMapDto>();	
+		Connection conn=null;	
+		PreparedStatement pstmt=null;	
+		ResultSet rs=null;	
+		conn=db.getMyConnection();	
+		try {	
+			pstmt=conn.prepareStatement(sql);	
+			rs=pstmt.executeQuery();	
+			while(rs.next())	
+			{	
+				StarMapDto dto=new StarMapDto();	
+				dto.setShopnum(rs.getString("shopnum"));	
+				dto.setShopname(rs.getString("shopname"));	
+				dto.setShophp(rs.getString("shophp"));	
+				dto.setShopaddr(rs.getString("shopaddr"));	
+				dto.setShopaddrdetail(rs.getString("shopaddrdetail"));	
+				dto.setShopphoto(rs.getString("shopphoto"));	
+				dto.setShopdetail(rs.getString("shopdetail"));	
+				dto.setMpositionx(rs.getString("mpositionx"));	
+				dto.setMpositiony(rs.getString("mpositiony"));	
+
+				list.add(dto);	
+			}	
+		} catch (SQLException e) {	
+			// TODO Auto-generated catch block	
+			e.printStackTrace();	
+		}finally {	
+			db.dbClose(conn, pstmt, rs);	
+		}	
+		return list;	
+	}
+	
+	
+	
 	
 	//검색결과 리스트 중 한 페이지에서 필요한만큼 반환하기
 		public List<StarMapDto> getSearchList(String key,String value)

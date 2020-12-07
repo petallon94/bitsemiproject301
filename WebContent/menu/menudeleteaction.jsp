@@ -12,7 +12,7 @@
 	
 		
 		dao.deleteMenu(menunum);
-		response.sendRedirect("menuadmin.jsp");
+		response.sendRedirect("/index.jsp?main=mypage/adminpagemain.jsp");
 	
 %>
 

@@ -1,7 +1,6 @@
 package data.dto;
 
 
-
 public class StarMapDto {
 	
 	private String shopnum;
