@@ -43,12 +43,10 @@ width: 50%;
 width: 100%;
 height: 100%;
 }
-
 #image-container_bg{
 position: relative;
 width: 100%;
 }
-
 #image-container_title{
     height: 104px;
     left: 50%;
@@ -59,9 +57,7 @@ width: 100%;
     z-index: 4;
     color: #ffffff;
     font-family: "Karma", sans-serif
-
 }
-
 .fixed-btn {
     position: fixed;
     z-index: 49;
@@ -78,7 +74,9 @@ width: 100%;
     text-align: center;
 }
 
+
 .shop_div {
+
 	overflow: hidden;
 }
 .shop_div img {
@@ -102,16 +100,13 @@ width: 100%;
     transform:scale(1.2); 
     overflow: hidden;   
 }
-
-
 .promotion_slide {
 width: 1200px;
 }
 #Menu, #Event, #Shop {
 margin-top: 40px;
+
 }
-
-
 #main_location{
 width: 1000px; 
 height: 500px;
@@ -247,25 +242,28 @@ $(function(){
 	
 %>
 
+
 <div style="width:1260px; height : 100%;">
 <div class="slide_container" style="background-color : #eee;">
 	<h2 class="slide_title">메뉴</h2>
  	<div class="promotion_slide1 w3-container tabs" id="Menu">  			
 
 				<div class="slide_box" >        
+
 						<%for(MenuDto medto : list){%>
 						<div>
-							<a href="index.jsp?main=menu/menudetailpage.jsp?menunum=<%=medto.getMenunum()%>" target="_self">
+							<a href="index.jsp?main=menu/menudetailpage.jsp?menunum=<%=medto.getMenunum()%>" target="_self" style="margin-left: 33px;">
 								<p class="photo">
-									<img src="menusave/<%=medto.getMenuphoto() %>" class="t_hidden m_hidden"/>									
+									<img src="menusave/<%=medto.getMenuphoto() %>" class="t_hidden m_hidden" style="width: 270px; height: 270px;"/>									
 								</p>
-								<p class="desc_box">
+								<p class="desc_box" style="width: 270px; height: 50px; font-size: 14pt;">
 									<span class="subject"><%=medto.getMenuname() %></span>									
 								</p>
 							</a>						
 						</div>
 						 <%} %>
 				</div> 
+
 			<a style="cursor :pointer" onclick ="location.href='index.jsp?main=menu/menulist.jsp'">더보기</a>		 	
    	</div>
    	</div>
@@ -287,6 +285,7 @@ $(function(){
 						 <%} %>
 				</div> 
 			<a style="cursor :pointer" onclick ="location.href='index.jsp?main=event/eventlist.jsp'">더보기</a>
+
    	</div>	 
 
    	 </div>
@@ -300,11 +299,11 @@ $(function(){
 		<div class ="shop_div" style ="width : 250px;height:250px; border-radius:125px; border : 1px solid black;">
    		<img src ="shopmapsave/<%=smdto.getShopphoto() %>"  style ="width : 250px;height:250px;">
    		</div>
+
    		<p style ="width:250px"><%=smdto.getShopname() %></p>   		
    		</div>
 		 <%} %>   
 		 <a style="cursor :pointer" onclick ="location.href='index.jsp?main=map/map.jsp'">더보기</a> 
-	
 
 </div>
 </div>
@@ -343,7 +342,6 @@ var options = {
 	center: new kakao.maps.LatLng(33.450701, 126.570667),
 	level: 3
 };
-
 var map = new kakao.maps.Map(container, options);
 	 */
 </script>
