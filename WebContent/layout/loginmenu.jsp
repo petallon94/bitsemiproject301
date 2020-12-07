@@ -24,29 +24,36 @@ margin-right: 25px;
 }
 
 /* 로그인모달창 */
+#loginModal .modal-header, #loginModal .modal-title, #loginModal .close {
+background-color: #ffb210;
+color:white;
+text-align: center;
+font-size: 25px;
+}
+#loginModal .modal-header .modal-title{
+padding:15px 30px;
+text-align: center;
+}
 
-	#loginModal .modal-header, #loginModal .modal-title, #loginModal .close {
-    background-color: #ffb210;
-    color:white;
-    text-align: center;
-    font-size: 25px;
-  }
-  #loginModal .modal-header .modal-title{
-  padding:15px 30px;
-  text-align: center;
-  }
+#loginModal .modal-body{
+padding:40px 100px;
 
-  #loginModal .modal-body{
-  padding:40px 100px;
-  
-  }
-  #loginModal .modal-body input{
-  margin-bottom: 20px;
-  
-  }  
-  #loginModal .modal-footer {
-    background-color: #f9f9f9;
-  }
+}
+#loginModal .modal-body input{
+margin-bottom: 20px;
+
+}  
+#loginModal .modal-footer {
+  background-color: #f9f9f9;
+}
+#topmenu span a, a:active{
+	text-decoration: none;
+	color: black;
+}
+#topmenu span a:hover{
+	text-decoration: none;
+	color: #00979f;
+}
 
 </style>
 

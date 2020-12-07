@@ -14,15 +14,15 @@
   
 <title>Insert title here</title>
  <style>
-.admin_page_menu {position: absolute; left: 20px; top: 700px; padding: 20px;}
+.admin_page_menu {display:flex; left: 20px; padding: 20px;float: left;}
 .nav {display: flex; flex-direction: column;}
 .nav-link {width: 200px; cursor:pointer;}
 	
-.admin_page_content {width:1200px; height: 100%; position : absolute;left:400px; margin-top:50px;}
+.admin_page_content {display:flex; width:1200px; height: 100%; margin-top: 20px; float: left; margin-left: 100px;}
 .admin_page_content img{max-width:100%;height :200px;}
 
 /*submenu*/
-.sub_visual{min-height:499px;padding:0 10px;text-align:center;background-repeat:no-repeat;background-size:cover;background-position:center;position:relative;}
+.sub_visual{min-height:499px;padding:0 10px;text-align:center;background-repeat:no-repeat;background-size:cover;background-position:center;position:relative; margin-bottom: 30px;}
 .sub_visual .txt{width:100%;position:absolute;top:148px;left:0;}
 .sub_visual .txt h1{margin:0;font-size:2.75rem;font-weight:300; font-family: 'Noto Sans KR', sans-serif;}
 .sub_visual .txt h1:after{display:block;width:40px;height:2px;margin:32px auto;background:#202020;content:'';}
@@ -40,7 +40,7 @@ $(function() {
 	});
 	
 	$("#admin_nav-item2").click(function() {
-		$(".admin_page_content").load("mypage/memberlist.jsp");		 
+		$(".admin_page_content").load("mypage/adminmappage.jsp");		 
 		return false;
 	});
 	$("#admin_nav-item3").click(function() {
