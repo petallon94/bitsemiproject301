@@ -195,6 +195,7 @@ public class StarMapDao {
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		conn=db.getMyConnection();
+		
 		try {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, dto.getShopname());
@@ -209,6 +210,10 @@ public class StarMapDao {
 			pstmt.setString(8, dto.getMpositiony());
 			pstmt.setString(9, dto.getShopnum());
 			pstmt.execute();
+			/*
+			 * System.out.println(dto.getShophp1()); System.out.println(dto.getShophp2());
+			 * System.out.println(dto.getShopnum());
+			 */
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -346,6 +351,7 @@ public class StarMapDao {
 			db.dbClose(conn, pstmt, rs);	
 		}	
 		return list;	
+
 	}
 	
 
@@ -402,9 +408,7 @@ public class StarMapDao {
 				db.dbClose(conn, pstmt, rs);
 			}
 			return list;
-			
 
-		}
 	
 }
 

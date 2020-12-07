@@ -8,17 +8,22 @@
 <%
 
     String shopnum=request.getParameter("shopnum");
-	System.out.println(shopnum);
+/* 	System.out.println(shopnum); */
 
 	//dao선언
 	StarMapDao StarDao=new StarMapDao();
 	//목록 가져오기
 	List<StarMapDto> list=StarDao.getHp1Hp2List(shopnum);
-	/* for(StarMapDto dto:list){
+	/*  for(StarMapDto dto:list){
 		System.out.println(dto.getMpositionx());
 		System.out.println(dto.getMpositiony());
 		System.out.println(dto.getShopdetail());
-	} */
+		System.out.println(dto.getShophp2());
+		System.out.println(dto.getMpositiony());
+		System.out.println(dto.getShopdetail());
+		System.out.println(dto.getShoppostcode());
+		System.out.println(dto.getShopaddr());
+	}  */
 	%>
 	
 <list>

@@ -96,7 +96,7 @@ public class MenuDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String sql = "select * from menu order by rand() limit 10";
+		String sql = "select * from menu order by rand() limit 12";
 
 		conn = db.getMyConnection();
 

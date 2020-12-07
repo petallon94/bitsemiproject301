@@ -23,8 +23,8 @@ body,h1,h2,h3,h4,h5,h6 {font-family: 'Noto Sans KR', sans-serif;}
 /*godetail*/
 
 .godetail img{cursor:pointer;}
-
-
+.menu_list h3{margin-bottom: 50px;}
+.w3-content{max-width: 1100px;}
 /* sub */
 .sub_visual{min-height:499px;padding:0 10px;text-align:center;background-repeat:no-repeat;background-size:cover;background-position:center;position:relative;}
 .sub_visual .txt{width:100%;position:absolute;top:148px;left:0;}
@@ -82,23 +82,21 @@ $(function(){
 
   
 <!-- !PAGE CONTENT! 페이지 부분 -->
-<div class="menu_list w3-content w3-padding" style="max-width:1600px;margin-top:100px" >
+<div class="menu_list w3-content" style="margin-top:100px" >
 
-	<h3>전체음료</h3>
+	<h3>음료</h3>
 
-	<hr id="about">
-	
 	
 	<!-- 출력연습하기 -->
 
-	<div class="menu_contain w3-main w3-content w3-padding" >
+	<div class="menu_contain w3-main w3-content" >
 	
 	<%
 	
 		for(MenuDto dto : list){%>
 			<div class="w3-quarter godetail" >
-      		<img src ="menusave/<%=dto.getMenuphoto()%>" class ="godetail" menunum = "<%=dto.getMenunum()%>" style="width:100%;height :250px;margin-left:10px;marigin_top :10px;">
-      		<h3><%=dto.getMenuname() %></h3>
+      		<img src ="menusave/<%=dto.getMenuphoto()%>" class ="godetail" menunum = "<%=dto.getMenunum()%>" style="width:240px;height :250px;">
+      		<h4 style="margin: 10px 0 40px 0;"><%=dto.getMenuname() %></h4>
      		<input type="hidden" class="form-control" id="menunum"  name="menunum" value =<%=dto.getMenunum()%>>
  		   </div>
 		<%}%>
@@ -107,7 +105,7 @@ $(function(){
 	</div>
 <!-- End page content -->
 </div>
-<div class="menu_footer w3-padding" style="max-width:1600px;margin-top:100px">
+<div class="menu_footer w3-padding" style="margin-top:100px">
 </div>
 
 
