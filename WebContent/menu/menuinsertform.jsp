@@ -106,11 +106,20 @@ $(function(){
     </div>
     
     <br>
-    <button type="submit" class="btn btn-primary" onclick ="location.href='index.jsp?main=menu/menulist.jsp'">추가</button>
+    <button type="submit" class="btn btn-primary" onclick ="location.href='javascript:pagego()'">추가</button>
   </form>
 </div>
 
 
 
 </body>
+<script type="text/javascript">
+	function paging(go)
+	{
+		$(".admin_page_content").load("menu/menuadmin.jsp");
+	}
+	
+</script>
+
+
 </html>

@@ -54,20 +54,15 @@
 %>
 <body>
 <!-- 로그인 모달창 -->
-<form action="menudeleteaction.jsp" method="post" id="loginform" name="loginform">
-  <div class="modal fade" id="loginModal">
-    <div class="modal-dialog">    
+<form action="menu/menudeleteaction.jsp" method="post" id="deleteform" name="deleteform">
+	  <div class="modal fade" id="deleteModal"> 
+	   <div class="modal-dialog">    
       <div class="modal-content">
       
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h4 class="modal-title" style="text-align: center;">로그인</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-        
+           
         <!-- Modal body -->
         <div class="modal-body">
-        <input type="text" class="form-control" id="menunum"  name="menunum" value =<%=num%>>
+           <input type="hide" class="form-control" id="menunum"  name="menunum" value =<%=num%>>
         <div>정말 삭제하겠습니까?</div>
         <div class ="button-body">
         <button type="submit" class="btn btn-warning btn-block" id="menu_enterbtn">확인</button>
@@ -80,10 +75,10 @@
   </form>
 </body>
 <script type="text/javascript">
-$("#loginModal").modal();
+$("#deleteModal").modal();
 
-$("#login_joinbtn").click(function(){
-	location.href="index.jsp?main=member/memberform.jsp";    
+$("#menu_enterbtn").click(function(){
+	location.href="../index.jsp?main=mypage/adminpagemain.jsp";    
 });  
 </script>
 

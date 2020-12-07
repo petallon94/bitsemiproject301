@@ -62,7 +62,7 @@ $(function(){
   <h2>메뉴 추가 화면</h2>
   <br><hr>
   <br>
-  <form action="menuupdateaction.jsp" method="post" enctype="multipart/form-data">
+  <form action="menu/menuupdateaction.jsp" method="post" enctype="multipart/form-data">
     <input type="text" class="form-control" id="upmenunum"  name="upmenunum" value =<%=menunum%>>
     <div class="upmenu">
       <label for="upmenuname">메뉴이름</label>
@@ -123,7 +123,7 @@ $(function(){
     </div>
     
     <br>
-    <button type="submit" class="btn btn-primary" onclick ="menuadmin.jsp'">추가</button>
+    <button type="submit" class="btn btn-primary" onclick ="../index.jsp?main=mypage/adminpagemain.jsp">추가</button>
   </form>
 </div>
 

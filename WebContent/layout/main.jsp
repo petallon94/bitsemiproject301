@@ -77,13 +77,38 @@ width: 100%;
 #topbutton span{
 text-align: center;
 }
+
+	.event_div {
+	overflow: hidden;
+}
+.event_div img {
+    -webkit-transform:scale(1);
+    -moz-transform:scale(1);
+    -ms-transform:scale(1); 
+    -o-transform:scale(1);  
+    transform:scale(1);
+    -webkit-transition:.3s;
+    -moz-transition:.3s;
+    -ms-transition:.3s;
+    -o-transition:.3s;
+    transition:.3s;
+    overflow: hidden;
+}
+.event_div:hover img {
+    -webkit-transform:scale(1.2);
+    -moz-transform:scale(1.2);
+    -ms-transform:scale(1.2);   
+    -o-transform:scale(1.2);
+    transform:scale(1.2);
+    
+}
+
+
+
 </style>
 <script type="text/javascript">
 
 //공지사항 롤링 함수(안쓸수도 있음)
-
-$("#gonji_roll").rolling(490,290,{autoscroll:1, delay:1500});
-
 
 </script>
 
@@ -151,7 +176,6 @@ $("#gonji_roll").rolling(490,290,{autoscroll:1, delay:1500});
 %>
 <div style="width:1200px;height : 450px;background-color : #eee;">
   <div id="Menu" class="w3-container tabs">
-    <h2>스타보틀 메뉴</h2>
    	<div style ="display : flex;justify-content : space-between;">
    	<%
 	
@@ -166,14 +190,14 @@ $("#gonji_roll").rolling(490,290,{autoscroll:1, delay:1500});
   </div>
 
   <div id="Event" class="w3-container tabs" style="display:none">
-    <h2>이벤트 안내</h2>
     <div style ="display : flex;justify-content : space-between;">
     <%
 	
 		for(EventDto evdto : liste){%>
-		<div style ="width 270px;height 300px;">
+		<div style ="width 270px;height 300px;"><div class ="event_div">
    		<img src ="eventsave/<%=evdto.getEvlistimage() %>" style ="width : 250px;height:250px;">
    		<p style ="width:250px"><%=evdto.getEvsubject() %></p>
+   		</div>
    		</div>
 		 <%} %>
 	</div>
