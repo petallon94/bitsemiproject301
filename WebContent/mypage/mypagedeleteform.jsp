@@ -60,7 +60,7 @@ MemberDto dto=dao.getDataID(loginid);
    		
    		<div class="mypagedelete-footer" style="clear:left;">       
         <hr>
-   		<br><button type="submit" class="btn btn-danger" id="mypage_memdeletebtn">탈퇴하기</button>	         	
+   		<br><button type="submit" class="btn btn-outline-danger" id="mypage_memdeletebtn">탈퇴하기</button>	         	
         </div>   
        </div>
     </div>
