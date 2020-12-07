@@ -40,10 +40,9 @@
 		
 		String evcontent=multi.getParameter("evcontent");
 		
-		String evcontentimage=multi.getParameter("evcontentimage");
 		
 		//본문에 들어갈사진(3개까지 업로드가능)
-		String newevcontentimage="";
+		String evcontentimage="";
 		
 		while(en.hasMoreElements())
 		{
@@ -52,10 +51,10 @@
 			
 			if(fileName2!=null)
 			{
-			if(newevcontentimage.length()==0)
-				newevcontentimage=fileName2;
+			if(evcontentimage.length()==0)
+				evcontentimage=fileName2;
 			else
-				newevcontentimage+=","+fileName2;
+				evcontentimage+=","+fileName2;
 			}
 		}
 		
@@ -70,11 +69,9 @@
 		dto.setId(id);
 		dto.setEventnum(eventnum);
 		dto.setEvsubject(evsubject);
-		//dto.setEvlistimage(evlistimage);
-		//dto.setEvlistimage(newevlistimage);
 		dto.setEvlistimage(evlistimage);
 		dto.setEvcontent(evcontent);
-		dto.setEvcontentimage(newevcontentimage);
+		dto.setEvcontentimage(evcontentimage);
 		dto.setEvstartday(evstartday);
 		dto.setEvendday(evendday);
 		

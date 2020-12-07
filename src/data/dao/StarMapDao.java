@@ -127,7 +127,6 @@ public class StarMapDao {
 	}
 	
 
-
 	public int getTotalCount()
 	{
 		int tot=0;
