@@ -116,7 +116,6 @@ public class StarMapDao {
 			pstmt.setString(7, dto.getMpositionx());
 			pstmt.setString(8, dto.getMpositiony());			
 
-
 			pstmt.execute();			
 
 		} catch (SQLException e) {
@@ -127,7 +126,6 @@ public class StarMapDao {
 		}		
 	}
 	
-
 
 	public int getTotalCount()
 	{
@@ -353,72 +351,64 @@ public class StarMapDao {
 			db.dbClose(conn, pstmt, rs);	
 		}	
 		return list;	
+
 	}
 	
+     //ï¿½Ë»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½Ñ¸ï¿½Å­ ï¿½ï¿½È¯ï¿½Ï±ï¿½
+     		public List<StarMapDto> getSearchList(String key,String value)
+     		{
+     			List<StarMapDto> list=new ArrayList<StarMapDto>();
+     			//allï¿½ï¿½ ï¿½ï¿½ï¿½
+     			String s="";
+     			if(key!=null)
+     			{
+     				if(key.equals("shopname"))
+     					s="where shopname like '%"+value+"%'";
+     				else if(key.equals("shopaddr"))
+     					s="where shopaddr like '%"+value+"%'";	
+     			}
+     			String sql="select * from map "+s+" order by shopnum desc ";
+     			
+     			Connection conn=null;
+     			PreparedStatement pstmt=null;
+     			ResultSet rs=null;
+     			conn=db.getMyConnection();
+     			try {
+     				pstmt=conn.prepareStatement(sql);
+     				//ï¿½ï¿½ï¿½Îµï¿½
+     				/*
+     				 * pstmt.setString(1, key); pstmt.setString(2, value);
+     				 */
+     				//ï¿½ï¿½ï¿½ï¿½
+     				rs=pstmt.executeQuery();
+     				while(rs.next())
+     				{
+     					StarMapDto dto=new StarMapDto();
+     					dto.setShopnum(rs.getString("shopnum"));
+     					dto.setShopname(rs.getString("shopname"));
+     					dto.setShophp(rs.getString("shophp"));
+     					dto.setShopaddr(rs.getString("shopaddr"));
+     					dto.setShopaddrdetail(rs.getString("shopaddrdetail"));
+     					dto.setShopphoto(rs.getString("shopphoto"));
+     					dto.setShopdetail(rs.getString("shopdetail"));
+     					dto.setMpositionx(rs.getString("mpositionx"));
+     					dto.setMpositiony(rs.getString("mpositiony"));
+
+     					list.add(dto);
+     				}
+     			} catch (SQLException e) {
+     				// TODO Auto-generated catch block
+     				e.printStackTrace();
+     			} finally {
+     				db.dbClose(conn, pstmt, rs);
+     			}
+     			return list;
+     			
+
+     		}
 
 
 
-
-
-	
-	
-
-	
-	
-	
-	
-	//°Ë»ö°á°ú ¸®½ºÆ® Áß ÇÑ ÆäÀÌÁö¿¡¼­ ÇÊ¿äÇÑ¸¸Å­ ¹ÝÈ¯ÇÏ±â
-		public List<StarMapDto> getSearchList(String key,String value)
-		{
-			List<StarMapDto> list=new ArrayList<StarMapDto>();
-			//allÀÏ °æ¿ì
-			String s="";
-			if(key!=null)
-			{
-				if(key.equals("shopname"))
-					s="where shopname like '%"+value+"%'";
-				else if(key.equals("shopaddr"))
-					s="where shopaddr like '%"+value+"%'";	
-			}
-			String sql="select * from map "+s+" order by shopnum desc ";
-			
-			Connection conn=null;
-			PreparedStatement pstmt=null;
-			ResultSet rs=null;
-			conn=db.getMyConnection();
-			try {
-				pstmt=conn.prepareStatement(sql);
-				//¹ÙÀÎµù
-				/*
-				 * pstmt.setString(1, key); pstmt.setString(2, value);
-				 */
-				//½ÇÇà
-				rs=pstmt.executeQuery();
-				while(rs.next())
-				{
-					StarMapDto dto=new StarMapDto();
-					dto.setShopnum(rs.getString("shopnum"));
-					dto.setShopname(rs.getString("shopname"));
-					dto.setShophp(rs.getString("shophp"));
-					dto.setShopaddr(rs.getString("shopaddr"));
-					dto.setShopaddrdetail(rs.getString("shopaddrdetail"));
-					dto.setShopphoto(rs.getString("shopphoto"));
-					dto.setShopdetail(rs.getString("shopdetail"));
-					dto.setMpositionx(rs.getString("mpositionx"));
-					dto.setMpositiony(rs.getString("mpositiony"));
-
-					list.add(dto);
-				}
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} finally {
-				db.dbClose(conn, pstmt, rs);
-			}
-			return list;
-			
-
-		}
 	
 }
 

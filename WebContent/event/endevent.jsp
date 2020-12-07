@@ -60,17 +60,12 @@ body,h1 {font-family: "Raleway", Arial, sans-serif}
 	
 	
 	/* sub */
-.sub_visual{min-height:499px;padding:0 10px;text-align:center;background-repeat:no-repeat;background-size:cover;background-position:center;position:relative;}
-.sub_visual .txt{width:100%;position:absolute;top:148px;left:0;}
-.sub_visual .txt h1{margin:0;font-size:2.75rem;font-weight:300;}
-.sub_visual .txt h1:after{display:block;width:40px;height:2px;margin:32px auto;background:#202020;content:'';}
-.sub_visual .txt p{font-size:1.25rem;font-weight:300;}
-.sub_visual .page_tab{width:100%;padding:0 10px;font-size:0;position:absolute;bottom:41px;left:0;}
-.sub_visual .page_tab li{display:inline-block;width:20%;max-width:170px;padding:10px 0;border:1px solid #bfbfbf;border-left:0;font-size:1rem;color:#909090;background:#fff;}
-.sub_visual .page_tab li:first-child{border-left:1px solid #bfbfbf;}
-.sub_visual .page_tab li a{display:block;}
-.sub_visual .page_tab li.on, .sub_visual .page_tab li:hover{color:#000;background:#ffe600;transition:background .3s ease;-webkit-transition:background .3s ease;}
-.sub_visual.bg-menu{background-image:url(./image/coffee-5132832_1920.jpg);}
+.ordsub_visual{min-height:399px;padding:0 10px;text-align:center;background-repeat:no-repeat;background-size:cover;background-position:center;position:relative;}
+.ordsub_visual .txt{width:100%;position:absolute;top:120px;left:0;}
+.ordsub_visual .txt h1{margin:0;font-size:2.75rem;font-weight:500;color:white;}
+.ordsub_visual .txt h1:after{display:block;width:40px;height:4px;margin:32px auto;background:#202020;content:'';}
+.ordsub_visual .txt p{font-size:1.25rem;font-weight:300;color:white;}
+.ordsub_visual.bg-menu{background-image:url(./image/closeup-coffee-machine-wide.jpg);}
 </style>
 <script type="text/javascript">
 $(function(){
@@ -106,10 +101,10 @@ $(function(){
 
 <body>
 
-<div class="sub_visual bg-menu">
+<div class="ordsub_visual bg-menu">
     <div class="txt">
         <h1>스타보틀</h1>
-        <p>오직 스타보틀에서만 만나보실 수 있는 시그니처 메뉴입니다.</p>
+        <p>진행중인 이벤트를 확인하세요.</p>
     </div>
 </div>
 
@@ -128,9 +123,9 @@ $(function(){
     <div class="w3-bar w3-border">
       <a href="index.jsp?main=event/eventlist.jsp" class="w3-bar-item w3-button">전체 이벤트</a>
       <a href="index.jsp?main=event/ingevent.jsp" class="w3-bar-item w3-button w3-light-grey">진행중인 이벤트</a>
-      <a href="index.jsp?main=event/endevent.jsp" class="w3-bar-item w3-button">종료된 이벤트</a>
+      <a href="index.jsp?main=event/endevent.jsp" class="w3-bar-item w3-button"style="text-decoration: underline;font-weight: bold;">종료된 이벤트</a>
     </div>
-
+	<br><br>
     <!--이벤트추가버튼 admin 계정으로만 보이게-->
     <%
     if(loginok!=null && myid.equals("admin")){%>

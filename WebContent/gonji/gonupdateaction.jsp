@@ -14,9 +14,11 @@
 <%
 	request.setCharacterEncoding("utf-8");
 %>
+<%-- usebean은 선언하는 것 --%>
 <jsp:useBean id="dao" class="data.dao.GonjiDao"/>
 <jsp:useBean id="dto" class="data.dto.GonjiDto"/>
-<jsp:setProperty property="*" name="dto"/>
+<%-- multipartrequest는 setproperty로 못 읽어온다 --%>
+<%-- <jsp:setProperty property="*" name="dto"/> --%>
 </head>
 <%
 	
@@ -27,27 +29,34 @@
 	try{
 		multi=new MultipartRequest(request,realFolder,
 				uploadSize,"utf-8",new DefaultFileRenamePolicy());
-		String gonsubject=multi.getParameter("gonsubject");
+		//제목에 html태그 안되게 < >특수기호로 변경(문자열text)로 저장한다
+		String gonsubject=multi.getParameter("gonsubject").replace("<", "&lt;").replace(">", "&gt;");
 		String gonid=multi.getParameter("gonid");
 		String goncontent=multi.getParameter("goncontent");
+		
+		//num, pageNum은 MultipartRequest로 다시 읽어와야 한다
+		//("num")은 updateform에서 request파라미터랑 같은 파라미터 명
+		String gonnum=multi.getParameter("num");
+		String pageNum=multi.getParameter("pageNum");
 		
 		//dto에 넣기
 		dto.setGoncontent(goncontent);
 		dto.setGonid(gonid);
 		dto.setGonsubject(gonsubject);
+		dto.setGonnum(gonnum);
 		
 		//update
 		dao.updateGonji(dto);
 		
 		//최근 추가된 num구하기
-		//int gonnum=db.getMaxNum();
+		//int gonnum=dao.getMaxNum();
 		
-		//페이지 번호 읽기
-		String pageNum=request.getParameter("pageNum");
+		//페이지 번호 읽기: request로 읽어오는 건 적용 안된다
+		//String pageNum=request.getParameter("pageNum");
 		//글 올린 내용보기로 바로 이동하기
 		//content의 String gonnum=request.getParameter("num");파라미터 num과 일치
 		//String path="../index.jsp?main=gonji/content.jsp?num="+gonnum+"&pageNum=1";
-		String path="../index.jsp?main=gonji/content.jsp?num="+dto.getGonnum()+"&pageNum="+pageNum;
+		String path="../index.jsp?main=gonji/content.jsp?num="+gonnum+"&pageNum="+pageNum;
 		response.sendRedirect(path);
 		
 	}catch(Exception e){

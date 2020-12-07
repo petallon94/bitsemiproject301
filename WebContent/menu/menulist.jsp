@@ -19,10 +19,11 @@
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: 'Noto Sans KR', sans-serif;}
 .w3-bar-block .w3-bar-item {padding:20px}
-
+.w3-content{max-width: 1100px; min-height: 1000px;}
 /*godetail*/
 
 .godetail img{cursor:pointer;}
+.menu_list h3{margin-bottom: 50px;}
 
 
 /* sub */
@@ -70,35 +71,29 @@ $(function(){
         <p>오직 스타보틀에서만 만나보실 수 있는 시그니처 메뉴입니다.</p>
     </div>
     <ul class="page_tab st-2">
-		        <li><a onclick ="location.href='index.jsp?main=menu/menulist.jsp'">전체</a></li>
-		        <li><a onclick ="location.href='index.jsp?main=menu/menulistcoffee.jsp'">커피</a></li>
-		        <li><a onclick ="location.href='index.jsp?main=menu/menulistdrink.jsp'">음료</a></li>
-		        <li><a onclick ="location.href='index.jsp?main=menu/menulistdess.jsp'">디저트</a></li>
-		        <li><a onclick ="location.href='index.jsp?main=menu/menulistprep.jsp'">프라푸치노</a></li>
-		    </ul>
-		     
- 
+        <li><a onclick ="location.href='index.jsp?main=menu/menulist.jsp'">전체</a></li>
+        <li><a onclick ="location.href='index.jsp?main=menu/menulistcoffee.jsp'">커피</a></li>
+        <li><a onclick ="location.href='index.jsp?main=menu/menulistdrink.jsp'">음료</a></li>
+        <li><a onclick ="location.href='index.jsp?main=menu/menulistdess.jsp'">디저트</a></li>
+        <li><a onclick ="location.href='index.jsp?main=menu/menulistprep.jsp'">프라푸치노</a></li>
+    </ul>
 </div>
 
   
 <!-- !PAGE CONTENT! 페이지 부분 -->
-<div class="menu_list w3-content w3-padding" style="max-width:1600px;margin-top:100px" >
+<div class="menu_list w3-content" style="margin-top:100px;" >
 
 	<h3>전체음료</h3>
 
-	<hr id="about">
-	
-	
 	<!-- 출력연습하기 -->
-
-	<div class="menu_contain w3-main w3-content w3-padding" >
+	<div class="menu_contain w3-main w3-content">
 	
 	<%
 	
 		for(MenuDto dto : list){%>
-			<div class="w3-quarter godetail" >
-      		<img src ="menusave/<%=dto.getMenuphoto()%>" class ="godetail" menunum = "<%=dto.getMenunum()%>" style="width:100%;height :250px;margin-left:10px;marigin_top :10px;">
-      		<h3><%=dto.getMenuname() %></h3>
+			<div class="w3-quarter godetail">
+      		<img src ="menusave/<%=dto.getMenuphoto()%>" class ="godetail" menunum = "<%=dto.getMenunum()%>" style="width:240px;height :250px;">
+      		<h4 style="margin: 10px 0 40px 0;"><%=dto.getMenuname() %></h4>
      		<input type="hidden" class="form-control" id="menunum"  name="menunum" value =<%=dto.getMenunum()%>>
  		   </div>
 		<%}%>
@@ -107,12 +102,6 @@ $(function(){
 	</div>
 <!-- End page content -->
 </div>
-
-
-
-
-
-
 </body>
 <script>
 // Script to open and close sidebar
@@ -123,9 +112,5 @@ function w3_open() {
 function w3_close() {
   document.getElementById("mySidebar").style.display = "none";
 }
-
-
 </script>
-
-
 </html>

@@ -1,3 +1,4 @@
+
 <%@page import="data.dto.StarMapDto"%>
 <%@page import="data.dao.StarMapDao"%>
 <%@page import="data.dto.EventDto"%>
@@ -42,12 +43,10 @@ width: 50%;
 width: 100%;
 height: 100%;
 }
-
 #image-container_bg{
 position: relative;
 width: 100%;
 }
-
 #image-container_title{
     height: 104px;
     left: 50%;
@@ -58,9 +57,7 @@ width: 100%;
     z-index: 4;
     color: #ffffff;
     font-family: "Karma", sans-serif
-
 }
-
 .fixed-btn {
     position: fixed;
     z-index: 49;
@@ -68,21 +65,21 @@ width: 100%;
     bottom: 0;
     overflow: hidden;
 }
-.fixed-btn #topbutton {
+.fixed-btn #pageTop {
     width: 60px;
     height: 60px;
     background: url('./image/backtotop_icon.png') no-repeat center;
     background-size: cover;
     vertical-align: middle;
-}
-#topbutton span{
-text-align: center;
+    text-align: center;
 }
 
-.event_div {
+
+.shop_div {
+
 	overflow: hidden;
 }
-.event_div img {
+.shop_div img {
     -webkit-transform:scale(1);
     -moz-transform:scale(1);
     -ms-transform:scale(1); 
@@ -95,43 +92,43 @@ text-align: center;
     transition:.3s;
     overflow: hidden;
 }
-.event_div:hover img {
+.shop_div:hover img {
     -webkit-transform:scale(1.2);
     -moz-transform:scale(1.2);
     -ms-transform:scale(1.2);   
     -o-transform:scale(1.2);
-    transform:scale(1.2);
-    
+    transform:scale(1.2); 
+    overflow: hidden;   
 }
-
-
 .promotion_slide {
 width: 1200px;
 }
 #Menu, #Event, #Shop {
-margin-top: 80px;
+margin-top: 40px;
+
 }
-
-
 #main_location{
 width: 1000px; 
 height: 500px;
 margin: 200px 500px;
 }
 
+.slide_container{
+width:1260px; 
+height : 450px;
+margin-bottom: 100px;
+} 
+
+.slide_title{
+text-align: center;
+}
+
+
 </style>
 <script>
 $(function(){
-	
-	$("div.eventdetail").click(function(e){
-	  	  
-	   	 e.preventDefault(); 
-	   	 var eventnum = $(this).attr("eventnum");
-	   	 location.href ="index.jsp?main=event/eventcontent.jsp?eventnum="+eventnum;
-	   	  
-	     });
 
-		jQuery('.promotion_slide > div').slick({
+		jQuery('.promotion_slide1 > div').slick({
 			infinite: true,	
 			arrows: false,
 			autoplay: true,
@@ -144,8 +141,34 @@ $(function(){
 				{
 				  breakpoint: 1200,
 				  settings: {
-					slidesToShow: 2,
-					slidesToScroll: 2
+					slidesToShow: 3,
+					slidesToScroll: 3
+				  }
+				},
+				{
+				  breakpoint: 768,
+				  settings: {
+					slidesToShow: 1,
+					slidesToScroll: 1
+				  }
+				}
+			]
+		});	
+		jQuery('.promotion_slide2 > div').slick({
+			infinite: true,	
+			arrows: false,
+			autoplay: true,
+			autoplaySpeed: 3000,
+			speed: 2000,
+			pauseOnHover : false,
+			slidesToShow: 4,
+			slidesToScroll: 4,
+			responsive: [
+				{
+				  breakpoint: 1200,
+				  settings: {
+					slidesToShow: 3,
+					slidesToScroll: 3
 				  }
 				},
 				{
@@ -162,6 +185,7 @@ $(function(){
 
 
 <body>
+<div>
 <!-- 메인 사진 -->
 <div style="width:100%; margin:0 auto; display:flex;">
 <!-- 사이트메인 좌측배너 -->
@@ -205,13 +229,6 @@ $(function(){
 <!-- 사이트 메인 중앙 컨텐츠 -->
 <div class= "tabb" style="width:100%; margin-top : 100px; display:flex; justify-content : center">
 
-<div class=" w3-bar-block w3-light-grey " style="width:100px">
-
-  <button class="w3-bar-item w3-button tablink" style ="height : 33%; text-align:center; font-size: 14pt;" onclick="openMenu(event, 'Menu')">메뉴</button>
-  <button class="w3-bar-item w3-button tablink" style ="height : 33%; text-align:center; font-size: 14pt;" onclick="openMenu(event, 'Event')">이벤트</button>
-  <button class="w3-bar-item w3-button tablink" style ="height : 33%; text-align:center; font-size: 14pt;" onclick="openMenu(event, 'Shop')">매장</button>
-</div>
-
 <%
 	//메뉴 dao 선언
 	MenuDao medao = new MenuDao();
@@ -225,74 +242,85 @@ $(function(){
 	
 %>
 
-<div style="width:1260px; height : 450px;background-color : #eee;">
- 	<div class="promotion_slide w3-container tabs" id="Menu">  			
+
+<div style="width:1260px; height : 100%;">
+<div class="slide_container" style="background-color : #eee;">
+	<h2 class="slide_title">메뉴</h2>
+ 	<div class="promotion_slide1 w3-container tabs" id="Menu">  			
+
 				<div class="slide_box" >        
+
 						<%for(MenuDto medto : list){%>
 						<div>
-							<a href="index.jsp?main=menu/menudetailpage.jsp?menunum=<%=medto.getMenunum()%>" target="_self">
+							<a href="index.jsp?main=menu/menudetailpage.jsp?menunum=<%=medto.getMenunum()%>" target="_self" style="margin-left: 33px;">
 								<p class="photo">
-									<img src="menusave/<%=medto.getMenuphoto() %>" class="t_hidden m_hidden"/>									
+									<img src="menusave/<%=medto.getMenuphoto() %>" class="t_hidden m_hidden" style="width: 270px; height: 270px;"/>									
 								</p>
-								<p class="desc_box">
+								<p class="desc_box" style="width: 270px; height: 50px; font-size: 14pt;">
 									<span class="subject"><%=medto.getMenuname() %></span>									
 								</p>
 							</a>						
 						</div>
 						 <%} %>
 				</div> 
-			<a style="cursor :pointer	" onclick ="location.href='index.jsp?main=menu/menulist.jsp'">더보기</a>		 	
+
+			<a style="cursor :pointer" onclick ="location.href='index.jsp?main=menu/menulist.jsp'">더보기</a>		 	
+   	</div>
+   	</div>
+   	<div class="slide_container">
+   	<h2 class="slide_title">이벤트</h2>	
+   	<div class="promotion_slide2 w3-container tabs" id="Event">  			
+				<div class="slide_box" >        
+						<%for(EventDto evdto : liste){%>	
+						<div>
+							<a href="index.jsp?main=event/eventcontent.jsp?eventnum=<%=evdto.getEventnum()%>" target="_self">
+								<p class="photo">
+									<img src="menusave/<%=evdto.getEvlistimage() %>" style ="width : 250px; height:250px;" class="t_hidden m_hidden"/>									
+								</p>
+								<p class="desc_box">
+									<span class="subject"><%=evdto.getEvsubject() %></span>									
+								</p>
+							</a>						
+						</div>
+						 <%} %>
+				</div> 
+			<a style="cursor :pointer" onclick ="location.href='index.jsp?main=event/eventlist.jsp'">더보기</a>
+
    	</div>	 
-  <div id="Event" class="w3-container tabs" style="display:none">
-    <div style ="display : flex;justify-content : space-between;">
-    <%
-	
-		for(EventDto evdto : liste){%>		
-		<div style ="width 270px;height 300px;cursor:pointer;" class ="eventdetail" eventnum = "<%=evdto.getEventnum()%>">
 
-   		<div class ="event_div">
-   		<img src ="eventsave/<%=evdto.getEvlistimage() %>" style ="width : 250px;height:250px;margin-bottom: 8px;">
-   		</div>
-   		<p style ="width:250px; height: 50px;font-size: 14pt;"><%=evdto.getEvsubject() %></p>
-   		</div>
-		 <%} %>
-	
-
-		<a style="align-item:flex-end; cursor :pointer" onclick ="location.href='index.jsp?main=event/eventlist.jsp'">더보기</a>
-
-  </div>
-  </div>
-
-  <div id="Shop" class="w3-container tabs" style="display:none; margin-top: 80px;">
- 
-    <div style ="display : flex;">
-    <%
-	
+   	 </div>
+<div class="slide_container">
+   	<h2 class="slide_title">매장</h2>	
+  <div id="Shop" class="w3-container tabs" style ="display : flex;justify-content : space-between;"> 
+   
+    <%	
 		for(StarMapDto smdto : listsm){%>
-		<div style ="width 270px;height 300px;margin-left: 33px;">
-   		<img src ="eventsave/<%=smdto.getShopphoto() %>" style ="width : 250px;height:250px; border-radius:125px;border : 1px solid black;margin-bottom: 8px;">
-   		<p style ="width:250px; height: 50px;font-size: 14pt;"><%=smdto.getShopname() %></p>
+		<div style ="width 270px;height 300px;cursor:pointer;" class ="shopdetail" shopnum = "<%=smdto.getShopnum()%>">
+		<div class ="shop_div" style ="width : 250px;height:250px; border-radius:125px; border : 1px solid black;">
+   		<img src ="shopmapsave/<%=smdto.getShopphoto() %>"  style ="width : 250px;height:250px;">
    		</div>
 
-		 <%} %>    
+   		<p style ="width:250px"><%=smdto.getShopname() %></p>   		
+   		</div>
+		 <%} %>   
+		 <a style="cursor :pointer" onclick ="location.href='index.jsp?main=map/map.jsp'">더보기</a> 
 
-    </div>
-  </div>
 </div>
 </div>
-
+</div>
 
  
-  <!-- 매장위치 -->
-  <div class="main_location" id="main_location"> 매장위치</div>
+  <!-- 매장위치 카카오맵
+  <div class="main_location" id="main_location"> 매장위치</div>-->
 
-
-<!-- End page content -->
-</div>
 <!-- top button 작동안됨 -->
 <div class="fixed-btn">
-<button type="button" class="top" id="topbutton" onclick="scrollMov(0, 200);"><span>TOP</span></button>
+<a href="#top" class="on" style="opacity:1;"><span id="pageTop" >TOP</span></a>
 </div>
+</div>
+</div>
+
+</body>
 <script type="text/javascript">
 function openMenu(evt, cityName) {
 	  var i, x, tablinks;
@@ -308,16 +336,15 @@ function openMenu(evt, cityName) {
 	  evt.currentTarget.className += " w3-red";
 	}
 	
-var container = document.getElementById('main_location');
+/* 카카오 맵api 
+ var container = document.getElementById('main_location');
 var options = {
 	center: new kakao.maps.LatLng(33.450701, 126.570667),
 	level: 3
 };
-
 var map = new kakao.maps.Map(container, options);
-	
-	
+	 */
 </script>
 
-</body>
+
 </html>

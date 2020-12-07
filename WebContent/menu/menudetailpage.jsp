@@ -9,30 +9,30 @@
 <title>Insert title here</title>
 
 <style>
-.content02 { width:1100px; margin:auto;} /* 제품 상세보기 */
+.content02 { width:900px; margin:auto;} /* 제품 상세보기 */
 
-div.product_view_wrap1 { width:1100px; padding-bottom:40px; border-bottom:1px solid #ddd; margin-bottom:40px; }
-	div.product_view_pic { width:400px; float:left;margin-right : 10px; }
-	div.product_view_pic img { width:400px; float:left; align: center;}
+div.product_view_wrap1 { width:1100px; padding-bottom:40px; margin-bottom:40px; }
+div.product_view_pic { width:400px; float:left;margin-right : 10px; }
+div.product_view_pic img { width:400px; float:left; align: center;}
+.product_info_content ul {list-style-type : none; padding-inline-start:0; margin-top: 10px;}
+.product_info_content li dl {margin-bottom: 5px;}
+.product_info_content li dl dt {font-weight: 400; color: #666;}
 
+div.product_view_detail { width:610px; height: 400px;float:left; margin-left: 30px; position:relative; margin-bottom: 100px;}
+div.product_view_detail div.myAssignZone { position:relative; }
+div.product_view_detail h4 { font-size:24px; font-weight:bold; color:#222; border-bottom:2px solid #333; padding-bottom:18px; margin-bottom:20px; }
+div.product_view_detail h4 span { font-size:14px; font-family:"Arial"; font-weight:normal; color:#666; }
+div.product_view_detail p.t1 { font-size:16px; color:#444; margin-bottom:20px; line-height:1.6; min-height:40px; }
 
-	div.product_view_detail { width:610px; float:right; position:relative; }
-	div.product_view_detail div.myAssignZone { position:relative; }
-	div.product_view_detail h4 { font-size:24px; font-weight:bold; color:#222; border-bottom:2px solid #333; padding-bottom:18px; margin-bottom:20px; }
-	div.product_view_detail h4 span { font-size:14px; font-family:"Arial"; font-weight:normal; color:#666; }
-	div.product_view_detail p.t1 { font-size:16px; color:#444; margin-bottom:20px; line-height:1.6; min-height:40px; }
-	
-	div.product_view_detail div.product_info_head { height:59px; line-height:59px; position:relative; border-top:1px solid #ddd; border-bottom:1px solid #ddd; }
-	div.product_view_detail div.product_info_head p.tit { font-size:18px; color:#222; padding-left:10px; }
-	div.product_view_detail div.product_info_head div.card_enro { position:absolute; right:0; top:15px; }
-	div.product_view_detail div.product_info_head div.card_enro a { display:block; height:28px; line-height:28px; text-align:center; padding:0 10px; background:#006633; color:#fff; font-size:12px; border-radius:3px; }
-	div.product_view_detail div.product_select_wrap2 { /*width:375px;*/position:absolute; right:6px; top:6px; display:inline-block} /*20170517수정 : 넓이 제거, right변경*/
-	div.product_view_detail div.product_select_wrap2:after { content:""; display:block; clear:both; }
-	div.product_view_detail div.product_select_wsrap2 > div { float:left; }
-	div.product_view_detail div.product_info_head span.unit { font-size:12px; color:#666; position:absolute; right:0; top:2px; }
-	
-	
-	div.product_view_order{width:200px;padding:10px 0;border:1px solid #bfbfbf;text-align:middle;font-size:1rem;color:#909090;background:#fff;}
+div.product_view_detail p.tit { font-size:18px; color:#222; padding-left:10px; }
+div.product_view_detail div.card_enro { position:absolute; right:0; top:15px; }
+div.product_view_detail div.card_enro a { display:block; height:28px; line-height:28px; text-align:center; padding:0 10px; background:#006633; color:#fff; font-size:12px; border-radius:3px; }
+div.product_view_detail div.product_select_wrap2 { /*width:375px;*/position:absolute; right:6px; top:6px; display:inline-block} /*20170517수정 : 넓이 제거, right변경*/
+div.product_view_detail div.product_select_wrap2:after { content:""; display:block; clear:both; }
+div.product_view_detail div.product_select_wsrap2 > div { float:left; }
+div.product_view_detail div.product_info_head span.unit { font-size:12px; color:#666; position:absolute; right:0; top:2px; }
+
+div.product_view_order{width:180px;height: 50px;padding:10px 0;font-size:1rem;color:#333;background:#f6c244;text-align: center; line-height:30px;margin-top: 20px;position: absolute; bottom: 0; border-radius: .25rem;}
 /*submenu*/
 
 .sub_visual{min-height:499px;padding:0 10px;text-align:center;background-repeat:no-repeat;background-size:cover;background-position:center;position:relative;}
@@ -107,81 +107,64 @@ $(function(){
 %>
 
 
-				<div class="content02">
-					<!-- 제품 상세보기 -->
-					<div class="product_view_wrap1">
-						<div class="product_view_pic">
-						<input type="hidden" class="form-control" id="menunum"  name="menunum" value =<%=medto.getMenunum()%>>		  
-						<img src = "menusave/<%=medto.getMenuphoto() %>">
-						</div>
-						<div class="product_view_detail">
-						<h3><%=medto.getMenuname() %></h3><br>
-						<div class ="product_desc_detail">
-						
-						<p><%=medto.getMenudetail() %></p>
-						</div>
-						
-						
-						
-						<form action="" method="post">
-						<fieldset>
-									<legend class="hid">제품 영양 정보</legend>
-									<div class="product_view_info">
-										<div class="product_info_head">
-											<p class="tit">제품 영양 정보</p>
-											
-										</div>
-										<div class="product_info_content">
-											 <ul>
-                                                <li class="kcal">
-                                                    <dl>
-                                                        <dt>1회 제공량 (kcal) : <%=medto.getMenukcal() %></dt>
-                                                        <dd></dd>
-                                                    </dl>
-                                                </li>
-                                                <li class="sodium">
-                                                    <dl>
-                                                        <dt>나트륨 (mg)  : <%=medto.getMenunat() %></dt>
-                                                        <dd></dd>
-                                                    </dl>
-                                                </li>
-                                                <li class="sugars">
-                                                    <dl>
-                                                        <dt>당류 (g)  :  <%=medto.getMenusugar() %> </dt>
-                                                        <dd></dd>
-                                                    </dl>
-                                                </li>
-                                                <li class="caffeine last">
-                                                    <dl>
-                                                        <dt>카페인 (mg)  :  <%=medto.getMenucaff() %> </dt>
-                                                        <dd></dd>
-                                                    </dl>
-                                                </li>
-                                            </ul>
-										</div>
-										
-										
-									</div>
-								</fieldset>
-							</form>
-							<br></br>
-							<% if(loginok==null){%>
-							<div class="product_view_order2" style="cursor:pointer;">주문하기</div>
-							<%}else{%>
-							<div class="product_view_order" style="cursor:pointer;">주문하기</div>
-							<%}%>
-							</div>
-							
-						</div>
-						
-						
+<div class="content02">
+	<!-- 제품 상세보기 -->
+<div class="product_view_wrap1">
+	<div class="product_view_pic">
+	<input type="hidden" class="form-control" id="menunum"  name="menunum" value =<%=medto.getMenunum()%>>		  
+	<img src = "menusave/<%=medto.getMenuphoto() %>">
+	</div>
+	<div class="product_view_detail">
+	<h3 style="font-weight: 700;"><%=medto.getMenuname() %></h3>
+	<div class ="product_desc_detail">
+		<p style="margin-bottom: 40px;"><%=medto.getMenudetail() %></p>
+	</div>
+	
+	
+	<form action="" method="post">
+	<fieldset>
+				<legend class="hid" style="font-size: 1.2rem; font-weight: 600;">제품 영양 정보</legend>
+				<div class="product_view_info">
+					<div class="product_info_content">
+						 <ul>
+                              <li class="kcal">
+                                  <dl>
+                                      <dt>1회 제공량 (kcal) : <%=medto.getMenukcal() %></dt>
+                                      <dd></dd>
+                                  </dl>
+                              </li>
+                              <li class="sodium">
+                                  <dl>
+                                      <dt>나트륨 (mg)  : <%=medto.getMenunat() %></dt>
+                                      <dd></dd>
+                                  </dl>
+                              </li>
+                              <li class="sugars">
+                                  <dl>
+                                      <dt>당류 (g)  :  <%=medto.getMenusugar() %> </dt>
+                                      <dd></dd>
+                                  </dl>
+                              </li>
+                              <li class="caffeine last">
+                                  <dl>
+                                      <dt>카페인 (mg)  :  <%=medto.getMenucaff() %> </dt>
+                                      <dd></dd>
+                                  </dl>
+                              </li>
+                          </ul>
 					</div>
-					
+				</div>
+			</fieldset>
+		</form>
+		
+		<% if(loginok!=null){%>
+		<div class="product_view_order" style="cursor:pointer;">주문하기</div>
+		<%}else{%>
+		<div class="product_view_order2" style="cursor:pointer;">주문하기</div>
+		<%}%>
+		</div>
+	</div>
+</div>
 					<!-- 제품 상세보기 end -->
-					
-
-
-
-
 </body>
 </html>
