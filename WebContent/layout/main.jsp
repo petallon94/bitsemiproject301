@@ -1,3 +1,5 @@
+<%@page import="data.dto.GonjiDto"%>
+<%@page import="data.dao.GonjiDao"%>
 <%@page import="data.dto.StarMapDto"%>
 <%@page import="data.dao.StarMapDao"%>
 <%@page import="data.dto.EventDto"%>
@@ -147,6 +149,9 @@ $("#gonji_roll").rolling(490,290,{autoscroll:1, delay:1500});
 	//매장 dto 선언
 	StarMapDao smdao = new StarMapDao();
 	List<StarMapDto> listsm = smdao.getRandomList();
+	//공지 게시판 dao 선언
+	GonjiDao gdao=new GonjiDao();
+
 	
 %>
 <div style="width:1200px;height : 450px;background-color : #eee;">

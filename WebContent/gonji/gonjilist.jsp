@@ -213,7 +213,7 @@ String myid=(String)session.getAttribute("myid");
 //dao 선언
 MemberDao dao=new MemberDao();
 //아이디에 해당하는 이름 얻기
-String name=dao.getName(myid);
+//String name=dao.getName(myid);
 
 //myid가 StarBottle(관리자)인 경우에만 보이기
 if(loginok!=null && myid.equals("StarBottle"))

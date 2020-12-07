@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sun.org.apache.xerces.internal.impl.xpath.regex.REUtil;
+
 import data.dto.GonjiDto;
 import mysql.db.MysqlConnect;
 
@@ -286,6 +288,43 @@ public class GonjiDao {
 		}
 		
 	}
+	
+	//최신원글 3개 리턴용
+	public List<GonjiDto> getNewList()
+	{
+		List<GonjiDto> list=new ArrayList<GonjiDto>();
+		//num를 내림차순(desc), limit로 시작번지,몇개 가져올지 바인딩
+		String sql="select * from gonji order by gonnum desc limit 0,3";
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		conn=db.getMyConnection();
+		try {
+			pstmt=conn.prepareStatement(sql);
+			//실행
+			rs=pstmt.executeQuery();
+			//while문
+			while(rs.next())
+			{
+				GonjiDto dto=new GonjiDto();
+				dto.setGonnum(rs.getString("gonnum"));
+				dto.setGonid(rs.getString("gonid"));
+				dto.setGonsubject(rs.getString("gonsubject"));
+				dto.setGoncontent(rs.getString("goncontent"));
+				dto.setGonreadcount(rs.getInt("gonreadcount"));
+				dto.setGonwriteday(rs.getTimestamp("gonwriteday"));
+				//list에 추가
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			db.dbClose(conn, pstmt, rs);
+		}
+		return list;
+	}
+	
 	
 }
 
