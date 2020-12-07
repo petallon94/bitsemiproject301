@@ -106,10 +106,29 @@ text-align: center;
 
 
 </style>
-<script type="text/javascript">
-
-//공지사항 롤링 함수(안쓸수도 있음)
-
+<script>
+$(function(){
+	
+	$("div.menudetail").click(function(e){
+	  	  
+	   	 e.preventDefault(); 
+	   	 var menunum = $(this).attr("menunum");
+	   	 location.href ="index.jsp?main=menu/menudetailpage.jsp?menunum="+menunum;
+	   	  
+	     });
+	
+	$("div.eventdetail").click(function(e){
+	  	  
+	   	 e.preventDefault(); 
+	   	 var eventnum = $(this).attr("eventnum");
+	   	 location.href ="index.jsp?main=event/eventcontent.jsp?eventnum="+eventnum;
+	   	  
+	     });
+	
+	
+	
+	
+});
 </script>
 
 
@@ -180,12 +199,13 @@ text-align: center;
    	<%
 	
 		for(MenuDto medto : list){%>
-		<div style ="width 270px;height 300px;">
+		<div style ="width 270px;height 300px; cursor:pointer;" class ="menudetail" menunum = "<%=medto.getMenunum()%>">
    		<img src ="menusave/<%=medto.getMenuphoto() %>" style ="width : 250px;height:250px;">
    		<p><%=medto.getMenuname() %></p>
+   		
    		</div>
 		 <%} %>
-   	
+   	<a style="cursor :pointer	" onclick ="location.href='index.jsp?main=menu/menulist.jsp'">더보기</a>
    	</div>
   </div>
 
@@ -195,15 +215,16 @@ text-align: center;
 	
 		for(EventDto evdto : liste){%>
 		
-		<div style ="width 270px;height 300px;">
+		<div style ="width 270px;height 300px;cursor:pointer;" class ="eventdetail" eventnum = "<%=evdto.getEventnum()%>">
    		<div class ="event_div">
    		<img src ="eventsave/<%=evdto.getEvlistimage() %>" style ="width : 250px;height:250px;">
    		</div>
    		<p style ="width:250px"><%=evdto.getEvsubject() %></p>
    		</div>
-   		</div>
 		 <%} %>
-	</div>
+	
+		<a style="cursor :pointer" onclick ="location.href='index.jsp?main=event/eventlist.jsp'">더보기</a>
+  </div>
   </div>
 
   <div id="Shop" class="w3-container tabs" style="display:none">

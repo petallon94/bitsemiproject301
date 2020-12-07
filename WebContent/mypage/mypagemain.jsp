@@ -14,7 +14,9 @@
  <link href="https://fonts.googleapis.com/css2?family=Libre+Barcode+39+Extended+Text&family=Montserrat&display=swap" rel="stylesheet">
   <title>Insert title here</title>
  <style>
+
  .my_page_menu {display:flex; left: 20px; top: 700px; padding: 20px; float: left;}
+
 .nav {display: flex; flex-direction: column;}
 a {width: 200px;}
 	
