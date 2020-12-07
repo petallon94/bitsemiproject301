@@ -494,35 +494,68 @@
 				});
 			});
 			<%-- onclick="location.href='index.jsp?main=member/updateform.jsp?num=<%=dto.getNum()%>'" --%>
-			/* $(document).on('click','#mapexit', function() {
-				$("#wrap").hide();
-			}); */
-			/* $("#mapsearch").click(function(){
-				//변수
-				var search=$("#search").val();
-				var word=$("#word").val();
-				//alert(search+":"+word);
-				//검색한 값이랑 단어의 값을 넣으면
-				//전체 선택했을 경우,
-				$.ajax({
-					type:"get",
-					dataType:"html",
-					url:"map/mapsavesession.jsp",
-					data:{"search":search,"word":word},
-					success:function(data){
-						//페이지 번호를 없애고 전체 새로고침한다
-						location.href="index.jsp?main=map/map.jsp"
-						
-					}
-				});//$.ajax close
-				
-				
-			});//$("#btndatasearch") close
+
 			
-			//전체 선택하면 입력단어 지워주기
-			$("#search").change(function(){
-				$("#word").val("");
-			}); */
+			
+			//map search 선언 후 옮기기
+			
+			var mapsearch;
+			//var word = $("#word").val();
+			//var word2 = $('.word2').val();
+			
+			$("#shopsearch").change(function() {
+				var shopsearch2=$(this).val();
+				mapsearch =shopsearch2;
+				//alert(shopnum);
+				if(shopsearch2=='-'){
+					$("#mapsearch").val("");
+					$("#mapsearch").focus();
+				}else{
+					$("#mapsearch").val(shopsearch2);
+				}
+			});
+			
+			//search 구현하기
+			
+			$("#mapbutton").click(function(){
+			
+				var word = $("#word").val();
+				//var word = $(".word").val();
+				//var word = $("input[name=word]").val();
+				//var search;
+				 $.ajax({
+					type : "post",
+					url : "./map/mapsearch.jsp",
+					data : {"mapsearch":mapsearch,"word":word},
+					dataType : "xml",
+					success : function(data){
+						
+						var s = "";
+						
+							$(data).find("store").each(function(i, element){	
+								var n=$(element);
+								s +="<div><img src='//caffebene.com/images/common/s-pin.png' width='55' height='58'>";
+								  var shopname = n.find("shopname").text();
+								  var shopaddr= n.find("shopaddr").text();
+								  var shophp = n.find("shophp").text();
+								  var shopdetail = n.find("shopdetail").text();
+								
+								 s += "<a id='shopname'>지점명 : "+shopname+"</a><br>";
+								 s += "<a id='shopaddr'>주소 : "+shopaddr+"</a><br>";
+								 s += "<a id='shophp'>매장번호 : "+shophp+"</a><br>";
+								 s += "<a id='shopdetail'>영업시간 : "+shopdetail+"</a><br>";
+								 s+="</div>";
+			                 });
+							
+								$("#searchlist").html(s);
+					}
+					
+				});
+				
+				
+			});
+			
+
 		});
 	</script>
 	<!-- 매장추가end -->
@@ -532,55 +565,26 @@
 			style="width: 100%; height: 750px; position: relative; overflow: hidden;"></div>
 
 		<div id="menu_wrap" class="bg_white">
-			<div class="option">
-				<div>
-					<!-- <form onsubmit="searchPlaces(); return false;">
-						매장: <input type="text" value="강남" id="title" size="15">
-						<button type="submit">검색하기</button>
-						</form> --> 
-						<form action="map/mapsavesession.jsp" method="post">
-							<div class="form-group">
-								<select id="shopsearch">
-									<option selected disabled hidden>검색방법을 선택해주세요</option>
-									<option value="shopname">매장명</option>
-									<option value="shopaddr">매장주소</option>
-								</select>
-								
-								<input type="text" style="width: 200px;"
-									name="word" id="word" placeholder="검색단어입력"
-									value="">
-								<input type="text" id="search" name="search">
-								<button type="submit" class="btn btn-warning"
-									id="mapsearch" style="width: 45px;">
-									<span class="fas fa-search">검색</span>
-								</button>
-							</div>
-						</form>
-					
-				</div>
+
+			<div class="map-search">
+				<select id="shopsearch">
+					<option selected disabled hidden>검색방법을 선택해주세요</option>
+					<option value="shopname">매장명</option>
+					<option value="shopaddr">매장주소</option>
+				</select> 
+				<input type="text" id="mapsearch" name="mapsearch">
+				<input type="text" style="width: 200px;" name="word" id="word" class = "word" placeholder="검색단어입력"> 
+				<button type="button" class="btn btn-warning" id="mapbutton"
+					style="width: 45px;">
+					<span class="fas fa-search">검색</span>
+				</button>
 			</div>
 			<hr>
-			<%
-			String key=request.getParameter("search");
-			String value=request.getParameter("word");
-			
-			List<StarMapDto> mlist=StarDao.getSearchList(key, value);
-			for(StarMapDto dto:mlist){
-			%>
 			<div id = "searchlist" style="border: 0px solid gray;">
-				<div>
-					<img src="//caffebene.com/images/common/s-pin.png" width="55" height="58">
-					<a id="shopname">지점명:<%=dto.getShopname() %></a><br>
-					<a id="shopaddr">주소: <%=dto.getShopaddr() %></a><br>
-					<a id="shophp">매장번호: <%=dto.getShophp() %></a><br>
-					<a id="shopdetail">영업시간: <%=dto.getShopdetail() %></a>
-				</div>
+				
+
 			</div>
-			<hr>
-			<%} %>
-			<!-- 버릴거임 -->
-			<div id="pagination"></div>
-		</div>
+	</div>
 
 
 	
@@ -590,7 +594,7 @@
 		StarMapDao db = new StarMapDao();
 
 	int totalCount = db.getTotalCount();
-	int perPage = 3; //한 페이지당 보여지는 글의 갯수
+	int perPage = 9; //한 페이지당 보여지는 글의 갯수
 	int perBlock = 4; //한 블럭당 출력할 페이지의 갯수
 	int totalPage; //총 페이지의 갯수
 	int startPage; //각 블럭당 시작 페이지 번호
