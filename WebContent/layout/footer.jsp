@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <style type="text/css">
 #ftarea{width: 100%; height: 210px; background-color: #fafafa; position: relative;}
-.ftcnt .ft_img{position: absolute; top: 50%; left: 14%; transform:translate(-50%, -50%);}
+.ftcnt .ft_img{position: absolute; top: 50%; left: 15%; transform:translate(-50%, -50%);}
 .ftcnt img{width: 120px;}
 .ftcnt .ft_info{color: #999; margin-left: 30px; position: absolute; top: 50%; left: 48%; transform:translate(-50%, -50%);}
 .ftcnt .ft_info .email{padding-left: 30px;}
