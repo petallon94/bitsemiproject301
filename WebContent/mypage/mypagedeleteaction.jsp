@@ -15,7 +15,7 @@
 		//비번이 맞는경우 삭제
 		dao.deleteMember(id);
 		session.removeAttribute("loginok");
-		
+		response.sendRedirect("../index.jsp");
 	}else{%>
 		<script type="text/javascript">
 			alert("비밀번호가 틀렸습니다");

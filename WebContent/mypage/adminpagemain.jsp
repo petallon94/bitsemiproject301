@@ -16,7 +16,7 @@
  <style>
 .admin_page_menu {position: absolute; left: 20px; top: 700px; padding: 20px;}
 .nav {display: flex; flex-direction: column;}
-a {width: 200px;}
+.nav-link {width: 200px; cursor:pointer;}
 	
 .admin_page_content {width:1200px; height: 100%; position : absolute;left:400px; margin-top:50px;}
 .admin_page_content img{max-width:100%;height :200px;}
@@ -32,9 +32,10 @@ a {width: 200px;}
 </style> 
 <script>
 $(function() {
-
+	$(".admin_page_content").load("menu/menuadmin.jsp");	
+		
 	$("#admin_nav-item1").click(function() {
-		$(".admin_page_content").load("menu/menuinsertform.jsp");		 
+		$(".admin_page_content").load("menu/menuadmin.jsp");		 
 		return false;
 	});
 	
