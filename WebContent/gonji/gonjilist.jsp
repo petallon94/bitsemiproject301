@@ -51,7 +51,7 @@
 	
 	/* 공통 메인 디자인 css  */
 	.sub_visual{
-		min-height:499px;
+		min-height:399px;
 		padding:0 10px;
 		text-align:center;
 		background-repeat:no-repeat;
@@ -228,6 +228,9 @@ if(loginok!=null && myid.equals("StarBottle"))
  <%
  	SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
  %>
+<!-- hidden -->
+<input type="hidden" name="myid" value="<%=myid%>">
+
  <div class="gonlist">
  <%--테이블로 제목넣기--%>
  	<table class="table" style="width: 1000px;">

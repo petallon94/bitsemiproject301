@@ -7,8 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
+import data.dto.GonjiDto;
 import data.dto.StarMapDto;
 import mysql.db.MysqlConnect;
 
@@ -117,7 +116,6 @@ public class StarMapDao {
 			pstmt.setString(7, dto.getMpositionx());
 			pstmt.setString(8, dto.getMpositiony());			
 
-
 			pstmt.execute();			
 
 		} catch (SQLException e) {
@@ -128,7 +126,6 @@ public class StarMapDao {
 		}		
 	}
 	
-
 
 	public int getTotalCount()
 	{
@@ -349,13 +346,14 @@ public class StarMapDao {
 			db.dbClose(conn, pstmt, rs);	
 		}	
 		return list;	
+
 	}
 	
-     //°Ë»ö°á°ú ¸®½ºÆ® Áß ÇÑ ÆäÀÌÁö¿¡¼­ ÇÊ¿äÇÑ¸¸Å­ ¹ÝÈ¯ÇÏ±â
+     //ï¿½Ë»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½Ñ¸ï¿½Å­ ï¿½ï¿½È¯ï¿½Ï±ï¿½
      		public List<StarMapDto> getSearchList(String key,String value)
      		{
      			List<StarMapDto> list=new ArrayList<StarMapDto>();
-     			//allÀÏ °æ¿ì
+     			//allï¿½ï¿½ ï¿½ï¿½ï¿½
      			String s="";
      			if(key!=null)
      			{
@@ -372,11 +370,11 @@ public class StarMapDao {
      			conn=db.getMyConnection();
      			try {
      				pstmt=conn.prepareStatement(sql);
-     				//¹ÙÀÎµù
+     				//ï¿½ï¿½ï¿½Îµï¿½
      				/*
      				 * pstmt.setString(1, key); pstmt.setString(2, value);
      				 */
-     				//½ÇÇà
+     				//ï¿½ï¿½ï¿½ï¿½
      				rs=pstmt.executeQuery();
      				while(rs.next())
      				{
@@ -408,6 +406,7 @@ public class StarMapDao {
 
 
 	
+
 	
 }
 
