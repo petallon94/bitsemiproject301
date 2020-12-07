@@ -15,12 +15,12 @@
   <title>Insert title here</title>
  <style>
 
- .my_page_menu {display:flex; left: 20px; top: 700px; padding: 20px; float: left;}
-
+.my_page_menu {display:flex; left: 20px; top: 700px; padding: 20px; float: left;}
 .nav {display: flex; flex-direction: column;}
 a {width: 200px;}
 	
-.my_page_content {display:flex;left:400px; margin-top:20px; float: left;}
+.my_page_content {display:flex;margin-left:100px; margin-top:20px; float: left;}
+
 .my_page_content img{max-width:100%;height :200px;}
 div#mypage_main {margin-bottom: 200px;}
 /*submenu*/
