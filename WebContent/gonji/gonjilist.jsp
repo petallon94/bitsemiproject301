@@ -213,7 +213,7 @@ String myid=(String)session.getAttribute("myid");
 //dao 선언
 MemberDao dao=new MemberDao();
 //아이디에 해당하는 이름 얻기
-//String name=dao.getName(myid);
+String name=dao.getName(myid);
 
 //myid가 StarBottle(관리자)인 경우에만 보이기
 if(loginok!=null && myid.equals("StarBottle"))
@@ -228,6 +228,9 @@ if(loginok!=null && myid.equals("StarBottle"))
  <%
  	SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
  %>
+<!-- hidden -->
+<input type="hidden" name="myid" value="<%=myid%>">
+
  <div class="gonlist">
  <%--테이블로 제목넣기--%>
  	<table class="table" style="width: 1000px;">

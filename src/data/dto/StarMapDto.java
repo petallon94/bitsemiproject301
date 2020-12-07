@@ -1,6 +1,4 @@
-package ajax.music.db;
-
-
+package data.dto;
 
 public class StarMapDto {
 	

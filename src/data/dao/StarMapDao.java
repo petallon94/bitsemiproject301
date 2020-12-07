@@ -1,4 +1,4 @@
-package ajax.memo.db;
+package data.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -143,7 +143,7 @@ public class StarMapDao {
 
 		try {
 			pstmt=conn.prepareStatement(sql);
-			//���ε�
+			//占쏙옙占싸듸옙
 
 			pstmt.setString(1, dto.getShopname());
 			String shophp=dto.getShophp1()+"-"+dto.getShophp2();
@@ -156,7 +156,7 @@ public class StarMapDao {
 			pstmt.setString(7, dto.getMpositionx());
 			pstmt.setString(8, dto.getMpositiony());			
 
-			//����
+			//占쏙옙占쏙옙
 			pstmt.execute();			
 
 		} catch (SQLException e) {
@@ -168,7 +168,7 @@ public class StarMapDao {
 	}
 	
 
-	//��ü ���� ���ϱ�
+	//占쏙옙체 占쏙옙占쏙옙 占쏙옙占싹깍옙
 	public int getTotalCount()
 	{
 		int tot=0;
@@ -195,8 +195,8 @@ public class StarMapDao {
 	
 	public List<StarMapDto> getList(int start,int perpage)
 	{
-		//�׷캯���� �������,��� �׷��ΰ�� step �� ������ ���
-		//limit �� ���۹���� ��� ������� ���ε�
+		//占쌓룹변占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占�,占쏙옙占� 占쌓뤄옙占싸곤옙占� step 占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙占�
+		//limit 占쏙옙 占쏙옙占쌜뱄옙占쏙옙占� 占쏘개占쏙옙 占쏙옙占쏙옙占쏙옙占� 占쏙옙占싸듸옙
 		String sql="select * from map order by shopnum desc limit ?,?";
 		List<StarMapDto> list=new ArrayList<StarMapDto>();
 		Connection conn=null;
@@ -264,7 +264,7 @@ public class StarMapDao {
 	{
 		String sql="delete from map where shopname=?";
 		
-		System.out.println("ȣ��� �Ǵ�?");
+		System.out.println("호占쏙옙占� 占실댐옙?");
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		conn=db.getMyConnection();
@@ -292,7 +292,7 @@ public class StarMapDao {
 		conn=db.getMyConnection();
 		try {
 			pstmt=conn.prepareStatement(sql);
-			//���ε�
+			//占쏙옙占싸듸옙
 			pstmt.setString(1, shopname);
 			rs=pstmt.executeQuery();
 			if(rs.next())

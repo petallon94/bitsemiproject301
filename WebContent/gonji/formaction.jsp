@@ -15,7 +15,7 @@
 </head>
 <%
 	GonjiDao db=new GonjiDao();
-	
+
 	MultipartRequest multi=null;
 	String realFolder=getServletContext().getRealPath("/gonsave");
 	int uploadSize=1024*1024*2;
@@ -28,6 +28,7 @@
 		String gonid=multi.getParameter("gonid");
 		String goncontent=multi.getParameter("goncontent");
 		
+		//파라미터로 받은 입력된 값들을 dto에 넣어준다
 		GonjiDto dto=new GonjiDto();
 		dto.setGoncontent(goncontent);
 		dto.setGonid(gonid);

@@ -43,6 +43,8 @@ public class GonjiDao {
 	//insert
 	public void insertGonji(GonjiDto dto)
 	{
+		
+		//System.out.println("insertgonji : "+dto.getGonid());
 		String sql="insert into gonji (gonid,gonsubject,goncontent,"
 				+ "gonreadcount,gonwriteday) values (?,?,?,0,now())";
 		Connection conn=null;
@@ -284,6 +286,7 @@ public class GonjiDao {
 		}
 		
 	}
+	
 }
 
 
