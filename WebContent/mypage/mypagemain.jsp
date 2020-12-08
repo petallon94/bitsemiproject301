@@ -11,16 +11,17 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
  <link href="https://fonts.googleapis.com/css2?family=Libre+Barcode+39+Extended+Text&family=Montserrat&display=swap" rel="stylesheet">
   <title>Insert title here</title>
  <style>
 
 .my_page_menu {display:flex; left: 20px; top: 700px; padding: 20px; float: left;}
-.nav {display: flex; flex-direction: column; cursor: pointer;}
+.nav {display: flex; flex-direction: column; cursor: pointer; font-family: 'Noto Sans KR', Arial, sans-serif;}
 a {width: 200px;}
 	
 
-.my_page_content {display:flex;left:400px; margin-top:20px; float: left;}
+.my_page_content {display:flex;left:400px; margin-top:20px; float: left; font-family: 'Noto Sans KR', Arial, sans-serif;}
 .my_page_content img{max-width:100%;}
 
 .my_page_content {display:flex;margin-left:100px; margin-top:20px; float: left;}
