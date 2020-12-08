@@ -17,7 +17,7 @@
 
 
 <style>
-body,h1,h2,h3,h4,h5,h6 {font-family: 'Noto Sans KR', sans-serif;}
+body{font-family: 'Noto Sans KR', Arial, sans-serif;}
 .w3-bar-block .w3-bar-item {padding:20px}
 .w3-content{max-width: 1100px;}
 /*godetail*/
@@ -26,17 +26,17 @@ body,h1,h2,h3,h4,h5,h6 {font-family: 'Noto Sans KR', sans-serif;}
 .menu_list h3{margin-bottom: 50px;}
 
 /* sub */
-.sub_visual{min-height:499px;padding:0 10px;text-align:center;background-repeat:no-repeat;background-size:cover;background-position:center;position:relative;}
-.sub_visual .txt{width:100%;position:absolute;top:148px;left:0;}
-.sub_visual .txt h1{margin:0;font-size:2.75rem;font-weight:300;}
-.sub_visual .txt h1:after{display:block;width:40px;height:2px;margin:32px auto;background:#202020;content:'';}
-.sub_visual .txt p{font-size:1.25rem;font-weight:300;}
-.sub_visual .page_tab{width:100%;padding:0 10px;font-size:0;position:absolute;bottom:41px;left:0;cursor : pointer;}
+.img-cover{position: absolute;height: 100%;width: 100%;background-color: rgba(0, 0, 0, 0.4);z-index:1;background-size:cover;}
+.sub_visual .txt{position: absolute;top:50%;left:50%;transform: translate(-50%, -50%);color: white;z-index: 2;text-align: center;}
+.sub_visual .txt h1:after{display:block;width:40px;height:3px;margin:32px auto;background:white;content:'';}
+.sub_visual .txt p{font-size: 14pt; font-weight: 300;}
+.sub_visual{position: relative;background-image: url(./image/coffee-5132832_1920.jpg);height: 400px;background-size: cover;text-align: center;background-position:center;}
+
+.sub_visual .page_tab{width:100%;padding:0 10px;font-size:0;position:absolute;bottom:41px;left:0;cursor : pointer;z-index: 2;}
 .sub_visual .page_tab li{display:inline-block;width:20%;max-width:170px;padding:10px 0;border:1px solid #bfbfbf;border-left:0;font-size:1rem;color:#909090;background:#fff;}
 .sub_visual .page_tab li:first-child{border-left:1px solid #bfbfbf;}
 .sub_visual .page_tab li a{display:block;}
 .sub_visual .page_tab li.on, .sub_visual .page_tab li:hover{color:#000;background:#ffe600;transition:background .3s ease;-webkit-transition:background .3s ease;}
-.sub_visual.bg-menu{background-image:url(./image/coffee-5132832_1920.jpg);}
 
 </style>
 <script>
@@ -70,14 +70,13 @@ $(function(){
         <p>오직 스타보틀에서만 만나보실 수 있는 시그니처 메뉴입니다.</p>
     </div>
     <ul class="page_tab st-2">
-		        <li><a onclick ="location.href='index.jsp?main=menu/menulist.jsp'">전체</a></li>
-		        <li><a onclick ="location.href='index.jsp?main=menu/menulistcoffee.jsp'">커피</a></li>
-		        <li><a onclick ="location.href='index.jsp?main=menu/menulistdrink.jsp'">음료</a></li>
-		        <li><a onclick ="location.href='index.jsp?main=menu/menulistdess.jsp'">디저트</a></li>
-		        <li><a onclick ="location.href='index.jsp?main=menu/menulistprep.jsp'">프라푸치노</a></li>
-		    </ul>
-		     
- 
+		<li><a onclick ="location.href='index.jsp?main=menu/menulist.jsp'">전체</a></li>
+		<li><a onclick ="location.href='index.jsp?main=menu/menulistcoffee.jsp'">커피</a></li>
+		<li><a onclick ="location.href='index.jsp?main=menu/menulistdrink.jsp'">음료</a></li>
+		<li><a onclick ="location.href='index.jsp?main=menu/menulistdess.jsp'">디저트</a></li>
+		<li><a onclick ="location.href='index.jsp?main=menu/menulistprep.jsp'">프라푸치노</a></li>
+	</ul>
+	<div class="img-cover"></div>
 </div>
 
   
