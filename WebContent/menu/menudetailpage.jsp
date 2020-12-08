@@ -96,6 +96,7 @@ $(function(){
 <%
 	//메뉴 자체 아이디 받아오기
 	String menunum = request.getParameter("menunum");
+	String category = request.getParameter("category");
 	//로그인한 아이디
 	String menumyid = (String)session.getAttribute("id");
 	//해당 메뉴에 해당하는 테이블의 시퀀스 번호 받아오기ㅣ
@@ -113,7 +114,8 @@ $(function(){
 	<!-- 제품 상세보기 -->
 <div class="product_view_wrap1">
 	<div class="product_view_pic">
-	<input type="hidden" class="form-control" id="menunum"  name="menunum" value =<%=medto.getMenunum()%>>		  
+	<input type="hidden" class="form-control" id="menunum"  name="menunum" value =<%=medto.getMenunum()%>>
+	<input type="hidden" class="form-control" id="category"  name="category" value =<%=medto.getCategory()%>>		  
 	<img src = "menusave/<%=medto.getMenuphoto() %>">
 	</div>
 	<div class="product_view_detail">

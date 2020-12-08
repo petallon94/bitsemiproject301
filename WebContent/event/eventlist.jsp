@@ -18,7 +18,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <style>
-body,h1 {font-family: 'Noto Sans KR', Arial, sans-serif}
+body,h1 {font-family: "Raleway", Arial, sans-serif}
 
 	.w3-padding-32{
 		margin-bottom: -50px;
@@ -155,7 +155,9 @@ $(function(){
       	{%>
       		<div class="ev_content w3-third"
       		 eventnum="<%=idto.getEventnum()%>">
+
       		 <div class="w3-round w3-margin-bottom" style="width:230px; height: 230px; background-image:url('eventsave/<%=idto.getEvlistimage()%>'); background-size: cover;"></div>
+
       		  <p class="ev_subject"><%=idto.getEvsubject()%><br>
       		  <%=idto.getEvstartday()%>~<%=idto.getEvendday()%>
       		  </p>
@@ -183,7 +185,9 @@ $(function(){
       		 ">
       		 </span>
       		 
+
       		 <div class="w3-round w3-margin-bottom" style="width:230px; height: 230px; background-image:url('eventsave/<%=edto.getEvlistimage()%>'); background-size: cover;"></div>
+
       		 </a> 
       		  <p class="ev_subject"><%=edto.getEvsubject()%><br>
       		  <%=edto.getEvstartday()%>~<%=edto.getEvendday()%>
@@ -204,3 +208,4 @@ $(function(){
 
 </body>
 </html>
+
