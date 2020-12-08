@@ -19,7 +19,7 @@
 .ftcnt .ft_css .time{color: #999; padding-left: 3px;}
 .ftcnt .ft_icon{position: absolute; top: 50%; left: 81%; transform:translate(-50%, -50%);}
 .ftcnt .ft_icon span{color: #999; font-size: 10pt;}
-.ftcnt .ft_icon span a{margin: 0 6px;}
+.ftcnt .ft_icon span a{margin: 0 6px; color: #999;}
 .ftcnt .ft_icon span a:hover{text-decoration: none;}
 .ftcnt .ft_icon img{width: 300px; cursor: pointer;}
 .ftcnt .ft_copy{color: #888; font-weight: 400; position: absolute; top: 88%; left: 50%; transform:translate(-50%, -50%);}
