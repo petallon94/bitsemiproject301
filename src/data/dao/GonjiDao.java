@@ -289,13 +289,13 @@ public class GonjiDao {
 		
 	}
 	
-	//최신원글 3개 리턴용
+	//최신원글 1개 리턴용
 	//공지사항 메인에 롤링
 	public List<GonjiDto> getNewList()
 	{
 		List<GonjiDto> list=new ArrayList<GonjiDto>();
 		//num를 내림차순(desc), limit로 시작번지,몇개 가져올지 바인딩
-		String sql="select * from gonji order by gonnum desc limit 0,3";
+		String sql="select * from gonji order by gonnum desc limit 0,1";
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
