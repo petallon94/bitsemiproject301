@@ -16,7 +16,7 @@
  <style>
 
 .my_page_menu {display:flex; left: 20px; top: 700px; padding: 20px; float: left;}
-.nav {display: flex; flex-direction: column;}
+.nav {display: flex; flex-direction: column; cursor: pointer;}
 a {width: 200px;}
 	
 

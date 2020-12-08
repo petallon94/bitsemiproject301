@@ -1,3 +1,5 @@
+<%@page import="data.dto.GonjiDto"%>
+<%@page import="data.dao.GonjiDao"%>
 <%@page import="data.dto.StarMapDto"%>
 <%@page import="data.dao.StarMapDao"%>
 <%@page import="data.dto.EventDto"%>
@@ -127,7 +129,6 @@ margin-bottom: 100px;
 text-align: center;
 }
 
-
 </style>
 <script>
 $(function(){
@@ -228,6 +229,32 @@ $(function(){
 </div>
 <img class="image-container_bg" src="./image/coffee-5132832_1920.jpg" alt="cafe4" style="width: 100%;">
 </div>
+</div>
+
+<%-- 공지사항 메인 출력 --%>
+<%
+	//공지 게시판 dao 선언
+	GonjiDao gdao=new GonjiDao();
+	//getNewList에서 목록 가져오기
+	List<GonjiDto> glist=gdao.getNewList();
+	//totalcount 값 구하기(+대신)
+	int totalcount=gdao.getTotalCount();
+%>
+<div class="notice_gonji" style="width: 50%;">
+    <ul class="rolling list-group">
+    <%
+    	for(GonjiDto gdto:glist)
+    	{%>
+    	<div class="alert alert-warning">
+		  <strong>공지사항</strong>&nbsp;&nbsp;&nbsp;&nbsp;
+		  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		    <a href="index.jsp?main=gonji/content.jsp?num=<%=gdto.getGonnum()%>&pageNum=1&key=a" 
+		    class="alert-link"><%=gdto.getGonsubject()%>
+		    </a>
+	  	</div>
+    	<%}
+    %> 
+	</ul>
 </div>
 
 <!-- 사이트 메인 중앙 컨텐츠 -->
