@@ -19,9 +19,14 @@
 .nav {display: flex; flex-direction: column;}
 a {width: 200px;}
 	
+
+.my_page_content {display:flex;left:400px; margin-top:20px; float: left;}
+.my_page_content img{max-width:100%;}
+
 .my_page_content {display:flex;margin-left:100px; margin-top:20px; float: left;}
 
 .my_page_content img{max-width:100%;height :200px;}
+
 div#mypage_main {margin-bottom: 200px;}
 /*submenu*/
 .sub_visual{min-height:399px;padding:0 10px;text-align:center;background-repeat:no-repeat;background-size:cover;background-position:center;position:relative;margin-bottom: 30px;}
@@ -84,7 +89,7 @@ if(loginok==null)
 <a><%=dto.getName() %>님 환영합니다!!!</a></div><br><br>
 <button class="btn btn-outline-warning" id="show_card">나의 스타보틀카드보기</button><br>
 <div class="card" style="width:400px; height:300px; margin:30px; border: none;">
-<img src="./image/card.png">
+<img src="./image/card.png" style="width:380px; height :220px;">
 <div id="barcode_text" style="font-family: 'Libre Barcode 39 Extended Text', cursive; font-size: 4.0em; margin-left:60px;"><%=dto.getBarcode() %></div></div>
 </div></div>
 

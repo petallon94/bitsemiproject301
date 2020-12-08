@@ -39,7 +39,7 @@ width: 250px;
 .btn{
 font-size: 15px;
 }
-b{
+.table > b{
 color: red;
 }
 
