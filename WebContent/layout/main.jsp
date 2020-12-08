@@ -310,12 +310,12 @@ $(function(){
 	   
 	    <%	
 			for(StarMapDto smdto : listsm){%>
-			<div style ="width 270px;height 300px;cursor:pointer;" class ="shopdetail" shopnum = "<%=smdto.getShopnum()%>">
+			<div style ="cursor:pointer; margin: 40px;" class ="shopdetail" shopnum = "<%=smdto.getShopnum()%>">
 			<div class ="shop_div" style ="width : 212px; height:212px; border-radius:125px;">
 	   		<img src ="shopmapsave/<%=smdto.getShopphoto() %>"  style ="width : 212px;height:212px;">
 	   		</div>
 	
-	   		<p style ="width:250px"><%=smdto.getShopname() %></p>   		
+	   		<p style ="width : 212px; text-align:center;"><%=smdto.getShopname() %></p>   		
 	   		</div>
 			 <%} %>   
 	
