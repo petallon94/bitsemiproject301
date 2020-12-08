@@ -13,9 +13,16 @@
 
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b6754d93f8d097bb07dd758c1b12ba4c&libraries=services,clusterer,drawing"></script>
-
-<link rel="stylesheet" type="text/css" href="css/map_menu.css">
-<link rel="stylesheet" type="text/css" href="css/map_window.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous"></head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <style>
 .wrap {
@@ -369,22 +376,13 @@
 	left: 500px;
 }
 /* 매장추가,수정,삭제 */
-.pagepage {
-	width: 100%;
-	text-align: center;
-	margin: 0px auto;
-	height: 500px;
-	position: relative;
+/* 매장추가,수정,삭제 */
+
+#photoslide{
+	border:1px solid gray;width:300px;height:300px;
+	text-align: center; margin: 0 auto;  display: block;
 }
 
-.pagepage div {
-	position: absolute;
-	left: 70%;
-	top: 100%;
-	transform: translate(-50%, -50%);
-	text-align: center;
-	bottom: auto;
-}
 
 
 
@@ -480,18 +478,18 @@
 						
 							$(data).find("store").each(function(i, element){	
 								var n=$(element);
-								s +="<div style ='border-bottom : 2px solid gray;cursor : pointer'><img src='//caffebene.com/images/common/s-pin.png' width='55' height='58'>";
+								s +="<div class ='result"+i+"' id = 'result'  style ='border-bottom : 2px solid gray;'><img src='//caffebene.com/images/common/s-pin.png' width='55' height='58'>";
 								  var shopname = n.find("shopname").text();
 								  var shopaddr= n.find("shopaddr").text();
 								  var shophp = n.find("shophp").text();
 								  var shopdetail = n.find("shopdetail").text();
 								
-								 s += "<a id='shopname'>지점명 : "+shopname+"</a><br>";
+								 s += "<a class='"+shopname+"' id='shopname' onclick='selectFx(this.className)' style ='cursor : pointer;' >지점명 : "+shopname+"</a><br>";
 								 s += "<a id='shopaddr'>주소 : "+shopaddr+"</a><br>";
 								 s += "<a id='shophp'>매장번호 : "+shophp+"</a><br>";
 								 s += "<a id='shopdetail'>영업시간 : "+shopdetail+"</a><br>";
 								 s+="</div>";
-			                 });
+			                 });s
 							
 								$("#searchlist").html(s);
 					}
@@ -533,26 +531,24 @@
 	
 
 	<!-- 매장정보 페이지 -->
+	<!-- 매장정보 페이지 -->
 	<%
 		StarMapDao db = new StarMapDao();
-
 	int totalCount = db.getTotalCount();
-	int perPage = 9; //한 페이지당 보여지는 글의 갯수
-	int perBlock = 4; //한 블럭당 출력할 페이지의 갯수
+	int perPage = 100; //한 페이지당 보여지는 글의 갯수
+	int perBlock = 5; //한 블럭당 출력할 페이지의 갯수
 	int totalPage; //총 페이지의 갯수
 	int startPage; //각 블럭당 시작 페이지 번호
 	int endPage; //각 블럭당 끝 페이지 번호
 	int start; //각 블럭당 불러올 글의 시작번호
 	int end; //각 블럭당 불러올 글의 끝번호
 	int currentPage; //현재 보여질 페이지번호
-
 	//현재 페이지 번호 구하기
 	String pageNum = request.getParameter("pageNum");
 	if (pageNum == null)
 		currentPage = 1;//페이지번호가 없을 경우 무조건 1페이지로 간다
 	else
 		currentPage = Integer.parseInt(pageNum);
-
 	//총 페이지 구하기(예: 총글수가 9 이구 한페이지당 2개씩 볼 경우)
 	totalPage = totalCount / perPage + (totalCount % perPage > 0 ? 1 : 0);
 	//시작페이지와 끝페이지 구하기
@@ -565,7 +561,6 @@
 		endPage = totalPage;
 	//mysql 은 첫 글이 0번(오라클은 1번)
 	start = (currentPage - 1) * perPage;
-
 	//각 페이지에서 출력할 시작번호
 	//총 50개일 경우 1페이지는 50
 	//               2페이지는 40
@@ -573,82 +568,38 @@
 	//mysql 에서 해당 페이지에 필요한 목록 가져오기
 	List<StarMapDto> getlist = db.getList(start, perPage);
 	%>
-
-
-	<%
-		if (totalCount > 0) {
-	%>
-	<div class="hadanhadan" style ="float:left;">
-		<div>
-
-				<%
-					for (StarMapDto dto : getlist) {
-				%>
-					
-				<div id="maphadan" align="left" style ="border:1px solid gray;width:300px;height:300px;">
-				
-					<img id ="maphadanimg" src = "/shopmapsave/<%=dto.getShopphoto() %>">
-				
-					<input id="shopnum" type="hidden" name="shopnum" value="<%=dto.getShopnum()%>">
-					<div id="hadan">
-						<h3><%=dto.getShopname()%></h3>
-					</div>
-					<div id="hadan">
-					
-					
-					
-					<%=dto.getShopaddr()%></div>
-					<div id="hadan"><%=dto.getShopaddrdetail()%></div>
-					<div id="hadan"><%=dto.getShophp()%></div>
-					<div id="hadan"><%=dto.getShopdetail()%></div>
-				</div>
-				<%
-					}
-				%>
-
-		</div>
-	</div>
 	
-	
-	
-	
-	<div class="pagepage">
-		<div class="container" id="mappagination">
-			<ul class="pagination">
-				<%
-					if (startPage > 1) {
-				%>
-				<li class="page-item mappage"><a class="page-link"
-					href="index.jsp?main=map/map.jsp?pageNum=<%=startPage - 1%>#mappage">이전</a></li>
-				<%
-					}
-				for (int i = startPage; i <= endPage; i++) {
-				String url = "index.jsp?main=map/map.jsp?pageNum=" + i;//이동할 페이지 추가
-				if (i == currentPage) {
-				%>
-				<li class="page-item mappage"><a class="page-link"
-					href="<%=url%>#mappage"><%=i%></a></li>
-				<%
-					} else {
-				%>
-				<li class="page-item mappage"><a class="page-link"
-					href="<%=url%>#mappage"><%=i%></a></li>
-				<%
-					}
-				}
+<h1 style="margin-left: 240px; margin-top: 80px; margin-bottom: -70px;"><b style="font-size: 30px;">매장안내</b></h1>
+<div style="width: 1500px; margin: 0 auto;">
 
-				if (endPage < totalPage) {
-				%>
-				<li class="page-item mappage"><a class="page-link"
-					href="index.jsp?main=map/map.jsp?pageNum=<%=endPage + 1%>#mappage">다음</a></li>
-				<%
-					}
-				%>
-			</ul>
-		</div>
-	</div>
-	<%}%>
-	<a id="mappage"></a>
+ <%	
+		for (StarMapDto dto : getlist) {
+		%>
+ <!-- The Tour Section -->
+  <div class="w3-white" id="tour" style="margin: 0 auto;  display: block; ">
+    <div class="w3-container w3-content w3-padding-64" style="max-width:800px; margin: 0 auto;  display: block; margin-left: 50px; float: left; margin-bottom: -105px;">
+  
+      <div class="w3-row-padding w3-padding-32" style="margin:0 -16px">
+      
+        <div class="w3-third w3-margin-bottom">
+       
+          <img src="../bitsemiproject301/shopmapsave/<%=dto.getShopphoto()%>" alt="New York" style="width:380px; height: 330px; border-radius: 3px;" class="w3-hover-opacity">
+          <div class="w3-container w3-white" style="margin-top: 10px;">
+            <p style="width: 450px;"><b style="width: 450px; font-size: 20px;"><%=dto.getShopname()%></b></p>
+            <p class="w3-opacity" style="width: 450px;"><%=dto.getShophp()%></p>
+            <p style="width: 450px;"><%=dto.getShopaddr()%></p>
+          	<p style="width: 450px;"><%=dto.getShopdetail()%></p>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+	
+<%
+			}
+		%>
+</div>	
 	<!-- 매장정보 페이지-->
 
 
@@ -664,32 +615,8 @@
 		};
 
 		// 지도를 생성합니다    
-		var map = new kakao.maps.Map(mapContainer, mapOption);
-		
-		
-		/* // 원(Circle)의 옵션으로 넣어준 반지름
-		var radius = 100;
-
-		// 마커들이 담긴 배열
-		markers.forEach(function(m) {
-		    var c1 = map.getCenter();
-		    var c2 = m.getPosition();
-		    var poly = new Polyline({
-		      // map: map, 을 하지 않아도 거리는 구할 수 있다.
-		      path: [c1, c2]
-		    });
-		    var dist = poly.getLength(); // m 단위로 리턴
-
-		    if (dist < radius) {
-		        m.setMap(map);
-		    } else {
-		        m.setMap(null);
-		    }
-		}); */
-		
-		var geocoder = new kakao.maps.services.Geocoder();
-		
-		
+		var map = new kakao.maps.Map(mapContainer, mapOption);		
+		var geocoder = new kakao.maps.services.Geocoder();		
 		var positions = [ 
 		   <%for (StarMapDto dto : list) {%>
 		   {
@@ -698,11 +625,11 @@
                    '    <div class="mapinfo">' + 
                    '        <div class="title">' + 
                    '            <%=dto.getShopname()%>' + 
-                   '            <div class="close" id="mapexit" title="닫기"></div>' + 
+                   '            <div class="close" id="mapexit" title="닫기" onclick="closeFx()"></div>' + 
                    '        </div>' + 
                    '        <div class="body">' + 
                    '            <div class="img">' +
-                   '                <img src="https://cfile181.uf.daum.net/image/250649365602043421936D" width="73" height="70">' +
+                   '                <img src="../bitsemiproject301/shopmapsave/<%=dto.getShopphoto()%>" width="73" height="70">' +
                    '           </div>' + 
                    '            <div class="desc">' + 
                    '                <div class="ellipsis"><%=dto.getShopaddr()%></div>' + 
@@ -719,8 +646,7 @@
           ]; 
 	
 		
-    	
-	
+   
 		var imageSrc = "//caffebene.com/images/common/s-pin.png", // 마커이미지의 주소입니다    
 	    imageSize = new kakao.maps.Size(24, 35), // 마커이미지의 크기입니다
 	    imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
@@ -729,6 +655,7 @@
 		var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
 	    
 
+	    ////초기 매장 포지션 표시해 주는곳!!!!!!!!!!!!!!!///////////////
 	    for (var i = 0; i < positions.length; i ++) {
 	        
 	        // 마커 이미지의 이미지 크기 입니다
@@ -745,24 +672,36 @@
 	            image : markerImage // 마커 이미지 
 	        });
 	        
+	        var maptitle = positions[i].title;
+	        
 	        var infowindow = new kakao.maps.InfoWindow({
 	            content: positions[i].content // 인포윈도우에 표시할 내용
 	        });
 	    	// 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
 	        // 이벤트 리스너로는 클로저를 만들어 등록합니다 
 	        // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
-	        kakao.maps.event.addListener(marker, 'click', makeOverListener(map, marker, infowindow));
+	        kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
 	        kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
-	       
+	        //kakao.maps.event.addListener(marker, 'click', makeclickListener(maptitle,marker,infowindow));
+		       
 	    }
-	  
+	  //////// 마커 생성 완료//////////
 	 	
 	 	// 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
 	    function makeOverListener(map, marker, infowindow) {
 	        return function() {
-	            infowindow.open(map, marker);
+	        	 infowindow.open(map, marker);
 	        };
 	    }
+	  
+	   	
+	    function makeclickListener(maptitle, marker, infowindow) {
+	        return function() {
+	        	 alert(maptitle);
+	        };
+	    } 
+	  
+	    
 
 	    // 인포윈도우를 닫는 클로저를 만드는 함수입니다 
 	    function makeOutListener(infowindow) {
@@ -788,56 +727,19 @@
 			zIndex : 1
 		});
 
-		// 키워드로 장소를 검색합니다
-		searchPlaces();
+		
+		//★ ★//
+		
+		
 
-		// 키워드 검색을 요청하는 함수입니다
-		function searchPlaces() {
 
-			var keyword = document.getElementById('title').value;
-
-			if (!keyword.replace(/^\s+|\s+$/g, '')) {
-				alert('키워드를 입력해주세요!');
-				return false;
-			}
-
-			// 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
-			ps.keywordSearch(keyword, placesSearchCB);
-		}
-
-		// 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
-		function placesSearchCB(data, status, pagination) {
-			if (status === kakao.maps.services.Status.OK) {
-
-				// 정상적으로 검색이 완료됐으면
-				// 검색 목록과 마커를 표출합니다
-				displayPlaces(data);
-
-				// 페이지 번호를 표출합니다
-				displayPagination(pagination);
-
-			} else if (status === kakao.maps.services.Status.ZERO_RESULT) {
-
-				alert('검색 결과가 존재하지 않습니다.');
-				return;
-
-			} else if (status === kakao.maps.services.Status.ERROR) {
-
-				alert('검색 결과 중 오류가 발생했습니다.');
-				return;
-
-			}
-		}
-
-		// 검색 결과 목록과 마커를 표출하는 함수입니다
+	/////////////////////마커 표시이이이이이이이//////////////////////
+	/* 	// 검색 결과 목록과 마커를 표출하는 함수입니다
 		function displayPlaces(places) {
 
 			var listEl = document.getElementById('placesList'), menuEl = document
 					.getElementById('menu_wrap'), fragment = document
 					.createDocumentFragment(), bounds = new kakao.maps.LatLngBounds(), listStr = '';
-
-			// 검색 결과 목록에 추가된 항목들을 제거합니다
-			removeAllChildNods(listEl);
 
 			// 지도에 표시되고 있는 마커를 제거합니다
 			removeMarker();
@@ -886,6 +788,9 @@
 			// 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
 			map.setBounds(bounds);
 		}
+////////////////////////////////////////마커 표시///////////////////////////////////
+
+
 
 		// 검색결과 항목을 Element로 반환하는 함수입니다
 		function getListItem(index, places) {
@@ -915,27 +820,9 @@
 		}
 
 		// 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
-		function addMarker(position, idx, title) {
-			var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
-			imageSize = new kakao.maps.Size(36, 37), // 마커 이미지의 크기
-			imgOptions = {
-				spriteSize : new kakao.maps.Size(36, 691), // 스프라이트 이미지의 크기
-				spriteOrigin : new kakao.maps.Point(0, (idx * 46) + 10), // 스프라이트 이미지 중 사용할 영역의 좌상단 좌표
-				offset : new kakao.maps.Point(13, 37)
-			// 마커 좌표에 일치시킬 이미지 내에서의 좌표
-			}, markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize,
-					imgOptions), marker = new kakao.maps.Marker({
-				position : position, // 마커의 위치
-				image : markerImage
-			});
+		
 
-			marker.setMap(map); // 지도 위에 마커를 표출합니다
-			markers.push(marker); // 배열에 생성된 마커를 추가합니다
-
-			return marker;
-		}
-
-		// 지도 위에 표시되고 있는 마커를 모두 제거합니다
+		// 지도 위에 표시되고 있는 마커를 모두 제거합니다 참고용
 		function removeMarker() {
 			for (var i = 0; i < markers.length; i++) {
 				markers[i].setMap(null);
@@ -943,37 +830,8 @@
 			markers = [];
 		}
 
-		// 검색결과 목록 하단에 페이지번호를 표시는 함수입니다
-		function displayPagination(pagination) {
-			var paginationEl = document.getElementById('pagination'), fragment = document
-					.createDocumentFragment(), i;
 
-			// 기존에 추가된 페이지번호를 삭제합니다
-			while (paginationEl.hasChildNodes()) {
-				paginationEl.removeChild(paginationEl.lastChild);
-			}
-
-			for (i = 1; i <= pagination.last; i++) {
-				var el = document.createElement('a');
-				el.href = "#";
-				el.innerHTML = i;
-
-				if (i === pagination.current) {
-					el.className = 'on';
-				} else {
-					el.onclick = (function(i) {
-						return function() {
-							pagination.gotoPage(i);
-						}
-					})(i);
-				}
-
-				fragment.appendChild(el);
-			}
-			paginationEl.appendChild(fragment);
-		}
-
-		// 검색결과 목록 또는 마커를 클릭했을 때 호출되는 함수입니다
+		// 검색결과 목록 또는 마커를 클릭했을 때 호출되는 함수입니다 중요 노지움
 		// 인포윈도우에 장소명을 표시합니다
 		function displayInfowindow(marker, title) {
 			var content = '<div style="padding:5px;z-index:1;">' + title
@@ -981,14 +839,70 @@
 
 			infowindow.setContent(content);
 			infowindow.open(map, marker);
+		} */
+		
+		
+		
+		/// result 를 클릭 했을때 
+		window.onload = function(){
+			
+		};
+		
+		
+		var close = document.getelementsbyclassname("close");
+		
+		function closeFx(){
+			
+			this.infowindow.close();
 		}
-
-		// 검색결과 목록의 자식 Element를 제거하는 함수입니다
-		function removeAllChildNods(el) {
-			while (el.hasChildNodes()) {
-				el.removeChild(el.lastChild);
+		
+		function removeMarker() {
+			for (var i = 0; i < markers.length; i++) {
+				markers[i].setMap(null);
 			}
+			markers = [];
 		}
+		
+		
+		function selectFx(tag) {
+			///이름이 이거인 매장을 찾는다.
+			
+			 for (var i = 0; i < positions.length; i ++) {
+				 var maptitle = positions[i].title;
+				 
+				 if(maptitle == tag){
+					 //그 마커에 포커스를 찍는다
+					 removeMarker();
+					 var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
+				        
+					 
+				        // 마커를 생성합니다
+				        var marker = new kakao.maps.Marker({
+				            map: map, // 마커를 표시할 지도
+				            position: positions[i].latlng, // 마커를 표시할 위치
+				            title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+				            image : markerImage // 마커 이미지 
+				        });
+				        
+				        
+				        var infowindow = new kakao.maps.InfoWindow({
+				            content: positions[i].content // 인포윈도우에 표시할 내용
+				        }); 
+				        
+				        
+				        infowindow.open(map,marker);
+				        
+				        break;
+				        
+				 }else continue;
+				 
+			
+			 }
+			
+			
+        }	
+
+		
 
 </script>
 </body>
