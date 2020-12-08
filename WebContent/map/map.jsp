@@ -14,8 +14,16 @@
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b6754d93f8d097bb07dd758c1b12ba4c&libraries=services,clusterer,drawing"></script>
 
-<link rel="stylesheet" type="text/css" href="css/map_menu.css">
-<link rel="stylesheet" type="text/css" href="css/map_window.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous"></head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <style>
 .wrap {
@@ -31,7 +39,7 @@
 }
 
 .wrap .mapinfo {
-	width: 286px;
+	width: 320px;
 	height: 120px;
 	border-radius: 5px;
 	border-bottom: 2px solid #ccc;
@@ -388,6 +396,15 @@
 
 
 
+#photoslide{
+	border:1px solid gray;width:300px;height:300px;
+	text-align: center; margin: 0 auto;  display: block;
+}
+
+
+
+
+
 /* 배너 */
 .ordsub_visual{min-height:399px;padding:0 10px;text-align:center;background-repeat:no-repeat;background-size:cover;background-position:center;position:relative;}
 .ordsub_visual .txt{width:100%;position:absolute;top:120px;left:0;}
@@ -412,17 +429,7 @@
 	String shopname=request.getParameter("shopname");
 	%>
 	
-	
-	<%-- <%
-	if(id == id.equals("admin")){
 
-%> --%>
-
-	<%-- 	<%
-}
-%> --%>
-	
-	
 	<script type="text/javascript">
 		$(function() {
 			$("#mapadd").hide();
@@ -537,8 +544,8 @@
 		StarMapDao db = new StarMapDao();
 
 	int totalCount = db.getTotalCount();
-	int perPage = 9; //한 페이지당 보여지는 글의 갯수
-	int perBlock = 4; //한 블럭당 출력할 페이지의 갯수
+	int perPage = 100; //한 페이지당 보여지는 글의 갯수
+	int perBlock = 5; //한 블럭당 출력할 페이지의 갯수
 	int totalPage; //총 페이지의 갯수
 	int startPage; //각 블럭당 시작 페이지 번호
 	int endPage; //각 블럭당 끝 페이지 번호
@@ -573,84 +580,40 @@
 	//mysql 에서 해당 페이지에 필요한 목록 가져오기
 	List<StarMapDto> getlist = db.getList(start, perPage);
 	%>
-
-
-	<%
-		if (totalCount > 0) {
-	%>
-	<div class="hadanhadan" style ="float:left;">
-		<div>
-
-				<%
-					for (StarMapDto dto : getlist) {
-				%>
-					
-				<div id="maphadan" align="left" style ="border:1px solid gray;width:300px;height:300px;">
-				
-					<img id ="maphadanimg" src = "/shopmapsave/<%=dto.getShopphoto() %>">
-				
-					<input id="shopnum" type="hidden" name="shopnum" value="<%=dto.getShopnum()%>">
-					<div id="hadan">
-						<h3><%=dto.getShopname()%></h3>
-					</div>
-					<div id="hadan">
-					
-					
-					
-					<%=dto.getShopaddr()%></div>
-					<div id="hadan"><%=dto.getShopaddrdetail()%></div>
-					<div id="hadan"><%=dto.getShophp()%></div>
-					<div id="hadan"><%=dto.getShopdetail()%></div>
-				</div>
-				<%
-					}
-				%>
-
-		</div>
-	</div>
 	
-	
-	
-	
-	<div class="pagepage">
-		<div class="container" id="mappagination">
-			<ul class="pagination">
-				<%
-					if (startPage > 1) {
-				%>
-				<li class="page-item mappage"><a class="page-link"
-					href="index.jsp?main=map/map.jsp?pageNum=<%=startPage - 1%>#mappage">이전</a></li>
-				<%
-					}
-				for (int i = startPage; i <= endPage; i++) {
-				String url = "index.jsp?main=map/map.jsp?pageNum=" + i;//이동할 페이지 추가
-				if (i == currentPage) {
-				%>
-				<li class="page-item mappage"><a class="page-link"
-					href="<%=url%>#mappage"><%=i%></a></li>
-				<%
-					} else {
-				%>
-				<li class="page-item mappage"><a class="page-link"
-					href="<%=url%>#mappage"><%=i%></a></li>
-				<%
-					}
-				}
+<h1>매장안내</h1>
+<div style="width: 1500px; margin: 0 auto;">
 
-				if (endPage < totalPage) {
-				%>
-				<li class="page-item mappage"><a class="page-link"
-					href="index.jsp?main=map/map.jsp?pageNum=<%=endPage + 1%>#mappage">다음</a></li>
-				<%
-					}
-				%>
-			</ul>
-		</div>
-	</div>
-	<%}%>
-	<a id="mappage"></a>
-	<!-- 매장정보 페이지-->
+ <%	
+		for (StarMapDto dto : getlist) {
+		%>
+ <!-- The Tour Section -->
+  <div class="w3-white" id="tour" style="margin: 0 auto;  display: block; ">
+    <div class="w3-container w3-content w3-padding-64" style="max-width:800px; margin: 0 auto;  display: block; margin-left: 50px; float: left; margin-bottom: -105px;">
+  
+      <div class="w3-row-padding w3-padding-32" style="margin:0 -16px">
+      
+        <div class="w3-third w3-margin-bottom">
+       
+          <img src="../bitsemiproject301/shopmapsave/<%=dto.getShopphoto()%>" alt="New York" style="width:380px; height: 330px; border-radius: 3px;" class="w3-hover-opacity">
+          <div class="w3-container w3-white" style="margin-top: 10px;">
+            <p style="width: 450px;"><b style="width: 450px; font-size: 20px;"><%=dto.getShopname()%></b></p>
+            <p class="w3-opacity" style="width: 450px;"><%=dto.getShophp()%></p>
+            <p style="width: 450px;"><%=dto.getShopaddr()%></p>
+          	<p style="width: 450px;"><%=dto.getShopdetail()%></p>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+	
+<%
+			}
+		%>
+</div>	
 
+	
 
 	<script type="text/javascript">
 		// 마커를 담을 배열입니다
@@ -698,11 +661,11 @@
                    '    <div class="mapinfo">' + 
                    '        <div class="title">' + 
                    '            <%=dto.getShopname()%>' + 
-                   '            <div class="close" id="mapexit" title="닫기"></div>' + 
+                  /*  '            <div class="close" id="mapexit" title="닫기"></div>' +  */
                    '        </div>' + 
                    '        <div class="body">' + 
                    '            <div class="img">' +
-                   '                <img src="https://cfile181.uf.daum.net/image/250649365602043421936D" width="73" height="70">' +
+                   '                <img src="../bitsemiproject301/shopmapsave/<%=dto.getShopphoto()%>" width="73" height="70">' +
                    '           </div>' + 
                    '            <div class="desc">' + 
                    '                <div class="ellipsis"><%=dto.getShopaddr()%></div>' + 
@@ -751,7 +714,7 @@
 	    	// 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
 	        // 이벤트 리스너로는 클로저를 만들어 등록합니다 
 	        // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
-	        kakao.maps.event.addListener(marker, 'click', makeOverListener(map, marker, infowindow));
+	        kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
 	        kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
 	       
 	    }
