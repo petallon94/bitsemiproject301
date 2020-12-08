@@ -1,16 +1,14 @@
-
-
 <%@page import="data.dao.MemberDao"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="data.dto.GonjiDto"%>
 <%@page import="java.util.List"%>
 <%@page import="data.dao.GonjiDao"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <!-- 메인페이지에 필요한 링크/부트스트랩  -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -26,14 +24,13 @@
 	/* #cl-dashboard{display: none;} */
 	
 /*폰트 */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300&display=swap');
 	
 	div.gonlist{
 		display: flex;
 		width: 100%;
 		margin-left: 420px;	
-
-		font-family: 'Gothic A1', sans-serif;
-
+		font-family: 'Noto Serif KR', serif;
 	}
 	
 	/*리스트의 제목 부분 */
@@ -135,6 +132,7 @@ $(function(){
 	$("#search").change(function(){
 		$("#word").val("");
 	});
+
 });//$function close
 </script>
 </head>
@@ -226,8 +224,9 @@ String myid=(String)session.getAttribute("myid");
 MemberDao dao=new MemberDao();
 //아이디에 해당하는 이름 얻기
 //String name=dao.getName(myid);
+
 //myid가 StarBottle(관리자)인 경우에만 보이기
-if(loginok!=null && myid.equals("StarBottle"))
+if(loginok!=null && myid.equals("admin"))
 {%>
 	<b>	총 <span style="color: red;">
 	<%=totalCount%></span>개의 글이 있습니다</b>
@@ -339,9 +338,7 @@ if(loginok!=null && myid.equals("StarBottle"))
 
 <%-- 검색창  --%>
 <form action="" class="form-inline">
-
-  <div style="width: 300px;margin-left: 1080px;margin-top: -50px;">
-
+  <div style="width: 600px;margin-left: 1080px;margin-top: -50px;">
 	<div class="form-group">
 	<%
 		String search=(String)session.getAttribute("key");
@@ -528,4 +525,3 @@ if(loginok!=null && myid.equals("StarBottle"))
 <a id="test"></a>
 </body>
 </html>
-

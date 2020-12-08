@@ -1,12 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%
-	//gonlist¿¡¼­ °Ë»ö°ü·Ã º¯¼ö ¹Þ±â
+	//gonlistì—ì„œ ê²€ìƒ‰ê´€ë ¨ ë³€ìˆ˜ ë°›ê¸°
 	String search=request.getParameter("search");
 	String word=request.getParameter("word");
 	
-	//¼¼¼Ç¿¡ key,value·Î ÀúÀå
-	//key°ªÀº °°Àº key·Î ÁÖ¸é µ¤¾î¾´´Ù
+	//ì„¸ì…˜ì— key,valueë¡œ ì €ìž¥
+	//keyê°’ì€ ê°™ì€ keyë¡œ ì£¼ë©´ ë®ì–´ì“´ë‹¤
 	session.setAttribute("key", search);
 	session.setAttribute("value", word);
 %>
