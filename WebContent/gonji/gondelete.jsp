@@ -1,11 +1,11 @@
 <%@page import="data.dao.GonjiDao"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%
-	//gonnumÀÐ±â
+	//gonnumì½ê¸°
 	String gonnum=request.getParameter("gonnum");
-	//dao¼±¾ð
+	//daoì„ ì–¸
 	GonjiDao dao=new GonjiDao();
-	//»èÁ¦ ¸Þ¼­µå È£Ãâ
+	//ì‚­ì œ ë©”ì„œë“œ í˜¸ì¶œ
 	dao.deleteGonji(gonnum);
 %>
