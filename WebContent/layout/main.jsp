@@ -24,10 +24,8 @@
 <!--   slick api -->
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-  
-<!--   카카오 api -->
-  <script type="text/javascript"
-	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b6754d93f8d097bb07dd758c1b12ba4c&libraries=services,clusterer,drawing"></script>
+ <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 <style>
 body{
 font-family: 'Noto Sans KR', Arial, sans-serif;
@@ -305,9 +303,9 @@ $(function(){
 	   	</div>
    	</div>
 
-   	<div class="event_container" style="width: 100%; height: 800px; text-align: center; margin-top: 200px;">
+   	<div class="event_container" style="width: 100%; height: 800px; text-align: center; margin-top: 160px;">
 
-	   	<h1 class="event_title" style="font-weight: 600;">이벤트</h1>
+	   	<h1 class="event_title" style="font-weight: 300;">이벤트</h1>
 	   	<p style="text-align: center;">
 		   	<a style="cursor :pointer; color: #888; font-weight: 300; font-size: 14pt;" onclick ="location.href='index.jsp?main=event/eventlist.jsp'">
 					스타보틀의 다양한 이벤트가 진행중입니다&nbsp;&gt;

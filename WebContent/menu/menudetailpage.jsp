@@ -6,10 +6,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 <title>Insert title here</title>
 
 <style>
-body{font-family: 'Noto Sans KR', sans-serif;}
+body{font-family: 'Noto Sans KR', Arial, sans-serif;}
 .content02 { width:900px; margin:auto;} /* 제품 상세보기 */
 
 div.product_view_wrap1 { width:1100px; padding-bottom:40px; margin-bottom:40px; }
