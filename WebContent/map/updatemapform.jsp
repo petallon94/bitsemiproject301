@@ -41,12 +41,9 @@ $(function(){
 	
 
 	$("#mapcategory").change(function() {
-
-
-
 		$.ajax({
 			type: "post",
-			url: "storepositionlistdata.jsp",
+			url: "map/storepositionlistdata.jsp",
 			data: {"shopnum":shopnum},
 			dataType: "xml",
 			success: function(data) {
@@ -71,28 +68,7 @@ $(function(){
 	});	
 
 });		
-	/* 	 $(document).on("change","#mapcategory2", function() {
-					$.ajax({
-					type: "get",
-					url: "storepositionlistdata.jsp",
-					dataType: "xml",
-					success: function(data) {
-						$(data).find("store").each(function(i, element) {
-							var n=$(element);
-							$("#shopnum").val(n.find("shopnum"));
-							$("#shophp1").val(n.find("shophp1"));
-							$("#shophp2").val(n.find("shophp2"));
-							
-							});
-						}
-					});
-				});
-			}); */
-		
-		
-
 	
-
 //카카오 우편번호 API
 function execDaumPostcode() {
     new daum.Postcode({
@@ -142,13 +118,14 @@ function execDaumPostcode() {
 	List<StarMapDto> list=dao.getMainList();
 %>
 <div class="updatemapform">
-	<form action="updatemapaction.jsp" method="post" class="form-inline">
+	<form action="map/updatemapaction.jsp" method="post" class="form-inline" enctype="multipart/form-data">
 	
 		<table class="table table-bordered" style="width: 600px;">
 			<tr>
 				<td style="width: 150px; background-color: #02a8da"><b>매장명</b></td>
 				<td align="left">
-				
+					<input type="hidden" class="form-control" id="shopnum"  name="shopnum" >
+					<input type="hidden" class="form-control" id="shopname"  name="shopname" >
 					<select style="width: 200px;" name="mapcategory" class="form-control" id="mapcategory">
 					<%for(StarMapDto starDto:list){%>
 						<option selected disabled hidden>매장을 선택하세요</option>

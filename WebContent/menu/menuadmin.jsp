@@ -212,7 +212,7 @@ if(totalcount>0)
 	</div>	
 	
 <%} %>
- </div>  
+</div>
 </body>
 <script type="text/javascript">
 	function paging(pn)
@@ -235,6 +235,4 @@ if(totalcount>0)
 	}
 	
 </script>
-
-
 </html>

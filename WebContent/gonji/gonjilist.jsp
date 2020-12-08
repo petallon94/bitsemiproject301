@@ -29,7 +29,7 @@
 	div.gonlist{
 		display: flex;
 		width: 100%;
-		margin-left: 250px;	
+		margin-left: 420px;	
 		font-family: 'Noto Serif KR', serif;
 	}
 	
@@ -49,6 +49,13 @@
 		height: 50px;
 	}
 	
+	
+	tr:last-child{
+		border-bottom: 2px solid gray;
+	}
+	
+	
+	
 	/* 공통 메인 디자인 css  */
 	.sub_visual{
 		min-height:399px;
@@ -67,6 +74,7 @@
 	.sub_visual .txt h1{
 		margin:0;font-size:2.75rem;
 		font-weight:300;
+		
 	}
 	.sub_visual .txt h1:after{
 		display:block;
@@ -79,9 +87,10 @@
 	.sub_visual .txt p{
 		font-size:1.25rem;
 		font-weight:300;
+		color: #fff;
 	}
 	.sub_visual.bg-menu{
-		background-image:url(./image/coffee-5132832_1920.jpg);
+		background-image:url(./image/people-coffee-shop-wide.jpg);
 	}
 	
 </style>
@@ -197,12 +206,13 @@ $(function(){
 <div class="sub_visual bg-menu">
     <div class="txt">
         <h1>스타보틀</h1>
-        <p>오직 스타보틀에서만 만나보실 수 있는 시그니처 메뉴입니다.</p>
+        <p>스타보틀의 공지사항입니다.</p>
     </div>
 </div>
 
 <%--공지사항 리스트 페이지 --%>
-<h2 style="display: inline;">공지사항	</h2>
+<br><br><br><br><br>
+<h2 style="display: inline;margin-left: 420px;">공지사항	</h2>
 <%-- 관리자로 로그인 했을 때만 보이는 페이지 --%>
 <%
 //<관리자 로그인 id확인을 위한 자바함수>
@@ -222,7 +232,7 @@ if(loginok!=null && myid.equals("StarBottle"))
 	<%=totalCount%></span>개의 글이 있습니다</b>
     <input type="button" value="게시물등록"
     class="btn btn-warning btn-sm" 
-   	style="width: 100px;float: right;margin-right: 100px;"
+   	style="width: 100px;float: right;margin-right: 470px;margin-top: 10px;"
  	onclick="location.href='index.jsp?main=gonji/gonjiform.jsp'">  
 <br><br>
  <%
@@ -275,14 +285,14 @@ if(loginok!=null && myid.equals("StarBottle"))
 <%
   if(totalCount>0)
   {%>
-	<div style="width: 900px; text-align: center;">
+	<div style="width: 900px; text-align: center;margin-left: 460px;margin-top: 20px;">
 	  <ul class="pagination justify-content-center">
 		<%
 		//이전 페이지 표시
 		if(startPage>1)
 		{%>
 			<li class="page-item">
-			  <a class="page-link" href="index.jsp?main=gonji/gonjilist.jsp?pageNum=<%=startPage-1%>">
+			  <a class="page-link" href="index.jsp?main=gonji/gonjilist.jsp?pageNum=<%=startPage-1%>#test">
 				&lt;</a>
 			</li>
 		<%}	
@@ -302,12 +312,12 @@ if(loginok!=null && myid.equals("StarBottle"))
 				if(i==currentPage)
 				{%>
 					<li class="page-item active">
-					  <a class="page-link" href="<%=url%>"><%=i%></a>
+					  <a class="page-link" href="<%=url%>#test"><%=i%></a>
 					</li>
 			  
 			  <%}else{%>
 					<li class="page-item">
-					  <a class="page-link" href="<%=url%>"><%=i%></a>
+					  <a class="page-link" href="<%=url%>#test"><%=i%></a>
 					</li>
 			  <%}
 			}//for문 close
@@ -316,7 +326,7 @@ if(loginok!=null && myid.equals("StarBottle"))
 		{%>
 			<%-- 부등호 기호(>)가 출력안될때: &gt; --%>
 			<li class="page-item">
-			  <a class="page-link" href="index.jsp?main=gonji/gonjilist.jsp?pageNum=<%=endPage+1%>">
+			  <a class="page-link" href="index.jsp?main=gonji/gonjilist.jsp?pageNum=<%=endPage+1%>#test">
 			&gt;</a>
 			</li>
 	  <%}%>
@@ -328,7 +338,7 @@ if(loginok!=null && myid.equals("StarBottle"))
 
 <%-- 검색창  --%>
 <form action="" class="form-inline">
-  <div style="width: 600px;">
+  <div style="width: 600px;margin-left: 1080px;margin-top: -50px;">
 	<div class="form-group">
 	<%
 		String search=(String)session.getAttribute("key");
@@ -354,6 +364,7 @@ if(loginok!=null && myid.equals("StarBottle"))
 			<input type="checkbox" value="content" name="search"
 			id="content">내용		 -->
 		<%-- ajax에서 action호출하기 위한 id --%>
+		
 		<input type="text" class="form-control" style="width: 200px;"
 			name="word" id="word" placeholder="검색단어입력"
 			value="<%=word%>">
@@ -414,18 +425,19 @@ if(loginok!=null && myid.equals("StarBottle"))
 </div>    
 
 <%--페이징 처리--%>
+
 <%
   if(totalCount>0)
   {%>
-	<div style="width: 900px; text-align: center;">
+	<div style="width: 900px; text-align: center;margin-left: 460px;margin-top: 20px;">
 	  <ul class="pagination justify-content-center">
 		<%
 		//이전 페이지 표시
 		if(startPage>1)
 		{%>
 			<li class="page-item">
-			  <a class="page-link" href="index.jsp?main=gonji/gonjilist.jsp?pageNum=<%=startPage-1%>">
-			&gt;</a>
+			  <a class="page-link" href="index.jsp?main=gonji/gonjilist.jsp?pageNum=<%=startPage-1%>#test">
+			&lt;</a>
 			</li>
 		<%}	
 			//페이지 블록 표시
@@ -444,12 +456,12 @@ if(loginok!=null && myid.equals("StarBottle"))
 				if(i==currentPage)
 				{%>
 					<li class="page-item">
-					  <a class="page-link" href="<%=url%>"><%=i%></a>
+					  <a class="page-link" href="<%=url%>#test"><%=i%></a>
 					</li>
 			  
 			  <%}else{%>
 					<li class="page-item">
-					  <a class="page-link" href="<%=url%>"><%=i%></a>
+					  <a class="page-link" href="<%=url%>#test"><%=i%></a>
 					</li>
 			  <%}
 			}//for문 close
@@ -458,7 +470,7 @@ if(loginok!=null && myid.equals("StarBottle"))
 		{%>
 			<%-- 부등호 기호(>)가 출력안될때: &gt; --%>
 			<li class="page-item">
-			  <a class="page-link" href="index.jsp?main=gonji/gonjilist.jsp?pageNum=<%=endPage+1%>">
+			  <a class="page-link" href="index.jsp?main=gonji/gonjilist.jsp?pageNum=<%=endPage+1%>#test">
 			&gt;</a>
 			</li>
 	  <%}%>
@@ -470,7 +482,7 @@ if(loginok!=null && myid.equals("StarBottle"))
 
 <%-- 검색창  --%>
 <form action="" class="form-inline">
-  <div style="width: 600px;">
+  <div style="width: 600px; margin-left: 1080px;margin-top: -50px;">
 	<div class="form-group">
 	<%
 		//검색창에 검색한 단어 남아있게 해주기
@@ -510,6 +522,7 @@ if(loginok!=null && myid.equals("StarBottle"))
 </form>
 <%} //else close
 %>
+<a id="test"></a>
 </body>
 </html>
 
