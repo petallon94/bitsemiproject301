@@ -30,7 +30,6 @@
 	div.gonlist{
 		display: flex;
 		width: 100%;
-		margin-left: 420px;	
 	}
 	
 	/*리스트의 제목 부분 */
@@ -178,9 +177,7 @@ $(function(){
     <div class="img-cover"></div>
 </div>
 
-<%--공지사항 리스트 페이지 --%>
-<br><br><br><br><br>
-<h2 style="display: inline;margin-left: 420px;">공지사항	</h2>
+
 <%-- 관리자로 로그인 했을 때만 보이는 페이지 --%>
 <%
 //<관리자 로그인 id확인을 위한 자바함수>
@@ -193,18 +190,24 @@ MemberDao dao=new MemberDao();
 //아이디에 해당하는 이름 얻기
 //String name=dao.getName(myid);
 //myid가 StarBottle(관리자)인 경우에만 보이기
-if(loginok!=null && myid.equals("StarBottle"))
+if(loginok!=null && (myid.equals("StarBottle")||myid.equals("admin")))
 {%>
-	<b>	총 <span style="color: red;">
+	<%--공지사항 리스트 페이지 --%>
+	<div style="width: 1000px; height: 750px; margin: 60px auto;">
+	<div style="height: 60px; line-height: 60px;">
+	<h2 style="display: inline;float: left;">공지사항	</h2>
+	<b style="margin-left: 10px;">	총 <span style="color: red;">
 	<%=totalCount%></span>개의 글이 있습니다</b>
     <input type="button" value="게시물등록"
     class="btn btn-warning btn-sm" 
-   	style="width: 100px;float: right;margin-right: 470px;margin-top: 10px;"
+   	style="width: 100px;float: right;margin-top: 10px;"
  	onclick="location.href='index.jsp?main=gonji/gonjiform.jsp'">  
-<br><br>
+<br><br> 
+</div>
  <%
  	SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
  %>
+
 <!-- hidden -->
 <input type="hidden" name="myid" value="<%=myid%>">
 
@@ -252,7 +255,7 @@ if(loginok!=null && myid.equals("StarBottle"))
 <%
   if(totalCount>0)
   {%>
-	<div style="width: 900px; text-align: center;margin-left: 460px;margin-top: 20px;">
+	<div style="width: 1000px; text-align: center;margin-top: 20px;">
 	  <ul class="pagination justify-content-center">
 		<%
 		//이전 페이지 표시
@@ -305,8 +308,8 @@ if(loginok!=null && myid.equals("StarBottle"))
 
 <%-- 검색창  --%>
 <form action="" class="form-inline">
-  <div style="width: 300px;margin-left: 1080px;margin-top: -50px;">
-	<div class="form-group">
+  <div style="width: 1000px; margin-top: -65px;">
+	<div class="form-group" style="float: right;">
 	<%
 		String search=(String)session.getAttribute("key");
 		String word=(String)session.getAttribute("value");
@@ -332,24 +335,25 @@ if(loginok!=null && myid.equals("StarBottle"))
 			id="content">내용		 -->
 		<%-- ajax에서 action호출하기 위한 id --%>
 		
-		<input type="text" class="form-control" style="width: 200px;"
+		<input type="text" class="form-control" style="width: 200px; margin-left: 3px;"
 			name="word" id="word" placeholder="검색단어입력"
 			value="<%=word%>">
 		<%-- 검색버튼 --%>
 		<button type="button" class="btn btn-warning"
-			id="btndatasearch" style="width: 45px;">
+			id="btndatasearch" style="width: 45px;margin-left: -3px; border-radius: 0;">
 			<span class="fas fa-search"></span>
 		</button>
 	</div>
   </div>
 </form>
-
+</div>
 <%-- 관리자가 아닌 경우에 보이는 페이지 --%>
 <%}else{%>
- <br><br>
  <%
  	SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
  %>
+ <div style="width: 1000px; height: 750px; margin: 60px auto;">
+ <h2 style="display: inline;float: left;">공지사항</h2>
  <div class="gonlist">
  <%--테이블로 제목넣기--%>
  	<table class="table" style="width: 1000px;">
@@ -396,7 +400,7 @@ if(loginok!=null && myid.equals("StarBottle"))
 <%
   if(totalCount>0)
   {%>
-	<div style="width: 900px; text-align: center;margin-left: 460px;margin-top: 20px;">
+	<div style="width: 1000px; text-align: center;margin-top: 20px;">
 	  <ul class="pagination justify-content-center">
 		<%
 		//이전 페이지 표시
@@ -443,22 +447,20 @@ if(loginok!=null && myid.equals("StarBottle"))
 	  <%}%>
 	  </ul>
 	</div>
-<%}//if문 close
-%> 
+<%}//if문 close%> 
 <%-- 페이징 끝 --%>
 
 <%-- 검색창  --%>
 <form action="" class="form-inline">
-  <div style="width: 600px; margin-left: 1080px;margin-top: -50px;">
-	<div class="form-group">
+  <div style="width: 1000px; margin-top: -65px;">
+	<div class="form-group" style="float: right;">
 	<%
-		//검색창에 검색한 단어 남아있게 해주기
 		String search=(String)session.getAttribute("key");
 		String word=(String)session.getAttribute("value");
 		if(search==null)
 			search="all";
 		if(word==null)
-			word="";
+			word=""; 
 	%>
 		<%-- 검색 폼 --%>
 		<select id="search" class="form-control"
@@ -476,20 +478,21 @@ if(loginok!=null && myid.equals("StarBottle"))
 			<input type="checkbox" value="content" name="search"
 			id="content">내용		 -->
 		<%-- ajax에서 action호출하기 위한 id --%>
-		<input type="text" class="form-control" style="width: 200px;"
+		
+		<input type="text" class="form-control" style="width: 200px; margin-left: 3px;"
 			name="word" id="word" placeholder="검색단어입력"
 			value="<%=word%>">
 		<%-- 검색버튼 --%>
 		<button type="button" class="btn btn-warning"
-			id="btndatasearch" style="width: 45px;">
+			id="btndatasearch" style="width: 45px;margin-left: -3px; border-radius: 0;">
 			<span class="fas fa-search"></span>
 		</button>
 	</div>
   </div>
 </form>
-<%} //else close
-%>
+<%} //else close%>
 <a id="test"></a>
+</div>
 </body>
 
 </html>

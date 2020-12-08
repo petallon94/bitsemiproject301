@@ -119,7 +119,7 @@ text-align: center;
 .eventslide_box div{margin-right: 30px;}
 .eventslide_box div:last-child{margin-right: 0;}
 .eventslide_box div a:hover{text-decoration: none; color: black;}
-.eventslide_box div a p.desc_box{color: black; font-size: 14pt;}
+.eventslide_box div a p.desc_box{color: black; font-size: 14pt; font-weight: 300;}
 
 a.gon_link{color: #333;}
 a.gon_link:hover{text-decoration: none; color: #666;}
@@ -307,8 +307,8 @@ $(function(){
 
    	<div class="event_container" style="width: 100%; height: 800px; text-align: center; margin-top: 160px;">
 
-	   	<h1 class="event_title" style="font-weight: 300;">이벤트</h1>
-	   	<p style="text-align: center;">
+	   	<h1 class="event_title" style="font-weight: 600;">이벤트</h1>
+	   	<p style="text-align: center; margin-bottom: 70px;">
 		   	<a style="cursor :pointer; color: #888; font-weight: 300; font-size: 14pt;" onclick ="location.href='index.jsp?main=event/eventlist.jsp'">
 					스타보틀의 다양한 이벤트가 진행중입니다&nbsp;&gt;
 			</a>	
