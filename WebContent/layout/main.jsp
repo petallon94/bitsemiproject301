@@ -73,6 +73,8 @@ width: 100%;
     text-indent: -9999px;
     opacity: 0;
     transition: background .2s;
+    background-size: cover;
+    background-position: center;
 }
 .shop_div {
 	overflow: hidden;
