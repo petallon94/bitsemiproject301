@@ -28,7 +28,7 @@
 	odto.setOrderprice(orderprice);
 	odto.setTakeout(takeout);
 	
-	dao.insertCart(odto);
+	dao.insertFinishOrder(odto);
 	
 	response.sendRedirect("../index.jsp?main=order/orderfinish.jsp");
 %>

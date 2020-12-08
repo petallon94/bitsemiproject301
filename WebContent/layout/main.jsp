@@ -106,6 +106,7 @@ width: 1200px;
 #Menu, #Event, #Shop {
 margin-top: 40px;
 }
+
 .slide_container{
 width:1240px; 
 height : 450px;
@@ -119,10 +120,12 @@ text-align: center;
 .eventslide_box div:last-child{margin-right: 0;}
 .eventslide_box div a:hover{text-decoration: none; color: black;}
 .eventslide_box div a p.desc_box{color: black; font-size: 14pt;}
+
 a.gon_link{color: #333;}
 a.gon_link:hover{text-decoration: none; color: #666;}
 a.map_link{color: #333;}
 a.map_link:hover{text-decoration: none; color: #666;}
+
 </style>
 <script>
 $(function(){

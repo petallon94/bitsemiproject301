@@ -373,6 +373,7 @@ public class StarMapDao {
 	}
 	
 
+
 	//寃��깋寃곌낵 由ъ뒪�듃 以� �븳 �럹�씠吏��뿉�꽌 �븘�슂�븳留뚰겮 諛섑솚�븯湲�
 		public List<StarMapDto> getSearchList(String key,String value)
 		{
