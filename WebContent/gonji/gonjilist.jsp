@@ -1,4 +1,3 @@
-
 <%@page import="data.dao.MemberDao"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="data.dto.GonjiDto"%>
@@ -9,7 +8,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="EUC-KR">
 <!-- 메인페이지에 필요한 링크/부트스트랩  -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -25,13 +24,12 @@
 	/* #cl-dashboard{display: none;} */
 	
 /*폰트 */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300&display=swap');
 	
 	div.gonlist{
 		display: flex;
 		width: 100%;
 		margin-left: 420px;	
-		font-family: 'Noto Serif KR', serif;
+		font-family: 'Gothic A1', sans-serif;
 	}
 	
 	/*리스트의 제목 부분 */
@@ -55,45 +53,12 @@
 		border-bottom: 2px solid gray;
 	}
 	
-	
-	
-	/* 공통 메인 디자인 css  */
-	.sub_visual{
-		min-height:399px;
-		padding:0 10px;
-		text-align:center;
-		background-repeat:no-repeat;
-		background-size:cover;
-		background-position:center;
-		position:relative;
-	}
-	.sub_visual .txt{
-		width:100%;
-		position:absolute;
-		top:148px;left:0;
-	}
-	.sub_visual .txt h1{
-		margin:0;font-size:2.75rem;
-		font-weight:300;
-		
-	}
-	.sub_visual .txt h1:after{
-		display:block;
-		width:40px;
-		height:2px;
-		margin:32px auto;
-		background:#202020;
-		content:'';
-	}
-	.sub_visual .txt p{
-		font-size:1.25rem;
-		font-weight:300;
-		color: #fff;
-	}
-	.sub_visual.bg-menu{
-		background-image:url(./image/people-coffee-shop-wide.jpg);
-	}
-	
+.img-cover{position: absolute;height: 100%;width: 100%;background-color: rgba(0, 0, 0, 0.4);z-index:1;}
+.sub_visual .txt{position: absolute;top:50%;left:50%;transform: translate(-50%, -50%);color: white;z-index: 2;text-align: center;}
+.sub_visual .txt h1:after{display:block;width:40px;height:3px;margin:32px auto;background:white;content:'';}
+.sub_visual .txt p{font-size: 14pt; font-weight: 300;}
+.sub_visual{position: relative;background-image: url(./image/close-up-of-hands-barista-wide.jpg);height: 400px;background-size: cover;}
+
 </style>
 <script type="text/javascript">
 $(function(){
@@ -133,7 +98,6 @@ $(function(){
 	$("#search").change(function(){
 		$("#word").val("");
 	});
-
 });//$function close
 </script>
 </head>
@@ -145,7 +109,7 @@ $(function(){
 	//총 갯수 구하기
 	int totalCount=db.getTotalCount();
 	int perPage=10;//한 페이지당 보여질 글의 갯수
-	int perBlock=3;//한 블럭당 출력할 페이지의 갯수
+	int perBlock=2;//한 블럭당 출력할 페이지의 갯수
 	int totalPage;//총 페이지의 갯수
 	int startPage;//각 블럭당 시작할 페이지 번호
 	int endPage;//각 블럭당 끝 페이지 번호
@@ -204,11 +168,13 @@ $(function(){
 %>
 <body>
 <%-- 공통 메인 디자인  --%>
+
 <div class="sub_visual bg-menu">
     <div class="txt">
         <h1>스타보틀</h1>
         <p>스타보틀의 공지사항입니다.</p>
     </div>
+    <div class="img-cover"></div>
 </div>
 
 <%--공지사항 리스트 페이지 --%>
@@ -225,9 +191,8 @@ String myid=(String)session.getAttribute("myid");
 MemberDao dao=new MemberDao();
 //아이디에 해당하는 이름 얻기
 //String name=dao.getName(myid);
-
 //myid가 StarBottle(관리자)인 경우에만 보이기
-if(loginok!=null && myid.equals("admin"))
+if(loginok!=null && myid.equals("StarBottle"))
 {%>
 	<b>	총 <span style="color: red;">
 	<%=totalCount%></span>개의 글이 있습니다</b>
@@ -339,7 +304,7 @@ if(loginok!=null && myid.equals("admin"))
 
 <%-- 검색창  --%>
 <form action="" class="form-inline">
-  <div style="width: 600px;margin-left: 1080px;margin-top: -50px;">
+  <div style="width: 300px;margin-left: 1080px;margin-top: -50px;">
 	<div class="form-group">
 	<%
 		String search=(String)session.getAttribute("key");
@@ -525,6 +490,5 @@ if(loginok!=null && myid.equals("admin"))
 %>
 <a id="test"></a>
 </body>
-
 
 </html>

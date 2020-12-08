@@ -9,7 +9,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous"></head>
@@ -17,7 +18,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <style>
-body,h1 {font-family: 'Noto Sans KR', Arial, sans-serif;}
+body,h1 {font-family: 'Noto Sans KR', Arial, sans-serif}
 
 	.w3-padding-32{
 		margin-bottom: -50px;
@@ -44,27 +45,44 @@ body,h1 {font-family: 'Noto Sans KR', Arial, sans-serif;}
 	}
 	
 	
-		.ev_endpng{
-		width: 232px;
-		height: 230px;
-		background: #000;
-		display: block;
-		opacity: 0.7;
-		filter:alpha(opacity=70);
-		position:absolute;
-		margin-left: 10px;
-		border-radius: 4px;
-	}
+	.ev_endpng{
+	width: 232px;
+	height: 230px;
+	background: #000;
+	display: block;
+	opacity: 0.7;
+	filter:alpha(opacity=70);
+	position:absolute;
+	border-radius: 4px;
+}
 	
 	
 	
 	/* sub */
-.ordsub_visual{min-height:399px;padding:0 10px;text-align:center;background-repeat:no-repeat;background-size:cover;background-position:center;position:relative;}
-.ordsub_visual .txt{width:100%;position:absolute;top:120px;left:0;}
-.ordsub_visual .txt h1{margin:0;font-size:2.75rem;font-weight:500;color:white;}
-.ordsub_visual .txt h1:after{display:block;width:40px;height:4px;margin:32px auto;background:#202020;content:'';}
-.ordsub_visual .txt p{font-size:1.25rem;font-weight:300;color:white;}
-.ordsub_visual.bg-menu{background-image:url(./image/closeup-coffee-machine-wide.jpg);}
+	.img-cover{
+   position: absolute;
+   height: 100%;
+   width: 100%;
+   background-color: rgba(0, 0, 0, 0.4);                                                                 
+   z-index:1;
+	}
+	.sub_visual .txt{
+	     position: absolute;
+	     top:50%;
+	     left:50%;
+	     transform: translate(-50%, -50%);                                                                   
+	     color: white;
+	     z-index: 2;
+	     text-align: center;
+	}
+	.sub_visual .txt h1:after{display:block;width:40px;height:3px;margin:32px auto;background:white;content:'';}
+	.sub_visual .txt p{font-size: 14pt; font-weight: 300;}
+	.sub_visual{
+	    position: relative;
+	    background-image: url(./image/closeup-coffee-machine-wide.jpg);                                                               
+	    height: 400px;
+	    background-size: cover;
+	}
 </style>
 <script type="text/javascript">
 $(function(){
@@ -96,17 +114,13 @@ $(function(){
 %>
 
 <body>
-
-<div class="ordsub_visual bg-menu">
+<div class="sub_visual bg-menu">
     <div class="txt">
         <h1>스타보틀</h1>
         <p>진행중인 이벤트를 확인하세요.</p>
     </div>
+    <div class="img-cover"></div>
 </div>
-
-
-	
-
 
 
 <!-- !PAGE CONTENT! -->
@@ -153,11 +167,9 @@ $(function(){
       <%
       	for(EventDto idto:ilist)
       	{%>
-      		<div class="ev_content w3-third" align="center"
+      		<div class="ev_content w3-third"
       		 eventnum="<%=idto.getEventnum()%>">
-
       		 <div class="w3-round w3-margin-bottom" style="width:230px; height: 230px; background-image:url('eventsave/<%=idto.getEvlistimage()%>'); background-size: cover;"></div>
-
       		  <p class="ev_subject"><%=idto.getEvsubject()%><br>
       		  <%=idto.getEvstartday()%>~<%=idto.getEvendday()%>
       		  </p>
@@ -177,20 +189,15 @@ $(function(){
     	<%
       	for(EventDto edto:elist)
       	{%>
-      		<div class="ev_content w3-third" align="center"
+      		<div class="ev_content w3-third"
       		 eventnum="<%=edto.getEventnum()%>">
       		 <a>
       		 <span class="ev_endpng">
-      		 <img src="./image/end_event.png"
-      		 style="position:absolute;margin-left:-20%;margin-top: 33%;">
+      		 <img src="./image/end_event.png" style="position:absolute;margin-left:-17%;margin-top: 33%;
+      		 ">
       		 </span>
       		 
-
-      		 <div class="w3-round w3-margin-bottom" 
-      		 style="width:230px; height: 230px; 
-      		 background-image:url('eventsave/<%=edto.getEvlistimage()%>'); 
-      		 background-size: cover;" align="center"></div>
-
+      		 <div class="w3-round w3-margin-bottom" style="width:230px; height: 230px; background-image:url('eventsave/<%=edto.getEvlistimage()%>'); background-size: cover;"></div>
       		 </a> 
       		  <p class="ev_subject"><%=edto.getEvsubject()%><br>
       		  <%=edto.getEvstartday()%>~<%=edto.getEvendday()%>
@@ -204,6 +211,10 @@ $(function(){
      </div>
   </div>
 </div>
+
+
+
+
+
 </body>
 </html>
-

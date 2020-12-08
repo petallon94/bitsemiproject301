@@ -63,6 +63,11 @@
 		width: 1000px;
 		
 	}
+.img-cover{position: absolute;height: 100%;width: 100%;background-color: rgba(0, 0, 0, 0.4);z-index:1;}
+.sub_visual .txt{position: absolute;top:50%;left:50%;transform: translate(-50%, -50%);color: white;z-index: 2;text-align: center;}
+.sub_visual .txt h1:after{display:block;width:40px;height:3px;margin:32px auto;background:white;content:'';}
+.sub_visual .txt p{font-size: 14pt; font-weight: 300;}
+.sub_visual{position: relative;background-image: url(./image/close-up-of-hands-barista-wide.jpg);height: 400px;background-size: cover;}
 	
 	
 	
@@ -107,15 +112,15 @@ function del(gonnum){
 </head>
 <body>
 
+<div class="sub_visual bg-menu">
 
-<div class="ordsub_visual bg-menu">
     <div class="txt">
         <h1>스타보틀</h1>
         <p>스타보틀의 공지사항입니다.</p>
     </div>
+
+    <div class="img-cover"></div>
 </div>
-
-
 
 
 <%
@@ -153,9 +158,15 @@ function del(gonnum){
 	//아이디에 해당하는 이름 얻기
 	//String name=dao.getName(myid);
 %>	
+
+<br><br><br><br><br>
+<h2 style="display: inline;margin-left: 410px;">공지사항	</h2>
+<table class="table table-striped" style="width: 1000px; margin: 0 auto;">
+
 <br><br><br><br><br>
 <h2 style="display: inline;margin-left: 410px;">공지사항	</h2>
 <table class="table table-striped" style="width: 1000px;margin-left: 410px;">
+
 <tbody>
  <tr>
 	<%--제목폼--%>
@@ -193,7 +204,9 @@ function del(gonnum){
 <%-- 버튼들 --%>
 <%
 	//myid가 StarBottle(관리자)인 경우에만 보이기
+
 	if(loginok!=null && myid.equals("admin"))
+
 	{%>
 	<tr>
 		<td colspan="2" align="right">

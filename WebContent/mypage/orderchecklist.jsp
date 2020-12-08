@@ -20,7 +20,7 @@
 <title>Insert title here</title>
 <style type="text/css">
 	#ordchkl{
-		width: 100%;
+		width: 1000px;
 		text-align: center;
 	}
 	#ordchkl table tr td{
@@ -104,7 +104,7 @@
 %>
 <div id="ordchkl">
 	<div class="ordname"><%=name %>님의 주문내역</div>
-	<table width="800">
+	<table width="800" style="margin: 0 auto;">
 		<tr>
 			<th width="10%">No</th>
 			<th width="30%">음료정보</th>
@@ -122,7 +122,7 @@
 			<tr>
 				<td><%=no-- %></td>
 				<td><b><%=dto.getFmnname() %></b></td>
-				<td><%=dto.getFsize() %> / <%=dto.getFtemp() %><br><span style="color: #bbb;"><%=sdf.format(dto.getForderdate()) %></span></td>
+				<td><%=dto.getFsize() %> / <%=dto.getFtemp() %><br><span style="color: #bbb;"><%=dto.getForderdate() %></span></td>
 				<td><%=df.format(dto.getForderprice()) %> 원</td>
 				<td>주문 완료</td>
 			</tr>

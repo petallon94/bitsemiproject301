@@ -18,12 +18,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <style type="text/css">
-.ordsub_visual{min-height:399px;padding:0 10px;text-align:center;background-repeat:no-repeat;background-size:cover;background-position:center;position:relative;}
-.ordsub_visual .txt{width:100%;position:absolute;top:120px;left:0;}
-.ordsub_visual .txt h1{margin:0;font-size:2.75rem;font-weight:500;}
-.ordsub_visual .txt h1:after{display:block;width:40px;height:4px;margin:32px auto;background:#202020;content:'';}
-.ordsub_visual .txt p{font-size:1.25rem;font-weight:300;}
-.ordsub_visual.bg-menu{background-image:url(./image/coffee-5132832_1920.jpg);}
+.img-cover{position: absolute;height: 100%;width: 100%;background-color: rgba(0, 0, 0, 0.4);z-index:1;}
+.sub_visual .txt{position: absolute;top:50%;left:50%;transform: translate(-50%, -50%);color: white;z-index: 2;text-align: center;}
+.sub_visual .txt h1:after{display:block;width:40px;height:3px;margin:32px auto;background:white;content:'';}
+.sub_visual .txt p{font-size: 14pt; font-weight: 300;}
+.sub_visual{position: relative;background-image: url(./image/coffee-5132832_1920.jpg);height: 400px;background-size:cover;background-position:center;}
 </style>
 </head>
 <%
@@ -45,11 +44,12 @@
 	
 %>
 <body>
-<div class="ordsub_visual bg-menu">
+<div class="sub_visual bg-menu">
     <div class="txt">
         <h1>스타보틀</h1>
         <p>오직 스타보틀에서만 만나보실 수 있는 시그니처 메뉴입니다.</p>
     </div>
+    <div class="img-cover"></div>
 </div>
 <div id="ord_ctn">
 	<div class="img">

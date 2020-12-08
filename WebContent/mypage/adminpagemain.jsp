@@ -21,13 +21,11 @@
 .admin_page_content {display:flex; width:1200px; height: 100%; margin-top: 20px; float: left; margin-left: 100px; font-family: 'Noto Sans KR', Arial, sans-serif;}
 .admin_page_content img{max-width:100%;height :200px;}
 
-/*submenu*/
-.sub_visual{min-height:499px;padding:0 10px;text-align:center;background-repeat:no-repeat;background-size:cover;background-position:center;position:relative; margin-bottom: 30px;}
-.sub_visual .txt{width:100%;position:absolute;top:148px;left:0;}
-.sub_visual .txt h1{margin:0;font-size:2.75rem;font-weight:300; font-family: 'Noto Sans KR', sans-serif;}
-.sub_visual .txt h1:after{display:block;width:40px;height:2px;margin:32px auto;background:#202020;content:'';}
-.sub_visual .txt p{font-size:1.25rem;font-weight:300;font-family: 'Noto Sans KR', sans-serif;}
-.sub_visual.bg-menu{background-image:url(./image/coffee-5132832_1920.jpg);} 
+.img-cover{position: absolute;height: 100%;width: 100%;background-color: rgba(0, 0, 0, 0.4);z-index:1;}
+.sub_visual .txt{position: absolute;top:50%;left:50%;transform: translate(-50%, -50%);color: white;z-index: 2;text-align: center;}
+.sub_visual .txt h1:after{display:block;width:40px;height:3px;margin:32px auto;background:white;content:'';}
+.sub_visual .txt p{font-size: 14pt; font-weight: 300;}
+.sub_visual{position: relative;background-image: url(./image/coffee-5132832_1920.jpg);height: 400px;background-size:cover;background-position:center;}
 
 </style> 
 <script>
@@ -57,10 +55,11 @@ $(function() {
 %>
 <body>
 <div class="sub_visual bg-menu">
- 	<div class="txt">
- 		<h1>스타보틀</h1>
-		<p>스타보틀에 오신것을 환영합니다.</p>
-	</div>
+    <div class="txt">
+        <h1>스타보틀</h1>
+        <p>스타보틀에 오신것을 환영합니다.</p>
+    </div>
+    <div class="img-cover"></div>
 </div>
 <div class="admin_page_menu">
   <ul class="nav nav-tabs nav-justified" role="tablist">
