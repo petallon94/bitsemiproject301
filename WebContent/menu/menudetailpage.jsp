@@ -33,6 +33,7 @@ div.product_view_detail div.product_select_wsrap2 > div { float:left; }
 div.product_view_detail div.product_info_head span.unit { font-size:12px; color:#666; position:absolute; right:0; top:2px; }
 
 div.product_view_order{width:180px;height: 50px;padding:10px 0;font-size:1rem;color:#333;background:#f6c244;text-align: center; line-height:30px;margin-top: 20px;position: absolute; bottom: 0; border-radius: .25rem;}
+div.product_view_order2{width:180px;height: 50px;padding:10px 0;font-size:1rem;color:#333;background:#f6c244;text-align: center; line-height:30px;margin-top: 20px;position: absolute; bottom: 0; border-radius: .25rem;}
 /*submenu*/
 
 .sub_visual{min-height:499px;padding:0 10px;text-align:center;background-repeat:no-repeat;background-size:cover;background-position:center;position:relative;}
