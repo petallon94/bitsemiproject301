@@ -16,7 +16,11 @@
 	margin:0;
 	padding:0;
 	}
-
+	
+	div.layout div.main{
+	font-family: 'Noto Sans KR', Arial, sans-serif;
+	}
+	
 	div.layout div.menu{
 	display: flex;
 	justify-content: center;
