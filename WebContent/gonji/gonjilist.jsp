@@ -226,7 +226,9 @@ MemberDao dao=new MemberDao();
 //String name=dao.getName(myid);
 
 //myid가 StarBottle(관리자)인 경우에만 보이기
+
 if(loginok!=null && myid.equals("admin"))
+
 {%>
 	<b>	총 <span style="color: red;">
 	<%=totalCount%></span>개의 글이 있습니다</b>
