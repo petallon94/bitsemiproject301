@@ -1,3 +1,4 @@
+
 <%@page import="data.dao.MemberDao"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="data.dto.GonjiDto"%>
@@ -524,4 +525,6 @@ if(loginok!=null && myid.equals("admin"))
 %>
 <a id="test"></a>
 </body>
+
+
 </html>
