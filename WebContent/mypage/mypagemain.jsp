@@ -18,6 +18,7 @@
 
 .my_page_menu {display:flex; left: 20px; top: 700px; padding: 20px; float: left;}
 .nav {display: flex; flex-direction: column; cursor: pointer; font-family: 'Noto Sans KR', Arial, sans-serif;}
+.nav-link {width: 200px; cursor:pointer; color:#00979f;}
 a {width: 200px;}
 	
 

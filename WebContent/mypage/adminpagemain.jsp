@@ -16,7 +16,7 @@
  <style>
 .admin_page_menu {display:flex; left: 20px; padding: 20px;float: left;}
 .nav {display: flex; flex-direction: column; font-family: 'Noto Sans KR', Arial, sans-serif;}
-.nav-link {width: 200px; cursor:pointer;}
+.nav-link {width: 200px; cursor:pointer; color:#00979f;}
 	
 .admin_page_content {display:flex; width:1200px; height: 100%; margin-top: 20px; float: left; margin-left: 100px; font-family: 'Noto Sans KR', Arial, sans-serif;}
 .admin_page_content img{max-width:100%;height :200px;}
@@ -64,7 +64,7 @@ $(function() {
 </div>
 <div class="admin_page_menu">
   <ul class="nav nav-tabs nav-justified" role="tablist">
-  	<li id="admin_nav-item1"><a class="nav-link active">메뉴관리</a></li>
+  	<li id="admin_nav-item1"><a class="nav-link">메뉴관리</a></li>
     <li id="admin_nav-item2"><a class="nav-link">지점관리</a></li>
     <li id="admin_nav-item3"><a class="nav-link">회원관리</a></li>
   </ul>

@@ -343,7 +343,7 @@ $(function(){
 	   
 	    <%	
 			for(StarMapDto smdto : listsm){%>
-			<div style ="cursor:pointer; margin: 40px;" class ="shopdetail" shopnum = "<%=smdto.getShopnum()%>">
+			<div style ="margin: 40px;" class ="shopdetail" shopnum = "<%=smdto.getShopnum()%>">
 			<div class ="shop_div" style ="width : 212px; height:212px; border-radius:125px;">
 	   		<img src ="shopmapsave/<%=smdto.getShopphoto() %>"  style ="width : 212px;height:212px;">
 	   		</div>

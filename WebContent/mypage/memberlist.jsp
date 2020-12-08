@@ -25,8 +25,9 @@
 	
 %>
 <body>
-<h4 style="margin: 20px;">회원 관리</h4>
-<table class="table table-bordered" style="width: 1200px;">
+<div>
+<h4 style="margin: 20px;">회원 관리</h4><br>
+<table class="table table-bordered" style="width: 1100px;">
 <thead class="thead-light">
 <tr>
 	<th>아이디</th>
@@ -82,5 +83,6 @@
 	<%}%>
 </tbody>
 </table>
+</div>
 </body>
 </html>
