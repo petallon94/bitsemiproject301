@@ -246,7 +246,7 @@ $(function(){
 	
 %>
 
-<div style="width:1260px; height : 100%;">
+<div style="width:1260px; height :100%;">
 <div class="slide_container" style="background-color : #eee;">
 	<h2 class="slide_title">메뉴</h2>
  	<div class="promotion_slide1 w3-container tabs" id="Menu">  			
@@ -289,22 +289,19 @@ $(function(){
    	</div>	 
 
    	 </div>
-<div class="slide_container">
+<div class="slide_container" style="height: 600px;">
    	<h2 class="slide_title">매장</h2>	
-  <div id="Shop" class="w3-container tabs" style ="display : flex;justify-content : space-between;"> 
+   	<a style="cursor :pointer;" onclick ="location.href='index.jsp?main=map/map.jsp'">더보기</a> 
+  <div id="Shop" class="w3-container tabs" style ="display : flex; justify-content : center; flex-flow:wrap;"> 
    
-    <%	
-		for(StarMapDto smdto : listsm){%>
-		<div style ="width 270px;height 300px;cursor:pointer;" class ="shopdetail" shopnum = "<%=smdto.getShopnum()%>">
-		<div class ="shop_div" style ="width : 250px;height:250px; border-radius:125px; border : 1px solid black;">
-   		<img src ="shopmapsave/<%=smdto.getShopphoto() %>"  style ="width : 250px;height:250px;">
+    <%for(StarMapDto smdto : listsm){%>
+		<div style ="cursor:pointer; margin: 40px;" class ="shopdetail" shopnum = "<%=smdto.getShopnum()%>">
+		<div class ="shop_div" style ="width : 212px; height:212px; border-radius:125px;">
+   		<img src ="shopmapsave/<%=smdto.getShopphoto() %>" style ="width : 212px;height:212px;">
    		</div>
-   		<p style ="width:250px"><%=smdto.getShopname() %></p>   		
+   		<p style ="width : 212px; text-align:center;"><%=smdto.getShopname() %> </p>   		
    		</div>
-		 <%} %>   
-		 <a style="cursor :pointer" onclick ="location.href='index.jsp?main=map/map.jsp'">더보기</a> 
-	
-
+		 <%} %> 
 </div>
 </div>
 </div>
