@@ -33,6 +33,7 @@ div.product_view_detail div.product_select_wsrap2 > div { float:left; }
 div.product_view_detail div.product_info_head span.unit { font-size:12px; color:#666; position:absolute; right:0; top:2px; }
 
 div.product_view_order{width:180px;height: 50px;padding:10px 0;font-size:1rem;color:#333;background:#f6c244;text-align: center; line-height:30px;margin-top: 20px;position: absolute; bottom: 0; border-radius: .25rem;}
+div.product_view_order2{width:180px;height: 50px;padding:10px 0;font-size:1rem;color:#333;background:#f6c244;text-align: center; line-height:30px;margin-top: 20px;position: absolute; bottom: 0; border-radius: .25rem;}
 /*submenu*/
 
 .sub_visual{min-height:499px;padding:0 10px;text-align:center;background-repeat:no-repeat;background-size:cover;background-position:center;position:relative;}
@@ -94,6 +95,7 @@ $(function(){
 <%
 	//메뉴 자체 아이디 받아오기
 	String menunum = request.getParameter("menunum");
+	String category = request.getParameter("category");
 	//로그인한 아이디
 	String menumyid = (String)session.getAttribute("id");
 	//해당 메뉴에 해당하는 테이블의 시퀀스 번호 받아오기ㅣ
@@ -111,7 +113,8 @@ $(function(){
 	<!-- 제품 상세보기 -->
 <div class="product_view_wrap1">
 	<div class="product_view_pic">
-	<input type="hidden" class="form-control" id="menunum"  name="menunum" value =<%=medto.getMenunum()%>>		  
+	<input type="hidden" class="form-control" id="menunum"  name="menunum" value =<%=medto.getMenunum()%>>
+	<input type="hidden" class="form-control" id="category"  name="category" value =<%=medto.getCategory()%>>		  
 	<img src = "menusave/<%=medto.getMenuphoto() %>">
 	</div>
 	<div class="product_view_detail">

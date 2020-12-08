@@ -1,4 +1,5 @@
 
+
 <%@page import="data.dao.StarMapDao"%>
 <%@page import="data.dto.StarMapDto"%>
 <%@page import="java.util.List"%>
@@ -760,62 +761,13 @@
 				// mouseout 했을 때는 인포윈도우를 닫습니다
 				(function(marker, title) {
 					kakao.maps.event.addListener(marker, 'mouseover',
-							function() {
+					
 								displayInfowindow(marker, title);
 							});
 
 					kakao.maps.event.addListener(marker, 'mouseout',
 							function() {
-								infowindow.close();
-							});
 
-					itemEl.onmouseover = function() {
-						displayInfowindow(marker, title);
-					};
-
-					itemEl.onmouseout = function() {
-						infowindow.close();
-					};
-				})(marker, places[i].place_name);
-
-				fragment.appendChild(itemEl);
-			}
-
-			// 검색결과 항목들을 검색결과 목록 Elemnet에 추가합니다
-			listEl.appendChild(fragment);
-			menuEl.scrollTop = 0;
-
-			// 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
-			map.setBounds(bounds);
-		}
-////////////////////////////////////////마커 표시///////////////////////////////////
-
-
-
-		// 검색결과 항목을 Element로 반환하는 함수입니다
-		function getListItem(index, places) {
-			
-			var el = document.createElement('li'), itemStr = '<span class="markerbg marker_'
-					+ (index + 1)
-					+ '"></span>'
-					+ '<div class="info">'
-					+ '   <h5>' + places.place_name + '</h5>';
-
-			if (places.road_address_name) {
-				itemStr += '    <span>' + places.road_address_name + '</span>'
-						+ '   <span class="jibun gray">' + places.address_name
-						+ '</span>';
-			} else {
-				itemStr += '    <span>' + places.address_name + '</span>';
-			}
-
-			itemStr += '  <span class="tel">' + places.phone + '</span>'
-					+ '</div>';
-
-			el.innerHTML = itemStr;
-			el.className = 'item';
-
-			return el;
 			
 		}
 
@@ -838,43 +790,7 @@
 					+ '</div>';
 
 			infowindow.setContent(content);
-			infowindow.open(map, marker);
-		} */
-		
-		
-		
-		/// result 를 클릭 했을때 
-		window.onload = function(){
 			
-		};
-		
-		
-		var close = document.getelementsbyclassname("close");
-		
-		function closeFx(){
-			
-			this.infowindow.close();
-		}
-		
-		function removeMarker() {
-			for (var i = 0; i < markers.length; i++) {
-				markers[i].setMap(null);
-			}
-			markers = [];
-		}
-		
-		
-		function selectFx(tag) {
-			///이름이 이거인 매장을 찾는다.
-			
-			 for (var i = 0; i < positions.length; i ++) {
-				 var maptitle = positions[i].title;
-				 
-				 if(maptitle == tag){
-					 //그 마커에 포커스를 찍는다
-					 removeMarker();
-					 var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
-				        
 					 
 				        // 마커를 생성합니다
 				        var marker = new kakao.maps.Marker({
@@ -907,4 +823,6 @@
 </script>
 </body>
 
-</html>
+
+
+		
