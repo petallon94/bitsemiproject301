@@ -161,10 +161,6 @@ function del(gonnum){
 
 <br><br><br><br><br>
 <h2 style="display: inline;margin-left: 410px;">공지사항	</h2>
-<table class="table table-striped" style="width: 1000px; margin: 0 auto;">
-
-<br><br><br><br><br>
-<h2 style="display: inline;margin-left: 410px;">공지사항	</h2>
 <table class="table table-striped" style="width: 1000px;margin-left: 410px;">
 
 <tbody>

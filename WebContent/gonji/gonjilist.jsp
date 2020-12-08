@@ -15,6 +15,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 <%--글리피콘아이콘 --%>
 <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 <title>Insert title here</title>
@@ -24,12 +26,11 @@
 	/* #cl-dashboard{display: none;} */
 	
 /*폰트 */
-	
+	body{font-family: 'Noto Sans KR', Arial, sans-serif;}
 	div.gonlist{
 		display: flex;
 		width: 100%;
 		margin-left: 420px;	
-		font-family: 'Gothic A1', sans-serif;
 	}
 	
 	/*리스트의 제목 부분 */
