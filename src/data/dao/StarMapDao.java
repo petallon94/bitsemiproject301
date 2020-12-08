@@ -191,24 +191,42 @@ public class StarMapDao {
 	
 	public void updateShop(StarMapDto dto) 
 	{
-		String sql="update map set shopname=?,shophp=?,shopaddr=?,shopaddrdetail=?,shopphoto=?,shopdetail=?,mpositionx=?,mpositiony=? where shopnum=?";
+		String sql="";
+		
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		conn=db.getMyConnection();
 		
 		try {
-			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, dto.getShopname());
-			String shophp=dto.getShophp1()+"-"+dto.getShophp2();
-			pstmt.setString(2, shophp);	
-			String shopaddr=dto.getShoppostcode()+","+dto.getShopaddr()+","+dto.getShopextraAddress();
-			pstmt.setString(3, shopaddr);
-			pstmt.setString(4, dto.getShopaddrdetail());
-			pstmt.setString(5, dto.getShopphoto());
-			pstmt.setString(6, dto.getShopdetail());
-			pstmt.setString(7, dto.getMpositionx());
-			pstmt.setString(8, dto.getMpositiony());
-			pstmt.setString(9, dto.getShopnum());
+			if(dto.getShopphoto().length()<2)
+			{
+				sql="update map set shopname=?,shophp=?,shopaddr=?,shopaddrdetail=?,shopdetail=?,mpositionx=?,mpositiony=? where shopnum=?";
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setString(1, dto.getShopname());
+				String shophp=dto.getShophp1()+"-"+dto.getShophp2();
+				pstmt.setString(2, shophp);	
+				String shopaddr=dto.getShoppostcode()+","+dto.getShopaddr()+","+dto.getShopextraAddress();
+				pstmt.setString(3, shopaddr);
+				pstmt.setString(4, dto.getShopaddrdetail());
+				pstmt.setString(5, dto.getShopdetail());
+				pstmt.setString(6, dto.getMpositionx());
+				pstmt.setString(7, dto.getMpositiony());
+				pstmt.setString(8, dto.getShopnum());
+			}else {
+				sql="update map set shopname=?,shophp=?,shopaddr=?,shopaddrdetail=?,shopphoto=?,shopdetail=?,mpositionx=?,mpositiony=? where shopnum=?";
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setString(1, dto.getShopname());
+				String shophp=dto.getShophp1()+"-"+dto.getShophp2();
+				pstmt.setString(2, shophp);	
+				String shopaddr=dto.getShoppostcode()+","+dto.getShopaddr()+","+dto.getShopextraAddress();
+				pstmt.setString(3, shopaddr);
+				pstmt.setString(4, dto.getShopaddrdetail());
+				pstmt.setString(5, dto.getShopphoto());
+				pstmt.setString(6, dto.getShopdetail());
+				pstmt.setString(7, dto.getMpositionx());
+				pstmt.setString(8, dto.getMpositiony());
+				pstmt.setString(9, dto.getShopnum());
+			}
 			pstmt.execute();
 			/*
 			 * System.out.println(dto.getShophp1()); System.out.println(dto.getShophp2());

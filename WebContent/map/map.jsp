@@ -581,7 +581,7 @@
 	List<StarMapDto> getlist = db.getList(start, perPage);
 	%>
 	
-<h1>매장안내</h1>
+<h1 style="margin-left: 240px; margin-top: 80px; margin-bottom: -70px;"><b style="font-size: 30px;">매장안내</b></h1>
 <div style="width: 1500px; margin: 0 auto;">
 
  <%	
