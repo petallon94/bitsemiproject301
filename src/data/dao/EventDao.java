@@ -276,10 +276,10 @@ public class EventDao {
 			pstmt=conn.prepareStatement(sql);
 			
 
-			//獄쏅뗄�뵥占쎈뎃
+			//�뛾�룆�뾼占쎈데�뜝�럥�럠
 			pstmt.setInt(1, start);
 			pstmt.setInt(2, perpage);
-			//占쎈뼄占쎈뻬
+			//�뜝�럥堉꾢뜝�럥六�
 
 			rs=pstmt.executeQuery();
 			
@@ -333,46 +333,7 @@ public class EventDao {
 		}
 	}
 	
-	
-	public List<EventDto> getMainEvent()
-	   {
-	      List<EventDto> list=new ArrayList<EventDto>();
-	      Connection conn=null;
-	      PreparedStatement pstmt=null;
-	      ResultSet rs=null;
-	      
-	      String sql="select * from event order by eventnum desc limit 3";
-	      
-	      conn=db.getMyConnection();
-	      
-	      try {
-	         pstmt=conn.prepareStatement(sql);
-	         rs=pstmt.executeQuery();
-	         
-	         while(rs.next())
-	         {
-	            EventDto dto=new EventDto();
-	            dto.setEventnum(rs.getString("eventnum"));
-	            dto.setId(rs.getString("id"));
-	            dto.setEvsubject(rs.getString("evsubject"));
-	            dto.setEvlistimage(rs.getString("evlistimage"));
-	            dto.setEvcontent(rs.getString("evcontent"));
-	            dto.setEvcontentimage(rs.getString("evcontentimage"));
-	            dto.setEvstartday(rs.getString("evstartday"));
-	            dto.setEvendday(rs.getString("evendday"));
-	            dto.setEvreadcount(rs.getInt("evreadcount"));
-	            dto.setEvwriteday(rs.getTimestamp("evwriteday"));
-	            
-	            list.add(dto);
-	         }
-	      } catch (SQLException e) {
-	         // TODO Auto-generated catch block
-	         e.printStackTrace();
-	      }finally {
-	         db.dbClose(conn, pstmt, rs);
-	      }
-	      return list;
-	   }
+
 	public void updateEvent(EventDto dto)
 	{
 		String sql="";
