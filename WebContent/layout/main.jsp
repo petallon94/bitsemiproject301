@@ -58,7 +58,7 @@ width: 100%;
     width: 440px;
     z-index: 4;
     color: #ffffff;
-    font-family: "Karma", sans-serif
+    font-family: 'Noto Sans KR', Arial, sans-serif;
 }
 #pageTop {
     overflow: hidden;
@@ -307,7 +307,7 @@ $(function(){
 
    	<div class="event_container" style="width: 100%; height: 800px; text-align: center; margin-top: 200px;">
 
-	   	<h1 class="event_title">이벤트</h1>
+	   	<h1 class="event_title" style="font-weight: 600;">이벤트</h1>
 	   	<p style="text-align: center;">
 		   	<a style="cursor :pointer; color: #888; font-weight: 300; font-size: 14pt;" onclick ="location.href='index.jsp?main=event/eventlist.jsp'">
 					스타보틀의 다양한 이벤트가 진행중입니다&nbsp;&gt;
@@ -333,7 +333,7 @@ $(function(){
 	</div>
 	<div class="slide_container" style="width: 100%; height: 820px;">
 
-	   	<h1 class="slide_title">매장</h1>
+	   	<h1 class="slide_title" style="font-weight: 600;">매장</h1>
 		<p style="text-align: center;">
 		   	<a style="cursor :pointer; color: #888; font-weight: 300; font-size: 14pt;" onclick ="location.href='index.jsp?main=map/map.jsp'">
 				스타보틀 매장을 어디서나 만나보세요&nbsp;&gt;
