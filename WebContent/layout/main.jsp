@@ -1,4 +1,3 @@
-
 <%@page import="data.dto.StarMapDto"%>
 <%@page import="data.dao.StarMapDao"%>
 <%@page import="data.dto.EventDto"%>
@@ -73,10 +72,7 @@ width: 100%;
     vertical-align: middle;
     text-align: center;
 }
-
-
 .shop_div {
-
 	overflow: hidden;
 }
 .shop_div img {
@@ -105,29 +101,30 @@ width: 1200px;
 }
 #Menu, #Event, #Shop {
 margin-top: 40px;
-
 }
 #main_location{
 width: 1000px; 
 height: 500px;
 margin: 200px 500px;
 }
-
 .slide_container{
 width:1260px; 
 height : 450px;
 margin-bottom: 100px;
 } 
-
 .slide_title{
 text-align: center;
 }
+.menuslide_box div a:hover{text-decoration: none; color: black;}
+.menuslide_box div a p:hover{color: black;}
 
-
+.eventslide_box div{margin-right: 30px;}
+.eventslide_box div:last-child{margin-right: 0;}
+.eventslide_box div a:hover{text-decoration: none; color: black;}
+.eventslide_box div a p.desc_box{color: black; font-size: 14pt;}
 </style>
 <script>
 $(function(){
-
 		jQuery('.promotion_slide1 > div').slick({
 			infinite: true,	
 			arrows: false,
@@ -243,70 +240,77 @@ $(function(){
 %>
 
 
-<div style="width:1260px; height : 100%;">
-<div class="slide_container" style="background-color : #eee;">
-	<h2 class="slide_title">메뉴</h2>
- 	<div class="promotion_slide1 w3-container tabs" id="Menu">  			
-
-				<div class="slide_box" >        
-
-						<%for(MenuDto medto : list){%>
-						<div>
-							<a href="index.jsp?main=menu/menudetailpage.jsp?menunum=<%=medto.getMenunum()%>" target="_self" style="margin-left: 33px;">
-								<p class="photo">
-									<img src="menusave/<%=medto.getMenuphoto() %>" class="t_hidden m_hidden" style="width: 270px; height: 270px;"/>									
-								</p>
-								<p class="desc_box" style="width: 270px; height: 50px; font-size: 14pt;">
-									<span class="subject"><%=medto.getMenuname() %></span>									
-								</p>
-							</a>						
-						</div>
-						 <%} %>
-				</div> 
-
-			<a style="cursor :pointer" onclick ="location.href='index.jsp?main=menu/menulist.jsp'">더보기</a>		 	
+<div style="width:1200px; height : 100%;">
+	<div class="slide_container">
+		<h1 class="slide_title" style="font-weight: 600;">스타보틀 인기메뉴</h1>
+		<p style="text-align: center;">
+			<a style="cursor :pointer; color: #888; font-weight: 300; font-size: 14pt;" onclick ="location.href='index.jsp?main=menu/menulist.jsp'">
+				스타보틀만의 시그니처 메뉴를 만나보세요&nbsp;&gt;
+			</a>
+		<p>
+	 	<div class="promotion_slide1 w3-container tabs" id="Menu">  			
+			<div class="menuslide_box" >        
+					<%for(MenuDto medto : list){%>
+					<div>
+						<a href="index.jsp?main=menu/menudetailpage.jsp?menunum=<%=medto.getMenunum()%>" target="_self" style="margin-left: 33px;">
+							<p class="photo">
+								<img src="menusave/<%=medto.getMenuphoto() %>" class="t_hidden m_hidden" style="width: 270px; height: 270px;"/>									
+							</p>
+							<p class="desc_box" style="width: 270px; height: 50px; font-size: 14pt;">
+								<span class="subject"><%=medto.getMenuname() %></span>									
+							</p>
+						</a>						
+					</div>
+					 <%} %>
+			</div> 
+	   	</div>
    	</div>
-   	</div>
-   	<div class="slide_container">
-   	<h2 class="slide_title">이벤트</h2>	
-   	<div class="promotion_slide2 w3-container tabs" id="Event">  			
-				<div class="slide_box" >        
-						<%for(EventDto evdto : liste){%>	
-						<div>
-							<a href="index.jsp?main=event/eventcontent.jsp?eventnum=<%=evdto.getEventnum()%>" target="_self">
-								<p class="photo">
-									<img src="menusave/<%=evdto.getEvlistimage() %>" style ="width : 250px; height:250px;" class="t_hidden m_hidden"/>									
-								</p>
-								<p class="desc_box">
-									<span class="subject"><%=evdto.getEvsubject() %></span>									
-								</p>
-							</a>						
-						</div>
-						 <%} %>
-				</div> 
-			<a style="cursor :pointer" onclick ="location.href='index.jsp?main=event/eventlist.jsp'">더보기</a>
-
-   	</div>	 
-
-   	 </div>
-<div class="slide_container">
-   	<h2 class="slide_title">매장</h2>	
-  <div id="Shop" class="w3-container tabs" style ="display : flex;justify-content : space-between;"> 
-   
-    <%	
-		for(StarMapDto smdto : listsm){%>
-		<div style ="width 270px;height 300px;cursor:pointer;" class ="shopdetail" shopnum = "<%=smdto.getShopnum()%>">
-		<div class ="shop_div" style ="width : 250px;height:250px; border-radius:125px; border : 1px solid black;">
-   		<img src ="shopmapsave/<%=smdto.getShopphoto() %>"  style ="width : 250px;height:250px;">
-   		</div>
-
-   		<p style ="width:250px"><%=smdto.getShopname() %></p>   		
-   		</div>
-		 <%} %>   
-		 <a style="cursor :pointer" onclick ="location.href='index.jsp?main=map/map.jsp'">더보기</a> 
-
-</div>
-</div>
+   	<div class="event_container" style="width: 100%; height: 760px; text-align: center;">
+	   	<h1 class="event_title">이벤트</h1>
+	   	<p style="text-align: center;">
+		   	<a style="cursor :pointer; color: #888; font-weight: 300; font-size: 14pt;" onclick ="location.href='index.jsp?main=event/eventlist.jsp'">
+					스타보틀의 다양한 이벤트가 진행중입니다&nbsp;&gt;
+			</a>	
+		</p>
+	   	<div class="event_con" id="Event">  			
+			<div class="eventslide_box" style="width: 1200px;" >        
+					<%for(EventDto evdto : liste){%>	
+					<div style="float: left;">
+						<a href="index.jsp?main=event/eventcontent.jsp?eventnum=<%=evdto.getEventnum()%>" target="_self">
+							<p class="photo">
+								<img src="eventsave/<%=evdto.getEvlistimage() %>" style ="width : 380px; height:470px;" class="t_hidden m_hidden"/>									
+							</p>
+							<p class="desc_box">
+								<span class="subject"><%=evdto.getEvsubject() %></span>									
+							</p>
+						</a>						
+					</div>
+					 <%} %>
+			</div> 
+	   	</div>	 
+	</div>
+	<div class="slide_container" style="width: 100%; height: 100%;">
+	   	<h1 class="slide_title">매장</h1>
+		<p style="text-align: center;">
+		   	<a style="cursor :pointer; color: #888; font-weight: 300; font-size: 14pt;" onclick ="location.href='index.jsp?main=map/map.jsp'">
+				스타보틀 매장을 어디서나 만나보세요&nbsp;&gt;
+			</a>	
+		</p>	
+	  <div id="Shop" class="w3-container tabs" style ="display : flex;justify-content : space-between;"> 
+	   
+	    <%	
+			for(StarMapDto smdto : listsm){%>
+			<div style ="width 270px;height 300px;cursor:pointer;" class ="shopdetail" shopnum = "<%=smdto.getShopnum()%>">
+			<div class ="shop_div" style ="width : 250px;height:250px; border-radius:125px; border : 1px solid black;">
+	   		<img src ="shopmapsave/<%=smdto.getShopphoto() %>"  style ="width : 250px;height:250px;">
+	   		</div>
+	
+	   		<p style ="width:250px"><%=smdto.getShopname() %></p>   		
+	   		</div>
+			 <%} %>   
+	
+		</div>
+	</div>
 </div>
 
  
@@ -345,6 +349,5 @@ var options = {
 var map = new kakao.maps.Map(container, options);
 	 */
 </script>
-
 
 </html>
