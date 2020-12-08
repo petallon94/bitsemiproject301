@@ -314,7 +314,7 @@ public class StarMapDao {
        public List<StarMapDto> getRandomList()	
 	{	
 
-		String sql="select * from map order by rand() limit 4";	
+		String sql="select * from map order by rand() limit 8";	
 
 		List<StarMapDto> list=new ArrayList<StarMapDto>();	
 		Connection conn=null;	
