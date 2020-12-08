@@ -319,7 +319,7 @@ public class StarMapDao {
        public List<StarMapDto> getRandomList()	
 	{	
 
-		String sql="select * from map order by rand() limit 4";	
+		String sql="select * from map order by rand() limit 8";	
 
 		List<StarMapDto> list=new ArrayList<StarMapDto>();	
 		Connection conn=null;	
@@ -355,15 +355,11 @@ public class StarMapDao {
 	}
 	
 
-	
-	
-	
-	
-	//검색결과 리스트 중 한 페이지에서 필요한만큼 반환하기
+	//寃��깋寃곌낵 由ъ뒪�듃 以� �븳 �럹�씠吏��뿉�꽌 �븘�슂�븳留뚰겮 諛섑솚�븯湲�
 		public List<StarMapDto> getSearchList(String key,String value)
 		{
 			List<StarMapDto> list=new ArrayList<StarMapDto>();
-			//all일 경우
+			//all�씪 寃쎌슦
 			String s="";
 			if(key!=null)
 			{
@@ -380,11 +376,11 @@ public class StarMapDao {
 			conn=db.getMyConnection();
 			try {
 				pstmt=conn.prepareStatement(sql);
-				//바인딩
+				//諛붿씤�뵫
 				/*
 				 * pstmt.setString(1, key); pstmt.setString(2, value);
 				 */
-				//실행
+				//�떎�뻾
 				rs=pstmt.executeQuery();
 				while(rs.next())
 				{
@@ -408,7 +404,7 @@ public class StarMapDao {
 				db.dbClose(conn, pstmt, rs);
 			}
 			return list;
-
+		}
 	
 }
 
