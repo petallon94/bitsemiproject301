@@ -27,11 +27,11 @@ body,h1,h2,h3,h4,h5,h6 {font-family: 'Noto Sans KR', sans-serif;}
 
 
 /* sub */
-.sub_visual{min-height:499px;padding:0 10px;text-align:center;background-repeat:no-repeat;background-size:cover;background-position:center;position:relative;}
-.sub_visual .txt{width:100%;position:absolute;top:148px;left:0;}
-.sub_visual .txt h1{margin:0;font-size:2.75rem;font-weight:300;}
+.sub_visual{min-height:399px;padding:0 10px;text-align:center;background-repeat:no-repeat;background-size:cover;background-position:center;position:relative;}
+.sub_visual .txt{width:100%;position:absolute;top:120px;left:0;}
+.sub_visual .txt h1{margin:0;font-size:2.75rem;font-weight:500;}
 .sub_visual .txt h1:after{display:block;width:40px;height:2px;margin:32px auto;background:#202020;content:'';}
-.sub_visual .txt p{font-size:1.25rem;font-weight:300;}
+.sub_visual .txt p{font-size:1.25rem;font-weight:200;}
 .sub_visual .page_tab{width:100%;padding:0 10px;font-size:0;position:absolute;bottom:41px;left:0;cursor : pointer;}
 .sub_visual .page_tab li{display:inline-block;width:20%;max-width:170px;padding:10px 0;border:1px solid #bfbfbf;border-left:0;font-size:1rem;color:#909090;background:#fff;}
 .sub_visual .page_tab li:first-child{border-left:1px solid #bfbfbf;}
@@ -66,6 +66,7 @@ $(function(){
 <body>
   
 <div class="sub_visual bg-menu">
+
     <div class="txt">
         <h1>스타보틀</h1>
         <p>오직 스타보틀에서만 만나보실 수 있는 시그니처 메뉴입니다.</p>

@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 
 <style>
+body{font-family: 'Noto Sans KR', sans-serif;}
 .content02 { width:900px; margin:auto;} /* 제품 상세보기 */
 
 div.product_view_wrap1 { width:1100px; padding-bottom:40px; margin-bottom:40px; }

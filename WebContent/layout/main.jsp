@@ -1,3 +1,5 @@
+<%@page import="data.dto.GonjiDto"%>
+<%@page import="data.dao.GonjiDao"%>
 <%@page import="data.dto.StarMapDto"%>
 <%@page import="data.dao.StarMapDao"%>
 <%@page import="data.dto.EventDto"%>
@@ -102,15 +104,10 @@ width: 1200px;
 #Menu, #Event, #Shop {
 margin-top: 40px;
 }
-#main_location{
-width: 1000px; 
-height: 500px;
-margin: 200px 500px;
-}
+
 .slide_container{
-width:1260px; 
+width:1240px; 
 height : 450px;
-margin-bottom: 100px;
 } 
 .slide_title{
 text-align: center;
@@ -122,6 +119,10 @@ text-align: center;
 .eventslide_box div:last-child{margin-right: 0;}
 .eventslide_box div a:hover{text-decoration: none; color: black;}
 .eventslide_box div a p.desc_box{color: black; font-size: 14pt;}
+a.gon_link{color: #333;}
+a.gon_link:hover{text-decoration: none; color: #666;}
+a.map_link{color: #333;}
+a.map_link:hover{text-decoration: none; color: #666;}
 </style>
 <script>
 $(function(){
@@ -222,7 +223,40 @@ $(function(){
 <img class="image-container_bg" src="./image/coffee-5132832_1920.jpg" alt="cafe4" style="width: 100%;">
 </div>
 </div>
-
+<%-- 공지사항 메인 출력 --%>
+<%
+   //공지 게시판 dao 선언
+   GonjiDao gdao=new GonjiDao();
+   //getNewList에서 목록 가져오기
+   List<GonjiDto> glist=gdao.getNewList();
+   //totalcount 값 구하기(+대신)
+   int totalcount=gdao.getTotalCount();
+%>
+<div class="notice_gonji" style="width: 50%; height:50px; background-color: #f6c244; float: left;">
+    <ul class="rolling list-group">
+    <%
+       for(GonjiDto gdto:glist)
+       {%>
+       <div class="gon_txt" style="font-size: 12pt; text-align: center; line-height: 50px;">
+        <strong style="margin-left: 40px;">공지사항</strong>&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;
+          <a href="index.jsp?main=gonji/content.jsp?num=<%=gdto.getGonnum()%>&pageNum=1&key=a" class="gon_link"
+          style="font-weight: 400;"><%=gdto.getGonsubject()%><span style="float: right; margin-right: 20px;">&gt;</span>
+          </a>
+        </div>
+       <%}
+    %> 
+   </ul>
+</div>
+<div class="notice_map" style="width: 50%; height:50px; background-color: #eee; float: left;">
+	<div class="gon_txt" style="font-size: 12pt; line-height: 50px;">
+        <strong style="margin-left: 40px;">매장찾기</strong>&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;
+          <a href="index.jsp?main=map/map.jsp" class="map_link"
+          style="font-weight: 400;">스타보틀 매장이 어디있는지 궁금하세요?<span style="margin-left: 100px;">&gt;</span>
+          </a>
+        </div>
+</div>
 <!-- 사이트 메인 중앙 컨텐츠 -->
 <div class= "tabb" style="width:100%; margin-top : 100px; display:flex; justify-content : center">
 
@@ -240,7 +274,7 @@ $(function(){
 %>
 
 
-<div style="width:1200px; height : 100%;">
+<div style="width:1200px; height : 100%; margin-top: 50px;">
 	<div class="slide_container">
 		<h1 class="slide_title" style="font-weight: 600;">스타보틀 인기메뉴</h1>
 		<p style="text-align: center;">
@@ -248,7 +282,7 @@ $(function(){
 				스타보틀만의 시그니처 메뉴를 만나보세요&nbsp;&gt;
 			</a>
 		<p>
-	 	<div class="promotion_slide1 w3-container tabs" id="Menu">  			
+	 	<div class="promotion_slide1 w3-container tabs" id="Menu" style="padding:0;">  			
 			<div class="menuslide_box" >        
 					<%for(MenuDto medto : list){%>
 					<div>
@@ -265,7 +299,7 @@ $(function(){
 			</div> 
 	   	</div>
    	</div>
-   	<div class="event_container" style="width: 100%; height: 760px; text-align: center;">
+   	<div class="event_container" style="width: 100%; height: 800px; text-align: center; margin-top: 200px;">
 	   	<h1 class="event_title">이벤트</h1>
 	   	<p style="text-align: center;">
 		   	<a style="cursor :pointer; color: #888; font-weight: 300; font-size: 14pt;" onclick ="location.href='index.jsp?main=event/eventlist.jsp'">
@@ -289,23 +323,23 @@ $(function(){
 			</div> 
 	   	</div>	 
 	</div>
-	<div class="slide_container" style="width: 100%; height: 100%;">
+	<div class="slide_container" style="width: 100%; height: 820px;">
 	   	<h1 class="slide_title">매장</h1>
 		<p style="text-align: center;">
 		   	<a style="cursor :pointer; color: #888; font-weight: 300; font-size: 14pt;" onclick ="location.href='index.jsp?main=map/map.jsp'">
 				스타보틀 매장을 어디서나 만나보세요&nbsp;&gt;
 			</a>	
 		</p>	
-	  <div id="Shop" class="w3-container tabs" style ="display : flex;justify-content : space-between;"> 
+	  <div id="Shop" class="w3-container tabs" style ="display : flex; justify-content : center; flex-flow:wrap;"> 
 	   
 	    <%	
 			for(StarMapDto smdto : listsm){%>
-			<div style ="width 270px;height 300px;cursor:pointer;" class ="shopdetail" shopnum = "<%=smdto.getShopnum()%>">
-			<div class ="shop_div" style ="width : 250px;height:250px; border-radius:125px; border : 1px solid black;">
-	   		<img src ="shopmapsave/<%=smdto.getShopphoto() %>"  style ="width : 250px;height:250px;">
+			<div style ="cursor:pointer; margin: 40px;" class ="shopdetail" shopnum = "<%=smdto.getShopnum()%>">
+			<div class ="shop_div" style ="width : 212px; height:212px; border-radius:125px;">
+	   		<img src ="shopmapsave/<%=smdto.getShopphoto() %>"  style ="width : 212px;height:212px;">
 	   		</div>
 	
-	   		<p style ="width:250px"><%=smdto.getShopname() %></p>   		
+	   		<p style ="width : 212px; text-align:center; margin-top: 10px;"><%=smdto.getShopname() %></p>   		
 	   		</div>
 			 <%} %>   
 	
