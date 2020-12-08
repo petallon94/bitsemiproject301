@@ -165,7 +165,7 @@ function execDaumPostcode() {
 				<b>매장사진</b></td>
 				<td align="left">
 					<div class="form-group">
-						<input id="shopphoto" type="file" name="shopphoto" style="width: 300px;" class="form-control" required="required">
+						<input id="shopphoto" type="file" name="shopphoto" style="width: 300px;" class="form-control">
 					</div>
 				</td>
 			</tr>
