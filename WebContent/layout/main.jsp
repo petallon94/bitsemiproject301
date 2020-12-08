@@ -304,6 +304,7 @@ $(function(){
 			</div> 
 	   	</div>
    	</div>
+
    	<div class="event_container" style="width: 100%; height: 760px; text-align: center;">
 	   	<h1 class="event_title">이벤트</h1>
 	   	<p style="text-align: center;">
@@ -351,6 +352,7 @@ $(function(){
 	
 		</div>
 	</div>
+
 </div>
 
  
