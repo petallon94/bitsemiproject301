@@ -239,7 +239,7 @@ $(function(){
     <%
        for(GonjiDto gdto:glist)
        {%>
-       <div class="gon_txt" style="font-size: 12pt; text-align: center; line-height: 50px;">
+       <div class="gon_txt" style="font-size: 12pt; margin-left: 30%; line-height: 50px;">
         <strong style="margin-left: 40px;">공지사항</strong>&nbsp;&nbsp;&nbsp;&nbsp;
         &nbsp;&nbsp;&nbsp;
           <a href="index.jsp?main=gonji/content.jsp?num=<%=gdto.getGonnum()%>&pageNum=1&key=a" class="gon_link"
