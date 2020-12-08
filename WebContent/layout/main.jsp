@@ -20,6 +20,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 <!--   slick api -->
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
@@ -29,10 +30,10 @@
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b6754d93f8d097bb07dd758c1b12ba4c&libraries=services,clusterer,drawing"></script>
 <style>
 body{
-font-family: 'Gothic A1', sans-serif;
+font-family: 'Noto Sans KR', Arial, sans-serif;
 }
 h1,h2,h3 {
-font-family: "Karma", sans-serif
+font-family: 'Noto Sans KR', Arial, sans-serif;
 }
 .carousel-container{
 width: 50%;
@@ -44,12 +45,10 @@ width: 50%;
 width: 100%;
 height: 100%;
 }
-
 #image-container_bg{
 position: relative;
 width: 100%;
 }
-
 #image-container_title{
     height: 104px;
     left: 50%;
@@ -60,9 +59,7 @@ width: 100%;
     z-index: 4;
     color: #ffffff;
     font-family: "Karma", sans-serif
-
 }
-
 #pageTop {
     overflow: hidden;
     position: fixed;
@@ -103,8 +100,6 @@ width: 100%;
     transform:scale(1.2); 
     overflow: hidden;   
 }
-
-
 .promotion_slide {
 width: 1200px;
 }
@@ -112,28 +107,24 @@ width: 1200px;
 margin-top: 40px;
 }
 
-
-#main_location{
-width: 1000px; 
-height: 500px;
-margin: 200px 500px;
-}
 .slide_container{
-width:1260px; 
+width:1240px; 
 height : 450px;
-margin-bottom: 100px;
 } 
 .slide_title{
 text-align: center;
 }
 .menuslide_box div a:hover{text-decoration: none; color: black;}
 .menuslide_box div a p:hover{color: black;}
-
-
 .eventslide_box div{margin-right: 30px;}
 .eventslide_box div:last-child{margin-right: 0;}
 .eventslide_box div a:hover{text-decoration: none; color: black;}
 .eventslide_box div a p.desc_box{color: black; font-size: 14pt;}
+
+a.gon_link{color: #333;}
+a.gon_link:hover{text-decoration: none; color: #666;}
+a.map_link{color: #333;}
+a.map_link:hover{text-decoration: none; color: #666;}
 
 </style>
 <script>
@@ -238,28 +229,37 @@ $(function(){
 
 <%-- 공지사항 메인 출력 --%>
 <%
-	//공지 게시판 dao 선언
-	GonjiDao gdao=new GonjiDao();
-	//getNewList에서 목록 가져오기
-	List<GonjiDto> glist=gdao.getNewList();
-	//totalcount 값 구하기(+대신)
-	int totalcount=gdao.getTotalCount();
+   //공지 게시판 dao 선언
+   GonjiDao gdao=new GonjiDao();
+   //getNewList에서 목록 가져오기
+   List<GonjiDto> glist=gdao.getNewList();
+   //totalcount 값 구하기(+대신)
+   int totalcount=gdao.getTotalCount();
 %>
-<div class="notice_gonji" style="width: 50%;">
+<div class="notice_gonji" style="width: 50%; height:50px; background-color: #f6c244; float: left;">
     <ul class="rolling list-group">
     <%
-    	for(GonjiDto gdto:glist)
-    	{%>
-    	<div class="alert alert-warning">
-		  <strong>공지사항</strong>&nbsp;&nbsp;&nbsp;&nbsp;
-		  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		    <a href="index.jsp?main=gonji/content.jsp?num=<%=gdto.getGonnum()%>&pageNum=1&key=a" 
-		    class="alert-link"><%=gdto.getGonsubject()%>
-		    </a>
-	  	</div>
-    	<%}
+       for(GonjiDto gdto:glist)
+       {%>
+       <div class="gon_txt" style="font-size: 12pt; text-align: center; line-height: 50px;">
+        <strong style="margin-left: 40px;">공지사항</strong>&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;
+          <a href="index.jsp?main=gonji/content.jsp?num=<%=gdto.getGonnum()%>&pageNum=1&key=a" class="gon_link"
+          style="font-weight: 400;"><%=gdto.getGonsubject()%><span style="float: right; margin-right: 20px;">&gt;</span>
+          </a>
+        </div>
+       <%}
     %> 
-	</ul>
+   </ul>
+</div>
+<div class="notice_map" style="width: 50%; height:50px; background-color: #eee; float: left;">
+	<div class="gon_txt" style="font-size: 12pt; line-height: 50px;">
+        <strong style="margin-left: 40px;">매장찾기</strong>&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;
+          <a href="index.jsp?main=map/map.jsp" class="map_link"
+          style="font-weight: 400;">스타보틀 매장이 어디있는지 궁금하세요?<span style="margin-left: 100px;">&gt;</span>
+          </a>
+        </div>
 </div>
 
 <!-- 사이트 메인 중앙 컨텐츠 -->
@@ -279,7 +279,7 @@ $(function(){
 %>
 
 
-<div style="width:1200px; height : 100%;">
+<div style="width:1200px; height : 100%; margin-top: 50px;">
 	<div class="slide_container">
 		<h1 class="slide_title" style="font-weight: 600;">스타보틀 인기메뉴</h1>
 		<p style="text-align: center;">
@@ -287,7 +287,7 @@ $(function(){
 				스타보틀만의 시그니처 메뉴를 만나보세요&nbsp;&gt;
 			</a>
 		<p>
-	 	<div class="promotion_slide1 w3-container tabs" id="Menu">  			
+	 	<div class="promotion_slide1 w3-container tabs" id="Menu" style="padding:0;">  			
 			<div class="menuslide_box" >        
 					<%for(MenuDto medto : list){%>
 					<div>
@@ -304,7 +304,9 @@ $(function(){
 			</div> 
 	   	</div>
    	</div>
-   	<div class="event_container" style="width: 100%; height: 760px; text-align: center;">
+
+   	<div class="event_container" style="width: 100%; height: 800px; text-align: center; margin-top: 200px;">
+
 	   	<h1 class="event_title">이벤트</h1>
 	   	<p style="text-align: center;">
 		   	<a style="cursor :pointer; color: #888; font-weight: 300; font-size: 14pt;" onclick ="location.href='index.jsp?main=event/eventlist.jsp'">
@@ -327,9 +329,10 @@ $(function(){
 					 <%} %>
 			</div> 
 	   	</div>	 
- 
-  
-	<div class="slide_container" style="height: 600px;">
+
+	</div>
+	<div class="slide_container" style="width: 100%; height: 820px;">
+
 	   	<h1 class="slide_title">매장</h1>
 		<p style="text-align: center;">
 		   	<a style="cursor :pointer; color: #888; font-weight: 300; font-size: 14pt;" onclick ="location.href='index.jsp?main=map/map.jsp'">
@@ -345,12 +348,15 @@ $(function(){
 	   		<img src ="shopmapsave/<%=smdto.getShopphoto() %>"  style ="width : 212px;height:212px;">
 	   		</div>
 	
-	   		<p style ="width : 212px; text-align:center;"><%=smdto.getShopname() %></p>   		
+
+	   		<p style ="width : 212px; text-align:center; margin-top: 10px;"><%=smdto.getShopname() %></p>   		
+
 	   		</div>
 			 <%} %>   
 	
 		</div>
 	</div>
+
 </div>
 
  

@@ -18,7 +18,7 @@ display:flex;
 flex-direction: column;
 align-items: center;
 margin-top: 50px;
-
+font-family: 'Noto Sans KR', Arial, sans-serif;
 }
 
 </style>
