@@ -42,10 +42,12 @@ width: 50%;
 width: 100%;
 height: 100%;
 }
+
 #image-container_bg{
 position: relative;
 width: 100%;
 }
+
 #image-container_title{
     height: 104px;
     left: 50%;
@@ -56,21 +58,24 @@ width: 100%;
     z-index: 4;
     color: #ffffff;
     font-family: "Karma", sans-serif
+
 }
-.fixed-btn {
-    position: fixed;
-    z-index: 49;
-    right: 0;
-    bottom: 0;
+
+#pageTop {
     overflow: hidden;
-}
-.fixed-btn #pageTop {
-    width: 60px;
-    height: 60px;
-    background: url('./image/backtotop_icon.png') no-repeat center;
-    background-size: cover;
-    vertical-align: middle;
-    text-align: center;
+    position: fixed;
+    z-index: 300;
+    right: 31px;
+    bottom: 0;
+    width: 58px;
+    height: 58px;
+    border: 0;
+    background: url('./image/backtotop_icon.png') no-repeat 50% 50%;
+    font-size: 0;
+    line-height: 0;
+    text-indent: -9999px;
+    opacity: 0;
+    transition: background .2s;
 }
 .shop_div {
 	overflow: hidden;
@@ -96,12 +101,16 @@ width: 100%;
     transform:scale(1.2); 
     overflow: hidden;   
 }
+
+
 .promotion_slide {
 width: 1200px;
 }
 #Menu, #Event, #Shop {
 margin-top: 40px;
 }
+
+
 #main_location{
 width: 1000px; 
 height: 500px;
@@ -240,6 +249,7 @@ $(function(){
 %>
 
 
+
 <div style="width:1200px; height : 100%;">
 	<div class="slide_container">
 		<h1 class="slide_title" style="font-weight: 600;">스타보틀 인기메뉴</h1>
@@ -311,16 +321,17 @@ $(function(){
 	
 		</div>
 	</div>
+
 </div>
 
  
   <!-- 매장위치 카카오맵
   <div class="main_location" id="main_location"> 매장위치</div>-->
 
-<!-- top button 작동안됨 -->
-<div class="fixed-btn">
-<a href="#top" class="on" style="opacity:1;"><span id="pageTop" >TOP</span></a>
-</div>
+
+
+<a href="#top" id="pageTop" class="on" style="opacity:1;">맨 위로 가기</a>
+
 </div>
 </div>
 
@@ -346,6 +357,7 @@ var options = {
 	center: new kakao.maps.LatLng(33.450701, 126.570667),
 	level: 3
 };
+
 var map = new kakao.maps.Map(container, options);
 	 */
 </script>
