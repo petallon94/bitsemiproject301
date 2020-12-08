@@ -16,7 +16,7 @@ public class GonjiDao {
 	
 	MysqlConnect db=new MysqlConnect();
 	
-	//gonnumÀÇ max°ª ±¸ÇØ¼­ ¸®ÅÏ(nullÀÏ °æ¿ì 0¸®ÅÏ)
+	//gonnumì˜ maxê°’ êµ¬í•´ì„œ ë¦¬í„´(nullì¼ ê²½ìš° 0ë¦¬í„´)
 	public int getMaxNum() 
 	{
 		int max=0;
@@ -54,11 +54,11 @@ public class GonjiDao {
 		conn=db.getMyConnection();
 		try {
 			pstmt=conn.prepareStatement(sql);
-			//¹ÙÀÎµù
+			//ë°”ì¸ë”©
 			pstmt.setString(1, dto.getGonid());
 			pstmt.setString(2, dto.getGonsubject());
 			pstmt.setString(3, dto.getGoncontent());
-			//½ÇÇà
+			//ì‹¤í–‰
 			pstmt.execute();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -68,7 +68,7 @@ public class GonjiDao {
 		}
 	}
 	
-	//ÀüÃ¼ °¹¼ö ±¸ÇÏ´Â
+	//ì „ì²´ ê°¯ìˆ˜ êµ¬í•˜ëŠ”
 	public int getTotalCount() 
 	{
 		int n=0;
@@ -92,12 +92,12 @@ public class GonjiDao {
 		return n;
 	}
 	
-	//ÆäÀÌÂ¡ Ã³¸®ÇÑ ¸®½ºÆ® ¸ñ·Ï ¹İÈ¯
-	//°Ë»ö½Ã ÆäÀÌÂ¡ Ã³¸®µÇ´Â ºÎºĞÀ¸·Î ´ëÃ¼ÇÔ getSearchList
+	//í˜ì´ì§• ì²˜ë¦¬í•œ ë¦¬ìŠ¤íŠ¸ ëª©ë¡ ë°˜í™˜
+	//ê²€ìƒ‰ì‹œ í˜ì´ì§• ì²˜ë¦¬ë˜ëŠ” ë¶€ë¶„ìœ¼ë¡œ ëŒ€ì²´í•¨ getSearchList
 /*	public List<GonjiDto> getList(int start, int perpage)
 	{
 		List<GonjiDto> list=new ArrayList<GonjiDto>();
-		//limit ½ÃÀÛ,°¹¼ö
+		//limit ì‹œì‘,ê°¯ìˆ˜
 		String sql="select * from gonji order by gonnum desc limit ?,?";
 		Connection conn=null;
 		PreparedStatement pstmt=null;
@@ -106,10 +106,10 @@ public class GonjiDao {
 		conn=db.getMyConnection();
 		try {
 			pstmt=conn.prepareStatement(sql);
-			//¹ÙÀÎµù
+			//ë°”ì¸ë”©
 			pstmt.setInt(1, start);
 			pstmt.setInt(2, perpage);
-			//½ÇÇà
+			//ì‹¤í–‰
 			rs=pstmt.executeQuery();
 			while(rs.next())
 			{
@@ -120,7 +120,7 @@ public class GonjiDao {
 				dto.setGoncontent(rs.getString("goncontent"));
 				dto.setGonreadcount(rs.getInt("gonreadcount"));
 				dto.setGonwriteday(rs.getTimestamp("gonwriteday"));
-				//list¿¡ Ãß°¡
+				//listì— ì¶”ê°€
 				list.add(dto);
 			}
 		} catch (SQLException e) {
@@ -133,17 +133,17 @@ public class GonjiDao {
 	}
 	*/
 	
-	//°Ë»ö°á°ú ¸®½ºÆ® Áß ÇÑ ÆäÀÌÁö¿¡¼­ ÇÊ¿äÇÑ¸¸Å­ ¹İÈ¯ÇÏ±â
+	//ê²€ìƒ‰ê²°ê³¼ ë¦¬ìŠ¤íŠ¸ ì¤‘ í•œ í˜ì´ì§€ì—ì„œ í•„ìš”í•œë§Œí¼ ë°˜í™˜í•˜ê¸°
 	public List<GonjiDto> getSearchList(String key,
 			String value,int start,int perpage)
 	{
 		List<GonjiDto> list=new ArrayList<GonjiDto>();
-		//allÀÏ °æ¿ì
+		//allì¼ ê²½ìš°
 		String s="";
 		if(key!=null)
 		{
-			//("")´Â html¿¡¼­ ÁØ º¯¼ö=>gonlist·Î º¸³½´Ù
-			//where=?´Â mysql¿¡¼­ ÀĞ¾îµéÀÏ Å×ÀÌºí¿¡¼­ÀÇ Ä®·³¸í
+			//("")ëŠ” htmlì—ì„œ ì¤€ ë³€ìˆ˜=>gonlistë¡œ ë³´ë‚¸ë‹¤
+			//where=?ëŠ” mysqlì—ì„œ ì½ì–´ë“¤ì¼ í…Œì´ë¸”ì—ì„œì˜ ì¹¼ëŸ¼ëª…
 			if(key.equals("myid"))
 				s="where gonid='"+value+"'";
 			else if(key.equals("subject"))
@@ -159,10 +159,10 @@ public class GonjiDao {
 		conn=db.getMyConnection();
 		try {
 			pstmt=conn.prepareStatement(sql);
-			//¹ÙÀÎµù
+			//ë°”ì¸ë”©
 			pstmt.setInt(1, start);
 			pstmt.setInt(2, perpage);
-			//½ÇÇà
+			//ì‹¤í–‰
 			rs=pstmt.executeQuery();
 			while(rs.next())
 			{
@@ -173,7 +173,7 @@ public class GonjiDao {
 				dto.setGoncontent(rs.getString("goncontent"));
 				dto.setGonreadcount(rs.getInt("gonreadcount"));
 				dto.setGonwriteday(rs.getTimestamp("gonwriteday"));
-				//list¿¡ Ãß°¡
+				//listì— ì¶”ê°€
 				list.add(dto);
 			}
 		} catch (SQLException e) {
@@ -187,7 +187,7 @@ public class GonjiDao {
 
 	}
 	
-	//num¿¡ ÇØ´çÇÏ´Â dto¹İÈ¯: ³»¿ëº¸±â&¼öÁ¤
+	//numì— í•´ë‹¹í•˜ëŠ” dtoë°˜í™˜: ë‚´ìš©ë³´ê¸°&ìˆ˜ì •
 	public GonjiDto getData(String gonnum)
 	{
 		System.out.println("n="+gonnum);
@@ -200,7 +200,7 @@ public class GonjiDao {
 		conn=db.getMyConnection();
 		try {
 			pstmt=conn.prepareStatement(sql);
-			//¹ÙÀÎµù
+			//ë°”ì¸ë”©
 			pstmt.setString(1, gonnum);
 			rs=pstmt.executeQuery();
 			if(rs.next())
@@ -221,7 +221,7 @@ public class GonjiDao {
 		return dto;
 	}
 	
-	//³»¿ëº¸±â½Ã Á¶È¸¼ö 1Áõ°¡
+	//ë‚´ìš©ë³´ê¸°ì‹œ ì¡°íšŒìˆ˜ 1ì¦ê°€
 	public void updateReadcount(String gonnum)
 	{
 		String sql="update gonji set gonreadcount=gonreadcount+1 where gonnum=?";
@@ -230,9 +230,9 @@ public class GonjiDao {
 		conn=db.getMyConnection();
 		try {
 			pstmt=conn.prepareStatement(sql);
-			//¹ÙÀÎµù
+			//ë°”ì¸ë”©
 			pstmt.setString(1, gonnum);
-			//½ÇÇà
+			//ì‹¤í–‰
 			pstmt.execute();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -242,7 +242,7 @@ public class GonjiDao {
 		}
 	}
 	
-	//»èÁ¦
+	//ì‚­ì œ
 	public void deleteGonji(String gonnum)
 	{
 		Connection conn=null;
@@ -252,9 +252,9 @@ public class GonjiDao {
 		conn=db.getMyConnection();
 		try {
 			pstmt=conn.prepareStatement(sql);
-			//¹ÙÀÎµù
+			//ë°”ì¸ë”©
 			pstmt.setString(1, gonnum);
-			//½ÇÇà
+			//ì‹¤í–‰
 			pstmt.execute();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -265,7 +265,7 @@ public class GonjiDao {
 		
 	}
 	
-	//¼öÁ¤
+	//ìˆ˜ì •
 	public void updateGonji(GonjiDto dto)
 	{
 		String sql="update gonji set gonsubject=?,goncontent=? where gonnum=?";
@@ -274,11 +274,11 @@ public class GonjiDao {
 		conn=db.getMyConnection();
 		try {
 			pstmt=conn.prepareStatement(sql);
-			//¹ÙÀÎµù
+			//ë°”ì¸ë”©
 			pstmt.setString(1, dto.getGonsubject());
 			pstmt.setString(2, dto.getGoncontent());
 			pstmt.setString(3, dto.getGonnum());
-			//½ÇÇà
+			//ì‹¤í–‰
 			pstmt.execute();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -289,12 +289,12 @@ public class GonjiDao {
 		
 	}
 	
-	//ÃÖ½Å¿ø±Û 1°³ ¸®ÅÏ¿ë
-	//°øÁö»çÇ× ¸ŞÀÎ¿¡ ·Ñ¸µ
+	//ìµœì‹ ì›ê¸€ 1ê°œ ë¦¬í„´ìš©
+	//ê³µì§€ì‚¬í•­ ë©”ì¸ì— ë¡¤ë§
 	public List<GonjiDto> getNewList()
 	{
 		List<GonjiDto> list=new ArrayList<GonjiDto>();
-		//num¸¦ ³»¸²Â÷¼ø(desc), limit·Î ½ÃÀÛ¹øÁö,¸î°³ °¡Á®¿ÃÁö ¹ÙÀÎµù
+		//numë¥¼ ë‚´ë¦¼ì°¨ìˆœ(desc), limitë¡œ ì‹œì‘ë²ˆì§€,ëª‡ê°œ ê°€ì ¸ì˜¬ì§€ ë°”ì¸ë”©
 		String sql="select * from gonji order by gonnum desc limit 0,1";
 		Connection conn=null;
 		PreparedStatement pstmt=null;
@@ -302,9 +302,9 @@ public class GonjiDao {
 		conn=db.getMyConnection();
 		try {
 			pstmt=conn.prepareStatement(sql);
-			//½ÇÇà
+			//ì‹¤í–‰
 			rs=pstmt.executeQuery();
-			//while¹®
+			//whileë¬¸
 			while(rs.next())
 			{
 				GonjiDto dto=new GonjiDto();
@@ -314,7 +314,7 @@ public class GonjiDao {
 				dto.setGoncontent(rs.getString("goncontent"));
 				dto.setGonreadcount(rs.getInt("gonreadcount"));
 				dto.setGonwriteday(rs.getTimestamp("gonwriteday"));
-				//list¿¡ Ãß°¡
+				//listì— ì¶”ê°€
 				list.add(dto);
 			}
 		} catch (SQLException e) {
@@ -328,11 +328,3 @@ public class GonjiDao {
 	
 	
 }
-
-
-
-
-
-
-
-
