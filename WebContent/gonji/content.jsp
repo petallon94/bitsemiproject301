@@ -193,7 +193,7 @@ function del(gonnum){
 <%-- 버튼들 --%>
 <%
 	//myid가 StarBottle(관리자)인 경우에만 보이기
-	if(loginok!=null && myid.equals("StarBottle"))
+	if(loginok!=null && myid.equals("admin"))
 	{%>
 	<tr>
 		<td colspan="2" align="right">

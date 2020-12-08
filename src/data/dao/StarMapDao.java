@@ -337,7 +337,7 @@ public class StarMapDao {
        public List<StarMapDto> getRandomList()	
 	{	
 
-		String sql="select * from map order by rand() limit 4";	
+		String sql="select * from map order by rand() limit 8";	
 
 		List<StarMapDto> list=new ArrayList<StarMapDto>();	
 		Connection conn=null;	
@@ -373,10 +373,6 @@ public class StarMapDao {
 	}
 	
 
-	
-	
-	
-	
 	//寃��깋寃곌낵 由ъ뒪�듃 以� �븳 �럹�씠吏��뿉�꽌 �븘�슂�븳留뚰겮 諛섑솚�븯湲�
 		public List<StarMapDto> getSearchList(String key,String value)
 		{
@@ -427,6 +423,8 @@ public class StarMapDao {
 			}
 			return list;
 
-		}
-}
 
+		}
+
+}
+}
