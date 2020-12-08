@@ -311,7 +311,9 @@ $(function(){
 			</div> 
 	   	</div>
    	</div>
+
    	<div class="event_container" style="width: 100%; height: 800px; text-align: center; margin-top: 200px;">
+
 	   	<h1 class="event_title">이벤트</h1>
 	   	<p style="text-align: center;">
 		   	<a style="cursor :pointer; color: #888; font-weight: 300; font-size: 14pt;" onclick ="location.href='index.jsp?main=event/eventlist.jsp'">
@@ -361,6 +363,7 @@ $(function(){
 	
 		</div>
 	</div>
+
 </div>
 
  
