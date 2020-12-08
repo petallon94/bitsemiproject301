@@ -1,42 +1,42 @@
 <%@page import="data.dao.GonjiDao"%>
 <%@page import="data.dto.GonjiDto"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<%--  gonnum¿¡ ÇØ´çÇÏ´Â µ¥ÀÌÅÍ °¡Á®¿Í¼­ Æû¿¡ Ãâ·Â
-	    ¼öÁ¤Æû ÀÛ¼ºÇÏ±â
-	  hiddenÀ¸·Î gonnum°ú pageNumÀ» ³Ö¾îÁÖ±â     --%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%--  gonnumì— í•´ë‹¹í•˜ëŠ” ë°ì´í„° ê°€ì ¸ì™€ì„œ í¼ì— ì¶œë ¥
+	    ìˆ˜ì •í¼ ì‘ì„±í•˜ê¸°
+	  hiddenìœ¼ë¡œ gonnumê³¼ pageNumì„ ë„£ì–´ì£¼ê¸°     --%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
-<%--ÇÁ·ÎÁ§Æ®°æ·Î : <%=request.getContextPath()%>--%>
+<%--í”„ë¡œì íŠ¸ê²½ë¡œ : <%=request.getContextPath()%>--%>
 <script src="<%=request.getContextPath()%>/se2/js/HuskyEZCreator.js" type="text/javascript" charset="utf-8"></script>
 <script src="<%=request.getContextPath()%>/se2/photo_uploader/plugin/hp_SE2M_AttachQuickPhoto.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <%
-	//º¯¼ö¸ígonnumÀÌ getdata º¯¼ö¸í(gonnum)ÀÌ¶û °°¾Æ¾ß ÇÑ´Ù
+	//ë³€ìˆ˜ëª…gonnumì´ getdata ë³€ìˆ˜ëª…(gonnum)ì´ë‘ ê°™ì•„ì•¼ í•œë‹¤
 	String gonnum=request.getParameter("num");
 	String pageNum=request.getParameter("pageNum");
-	//num¿¡ ÇØ´çÇÏ´Â dto°¡Á®¿À±â
+	//numì— í•´ë‹¹í•˜ëŠ” dtoê°€ì ¸ì˜¤ê¸°
 	GonjiDao dao=new GonjiDao();
 	GonjiDto dto=dao.getData(gonnum);
 %>
 <body>
 <div class="gonupdateform">
   <fieldset style="width: 800px;">
-    <legend>SmartEditor ÀÔ·ÂÆû</legend>
+    <legend>SmartEditor ì…ë ¥í¼</legend>
   	  <form action="gonji/gonupdateaction.jsp" method="post"
   		enctype="multipart/form-data"name="f">
 	    <!-- hidden -->
 	    <input type="hidden" name="num" value="<%=gonnum%>">
 	    <input type="hidden" name="pageNum" value="<%=pageNum%>">
 	    
-	    <%-- ¼öÁ¤Æû : Áß¿äÇÑ °Ç value°ª--%>
+	    <%-- ìˆ˜ì •í¼ : ì¤‘ìš”í•œ ê±´ valueê°’--%>
 	    <table class="table table-bordered">
-	      <caption><b>°Ô½Ã±Û ¼öÁ¤</b></caption>
+	      <caption><b>ê²Œì‹œê¸€ ìˆ˜ì •</b></caption>
 		 	<tr>
-		 		<th width="100" bgcolor="#ddd">ÀÛ¼ºÀÚ</th>
+		 		<th width="100" bgcolor="#ddd">ì‘ì„±ì</th>
 		 		<td>
 		 			<input type="text" class="form-control"
 		 			  style="width: 120px;" required="required"
@@ -44,7 +44,7 @@
 		 		</td>
 		 	</tr>
 		 	<tr>
-		 		<th width="100" bgcolor="#ddd">Á¦ ¸ñ</th>
+		 		<th width="100" bgcolor="#ddd">ì œ ëª©</th>
 		 		<td>
 		 			<input type="text" class="form-control"
 		 			  style="width: 300px;" required="required"
@@ -53,7 +53,7 @@
 		 	</tr>
 		 	
 		 	<tr>
-		 		<th width="100" bgcolor="#ddd">³»  ¿ë</th>
+		 		<th width="100" bgcolor="#ddd">ë‚´  ìš©</th>
 		 		<td>
 		 		  <textarea class="form-control"	 			 
 		 			 style="width:100%; height:300px; display:none;"
@@ -62,12 +62,12 @@
 		 	</tr>
 		 	<tr>
 		 		<td colspan="2" align="center">
-		 			<input type="button" value="±Û¼öÁ¤"
+		 			<input type="button" value="ê¸€ìˆ˜ì •"
 		 			 class="btn btn-dark btn-sm"
 		 			  style="width: 100px;"
 		 			  onclick="submitContents(this)">
 		 			  
-		 			<input type="button" value="±Û¸ñ·Ï"
+		 			<input type="button" value="ê¸€ëª©ë¡"
 		 			 class="btn btn-info btn-sm"
 		 			  style="width: 100px;"
 		 			  onclick="location.href='index.jsp?main=gonji/gonjilist.jsp'">  
@@ -93,19 +93,19 @@ nhn.husky.EZCreator.createInIFrame({
 
 }); 
 
-//¡®ÀúÀå¡¯ ¹öÆ°À» ´©¸£´Â µî ÀúÀåÀ» À§ÇÑ ¾×¼ÇÀ» ÇßÀ» ¶§ submitContents°¡ È£ÃâµÈ´Ù°í °¡Á¤ÇÑ´Ù.
+//â€˜ì €ì¥â€™ ë²„íŠ¼ì„ ëˆ„ë¥´ëŠ” ë“± ì €ì¥ì„ ìœ„í•œ ì•¡ì…˜ì„ í–ˆì„ ë•Œ submitContentsê°€ í˜¸ì¶œëœë‹¤ê³  ê°€ì •í•œë‹¤.
 
 function submitContents(elClickedObj) {
 
-    // ¿¡µğÅÍÀÇ ³»¿ëÀÌ textarea¿¡ Àû¿ëµÈ´Ù.
+    // ì—ë””í„°ì˜ ë‚´ìš©ì´ textareaì— ì ìš©ëœë‹¤.
 
     oEditors.getById["goncontent"].exec("UPDATE_CONTENTS_FIELD", [ ]);
 
  
 
-    // ¿¡µğÅÍÀÇ ³»¿ë¿¡ ´ëÇÑ °ª °ËÁõÀº ÀÌ°÷¿¡¼­
+    // ì—ë””í„°ì˜ ë‚´ìš©ì— ëŒ€í•œ ê°’ ê²€ì¦ì€ ì´ê³³ì—ì„œ
 
-    // document.getElementById("textAreaContent").value¸¦ ÀÌ¿ëÇØ¼­ Ã³¸®ÇÑ´Ù.
+    // document.getElementById("textAreaContent").valueë¥¼ ì´ìš©í•´ì„œ ì²˜ë¦¬í•œë‹¤.
     try {
         elClickedObj.form.submit();
     } catch(e) { 
@@ -114,7 +114,7 @@ function submitContents(elClickedObj) {
 
 }
 
-// textArea¿¡ ÀÌ¹ÌÁö Ã·ºÎ
+// textAreaì— ì´ë¯¸ì§€ ì²¨ë¶€
 
 function pasteHTML(filepath){
     var sHTML = '<img src="<%=request.getContextPath()%>/gonsave/'+filepath+'">';

@@ -2,13 +2,13 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="data.dto.GonjiDto"%>
 <%@page import="data.dao.GonjiDao"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<!-- ¸ŞÀÎÆäÀÌÁö¿¡ ÇÊ¿äÇÑ ¸µÅ©/ºÎÆ®½ºÆ®·¦  -->
+<meta charset="UTF-8">
+<!-- ë©”ì¸í˜ì´ì§€ì— í•„ìš”í•œ ë§í¬/ë¶€íŠ¸ìŠ¤íŠ¸ë©  -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -20,7 +20,7 @@
 <style type="text/css">
 	/* #cl-dashboard{display: none;} */
 	
-/*ÆùÆ® */
+/*í°íŠ¸ */
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300&display=swap');
 
 	/* body{
@@ -30,7 +30,7 @@
 		font-family: 'Noto Serif KR', serif;
 	} */
 	
-	/* Å×ÀÌºí  */
+	/* í…Œì´ë¸”  */
 	tbody{
 		width: 100%;
 	}
@@ -79,19 +79,19 @@
 
 <script type="text/javascript">
 $(function(){
-	//°øÁö±Û »èÁ¦ ÀÌº¥Æ®
+	//ê³µì§€ê¸€ ì‚­ì œ ì´ë²¤íŠ¸
 	$("input.del").click(function(){
 		var gonnum=$(this).attr("gonnum");
-		var a=confirm("»èÁ¦ÇÏ·Á¸é [È®ÀÎ]À» ´­·¯ÁÖ¼¼¿ä");
+		var a=confirm("ì‚­ì œí•˜ë ¤ë©´ [í™•ì¸]ì„ ëˆŒëŸ¬ì£¼ì„¸ìš”");
 		if(a){
 			//alert(gonnum);
 			del(gonnum);
 			location.href="index.jsp?main=gonji/gonjilist.jsp";
 		}
-	});//°øÁö±Û »èÁ¦ ÀÌº¥Æ® close
+	});//ê³µì§€ê¸€ ì‚­ì œ ì´ë²¤íŠ¸ close
 });//$function close
 
-//»ç¿ëÀÚ ÇÔ¼ö
+//ì‚¬ìš©ì í•¨ìˆ˜
 function del(gonnum){
 	$.ajax({
 		type:"get",
@@ -110,8 +110,8 @@ function del(gonnum){
 
 <div class="ordsub_visual bg-menu">
     <div class="txt">
-        <h1>½ºÅ¸º¸Æ²</h1>
-        <p>½ºÅ¸º¸Æ²ÀÇ °øÁö»çÇ×ÀÔ´Ï´Ù.</p>
+        <h1>ìŠ¤íƒ€ë³´í‹€</h1>
+        <p>ìŠ¤íƒ€ë³´í‹€ì˜ ê³µì§€ì‚¬í•­ì…ë‹ˆë‹¤.</p>
     </div>
 </div>
 
@@ -119,60 +119,60 @@ function del(gonnum){
 
 
 <%
-	//ÀÌºÎºĞÀÌ formactionÀÇ String path="../index.jsp?main=gonji/content.jsp?num="
-	//¿¡¼­ º¯¼ö¸íÀÌ ¸¶Áö¸· numÀ¸·Î ³Ñ¾î°¨
+	//ì´ë¶€ë¶„ì´ formactionì˜ String path="../index.jsp?main=gonji/content.jsp?num="
+	//ì—ì„œ ë³€ìˆ˜ëª…ì´ ë§ˆì§€ë§‰ numìœ¼ë¡œ ë„˜ì–´ê°
 	String gonnum=request.getParameter("num");	
 	String pageNum=request.getParameter("pageNum");
 	String key=request.getParameter("key");
 	
-	//key °ªÀÌ ³Î°ªÀÌ ¾Æ´Ï¸é¼­ 'list' ÀÏ°æ¿ì 
-	//(ÀÌÀ¯:¼öÁ¤ÈÄ¿¡µµ content.jsp ·Î ¿À±â¶§¹®¿¡ ¸ñ·Ï¿¡¼­
-    //			¿Ã °æ¿ì¿¡¸¸ Áõ°¡ÇÔ)
-	//Á¶È¸¼ö Áõ°¡
+	//key ê°’ì´ ë„ê°’ì´ ì•„ë‹ˆë©´ì„œ 'list' ì¼ê²½ìš° 
+	//(ì´ìœ :ìˆ˜ì •í›„ì—ë„ content.jsp ë¡œ ì˜¤ê¸°ë•Œë¬¸ì— ëª©ë¡ì—ì„œ
+    //			ì˜¬ ê²½ìš°ì—ë§Œ ì¦ê°€í•¨)
+	//ì¡°íšŒìˆ˜ ì¦ê°€
 	GonjiDao db=new GonjiDao();
 	if(key!=null && key.equals("list"))
 		db.updateReadcount(gonnum);
 	
-	//¹øÈ£¿¡ ÇØ´çÇÏ´Â dto °¡Á®¿À±â
+	//ë²ˆí˜¸ì— í•´ë‹¹í•˜ëŠ” dto ê°€ì ¸ì˜¤ê¸°
 	GonjiDto dto=db.getData(gonnum);
 	
-	//Á¦´ë·Î ³Ñ¾î¿À´ÂÁö È®ÀÎÇÏ±â
+	//ì œëŒ€ë¡œ ë„˜ì–´ì˜¤ëŠ”ì§€ í™•ì¸í•˜ê¸°
 	//System.out.println(dto.getGoncontent());
 	//System.out.println(dto.getGonwriteday());
 	
-	//mysql¿¡¼­´Â ½Ã°£±îÁö ³ª¿À°Ô ÇÏ·Á¸é datetimeÀÌ¾î¾ß ÇÑ´Ù
+	//mysqlì—ì„œëŠ” ì‹œê°„ê¹Œì§€ ë‚˜ì˜¤ê²Œ í•˜ë ¤ë©´ datetimeì´ì–´ì•¼ í•œë‹¤
 	SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
 	
-	//<°ü¸®ÀÚ ·Î±×ÀÎ idÈ®ÀÎÀ» À§ÇÑ ÀÚ¹ÙÇÔ¼ö>
-	//¼¼¼Ç ·Î±×ÀÎ»óÅÂ
+	//<ê´€ë¦¬ì ë¡œê·¸ì¸ idí™•ì¸ì„ ìœ„í•œ ìë°”í•¨ìˆ˜>
+	//ì„¸ì…˜ ë¡œê·¸ì¸ìƒíƒœ
 	String loginok=(String)session.getAttribute("loginok");
-	//¼¼¼Ç¿¡¼­ id ¾ò±â
+	//ì„¸ì…˜ì—ì„œ id ì–»ê¸°
 	String myid=(String)session.getAttribute("myid");
-	//dao ¼±¾ğ
+	//dao ì„ ì–¸
 	MemberDao dao=new MemberDao();
-	//¾ÆÀÌµğ¿¡ ÇØ´çÇÏ´Â ÀÌ¸§ ¾ò±â
+	//ì•„ì´ë””ì— í•´ë‹¹í•˜ëŠ” ì´ë¦„ ì–»ê¸°
 	//String name=dao.getName(myid);
 %>	
 <br><br><br><br><br>
-<h2 style="display: inline;margin-left: 410px;">°øÁö»çÇ×	</h2>
+<h2 style="display: inline;margin-left: 410px;">ê³µì§€ì‚¬í•­	</h2>
 <table class="table table-striped" style="width: 1000px;margin-left: 410px;">
 <tbody>
  <tr>
-	<%--Á¦¸ñÆû--%>
+	<%--ì œëª©í¼--%>
 	<td id="subject">
 		<b style="font-size: 1.5em;margin-left: 25px;">
 		  <%=dto.getGonsubject()%></b>
 	</td>
-	<%--³¯Â¥/Á¶È¸¼öÆû --%>
+	<%--ë‚ ì§œ/ì¡°íšŒìˆ˜í¼ --%>
 	<td id="datereadcount">
 		<span>
 		<%=sdf.format(dto.getGonwriteday())%>
 		<br><br>
-		Á¶È¸¼ö&nbsp; <%=dto.getGonreadcount()%>
+		ì¡°íšŒìˆ˜&nbsp; <%=dto.getGonreadcount()%>
 		</span>
 	</td>
   </tr>
-  <%--¾ÆÀÌµğÃâ·ÂÆû --%>
+  <%--ì•„ì´ë””ì¶œë ¥í¼ --%>
   <tr id="id">
 	<td colspan="2" valign="top">
 		<img src="image/sb_symbol.jpg" width="30">
@@ -180,7 +180,7 @@ function del(gonnum){
 	</td>
   </tr>
   <br><br>
-  <%--³»¿ëÆû:ÀÚµ¿ÁÙ³Ñ±è Àû¿ëÇÏ±â(style) --%>		
+  <%--ë‚´ìš©í¼:ìë™ì¤„ë„˜ê¹€ ì ìš©í•˜ê¸°(style) --%>		
   <tr id="content">	
     <td colspan="2">
 		<pre style="white-space: pre-wrap;
@@ -190,33 +190,33 @@ function del(gonnum){
     </td>
   </tr>
 
-<%-- ¹öÆ°µé --%>
+<%-- ë²„íŠ¼ë“¤ --%>
 <%
-	//myid°¡ StarBottle(°ü¸®ÀÚ)ÀÎ °æ¿ì¿¡¸¸ º¸ÀÌ±â
-	if(loginok!=null && myid.equals("StarBottle"))
+	//myidê°€ StarBottle(ê´€ë¦¬ì)ì¸ ê²½ìš°ì—ë§Œ ë³´ì´ê¸°
+	if(loginok!=null && myid.equals("admin"))
 	{%>
 	<tr>
 		<td colspan="2" align="right">
 		  <input type="button" class="btn btn-warning"
-		    value="±Û¾²±â" style="width: 80px;"
+		    value="ê¸€ì“°ê¸°" style="width: 80px;"
 		    onclick="location.href='index.jsp?main=gonji/gonjiform.jsp'">
 		  <input type="button" class="btn btn-info"
-		    value="¸ñ·Ï" style="width: 80px;"
+		    value="ëª©ë¡" style="width: 80px;"
 		    onclick="location.href='index.jsp?main=gonji/gonjilist.jsp?pageNum=<%=pageNum%>'">
 		  <input type="button" class="update btn btn-dark"
 			onclick="location.href='index.jsp?main=gonji/gonupdateform.jsp?num=<%=gonnum%>&pageNum=<%=pageNum%>'"
-			style="width: 80px;" value="¼öÁ¤">
+			style="width: 80px;" value="ìˆ˜ì •">
 		  <input type="button" class="del btn btn-danger"
-		    value="»èÁ¦" style="width: 80px;"
+		    value="ì‚­ì œ" style="width: 80px;"
 		    gonnum="<%=dto.getGonnum()%>">		
 		</td>
 	</tr>	
-	<%//·Î±×ÀÎ ¾ÈÇÑ °æ¿ì,ÀÏ¹İÈ¸¿øÀÇ °æ¿ì º¸ÀÌ´Â ÆäÀÌÁö
+	<%//ë¡œê·¸ì¸ ì•ˆí•œ ê²½ìš°,ì¼ë°˜íšŒì›ì˜ ê²½ìš° ë³´ì´ëŠ” í˜ì´ì§€
 	}else{%>
 	<tr>
 		<td colspan="2" align="right">			
 			<input type="button" class="btn btn-info btn-lg"
-			  value="¸ñ·Ï" style="width: 180px;"
+			  value="ëª©ë¡" style="width: 180px;"
 			  onclick="location.href='index.jsp?main=gonji/gonjilist.jsp?pageNum=<%=pageNum%>'">	
 		</td>
 	</tr>	

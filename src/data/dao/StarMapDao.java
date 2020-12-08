@@ -191,24 +191,42 @@ public class StarMapDao {
 	
 	public void updateShop(StarMapDto dto) 
 	{
-		String sql="update map set shopname=?,shophp=?,shopaddr=?,shopaddrdetail=?,shopphoto=?,shopdetail=?,mpositionx=?,mpositiony=? where shopnum=?";
+		String sql="";
+		
 		Connection conn=null;
 		PreparedStatement pstmt=null;
 		conn=db.getMyConnection();
 		
 		try {
-			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, dto.getShopname());
-			String shophp=dto.getShophp1()+"-"+dto.getShophp2();
-			pstmt.setString(2, shophp);	
-			String shopaddr=dto.getShoppostcode()+","+dto.getShopaddr()+","+dto.getShopextraAddress();
-			pstmt.setString(3, shopaddr);
-			pstmt.setString(4, dto.getShopaddrdetail());
-			pstmt.setString(5, dto.getShopphoto());
-			pstmt.setString(6, dto.getShopdetail());
-			pstmt.setString(7, dto.getMpositionx());
-			pstmt.setString(8, dto.getMpositiony());
-			pstmt.setString(9, dto.getShopnum());
+			if(dto.getShopphoto().length()<2)
+			{
+				sql="update map set shopname=?,shophp=?,shopaddr=?,shopaddrdetail=?,shopdetail=?,mpositionx=?,mpositiony=? where shopnum=?";
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setString(1, dto.getShopname());
+				String shophp=dto.getShophp1()+"-"+dto.getShophp2();
+				pstmt.setString(2, shophp);	
+				String shopaddr=dto.getShoppostcode()+","+dto.getShopaddr()+","+dto.getShopextraAddress();
+				pstmt.setString(3, shopaddr);
+				pstmt.setString(4, dto.getShopaddrdetail());
+				pstmt.setString(5, dto.getShopdetail());
+				pstmt.setString(6, dto.getMpositionx());
+				pstmt.setString(7, dto.getMpositiony());
+				pstmt.setString(8, dto.getShopnum());
+			}else {
+				sql="update map set shopname=?,shophp=?,shopaddr=?,shopaddrdetail=?,shopphoto=?,shopdetail=?,mpositionx=?,mpositiony=? where shopnum=?";
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setString(1, dto.getShopname());
+				String shophp=dto.getShophp1()+"-"+dto.getShophp2();
+				pstmt.setString(2, shophp);	
+				String shopaddr=dto.getShoppostcode()+","+dto.getShopaddr()+","+dto.getShopextraAddress();
+				pstmt.setString(3, shopaddr);
+				pstmt.setString(4, dto.getShopaddrdetail());
+				pstmt.setString(5, dto.getShopphoto());
+				pstmt.setString(6, dto.getShopdetail());
+				pstmt.setString(7, dto.getMpositionx());
+				pstmt.setString(8, dto.getMpositiony());
+				pstmt.setString(9, dto.getShopnum());
+			}
 			pstmt.execute();
 			/*
 			 * System.out.println(dto.getShophp1()); System.out.println(dto.getShophp2());
@@ -319,7 +337,7 @@ public class StarMapDao {
        public List<StarMapDto> getRandomList()	
 	{	
 
-		String sql="select * from map order by rand() limit 4";	
+		String sql="select * from map order by rand() limit 8";	
 
 		List<StarMapDto> list=new ArrayList<StarMapDto>();	
 		Connection conn=null;	
@@ -355,15 +373,13 @@ public class StarMapDao {
 	}
 	
 
-	
-	
-	
-	
+
 	//寃��깋寃곌낵 由ъ뒪�듃 以� �븳 �럹�씠吏��뿉�꽌 �븘�슂�븳留뚰겮 諛섑솚�븯湲�
+
 		public List<StarMapDto> getSearchList(String key,String value)
 		{
 			List<StarMapDto> list=new ArrayList<StarMapDto>();
-			//all�씪 寃쎌슦
+			//all占쎌뵬 野껋럩�뒭
 			String s="";
 			if(key!=null)
 			{
@@ -380,11 +396,11 @@ public class StarMapDao {
 			conn=db.getMyConnection();
 			try {
 				pstmt=conn.prepareStatement(sql);
-				//諛붿씤�뵫
+				//獄쏅뗄�뵥占쎈뎃
 				/*
 				 * pstmt.setString(1, key); pstmt.setString(2, value);
 				 */
-				//�떎�뻾
+				//占쎈뼄占쎈뻬
 				rs=pstmt.executeQuery();
 				while(rs.next())
 				{
@@ -408,7 +424,9 @@ public class StarMapDao {
 				db.dbClose(conn, pstmt, rs);
 			}
 			return list;
+
+
 		}
-	
+
 }
 
