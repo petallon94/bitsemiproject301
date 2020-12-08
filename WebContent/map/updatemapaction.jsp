@@ -11,7 +11,7 @@
 	//업로드 할 경로 구하기(shopsave 폴더 생성후 거기에 업로드)
 	String uploadPath=getServletContext().getRealPath("/shopmapsave");
 	//업로드 할 이미지의 사이즈
-	
+	System.out.println(uploadPath);
 	int uploadSize=1024*1024*2;//2mb;
 	
 	MultipartRequest multi=null;

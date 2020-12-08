@@ -1,3 +1,5 @@
+
+
 <%@page import="data.dao.MemberDao"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="data.dto.GonjiDto"%>
@@ -9,13 +11,13 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<!-- ¸ŞÀÎÆäÀÌÁö¿¡ ÇÊ¿äÇÑ ¸µÅ©/ºÎÆ®½ºÆ®·¦  -->
+<!-- ë©”ì¸í˜ì´ì§€ì— í•„ìš”í•œ ë§í¬/ë¶€íŠ¸ìŠ¤íŠ¸ë©  -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<%--±Û¸®ÇÇÄÜ¾ÆÀÌÄÜ --%>
+<%--ê¸€ë¦¬í”¼ì½˜ì•„ì´ì½˜ --%>
 <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 <title>Insert title here</title>
 <!-- <script src="https://code.jquery.com/jquery-1.10.2.js"></script> -->
@@ -23,17 +25,18 @@
 <style type="text/css">
 	/* #cl-dashboard{display: none;} */
 	
-/*ÆùÆ® */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300&display=swap');
+/*í°íŠ¸ */
 	
 	div.gonlist{
 		display: flex;
 		width: 100%;
 		margin-left: 420px;	
-		font-family: 'Noto Serif KR', serif;
+
+		font-family: 'Gothic A1', sans-serif;
+
 	}
 	
-	/*¸®½ºÆ®ÀÇ Á¦¸ñ ºÎºĞ */
+	/*ë¦¬ìŠ¤íŠ¸ì˜ ì œëª© ë¶€ë¶„ */
 	tr.gontitle{
 		text-align: center; 
 		height:65px;
@@ -56,7 +59,7 @@
 	
 	
 	
-	/* °øÅë ¸ŞÀÎ µğÀÚÀÎ css  */
+	/* ê³µí†µ ë©”ì¸ ë””ìì¸ css  */
 	.sub_visual{
 		min-height:399px;
 		padding:0 10px;
@@ -96,141 +99,139 @@
 </style>
 <script type="text/javascript">
 $(function(){
-/* 	//ÀüÃ¼ Ã¼Å©¹Ú½º Ã¼Å©,ÇØÁ¦
+/* 	//ì „ì²´ ì²´í¬ë°•ìŠ¤ ì²´í¬,í•´ì œ
 	$("#all").click(function(){
 		var a=$(this).is(":checked");
 		if(a){
-			//prop¼Ó¼ºÁÖ´Â °Í:Ã¼Å©¼Ó¼ºÁÙ ¶§´Â arrtº¸´Ù propÀÌ Á¤È®
-			//nameÀ¸·Î ÁÙ¶§´Â $("ÅÂ±×ÀÌ¸§[name='']")À¸·Î ÁØ´Ù!
+			//propì†ì„±ì£¼ëŠ” ê²ƒ:ì²´í¬ì†ì„±ì¤„ ë•ŒëŠ” arrtë³´ë‹¤ propì´ ì •í™•
+			//nameìœ¼ë¡œ ì¤„ë•ŒëŠ” $("íƒœê·¸ì´ë¦„[name='']")ìœ¼ë¡œ ì¤€ë‹¤!
 			$("input[name='search']").prop("checked",true);
 		}else{
 			$("input[name='search']").prop("checked",false);
 		}
-	});//Ã¼Å©¹Ú½º ÀüÃ¼ ¼±ÅÃ ÇØÁ¦ close */
+	});//ì²´í¬ë°•ìŠ¤ ì „ì²´ ì„ íƒ í•´ì œ close */
 	
-	//°Ë»ö 
+	//ê²€ìƒ‰ 
 	$("#btndatasearch").click(function(){
-		//º¯¼ö
+		//ë³€ìˆ˜
 		var search=$("#search").val();
 		var word=$("#word").val();
 		//alert(search+":"+word);
-		//°Ë»öÇÑ °ªÀÌ¶û ´Ü¾îÀÇ °ªÀ» ³ÖÀ¸¸é
-		//ÀüÃ¼ ¼±ÅÃÇßÀ» °æ¿ì,
+		//ê²€ìƒ‰í•œ ê°’ì´ë‘ ë‹¨ì–´ì˜ ê°’ì„ ë„£ìœ¼ë©´
+		//ì „ì²´ ì„ íƒí–ˆì„ ê²½ìš°,
 		$.ajax({
 			type:"get",
 			dataType:"html",
 			url:"gonji/gonsavesession.jsp",
 			data:{"search":search,"word":word},
 			success:function(data){
-				//ÆäÀÌÁö ¹øÈ£¸¦ ¾ø¾Ö°í ÀüÃ¼ »õ·Î°íÄ§ÇÑ´Ù
+				//í˜ì´ì§€ ë²ˆí˜¸ë¥¼ ì—†ì• ê³  ì „ì²´ ìƒˆë¡œê³ ì¹¨í•œë‹¤
 				location.href="index.jsp?main=gonji/gonjilist.jsp"
 			}
 		});//$.ajax close
 	});//$("#btndatasearch") close
 	
-	//ÀüÃ¼ ¼±ÅÃÇÏ¸é ÀÔ·Â´Ü¾î Áö¿öÁÖ±â
+	//ì „ì²´ ì„ íƒí•˜ë©´ ì…ë ¥ë‹¨ì–´ ì§€ì›Œì£¼ê¸°
 	$("#search").change(function(){
 		$("#word").val("");
 	});
-
 });//$function close
 </script>
 </head>
 <%
-	//<ÆäÀÌÂ¡ Ã³¸®¸¦ À§ÇÑ ÀÚ¹ÙÇÔ¼ö>
-	//dao ¼±¾ğ
+	//<í˜ì´ì§• ì²˜ë¦¬ë¥¼ ìœ„í•œ ìë°”í•¨ìˆ˜>
+	//dao ì„ ì–¸
 	GonjiDao db=new GonjiDao();
 	
-	//ÃÑ °¹¼ö ±¸ÇÏ±â
+	//ì´ ê°¯ìˆ˜ êµ¬í•˜ê¸°
 	int totalCount=db.getTotalCount();
-	int perPage=10;//ÇÑ ÆäÀÌÁö´ç º¸¿©Áú ±ÛÀÇ °¹¼ö
-	int perBlock=2;//ÇÑ ºí·°´ç Ãâ·ÂÇÒ ÆäÀÌÁöÀÇ °¹¼ö
-	int totalPage;//ÃÑ ÆäÀÌÁöÀÇ °¹¼ö
-	int startPage;//°¢ ºí·°´ç ½ÃÀÛÇÒ ÆäÀÌÁö ¹øÈ£
-	int endPage;//°¢ ºí·°´ç ³¡ ÆäÀÌÁö ¹øÈ£
-	int start;//°¢ ºí·°´ç ºÒ·¯¿Ã ±ÛÀÇ ½ÃÀÛ ¹øÈ£
-	int end;//°¢ ºí·°´ç ºÒ·¯¿Ã ±ÛÀÇ ³¡ ¹øÈ£
-	int currentPage;//ÇöÀç º¸¿©Áú ÆäÀÌÁö ¹øÈ£
+	int perPage=10;//í•œ í˜ì´ì§€ë‹¹ ë³´ì—¬ì§ˆ ê¸€ì˜ ê°¯ìˆ˜
+	int perBlock=2;//í•œ ë¸”ëŸ­ë‹¹ ì¶œë ¥í•  í˜ì´ì§€ì˜ ê°¯ìˆ˜
+	int totalPage;//ì´ í˜ì´ì§€ì˜ ê°¯ìˆ˜
+	int startPage;//ê° ë¸”ëŸ­ë‹¹ ì‹œì‘í•  í˜ì´ì§€ ë²ˆí˜¸
+	int endPage;//ê° ë¸”ëŸ­ë‹¹ ë í˜ì´ì§€ ë²ˆí˜¸
+	int start;//ê° ë¸”ëŸ­ë‹¹ ë¶ˆëŸ¬ì˜¬ ê¸€ì˜ ì‹œì‘ ë²ˆí˜¸
+	int end;//ê° ë¸”ëŸ­ë‹¹ ë¶ˆëŸ¬ì˜¬ ê¸€ì˜ ë ë²ˆí˜¸
+	int currentPage;//í˜„ì¬ ë³´ì—¬ì§ˆ í˜ì´ì§€ ë²ˆí˜¸
 	
-	//ÇöÀç ÆäÀÌÁö ¹øÈ£ ±¸ÇÏ±â
+	//í˜„ì¬ í˜ì´ì§€ ë²ˆí˜¸ êµ¬í•˜ê¸°
 	String pageNum=request.getParameter("pageNum");
 	if(pageNum==null)
-		currentPage=1;//ÆäÀÌÁö ¹øÈ£°¡ ¾øÀ» °æ¿ì ¹«Á¶°Ç 1ÆäÀÌÁö·Î °£´Ù
+		currentPage=1;//í˜ì´ì§€ ë²ˆí˜¸ê°€ ì—†ì„ ê²½ìš° ë¬´ì¡°ê±´ 1í˜ì´ì§€ë¡œ ê°„ë‹¤
 		else
 			currentPage=Integer.parseInt(pageNum);
 	
-	//ÃÑ ÆäÀÌÁö ±¸ÇÏ±â(¿¹: ÃÑ±Û¼ö°¡ 9ÀÌ°í ÇÑÆäÀÌÁö´ç 2°³¾¿ º¼ °æ¿ì)
-	//³ª¸ÓÁö°¡ ÀÖÀ» °æ¿ì, ÇÑÆäÀÌÁö¸¦ ´õÇØÁØ´Ù(¿¹: ½ÇÁ¦ ±ÛÀº 11°³ÀÌ°í 10ÆäÀÌÁö·Î µÈ ºí·°ÀÌ¶ó¸é)
-	//ÇØ¼®: ÅäÅ»Ä«¿îÆ®¸¦ ÆäÀÌÁö·Î ³ª´³À» ¶§ ³ª¸ÓÁö ¼ıÀÚ°¡ 0º¸´Ù Å©¸é 1À» ´õÇØÁÖ°í ¾Æ´Ï¸é 0À» (ÆäÀÌÁö¼ö¿¡) ´õÇØÁØ´Ù
+	//ì´ í˜ì´ì§€ êµ¬í•˜ê¸°(ì˜ˆ: ì´ê¸€ìˆ˜ê°€ 9ì´ê³  í•œí˜ì´ì§€ë‹¹ 2ê°œì”© ë³¼ ê²½ìš°)
+	//ë‚˜ë¨¸ì§€ê°€ ìˆì„ ê²½ìš°, í•œí˜ì´ì§€ë¥¼ ë”í•´ì¤€ë‹¤(ì˜ˆ: ì‹¤ì œ ê¸€ì€ 11ê°œì´ê³  10í˜ì´ì§€ë¡œ ëœ ë¸”ëŸ­ì´ë¼ë©´)
+	//í•´ì„: í† íƒˆì¹´ìš´íŠ¸ë¥¼ í˜ì´ì§€ë¡œ ë‚˜ëˆ´ì„ ë•Œ ë‚˜ë¨¸ì§€ ìˆ«ìê°€ 0ë³´ë‹¤ í¬ë©´ 1ì„ ë”í•´ì£¼ê³  ì•„ë‹ˆë©´ 0ì„ (í˜ì´ì§€ìˆ˜ì—) ë”í•´ì¤€ë‹¤
 	totalPage=totalCount/perPage+(totalCount%perPage>0?1:0);
 	
-	//½ÃÀÛÆäÀÌÁö¿Í ³¡ÆäÀÌÁö ±¸ÇÏ±â
-	//¿¹:ÇÑ ÆäÀÌÁö´ç 3°³¸¸ º¼ °æ¿ì: 
-	//ÇöÀç ÆäÀÌÁö°¡ 2¶ó¸é sp(startPage):1, ep(endPage):3
-	//ÇöÀç ÆäÀÌÁö°¡ 7¶ó¸é sp:7, ep:9
-	//=>½ÃÀÛÆäÀÌÁö°¡ 1,4,7...
-	startPage=(currentPage-1)/perBlock*perBlock+1;//ÀÏ¹İÀûÀÎ ½ºÅ¸Æ® ÆäÀÌÁö °ø½Ä**
-	endPage=startPage+perBlock-1;//¿£µå ÆäÀÌÁö °ø½Ä**
-	//¸¶Áö¸· ºí·°: endPage°¡ totalPageº¸´Ù Å©¸é ÅäÅ»ÆäÀÌÁö¸¦ ¿£µåÆäÀÌÁö·Î ÇØµÖ¾ß ÇÑ´Ù
+	//ì‹œì‘í˜ì´ì§€ì™€ ëí˜ì´ì§€ êµ¬í•˜ê¸°
+	//ì˜ˆ:í•œ í˜ì´ì§€ë‹¹ 3ê°œë§Œ ë³¼ ê²½ìš°: 
+	//í˜„ì¬ í˜ì´ì§€ê°€ 2ë¼ë©´ sp(startPage):1, ep(endPage):3
+	//í˜„ì¬ í˜ì´ì§€ê°€ 7ë¼ë©´ sp:7, ep:9
+	//=>ì‹œì‘í˜ì´ì§€ê°€ 1,4,7...
+	startPage=(currentPage-1)/perBlock*perBlock+1;//ì¼ë°˜ì ì¸ ìŠ¤íƒ€íŠ¸ í˜ì´ì§€ ê³µì‹**
+	endPage=startPage+perBlock-1;//ì—”ë“œ í˜ì´ì§€ ê³µì‹**
+	//ë§ˆì§€ë§‰ ë¸”ëŸ­: endPageê°€ totalPageë³´ë‹¤ í¬ë©´ í† íƒˆí˜ì´ì§€ë¥¼ ì—”ë“œí˜ì´ì§€ë¡œ í•´ë‘¬ì•¼ í•œë‹¤
 	if(endPage>totalPage)
 		endPage=totalPage;
 	
-	//mysqlÀº Ã¹ ±ÛÀÌ 0¹ø(¿À¶óÅ¬Àº 1¹ø)
-	//start=(currentPage-1)*perPage+1; - ÀÌ°Ç ¿À¶óÅ¬¿ë 
+	//mysqlì€ ì²« ê¸€ì´ 0ë²ˆ(ì˜¤ë¼í´ì€ 1ë²ˆ)
+	//start=(currentPage-1)*perPage+1; - ì´ê±´ ì˜¤ë¼í´ìš© 
 	start=(currentPage-1)*perPage;
-	//¾Æ·§ºÎºĞÀº ¿À¶óÅ¬¿ë. mysqlÀº ÇÊ¿ä¾øÀ½
+	//ì•„ë«ë¶€ë¶„ì€ ì˜¤ë¼í´ìš©. mysqlì€ í•„ìš”ì—†ìŒ
 	/* end=start+perPage-1;
-	//¸¶Áö¸· ±Û¹øÈ£´Â ÃÑ ±Û¼ö¿Í °°Àº ¹øÈ£¶ó¾ß ÇÑ´Ù
+	//ë§ˆì§€ë§‰ ê¸€ë²ˆí˜¸ëŠ” ì´ ê¸€ìˆ˜ì™€ ê°™ì€ ë²ˆí˜¸ë¼ì•¼ í•œë‹¤
 	if(end>totalCount)
 		end=totalCount; */
 	
-	//°¢ ÆäÀÌÁö¿¡¼­ Ãâ·ÂÇÒ ½ÃÀÛ¹øÈ£
-	//ÃÑ 50°³ÀÏ °æ¿ì 1ÆäÀÌÁö´Â 50, 2ÆäÀÌÁö´Â 40
+	//ê° í˜ì´ì§€ì—ì„œ ì¶œë ¥í•  ì‹œì‘ë²ˆí˜¸
+	//ì´ 50ê°œì¼ ê²½ìš° 1í˜ì´ì§€ëŠ” 50, 2í˜ì´ì§€ëŠ” 40
 	int no=totalCount-(currentPage-1)*perPage;
 		
-	//ÆäÀÌÂ¡ Ã³¸®¸¸À» À§ÇÑ ºÎºĞ->°Ë»ö°ú ÆäÀÌÂ¡À¸·Î ÇÕÄ§
-	//mysql¿¡¼­ ÇØ´ç ÆäÀÌÁö¿¡ ÇÊ¿äÇÑ ¸ñ·Ï °¡Á®¿À±â:listÆäÀÌÁö¿¡¼­ ÆäÀÌÂ¡Ã³¸®
+	//í˜ì´ì§• ì²˜ë¦¬ë§Œì„ ìœ„í•œ ë¶€ë¶„->ê²€ìƒ‰ê³¼ í˜ì´ì§•ìœ¼ë¡œ í•©ì¹¨
+	//mysqlì—ì„œ í•´ë‹¹ í˜ì´ì§€ì— í•„ìš”í•œ ëª©ë¡ ê°€ì ¸ì˜¤ê¸°:listí˜ì´ì§€ì—ì„œ í˜ì´ì§•ì²˜ë¦¬
 	//List<GonjiDto> list=db.getList(start, perPage);
 		
-	//<°Ë»ö>
-	//¼¼¼ÇÀ¸·ÎºÎÅÍ key,value°¡Á®¿À±â
+	//<ê²€ìƒ‰>
+	//ì„¸ì…˜ìœ¼ë¡œë¶€í„° key,valueê°€ì ¸ì˜¤ê¸°
 	String key=(String)session.getAttribute("key");
 	String value=(String)session.getAttribute("value");
-	//°Ë»ö ÈÄ °ª Ãâ·Â ¹× ÆäÀÌÂ¡ Ã³¸®
-	//°Ë»öÀ» À§ÇØ Ãâ·Â¸ñ·Ï¿¡ key,value°ª ÇÊ¿ä
+	//ê²€ìƒ‰ í›„ ê°’ ì¶œë ¥ ë° í˜ì´ì§• ì²˜ë¦¬
+	//ê²€ìƒ‰ì„ ìœ„í•´ ì¶œë ¥ëª©ë¡ì— key,valueê°’ í•„ìš”
 	List<GonjiDto> list=db.getSearchList(key, value, start, perPage);
 	
 %>
 <body>
-<%-- °øÅë ¸ŞÀÎ µğÀÚÀÎ  --%>
+<%-- ê³µí†µ ë©”ì¸ ë””ìì¸  --%>
 <div class="sub_visual bg-menu">
     <div class="txt">
-        <h1>½ºÅ¸º¸Æ²</h1>
-        <p>½ºÅ¸º¸Æ²ÀÇ °øÁö»çÇ×ÀÔ´Ï´Ù.</p>
+        <h1>ìŠ¤íƒ€ë³´í‹€</h1>
+        <p>ìŠ¤íƒ€ë³´í‹€ì˜ ê³µì§€ì‚¬í•­ì…ë‹ˆë‹¤.</p>
     </div>
 </div>
 
-<%--°øÁö»çÇ× ¸®½ºÆ® ÆäÀÌÁö --%>
+<%--ê³µì§€ì‚¬í•­ ë¦¬ìŠ¤íŠ¸ í˜ì´ì§€ --%>
 <br><br><br><br><br>
-<h2 style="display: inline;margin-left: 420px;">°øÁö»çÇ×	</h2>
-<%-- °ü¸®ÀÚ·Î ·Î±×ÀÎ ÇßÀ» ¶§¸¸ º¸ÀÌ´Â ÆäÀÌÁö --%>
+<h2 style="display: inline;margin-left: 420px;">ê³µì§€ì‚¬í•­	</h2>
+<%-- ê´€ë¦¬ìë¡œ ë¡œê·¸ì¸ í–ˆì„ ë•Œë§Œ ë³´ì´ëŠ” í˜ì´ì§€ --%>
 <%
-//<°ü¸®ÀÚ ·Î±×ÀÎ idÈ®ÀÎÀ» À§ÇÑ ÀÚ¹ÙÇÔ¼ö>
-//¼¼¼Ç ·Î±×ÀÎ»óÅÂ
+//<ê´€ë¦¬ì ë¡œê·¸ì¸ idí™•ì¸ì„ ìœ„í•œ ìë°”í•¨ìˆ˜>
+//ì„¸ì…˜ ë¡œê·¸ì¸ìƒíƒœ
 String loginok=(String)session.getAttribute("loginok");
-//¼¼¼Ç¿¡¼­ id ¾ò±â
+//ì„¸ì…˜ì—ì„œ id ì–»ê¸°
 String myid=(String)session.getAttribute("myid");
-//dao ¼±¾ğ
+//dao ì„ ì–¸
 MemberDao dao=new MemberDao();
-//¾ÆÀÌµğ¿¡ ÇØ´çÇÏ´Â ÀÌ¸§ ¾ò±â
+//ì•„ì´ë””ì— í•´ë‹¹í•˜ëŠ” ì´ë¦„ ì–»ê¸°
 //String name=dao.getName(myid);
-
-//myid°¡ StarBottle(°ü¸®ÀÚ)ÀÎ °æ¿ì¿¡¸¸ º¸ÀÌ±â
-if(loginok!=null && myid.equals("admin"))
+//myidê°€ StarBottle(ê´€ë¦¬ì)ì¸ ê²½ìš°ì—ë§Œ ë³´ì´ê¸°
+if(loginok!=null && myid.equals("StarBottle"))
 {%>
-	<b>	ÃÑ <span style="color: red;">
-	<%=totalCount%></span>°³ÀÇ ±ÛÀÌ ÀÖ½À´Ï´Ù</b>
-    <input type="button" value="°Ô½Ã¹°µî·Ï"
+	<b>	ì´ <span style="color: red;">
+	<%=totalCount%></span>ê°œì˜ ê¸€ì´ ìˆìŠµë‹ˆë‹¤</b>
+    <input type="button" value="ê²Œì‹œë¬¼ë“±ë¡"
     class="btn btn-warning btn-sm" 
    	style="width: 100px;float: right;margin-right: 470px;margin-top: 10px;"
  	onclick="location.href='index.jsp?main=gonji/gonjiform.jsp'">  
@@ -242,26 +243,26 @@ if(loginok!=null && myid.equals("admin"))
 <input type="hidden" name="myid" value="<%=myid%>">
 
  <div class="gonlist">
- <%--Å×ÀÌºí·Î Á¦¸ñ³Ö±â--%>
+ <%--í…Œì´ë¸”ë¡œ ì œëª©ë„£ê¸°--%>
  	<table class="table" style="width: 1000px;">
  		<tr class="gontitle" style="text-align: center; ">
- 		 	<th width="40">¹øÈ£</th>
- 		 	<th width="400">Á¦ ¸ñ</th>
- 		 	<th width="60">ÀÛ¼ºÀÚ</th>
- 		 	<th width="50">Á¶È¸¼ö</th>
- 		 	<th width="70">ÀÛ¼ºÀÏ</th> 		 	
+ 		 	<th width="40">ë²ˆí˜¸</th>
+ 		 	<th width="400">ì œ ëª©</th>
+ 		 	<th width="60">ì‘ì„±ì</th>
+ 		 	<th width="50">ì¡°íšŒìˆ˜</th>
+ 		 	<th width="70">ì‘ì„±ì¼</th> 		 	
  		</tr>
  	<%
  	if(totalCount==0)
  	{%>
  		<tr align="center" height="50">
  		  <td colspan="5">
- 		    <b>µî·ÏµÈ ±ÛÀÌ ¾ø½À´Ï´Ù</b>
+ 		    <b>ë“±ë¡ëœ ê¸€ì´ ì—†ìŠµë‹ˆë‹¤</b>
  		  </td>
  		</tr>
  	<%}
  	%>
- 	<%for(GonjiDto dto:list)//list·ÎºÎÅÍ dto¸¦ °¡Á®¿Â´Ù
+ 	<%for(GonjiDto dto:list)//listë¡œë¶€í„° dtoë¥¼ ê°€ì ¸ì˜¨ë‹¤
  	{%>
 		<tr>
 			<td align="center"><%=no--%></td>
@@ -281,14 +282,14 @@ if(loginok!=null && myid.equals("admin"))
     </table>
 </div>    
 
-<%--ÆäÀÌÂ¡ Ã³¸®--%>
+<%--í˜ì´ì§• ì²˜ë¦¬--%>
 <%
   if(totalCount>0)
   {%>
 	<div style="width: 900px; text-align: center;margin-left: 460px;margin-top: 20px;">
 	  <ul class="pagination justify-content-center">
 		<%
-		//ÀÌÀü ÆäÀÌÁö Ç¥½Ã
+		//ì´ì „ í˜ì´ì§€ í‘œì‹œ
 		if(startPage>1)
 		{%>
 			<li class="page-item">
@@ -296,17 +297,17 @@ if(loginok!=null && myid.equals("admin"))
 				&lt;</a>
 			</li>
 		<%}	
-			//ÆäÀÌÁö ºí·Ï Ç¥½Ã
+			//í˜ì´ì§€ ë¸”ë¡ í‘œì‹œ
 			for(int i=startPage; i<=endPage; i++)
 			{
-				//¸ŞÀÎ ÀÎµ¦½º¸¦ ÅëÇØ¼­ ¹æ¸í·ÏÀÌ Ãâ·Â / i:ÀÌµ¿ÇÒ ÆäÀÌÁö Ãß°¡(urlÁÖ¼Ò ³¡¿¡ Ãß°¡µÊ)
+				//ë©”ì¸ ì¸ë±ìŠ¤ë¥¼ í†µí•´ì„œ ë°©ëª…ë¡ì´ ì¶œë ¥ / i:ì´ë™í•  í˜ì´ì§€ ì¶”ê°€(urlì£¼ì†Œ ëì— ì¶”ê°€ë¨)
 				String url="index.jsp?main=gonji/gonjilist.jsp?pageNum="+i;
 			
-	/* 			//°¢ ÆäÀÌÁö¿¡¼­ Ãâ·ÂÇÒ ½ÃÀÛ¹øÈ£
-				//ÃÑ 50°³ÀÏ °æ¿ì 1ÆäÀÌÁö´Â 50, 2ÆäÀÌÁö´Â 40
+	/* 			//ê° í˜ì´ì§€ì—ì„œ ì¶œë ¥í•  ì‹œì‘ë²ˆí˜¸
+				//ì´ 50ê°œì¼ ê²½ìš° 1í˜ì´ì§€ëŠ” 50, 2í˜ì´ì§€ëŠ” 40
 				int no=totalCount-(currentPage-1)*perPage;
 					
-				//mysql¿¡¼­ ÇØ´ç ÆäÀÌÁö¿¡ ÇÊ¿äÇÑ ¸ñ·Ï °¡Á®¿À±â
+				//mysqlì—ì„œ í•´ë‹¹ í˜ì´ì§€ì— í•„ìš”í•œ ëª©ë¡ ê°€ì ¸ì˜¤ê¸°
 				List<BoardDto> list=db.getList(start, perPage); */
 				
 				if(i==currentPage)
@@ -320,11 +321,11 @@ if(loginok!=null && myid.equals("admin"))
 					  <a class="page-link" href="<%=url%>#test"><%=i%></a>
 					</li>
 			  <%}
-			}//for¹® close
-		//´ÙÀ½ ÆäÀÌÁö Ç¥½Ã
+			}//forë¬¸ close
+		//ë‹¤ìŒ í˜ì´ì§€ í‘œì‹œ
 		if(endPage<totalPage)
 		{%>
-			<%-- ºÎµîÈ£ ±âÈ£(>)°¡ Ãâ·Â¾ÈµÉ¶§: &gt; --%>
+			<%-- ë¶€ë“±í˜¸ ê¸°í˜¸(>)ê°€ ì¶œë ¥ì•ˆë ë•Œ: &gt; --%>
 			<li class="page-item">
 			  <a class="page-link" href="index.jsp?main=gonji/gonjilist.jsp?pageNum=<%=endPage+1%>#test">
 			&gt;</a>
@@ -332,13 +333,15 @@ if(loginok!=null && myid.equals("admin"))
 	  <%}%>
 	  </ul>
 	</div>
-<%}//if¹® close
+<%}//ifë¬¸ close
 %> 
-<%-- ÆäÀÌÂ¡ ³¡ --%>
+<%-- í˜ì´ì§• ë --%>
 
-<%-- °Ë»öÃ¢  --%>
+<%-- ê²€ìƒ‰ì°½  --%>
 <form action="" class="form-inline">
-  <div style="width: 600px;margin-left: 1080px;margin-top: -50px;">
+
+  <div style="width: 300px;margin-left: 1080px;margin-top: -50px;">
+
 	<div class="form-group">
 	<%
 		String search=(String)session.getAttribute("key");
@@ -348,27 +351,27 @@ if(loginok!=null && myid.equals("admin"))
 		if(word==null)
 			word=""; 
 	%>
-		<%-- °Ë»ö Æû --%>
+		<%-- ê²€ìƒ‰ í¼ --%>
 		<select id="search" class="form-control"
 			style="width: 100px;">
-			<option value="all" <%=search.equals("all")?"selected":""%>>ÀüÃ¼</option>
-			<option value="myid" <%=search.equals("myid")?"selected":""%>>¾ÆÀÌµğ</option>
-			<option value="subject" <%=search.equals("subject")?"selected":""%>>Á¦¸ñ</option>
-			<option value="content" <%=search.equals("content")?"selected":""%>>³»¿ë</option>
+			<option value="all" <%=search.equals("all")?"selected":""%>>ì „ì²´</option>
+			<option value="myid" <%=search.equals("myid")?"selected":""%>>ì•„ì´ë””</option>
+			<option value="subject" <%=search.equals("subject")?"selected":""%>>ì œëª©</option>
+			<option value="content" <%=search.equals("content")?"selected":""%>>ë‚´ìš©</option>
 		</select>
-		<%-- °Ë»ö Æû: Ã¼Å©¹Ú½º --%>
+		<%-- ê²€ìƒ‰ í¼: ì²´í¬ë°•ìŠ¤ --%>
 <!-- 		<input type="checkbox" value="all" name="search" 
-			checked="checked" id="all">ÀüÃ¼
+			checked="checked" id="all">ì „ì²´
 			<input type="checkbox" value="subject" name="search"
-			id="subject">Á¦¸ñ
+			id="subject">ì œëª©
 			<input type="checkbox" value="content" name="search"
-			id="content">³»¿ë		 -->
-		<%-- ajax¿¡¼­ actionÈ£ÃâÇÏ±â À§ÇÑ id --%>
+			id="content">ë‚´ìš©		 -->
+		<%-- ajaxì—ì„œ actioní˜¸ì¶œí•˜ê¸° ìœ„í•œ id --%>
 		
 		<input type="text" class="form-control" style="width: 200px;"
-			name="word" id="word" placeholder="°Ë»ö´Ü¾îÀÔ·Â"
+			name="word" id="word" placeholder="ê²€ìƒ‰ë‹¨ì–´ì…ë ¥"
 			value="<%=word%>">
-		<%-- °Ë»ö¹öÆ° --%>
+		<%-- ê²€ìƒ‰ë²„íŠ¼ --%>
 		<button type="button" class="btn btn-warning"
 			id="btndatasearch" style="width: 45px;">
 			<span class="fas fa-search"></span>
@@ -377,33 +380,33 @@ if(loginok!=null && myid.equals("admin"))
   </div>
 </form>
 
-<%-- °ü¸®ÀÚ°¡ ¾Æ´Ñ °æ¿ì¿¡ º¸ÀÌ´Â ÆäÀÌÁö --%>
+<%-- ê´€ë¦¬ìê°€ ì•„ë‹Œ ê²½ìš°ì— ë³´ì´ëŠ” í˜ì´ì§€ --%>
 <%}else{%>
  <br><br>
  <%
  	SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
  %>
  <div class="gonlist">
- <%--Å×ÀÌºí·Î Á¦¸ñ³Ö±â--%>
+ <%--í…Œì´ë¸”ë¡œ ì œëª©ë„£ê¸°--%>
  	<table class="table" style="width: 1000px;">
  		<tr class="gontitle" style="text-align: center;">
- 		 	<th width="40">¹øÈ£</th>
- 		 	<th width="400">Á¦ ¸ñ</th>
- 		 	<th width="60">ÀÛ¼ºÀÚ</th>
- 		 	<th width="50">Á¶È¸¼ö</th>
- 		 	<th width="70">ÀÛ¼ºÀÏ</th> 		 	
+ 		 	<th width="40">ë²ˆí˜¸</th>
+ 		 	<th width="400">ì œ ëª©</th>
+ 		 	<th width="60">ì‘ì„±ì</th>
+ 		 	<th width="50">ì¡°íšŒìˆ˜</th>
+ 		 	<th width="70">ì‘ì„±ì¼</th> 		 	
  		</tr>
  	<%
  	if(totalCount==0)
  	{%>
  		<tr align="center" height="50">
  		  <td colspan="5">
- 		    <b>µî·ÏµÈ ±ÛÀÌ ¾ø½À´Ï´Ù</b>
+ 		    <b>ë“±ë¡ëœ ê¸€ì´ ì—†ìŠµë‹ˆë‹¤</b>
  		  </td>
  		</tr>
  	<%}
  	%>
- 	<%for(GonjiDto dto:list)//list·ÎºÎÅÍ dto¸¦ °¡Á®¿Â´Ù
+ 	<%for(GonjiDto dto:list)//listë¡œë¶€í„° dtoë¥¼ ê°€ì ¸ì˜¨ë‹¤
  	{%>
 		<tr>
 			<td align="center"><%=no--%></td>
@@ -424,7 +427,7 @@ if(loginok!=null && myid.equals("admin"))
     </table>
 </div>    
 
-<%--ÆäÀÌÂ¡ Ã³¸®--%>
+<%--í˜ì´ì§• ì²˜ë¦¬--%>
 
 <%
   if(totalCount>0)
@@ -432,7 +435,7 @@ if(loginok!=null && myid.equals("admin"))
 	<div style="width: 900px; text-align: center;margin-left: 460px;margin-top: 20px;">
 	  <ul class="pagination justify-content-center">
 		<%
-		//ÀÌÀü ÆäÀÌÁö Ç¥½Ã
+		//ì´ì „ í˜ì´ì§€ í‘œì‹œ
 		if(startPage>1)
 		{%>
 			<li class="page-item">
@@ -440,17 +443,17 @@ if(loginok!=null && myid.equals("admin"))
 			&lt;</a>
 			</li>
 		<%}	
-			//ÆäÀÌÁö ºí·Ï Ç¥½Ã
+			//í˜ì´ì§€ ë¸”ë¡ í‘œì‹œ
 			for(int i=startPage; i<=endPage; i++)
 			{
-				//¸ŞÀÎ ÀÎµ¦½º¸¦ ÅëÇØ¼­ ¹æ¸í·ÏÀÌ Ãâ·Â / i:ÀÌµ¿ÇÒ ÆäÀÌÁö Ãß°¡(urlÁÖ¼Ò ³¡¿¡ Ãß°¡µÊ)
+				//ë©”ì¸ ì¸ë±ìŠ¤ë¥¼ í†µí•´ì„œ ë°©ëª…ë¡ì´ ì¶œë ¥ / i:ì´ë™í•  í˜ì´ì§€ ì¶”ê°€(urlì£¼ì†Œ ëì— ì¶”ê°€ë¨)
 				String url="index.jsp?main=gonji/gonjilist.jsp?pageNum="+i;
 			
-	/* 			//°¢ ÆäÀÌÁö¿¡¼­ Ãâ·ÂÇÒ ½ÃÀÛ¹øÈ£
-				//ÃÑ 50°³ÀÏ °æ¿ì 1ÆäÀÌÁö´Â 50, 2ÆäÀÌÁö´Â 40
+	/* 			//ê° í˜ì´ì§€ì—ì„œ ì¶œë ¥í•  ì‹œì‘ë²ˆí˜¸
+				//ì´ 50ê°œì¼ ê²½ìš° 1í˜ì´ì§€ëŠ” 50, 2í˜ì´ì§€ëŠ” 40
 				int no=totalCount-(currentPage-1)*perPage;
 					
-				//mysql¿¡¼­ ÇØ´ç ÆäÀÌÁö¿¡ ÇÊ¿äÇÑ ¸ñ·Ï °¡Á®¿À±â
+				//mysqlì—ì„œ í•´ë‹¹ í˜ì´ì§€ì— í•„ìš”í•œ ëª©ë¡ ê°€ì ¸ì˜¤ê¸°
 				List<BoardDto> list=db.getList(start, perPage); */
 				
 				if(i==currentPage)
@@ -464,11 +467,11 @@ if(loginok!=null && myid.equals("admin"))
 					  <a class="page-link" href="<%=url%>#test"><%=i%></a>
 					</li>
 			  <%}
-			}//for¹® close
-		//´ÙÀ½ ÆäÀÌÁö Ç¥½Ã
+			}//forë¬¸ close
+		//ë‹¤ìŒ í˜ì´ì§€ í‘œì‹œ
 		if(endPage<totalPage)
 		{%>
-			<%-- ºÎµîÈ£ ±âÈ£(>)°¡ Ãâ·Â¾ÈµÉ¶§: &gt; --%>
+			<%-- ë¶€ë“±í˜¸ ê¸°í˜¸(>)ê°€ ì¶œë ¥ì•ˆë ë•Œ: &gt; --%>
 			<li class="page-item">
 			  <a class="page-link" href="index.jsp?main=gonji/gonjilist.jsp?pageNum=<%=endPage+1%>#test">
 			&gt;</a>
@@ -476,16 +479,16 @@ if(loginok!=null && myid.equals("admin"))
 	  <%}%>
 	  </ul>
 	</div>
-<%}//if¹® close
+<%}//ifë¬¸ close
 %> 
-<%-- ÆäÀÌÂ¡ ³¡ --%>
+<%-- í˜ì´ì§• ë --%>
 
-<%-- °Ë»öÃ¢  --%>
+<%-- ê²€ìƒ‰ì°½  --%>
 <form action="" class="form-inline">
   <div style="width: 600px; margin-left: 1080px;margin-top: -50px;">
 	<div class="form-group">
 	<%
-		//°Ë»öÃ¢¿¡ °Ë»öÇÑ ´Ü¾î ³²¾ÆÀÖ°Ô ÇØÁÖ±â
+		//ê²€ìƒ‰ì°½ì— ê²€ìƒ‰í•œ ë‹¨ì–´ ë‚¨ì•„ìˆê²Œ í•´ì£¼ê¸°
 		String search=(String)session.getAttribute("key");
 		String word=(String)session.getAttribute("value");
 		if(search==null)
@@ -493,26 +496,26 @@ if(loginok!=null && myid.equals("admin"))
 		if(word==null)
 			word="";
 	%>
-		<%-- °Ë»ö Æû --%>
+		<%-- ê²€ìƒ‰ í¼ --%>
 		<select id="search" class="form-control"
 			style="width: 100px;">
-			<option value="all" <%=search.equals("all")?"selected":""%>>ÀüÃ¼</option>
-			<option value="myid" <%=search.equals("myid")?"selected":""%>>¾ÆÀÌµğ</option>
-			<option value="subject" <%=search.equals("subject")?"selected":""%>>Á¦¸ñ</option>
-			<option value="content" <%=search.equals("content")?"selected":""%>>³»¿ë</option>
+			<option value="all" <%=search.equals("all")?"selected":""%>>ì „ì²´</option>
+			<option value="myid" <%=search.equals("myid")?"selected":""%>>ì•„ì´ë””</option>
+			<option value="subject" <%=search.equals("subject")?"selected":""%>>ì œëª©</option>
+			<option value="content" <%=search.equals("content")?"selected":""%>>ë‚´ìš©</option>
 		</select>
-		<%-- °Ë»ö Æû: Ã¼Å©¹Ú½º --%>
+		<%-- ê²€ìƒ‰ í¼: ì²´í¬ë°•ìŠ¤ --%>
 <!-- 		<input type="checkbox" value="all" name="search" 
-			checked="checked" id="all">ÀüÃ¼
+			checked="checked" id="all">ì „ì²´
 			<input type="checkbox" value="subject" name="search"
-			id="subject">Á¦¸ñ
+			id="subject">ì œëª©
 			<input type="checkbox" value="content" name="search"
-			id="content">³»¿ë		 -->
-		<%-- ajax¿¡¼­ actionÈ£ÃâÇÏ±â À§ÇÑ id --%>
+			id="content">ë‚´ìš©		 -->
+		<%-- ajaxì—ì„œ actioní˜¸ì¶œí•˜ê¸° ìœ„í•œ id --%>
 		<input type="text" class="form-control" style="width: 200px;"
-			name="word" id="word" placeholder="°Ë»ö´Ü¾îÀÔ·Â"
+			name="word" id="word" placeholder="ê²€ìƒ‰ë‹¨ì–´ì…ë ¥"
 			value="<%=word%>">
-		<%-- °Ë»ö¹öÆ° --%>
+		<%-- ê²€ìƒ‰ë²„íŠ¼ --%>
 		<button type="button" class="btn btn-warning"
 			id="btndatasearch" style="width: 45px;">
 			<span class="fas fa-search"></span>
@@ -525,22 +528,4 @@ if(loginok!=null && myid.equals("admin"))
 <a id="test"></a>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

@@ -164,7 +164,7 @@ $(function(){
       		 ">
       		 </span>
       		 
-      		 <img src="eventsave/<%=edto.getEvlistimage()%>" class="w3-round w3-margin-bottom" style="width:90%">
+      		 <img src="eventsave/<%=edto.getEvlistimage()%>" class="w3-round w3-margin-bottom" style="width:232px;height: 230px;">
       		 </a> 
       		  <p class="ev_subject"><%=edto.getEvsubject()%><br>
       		  <%=edto.getEvstartday()%>~<%=edto.getEvendday()%>
