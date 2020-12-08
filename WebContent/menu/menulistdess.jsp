@@ -37,7 +37,7 @@ body{font-family: 'Noto Sans KR', Arial, sans-serif;}
 .sub_visual .page_tab li{display:inline-block;width:20%;max-width:170px;padding:10px 0;border:1px solid #bfbfbf;border-left:0;font-size:1rem;color:#909090;background:#fff;}
 .sub_visual .page_tab li:first-child{border-left:1px solid #bfbfbf;}
 .sub_visual .page_tab li a{display:block;}
-.sub_visual .page_tab li.on, .sub_visual .page_tab li:hover{color:#000;background:#ffe600;transition:background .3s ease;-webkit-transition:background .3s ease;}
+.sub_visual .page_tab li.on, .sub_visual .page_tab li:hover{color:#000;background:#f6c244;transition:background .3s ease;-webkit-transition:background .3s ease;}
 
 </style>
 <script>

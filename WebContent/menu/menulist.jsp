@@ -7,9 +7,8 @@
 <html>
 <title>메뉴</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -17,18 +16,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 
 <style>
-body{font-family: 'Noto Sans KR', Arial, sans-serif;}
 .w3-bar-block .w3-bar-item {padding:20px}
 .w3-content{max-width: 1100px; min-height: 1000px;}
 /*godetail*/
 
 .godetail img{cursor:pointer;}
-.menu_list h3{margin-bottom: 50px;}
+.menu_list h3{margin-bottom: 50px; font-family: 'Noto Sans KR', Arial, sans-serif;}
 
 
 /* sub */
 .img-cover{position: absolute;height: 100%;width: 100%;background-color: rgba(0, 0, 0, 0.4);z-index:1;background-size:cover;}
-.sub_visual .txt{position: absolute;top:50%;left:50%;transform: translate(-50%, -50%);color: white;z-index: 2;text-align: center;}
+.sub_visual .txt{position: absolute;top:50%;left:50%;transform: translate(-50%, -50%);color: white;z-index: 2;text-align: center; font-family: 'Noto Sans KR', Arial, sans-serif;}
 .sub_visual .txt h1:after{display:block;width:40px;height:3px;margin:32px auto;background:white;content:'';}
 .sub_visual .txt p{font-size: 14pt; font-weight: 300;}
 .sub_visual{position: relative;background-image: url(./image/coffee-5132832_1920.jpg);height: 400px;background-size: cover;text-align: center;background-position:center;}
@@ -37,7 +35,7 @@ body{font-family: 'Noto Sans KR', Arial, sans-serif;}
 .sub_visual .page_tab li{display:inline-block;width:20%;max-width:170px;padding:10px 0;border:1px solid #bfbfbf;border-left:0;font-size:1rem;color:#909090;background:#fff;}
 .sub_visual .page_tab li:first-child{border-left:1px solid #bfbfbf;}
 .sub_visual .page_tab li a{display:block;}
-.sub_visual .page_tab li.on, .sub_visual .page_tab li:hover{color:#000;background:#ffe600;transition:background .3s ease;-webkit-transition:background .3s ease;}
+.sub_visual .page_tab li.on, .sub_visual .page_tab li:hover{color:#000;background:#f6c244;transition:background .3s ease;-webkit-transition:background .3s ease;}
 
 </style>
 <script>
