@@ -408,7 +408,7 @@ public class StarMapDao {
 				db.dbClose(conn, pstmt, rs);
 			}
 			return list;
-
+		}
 	
 }
 
