@@ -249,7 +249,6 @@ $(function(){
 %>
 
 
-
 <div style="width:1200px; height : 100%;">
 	<div class="slide_container">
 		<h1 class="slide_title" style="font-weight: 600;">스타보틀 인기메뉴</h1>
@@ -298,21 +297,22 @@ $(function(){
 					 <%} %>
 			</div> 
 	   	</div>	 
-	</div>
-	<div class="slide_container" style="width: 100%; height: 100%;">
+ 
+  
+	<div class="slide_container" style="height: 600px;">
 	   	<h1 class="slide_title">매장</h1>
 		<p style="text-align: center;">
 		   	<a style="cursor :pointer; color: #888; font-weight: 300; font-size: 14pt;" onclick ="location.href='index.jsp?main=map/map.jsp'">
 				스타보틀 매장을 어디서나 만나보세요&nbsp;&gt;
 			</a>	
 		</p>	
-	  <div id="Shop" class="w3-container tabs" style ="display : flex;justify-content : space-between;"> 
+	  <div id="Shop" class="w3-container tabs" style ="display : flex; justify-content : center; flex-flow:wrap;"> 
 	   
 	    <%	
 			for(StarMapDto smdto : listsm){%>
 			<div style ="width 270px;height 300px;cursor:pointer;" class ="shopdetail" shopnum = "<%=smdto.getShopnum()%>">
-			<div class ="shop_div" style ="width : 250px;height:250px; border-radius:125px; border : 1px solid black;">
-	   		<img src ="shopmapsave/<%=smdto.getShopphoto() %>"  style ="width : 250px;height:250px;">
+			<div class ="shop_div" style ="width : 212px; height:212px; border-radius:125px;">
+	   		<img src ="shopmapsave/<%=smdto.getShopphoto() %>"  style ="width : 212px;height:212px;">
 	   		</div>
 	
 	   		<p style ="width:250px"><%=smdto.getShopname() %></p>   		
@@ -321,7 +321,6 @@ $(function(){
 	
 		</div>
 	</div>
-
 </div>
 
  
@@ -351,15 +350,6 @@ function openMenu(evt, cityName) {
 	  evt.currentTarget.className += " w3-red";
 	}
 	
-/* 카카오 맵api 
- var container = document.getElementById('main_location');
-var options = {
-	center: new kakao.maps.LatLng(33.450701, 126.570667),
-	level: 3
-};
-
-var map = new kakao.maps.Map(container, options);
-	 */
 </script>
 
 </html>
