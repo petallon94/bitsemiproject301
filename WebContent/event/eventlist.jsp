@@ -52,6 +52,7 @@ body,h1 {font-family: 'Noto Sans KR', Arial, sans-serif;}
 		opacity: 0.7;
 		filter:alpha(opacity=70);
 		position:absolute;
+		margin-left: 10px;
 		border-radius: 4px;
 	}
 	
@@ -152,7 +153,7 @@ $(function(){
       <%
       	for(EventDto idto:ilist)
       	{%>
-      		<div class="ev_content w3-third"
+      		<div class="ev_content w3-third" align="center"
       		 eventnum="<%=idto.getEventnum()%>">
 
       		 <div class="w3-round w3-margin-bottom" style="width:230px; height: 230px; background-image:url('eventsave/<%=idto.getEvlistimage()%>'); background-size: cover;"></div>
@@ -176,16 +177,19 @@ $(function(){
     	<%
       	for(EventDto edto:elist)
       	{%>
-      		<div class="ev_content w3-third"
+      		<div class="ev_content w3-third" align="center"
       		 eventnum="<%=edto.getEventnum()%>">
       		 <a>
       		 <span class="ev_endpng">
-      		 <img src="./image/end_event.png" style="position:absolute;margin-left:-17%;margin-top: 33%;
-      		 ">
+      		 <img src="./image/end_event.png"
+      		 style="position:absolute;margin-left:-20%;margin-top: 33%;">
       		 </span>
       		 
 
-      		 <div class="w3-round w3-margin-bottom" style="width:230px; height: 230px; background-image:url('eventsave/<%=edto.getEvlistimage()%>'); background-size: cover;"></div>
+      		 <div class="w3-round w3-margin-bottom" 
+      		 style="width:230px; height: 230px; 
+      		 background-image:url('eventsave/<%=edto.getEvlistimage()%>'); 
+      		 background-size: cover;" align="center"></div>
 
       		 </a> 
       		  <p class="ev_subject"><%=edto.getEvsubject()%><br>
@@ -200,11 +204,6 @@ $(function(){
      </div>
   </div>
 </div>
-
-
-
-
-
 </body>
 </html>
 

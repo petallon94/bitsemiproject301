@@ -1,3 +1,4 @@
+
 <%@page import="data.dao.MemberDao"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="data.dto.GonjiDto"%>
@@ -144,7 +145,7 @@ $(function(){
 	//총 갯수 구하기
 	int totalCount=db.getTotalCount();
 	int perPage=10;//한 페이지당 보여질 글의 갯수
-	int perBlock=2;//한 블럭당 출력할 페이지의 갯수
+	int perBlock=3;//한 블럭당 출력할 페이지의 갯수
 	int totalPage;//총 페이지의 갯수
 	int startPage;//각 블럭당 시작할 페이지 번호
 	int endPage;//각 블럭당 끝 페이지 번호
@@ -226,9 +227,7 @@ MemberDao dao=new MemberDao();
 //String name=dao.getName(myid);
 
 //myid가 StarBottle(관리자)인 경우에만 보이기
-
 if(loginok!=null && myid.equals("admin"))
-
 {%>
 	<b>	총 <span style="color: red;">
 	<%=totalCount%></span>개의 글이 있습니다</b>
@@ -526,4 +525,6 @@ if(loginok!=null && myid.equals("admin"))
 %>
 <a id="test"></a>
 </body>
+
+
 </html>
