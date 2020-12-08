@@ -3,30 +3,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
 <!-- bootstrap4 -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="image/sb_symbol.jpg">
-
-<!-- 반응형 -->
-<!-- <style type="text/css"> 
-@media all and (max-width: 320px) {
-        body { background-color: red; }
-        h1 { color: white; }
-}
-@media all and (min-width: 321px) and (max-width: 768px) {
-
-
-
-        body { background-color: green; }
-}
-@media all and (min-width: 769px) {
-        body { background-color: blue; }
-        h1 { color: yellow; }
-}
-</style> -->
-
-
 <title>스타보틀 STARBOTTLE</title>
 
 <style type="text/css">
@@ -35,27 +16,31 @@
 	margin:0;
 	padding:0;
 	}
-
+	
+	div.layout div.main{
+	font-family: 'Noto Sans KR', Arial, sans-serif;
+	}
+	
 	div.layout div.menu{
 	display: flex;
 	justify-content: center;
 	font-size: 20px;
 	text-align: center;
-	font-family: 'Gothic A1', sans-serif;
+	font-family: 'Noto Sans KR', Arial, sans-serif;
 	}
 	
 	div.layout div.login{
 	display: flex;	
 	font-size: 15px;
 	justify-content: flex-end;
-	font-family: 'Gothic A1', sans-serif;
+	font-family: 'Noto Sans KR', Arial, sans-serif;
 	margin-right: 40px;
 	}
 	div.layout div.footer{
 	display:flex;
 	width: 100%;
 	height:210px;
-	font-family: 'Gothic A1', sans-serif;
+	font-family: 'Noto Sans KR', Arial, sans-serif;
 	left: 0;
 	bottom: 0;
 	margin-top: 60px;

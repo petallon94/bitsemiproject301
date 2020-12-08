@@ -12,6 +12,9 @@
   <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <title>Insert title here</title>
 <style type="text/css">
+body{
+font-family: 'Noto Sans KR', Arial, sans-serif;
+}
 #joinform {
 margin-top: 50px;
 }
@@ -21,7 +24,6 @@ font-size: 0.7rem;
 }
 .table_title {
 width: 130px;
-font-size: 15px;
 text-align: left;
 }
 .table td {
@@ -39,26 +41,17 @@ width: 250px;
 .btn{
 font-size: 15px;
 }
-b{
+.table b{
+color: red;
+}
+#must b{
 color: red;
 }
 
 .btn {
 text-size: 0.8em;
 }
-/* .step_style{
-list-style: none;
-}
-.step_style li{
-	float:left;
-    text-align: center;
-}
-.step_style li img{
-    width: 80px;
-    height: 80px;
-    background-color: lightgray;
-    border-radius: 100px;
-    } */
+
 </style>
 <script type="text/javascript">
 $(function() {
@@ -193,17 +186,7 @@ function execDaumPostcode() {
 
 <br>	
 <form action="member/insertaction.jsp" method="post" id="joinform" class="form-inline d-flex flex-column" name="memberform">
-<!-- <ul class="step_style">
-			<li>
-			<img src="./image/pencil.png" alt="회원정보입력" id="pc" style="padding:10px;"/>					
-			<p>회원정보입력</p>
-			</li>
-			<li>ㅡ</li>
-			<li>
-				<img src="./image/sb_symbol.jpg" alt="가입완료" id="sb"/>
-			<p>가입완료</p>
-			</li>
-		</ul> -->
+
 <h3>회원가입</h3><br>
 	<p id="must"><b>*</b>필수입력사항</p>		
 	<table class="table" style="width: 550px;">	

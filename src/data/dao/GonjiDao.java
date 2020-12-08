@@ -16,7 +16,7 @@ public class GonjiDao {
 	
 	MysqlConnect db=new MysqlConnect();
 	
-	//gonnum�� max�� ���ؼ� ����(null�� ��� 0����)
+	//gonnum의 max값 구해서 리턴(null일 경우 0리턴)
 	public int getMaxNum() 
 	{
 		int max=0;
@@ -54,11 +54,11 @@ public class GonjiDao {
 		conn=db.getMyConnection();
 		try {
 			pstmt=conn.prepareStatement(sql);
-			//���ε�
+			//바인딩
 			pstmt.setString(1, dto.getGonid());
 			pstmt.setString(2, dto.getGonsubject());
 			pstmt.setString(3, dto.getGoncontent());
-			//����
+			//실행
 			pstmt.execute();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -68,7 +68,7 @@ public class GonjiDao {
 		}
 	}
 	
-	//��ü ���� ���ϴ�
+	//전체 갯수 구하는
 	public int getTotalCount() 
 	{
 		int n=0;
@@ -92,12 +92,12 @@ public class GonjiDao {
 		return n;
 	}
 	
-	//����¡ ó���� ����Ʈ ��� ��ȯ
-	//�˻��� ����¡ ó���Ǵ� �κ����� ��ü�� getSearchList
+	//페이징 처리한 리스트 목록 반환
+	//검색시 페이징 처리되는 부분으로 대체함 getSearchList
 /*	public List<GonjiDto> getList(int start, int perpage)
 	{
 		List<GonjiDto> list=new ArrayList<GonjiDto>();
-		//limit ����,����
+		//limit 시작,갯수
 		String sql="select * from gonji order by gonnum desc limit ?,?";
 		Connection conn=null;
 		PreparedStatement pstmt=null;
@@ -106,10 +106,10 @@ public class GonjiDao {
 		conn=db.getMyConnection();
 		try {
 			pstmt=conn.prepareStatement(sql);
-			//���ε�
+			//바인딩
 			pstmt.setInt(1, start);
 			pstmt.setInt(2, perpage);
-			//����
+			//실행
 			rs=pstmt.executeQuery();
 			while(rs.next())
 			{
@@ -120,7 +120,7 @@ public class GonjiDao {
 				dto.setGoncontent(rs.getString("goncontent"));
 				dto.setGonreadcount(rs.getInt("gonreadcount"));
 				dto.setGonwriteday(rs.getTimestamp("gonwriteday"));
-				//list�� �߰�
+				//list에 추가
 				list.add(dto);
 			}
 		} catch (SQLException e) {
@@ -133,17 +133,17 @@ public class GonjiDao {
 	}
 	*/
 	
-	//�˻���� ����Ʈ �� �� ���������� �ʿ��Ѹ�ŭ ��ȯ�ϱ�
+	//검색결과 리스트 중 한 페이지에서 필요한만큼 반환하기
 	public List<GonjiDto> getSearchList(String key,
 			String value,int start,int perpage)
 	{
 		List<GonjiDto> list=new ArrayList<GonjiDto>();
-		//all�� ���
+		//all일 경우
 		String s="";
 		if(key!=null)
 		{
-			//("")�� html���� �� ����=>gonlist�� ������
-			//where=?�� mysql���� �о���� ���̺����� Į����
+			//("")는 html에서 준 변수=>gonlist로 보낸다
+			//where=?는 mysql에서 읽어들일 테이블에서의 칼럼명
 			if(key.equals("myid"))
 				s="where gonid='"+value+"'";
 			else if(key.equals("subject"))
@@ -159,10 +159,10 @@ public class GonjiDao {
 		conn=db.getMyConnection();
 		try {
 			pstmt=conn.prepareStatement(sql);
-			//���ε�
+			//바인딩
 			pstmt.setInt(1, start);
 			pstmt.setInt(2, perpage);
-			//����
+			//실행
 			rs=pstmt.executeQuery();
 			while(rs.next())
 			{
@@ -173,7 +173,7 @@ public class GonjiDao {
 				dto.setGoncontent(rs.getString("goncontent"));
 				dto.setGonreadcount(rs.getInt("gonreadcount"));
 				dto.setGonwriteday(rs.getTimestamp("gonwriteday"));
-				//list�� �߰�
+				//list에 추가
 				list.add(dto);
 			}
 		} catch (SQLException e) {
@@ -187,7 +187,7 @@ public class GonjiDao {
 
 	}
 	
-	//num�� �ش��ϴ� dto��ȯ: ���뺸��&����
+	//num에 해당하는 dto반환: 내용보기&수정
 	public GonjiDto getData(String gonnum)
 	{
 		System.out.println("n="+gonnum);
@@ -200,7 +200,7 @@ public class GonjiDao {
 		conn=db.getMyConnection();
 		try {
 			pstmt=conn.prepareStatement(sql);
-			//���ε�
+			//바인딩
 			pstmt.setString(1, gonnum);
 			rs=pstmt.executeQuery();
 			if(rs.next())
@@ -221,7 +221,7 @@ public class GonjiDao {
 		return dto;
 	}
 	
-	//���뺸��� ��ȸ�� 1����
+	//내용보기시 조회수 1증가
 	public void updateReadcount(String gonnum)
 	{
 		String sql="update gonji set gonreadcount=gonreadcount+1 where gonnum=?";
@@ -230,9 +230,9 @@ public class GonjiDao {
 		conn=db.getMyConnection();
 		try {
 			pstmt=conn.prepareStatement(sql);
-			//���ε�
+			//바인딩
 			pstmt.setString(1, gonnum);
-			//����
+			//실행
 			pstmt.execute();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -242,7 +242,7 @@ public class GonjiDao {
 		}
 	}
 	
-	//����
+	//삭제
 	public void deleteGonji(String gonnum)
 	{
 		Connection conn=null;
@@ -252,9 +252,9 @@ public class GonjiDao {
 		conn=db.getMyConnection();
 		try {
 			pstmt=conn.prepareStatement(sql);
-			//���ε�
+			//바인딩
 			pstmt.setString(1, gonnum);
-			//����
+			//실행
 			pstmt.execute();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -265,7 +265,7 @@ public class GonjiDao {
 		
 	}
 	
-	//����
+	//수정
 	public void updateGonji(GonjiDto dto)
 	{
 		String sql="update gonji set gonsubject=?,goncontent=? where gonnum=?";
@@ -274,11 +274,11 @@ public class GonjiDao {
 		conn=db.getMyConnection();
 		try {
 			pstmt=conn.prepareStatement(sql);
-			//���ε�
+			//바인딩
 			pstmt.setString(1, dto.getGonsubject());
 			pstmt.setString(2, dto.getGoncontent());
 			pstmt.setString(3, dto.getGonnum());
-			//����
+			//실행
 			pstmt.execute();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -289,12 +289,12 @@ public class GonjiDao {
 		
 	}
 	
-	//�ֽſ��� 3�� ���Ͽ�
-	//�������� ���ο� �Ѹ�
+	//최신원글 1개 리턴용
+	//공지사항 메인에 롤링
 	public List<GonjiDto> getNewList()
 	{
 		List<GonjiDto> list=new ArrayList<GonjiDto>();
-		//num�� ��������(desc), limit�� ���۹���,� �������� ���ε�
+		//num를 내림차순(desc), limit로 시작번지,몇개 가져올지 바인딩
 		String sql="select * from gonji order by gonnum desc limit 0,1";
 		Connection conn=null;
 		PreparedStatement pstmt=null;
@@ -302,9 +302,9 @@ public class GonjiDao {
 		conn=db.getMyConnection();
 		try {
 			pstmt=conn.prepareStatement(sql);
-			//����
+			//실행
 			rs=pstmt.executeQuery();
-			//while��
+			//while문
 			while(rs.next())
 			{
 				GonjiDto dto=new GonjiDto();
@@ -314,7 +314,7 @@ public class GonjiDao {
 				dto.setGoncontent(rs.getString("goncontent"));
 				dto.setGonreadcount(rs.getInt("gonreadcount"));
 				dto.setGonwriteday(rs.getTimestamp("gonwriteday"));
-				//list�� �߰�
+				//list에 추가
 				list.add(dto);
 			}
 		} catch (SQLException e) {
@@ -328,11 +328,3 @@ public class GonjiDao {
 	
 	
 }
-
-
-
-
-
-
-
-

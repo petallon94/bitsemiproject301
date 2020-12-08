@@ -11,17 +11,24 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
  <link href="https://fonts.googleapis.com/css2?family=Libre+Barcode+39+Extended+Text&family=Montserrat&display=swap" rel="stylesheet">
   <title>Insert title here</title>
  <style>
 
 .my_page_menu {display:flex; left: 20px; top: 700px; padding: 20px; float: left;}
-.nav {display: flex; flex-direction: column;}
+.nav {display: flex; flex-direction: column; cursor: pointer; font-family: 'Noto Sans KR', Arial, sans-serif;}
+.nav-link {width: 200px; cursor:pointer; color:#00979f;}
 a {width: 200px;}
 	
+
+.my_page_content {display:flex;left:400px; margin-top:20px; float: left; font-family: 'Noto Sans KR', Arial, sans-serif;}
+.my_page_content img{max-width:100%;}
+
 .my_page_content {display:flex;margin-left:100px; margin-top:20px; float: left;}
 
 .my_page_content img{max-width:100%;height :200px;}
+
 div#mypage_main {margin-bottom: 200px;}
 /*submenu*/
 .img-cover{position: absolute;height: 100%;width: 100%;background-color: rgba(0, 0, 0, 0.4);z-index:1;}
@@ -84,7 +91,7 @@ if(loginok==null)
 <a><%=dto.getName() %>님 환영합니다!!!</a></div><br><br>
 <button class="btn btn-outline-warning" id="show_card">나의 스타보틀카드보기</button><br>
 <div class="card" style="width:400px; height:300px; margin:30px; border: none;">
-<img src="./image/card.png">
+<img src="./image/card.png" style="width:380px; height :220px;">
 <div id="barcode_text" style="font-family: 'Libre Barcode 39 Extended Text', cursive; font-size: 4.0em; margin-left:60px;"><%=dto.getBarcode() %></div></div>
 </div></div>
 

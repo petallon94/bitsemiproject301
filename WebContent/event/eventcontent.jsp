@@ -11,12 +11,12 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <style>
-body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
+body,h1,h2,h3,h4,h5,h6 {font-family: 'Noto Sans KR', Arial, sans-serif;}
 .w3-bar-block .w3-bar-item {padding:20px}
 
 	span.date{
@@ -277,7 +277,7 @@ $(function(){
   		<div class="ev_list w3-quarter"
   		eventnum="<%=ldto.getEventnum()%>">
   		<img src="eventsave/<%=ldto.getEvlistimage()%>"
-  		style="width:75%;">
+  		style="width:204px;height: 204px;">
   		<p class="ev_subject"><%=ldto.getEvsubject()%><br>
   		<%=ldto.getEvstartday()%>~<%=ldto.getEvendday()%>
   		</p>

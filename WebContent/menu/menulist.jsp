@@ -95,6 +95,7 @@ $(function(){
       		<img src ="menusave/<%=dto.getMenuphoto()%>" class ="godetail" menunum = "<%=dto.getMenunum()%>" style="width:240px;height :250px;">
       		<h4 style="margin: 10px 0 40px 0;"><%=dto.getMenuname() %></h4>
      		<input type="hidden" class="form-control" id="menunum"  name="menunum" value =<%=dto.getMenunum()%>>
+     		<input type="hidden" class="form-control" id="category"  name="category" value =<%=dto.getCategory()%>>
  		   </div>
 		<%}%>
 		<br>

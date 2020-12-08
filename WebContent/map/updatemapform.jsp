@@ -41,12 +41,9 @@ $(function(){
 	
 
 	$("#mapcategory").change(function() {
-
-
-
 		$.ajax({
 			type: "post",
-			url: "storepositionlistdata.jsp",
+			url: "map/storepositionlistdata.jsp",
 			data: {"shopnum":shopnum},
 			dataType: "xml",
 			success: function(data) {
@@ -71,28 +68,7 @@ $(function(){
 	});	
 
 });		
-	/* 	 $(document).on("change","#mapcategory2", function() {
-					$.ajax({
-					type: "get",
-					url: "storepositionlistdata.jsp",
-					dataType: "xml",
-					success: function(data) {
-						$(data).find("store").each(function(i, element) {
-							var n=$(element);
-							$("#shopnum").val(n.find("shopnum"));
-							$("#shophp1").val(n.find("shophp1"));
-							$("#shophp2").val(n.find("shophp2"));
-							
-							});
-						}
-					});
-				});
-			}); */
-		
-		
-
 	
-
 //카카오 우편번호 API
 function execDaumPostcode() {
     new daum.Postcode({
@@ -142,13 +118,14 @@ function execDaumPostcode() {
 	List<StarMapDto> list=dao.getMainList();
 %>
 <div class="updatemapform">
-	<form action="updatemapaction.jsp" method="post" class="form-inline">
+	<form action="map/updatemapaction.jsp" method="post" class="form-inline" enctype="multipart/form-data">
 	
 		<table class="table table-bordered" style="width: 600px;">
 			<tr>
-				<td style="width: 150px; background-color: #02a8da"><b>매장명</b></td>
+				<td style="width: 150px; background-color: #f6c244;"><b>매장명</b></td>
 				<td align="left">
-				
+					<input type="hidden" class="form-control" id="shopnum"  name="shopnum" >
+					<input type="hidden" class="form-control" id="shopname"  name="shopname" >
 					<select style="width: 200px;" name="mapcategory" class="form-control" id="mapcategory">
 					<%for(StarMapDto starDto:list){%>
 						<option selected disabled hidden>매장을 선택하세요</option>
@@ -162,7 +139,7 @@ function execDaumPostcode() {
 				</td>
 			</tr>
 			<tr>
-				<td style="width: 150px; background-color: #02a8da"><b>매장전화번호</b></td>
+				<td style="width: 150px; background-color: #f6c244;"><b>매장전화번호</b></td>
 				<td align="left">
 					<div class="form-group">
 						<input type="text" name="shophp1" class="form-control" maxlength="4"
@@ -174,7 +151,7 @@ function execDaumPostcode() {
 				</td>
 			</tr>
 			<tr>
-				<td class="mapaddr" style="width: 150px; background-color: #02a8da"><b>주 소</b></td>
+				<td class="mapaddr" style="width: 150px; background-color: #f6c244;"><b>주 소</b></td>
 				<td>					
 					<input type="text" class="form-control input-sm" id="shoppostcode" name="shoppostcode" style="background-color: #eee; width: 80px;">&nbsp;
 					<button class="btn btn-outline-warning" id="btnpost" onclick="execDaumPostcode()">주소검색</button><br><p></p>
@@ -184,30 +161,30 @@ function execDaumPostcode() {
 				</td>
 			</tr>
 			<tr>
-				<td style="width: 150px; background-color: #02a8da">
+				<td style="width: 150px; background-color: #f6c244;">
 				<b>매장사진</b></td>
 				<td align="left">
 					<div class="form-group">
-						<input id="shopphoto" type="file" name="shopphoto" style="width: 300px;" class="form-control" required="required">
+						<input id="shopphoto" type="file" name="shopphoto" style="width: 300px;" class="form-control">
 					</div>
 				</td>
 			</tr>
 			<tr>
-				<td style="width: 150px; background-color: #02a8da">
+				<td style="width: 150px; background-color: #f6c244;">
 				<b>샵정보</b></td>
 				<td align="left">
 					<input id="shopdetail" type="text" name="shopdetail" class="form-control" style="width: 180px;" required="required">
 				</td>
 			</tr>
 			<tr>
-				<td style="width: 150px; background-color: #02a8da">
+				<td style="width: 150px; background-color: #f6c244;">
 				<b>위도</b></td>
 				<td align="left">
 					<input id="mpositionx" type="text" name="mpositionx" class="form-control" style="width: 180px;" required="required">
 				</td>
 			</tr>
 			<tr>
-				<td style="width: 150px; background-color: #02a8da">
+				<td style="width: 150px; background-color: #f6c244;">
 				<b>경도</b></td>
 				<td align="left">
 					<input id="mpositiony" type="text" name="mpositiony" class="form-control" style="width: 180px;" required="required">
@@ -215,8 +192,7 @@ function execDaumPostcode() {
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
-					<button type="submit" class="btn btn-info" style="width: 100px;"><b>매장수정</b></button>
-					<button id="shoplist" type="button" class="btn btn-info" style="width: 100px;"><b>매장목록</b></button>
+					<button type="submit" class="btn btn-outline-warning" style="width: 100px;"><b>매장수정</b></button>
 				</td>
 			</tr>
 		</table>

@@ -20,6 +20,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 <!--   slick api -->
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
@@ -29,10 +30,10 @@
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b6754d93f8d097bb07dd758c1b12ba4c&libraries=services,clusterer,drawing"></script>
 <style>
 body{
-font-family: 'Gothic A1', sans-serif;
+font-family: 'Noto Sans KR', Arial, sans-serif;
 }
 h1,h2,h3 {
-font-family: "Karma", sans-serif
+font-family: 'Noto Sans KR', Arial, sans-serif;
 }
 .carousel-container{
 width: 50%;
@@ -57,22 +58,23 @@ width: 100%;
     width: 440px;
     z-index: 4;
     color: #ffffff;
-    font-family: "Karma", sans-serif
+    font-family: 'Noto Sans KR', Arial, sans-serif;
 }
-.fixed-btn {
-    position: fixed;
-    z-index: 49;
-    right: 0;
-    bottom: 0;
+#pageTop {
     overflow: hidden;
-}
-.fixed-btn #pageTop {
-    width: 60px;
-    height: 60px;
-    background: url('./image/backtotop_icon.png') no-repeat center;
-    background-size: cover;
-    vertical-align: middle;
-    text-align: center;
+    position: fixed;
+    z-index: 300;
+    right: 31px;
+    bottom: 0;
+    width: 58px;
+    height: 58px;
+    border: 0;
+    background: url('./image/backtotop_icon.png') no-repeat 50% 50%;
+    font-size: 0;
+    line-height: 0;
+    text-indent: -9999px;
+    opacity: 0;
+    transition: background .2s;
 }
 .shop_div {
 	overflow: hidden;
@@ -114,15 +116,16 @@ text-align: center;
 }
 .menuslide_box div a:hover{text-decoration: none; color: black;}
 .menuslide_box div a p:hover{color: black;}
-
 .eventslide_box div{margin-right: 30px;}
 .eventslide_box div:last-child{margin-right: 0;}
 .eventslide_box div a:hover{text-decoration: none; color: black;}
 .eventslide_box div a p.desc_box{color: black; font-size: 14pt;}
+
 a.gon_link{color: #333;}
 a.gon_link:hover{text-decoration: none; color: #666;}
 a.map_link{color: #333;}
 a.map_link:hover{text-decoration: none; color: #666;}
+
 </style>
 <script>
 $(function(){
@@ -223,6 +226,7 @@ $(function(){
 <img class="image-container_bg" src="./image/coffee-5132832_1920.jpg" alt="cafe4" style="width: 100%;">
 </div>
 </div>
+
 <%-- 공지사항 메인 출력 --%>
 <%
    //공지 게시판 dao 선언
@@ -257,6 +261,7 @@ $(function(){
           </a>
         </div>
 </div>
+
 <!-- 사이트 메인 중앙 컨텐츠 -->
 <div class= "tabb" style="width:100%; margin-top : 100px; display:flex; justify-content : center">
 
@@ -299,8 +304,10 @@ $(function(){
 			</div> 
 	   	</div>
    	</div>
+
    	<div class="event_container" style="width: 100%; height: 800px; text-align: center; margin-top: 200px;">
-	   	<h1 class="event_title">이벤트</h1>
+
+	   	<h1 class="event_title" style="font-weight: 600;">이벤트</h1>
 	   	<p style="text-align: center;">
 		   	<a style="cursor :pointer; color: #888; font-weight: 300; font-size: 14pt;" onclick ="location.href='index.jsp?main=event/eventlist.jsp'">
 					스타보틀의 다양한 이벤트가 진행중입니다&nbsp;&gt;
@@ -322,9 +329,11 @@ $(function(){
 					 <%} %>
 			</div> 
 	   	</div>	 
+
 	</div>
 	<div class="slide_container" style="width: 100%; height: 820px;">
-	   	<h1 class="slide_title">매장</h1>
+
+	   	<h1 class="slide_title" style="font-weight: 600;">매장</h1>
 		<p style="text-align: center;">
 		   	<a style="cursor :pointer; color: #888; font-weight: 300; font-size: 14pt;" onclick ="location.href='index.jsp?main=map/map.jsp'">
 				스타보틀 매장을 어디서나 만나보세요&nbsp;&gt;
@@ -334,27 +343,30 @@ $(function(){
 	   
 	    <%	
 			for(StarMapDto smdto : listsm){%>
-			<div style ="cursor:pointer; margin: 40px;" class ="shopdetail" shopnum = "<%=smdto.getShopnum()%>">
+			<div style ="margin: 40px;" class ="shopdetail" shopnum = "<%=smdto.getShopnum()%>">
 			<div class ="shop_div" style ="width : 212px; height:212px; border-radius:125px;">
 	   		<img src ="shopmapsave/<%=smdto.getShopphoto() %>"  style ="width : 212px;height:212px;">
 	   		</div>
 	
+
 	   		<p style ="width : 212px; text-align:center; margin-top: 10px;"><%=smdto.getShopname() %></p>   		
+
 	   		</div>
 			 <%} %>   
 	
 		</div>
 	</div>
+
 </div>
 
  
   <!-- 매장위치 카카오맵
   <div class="main_location" id="main_location"> 매장위치</div>-->
 
-<!-- top button 작동안됨 -->
-<div class="fixed-btn">
-<a href="#top" class="on" style="opacity:1;"><span id="pageTop" >TOP</span></a>
-</div>
+
+
+<a href="#top" id="pageTop" class="on" style="opacity:1;">맨 위로 가기</a>
+
 </div>
 </div>
 
@@ -374,14 +386,6 @@ function openMenu(evt, cityName) {
 	  evt.currentTarget.className += " w3-red";
 	}
 	
-/* 카카오 맵api 
- var container = document.getElementById('main_location');
-var options = {
-	center: new kakao.maps.LatLng(33.450701, 126.570667),
-	level: 3
-};
-var map = new kakao.maps.Map(container, options);
-	 */
 </script>
 
 </html>

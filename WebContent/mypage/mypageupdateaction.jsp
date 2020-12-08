@@ -20,7 +20,12 @@ String loginid = request.getParameter("loginid");
 boolean find=dao.isIdPassCheck(loginid, password);	
 
 if(find){
-dao.updateMember(dto);	
+dao.updateMember(dto);
+%>
+<script type="text/javascript">
+alert("개인정보가 수정되었습니다.");
+</script>
+<%
 response.sendRedirect("../index.jsp?main=mypage/mypagemain.jsp");
 }else{%>
 <script type="text/javascript">

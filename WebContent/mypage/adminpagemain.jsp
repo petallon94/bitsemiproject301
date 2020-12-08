@@ -10,15 +10,15 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
   
 <title>Insert title here</title>
  <style>
 .admin_page_menu {display:flex; left: 20px; padding: 20px;float: left;}
-.nav {display: flex; flex-direction: column;}
-.nav-link {width: 200px; cursor:pointer;}
+.nav {display: flex; flex-direction: column; font-family: 'Noto Sans KR', Arial, sans-serif;}
+.nav-link {width: 200px; cursor:pointer; color:#00979f;}
 	
-.admin_page_content {display:flex; width:1200px; height: 100%; margin-top: 20px; float: left; margin-left: 100px;}
+.admin_page_content {display:flex; width:1200px; height: 100%; margin-top: 20px; float: left; margin-left: 100px; font-family: 'Noto Sans KR', Arial, sans-serif;}
 .admin_page_content img{max-width:100%;height :200px;}
 
 .img-cover{position: absolute;height: 100%;width: 100%;background-color: rgba(0, 0, 0, 0.4);z-index:1;}
@@ -63,7 +63,7 @@ $(function() {
 </div>
 <div class="admin_page_menu">
   <ul class="nav nav-tabs nav-justified" role="tablist">
-  	<li id="admin_nav-item1"><a class="nav-link active">메뉴관리</a></li>
+  	<li id="admin_nav-item1"><a class="nav-link">메뉴관리</a></li>
     <li id="admin_nav-item2"><a class="nav-link">지점관리</a></li>
     <li id="admin_nav-item3"><a class="nav-link">회원관리</a></li>
   </ul>

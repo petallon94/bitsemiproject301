@@ -29,7 +29,7 @@
 	String menunum = request.getParameter("menunum");
 	String menuprice = request.getParameter("menuprice");
 	String photo = request.getParameter("menuphoto");
-	
+	String category = request.getParameter("category");
 	//로그인한 아이디 구하기 - 수정
 	String id = (String)session.getAttribute("myid");
 
@@ -39,7 +39,7 @@
 	OrderDao odao = new OrderDao();
 	MenuDao medao = new MenuDao();
 	MenuDto medto = medao.getdata(menunum);
-
+	
 	DecimalFormat dmf = new DecimalFormat("###,###");
 	
 %>
@@ -53,6 +53,7 @@
 </div>
 <div id="ord_ctn">
 	<div class="img">
+	
 		<img src="menusave/<%=medto.getMenuphoto()%>" style="height: 640px; width: 480px;">
 		<!-- <img src="image/sumnail"> -->
 	</div>
@@ -61,6 +62,7 @@
 	<input type="hidden" name="orderid" value="<%=id%>">
 	<input type="hidden" name="mnname" value="<%=medto.getMenuname()%>">
 	<input type="hidden" name="orderprice" value="<%=medto.getMenuprice()%>">
+	<input type="hidden" name="category" value="<%=medto.getCategory()%>">
 		<div class="menuinfo">
 			<p class="main_t"><%=medto.getCategory()%> ) <%=medto.getMenuname() %></p>
 			<span class="sub_t"><%=medto.getMenudetail() %></span><br>
@@ -73,6 +75,27 @@
 		    <option value="L">Large</option>
 		    <option value="J">Jumbo</option>
 		</select>
+		<%
+			if(medto.getCategory().equals("디저트"))
+			{%>
+				<p class="ord_label hc">데워드릴까요?</p>
+				<div class="switch-field">
+					<input type="radio" id="radio-one" name="temp" value="Hot" checked/>
+					<label for="radio-one">Y</label>
+					<input type="radio" id="radio-two" name="temp" value="Cold" />
+					<label for="radio-two">N</label>
+				</div>
+			<%}else if(medto.getCategory().equals("프라푸치노"))
+			{%>
+				<p class="ord_label hc">Only Cold</p>
+				<div class="switch-field">
+					<input type="radio" id="radio-one" name="temp" value="Hot" disabled="disabled" />
+					<label for="radio-one">H</label>
+					<input type="radio" id="radio-two" name="temp" value="Cold" checked />
+					<label for="radio-two">C</label>
+				</div>
+			<%}else{
+		%>
 		<p class="ord_label hc">Hot / Cold</p>
 		<div class="switch-field">
 			<input type="radio" id="radio-one" name="temp" value="Hot" checked/>
@@ -80,6 +103,7 @@
 			<input type="radio" id="radio-two" name="temp" value="Cold" />
 			<label for="radio-two">C</label>
 		</div>
+		<%}%>
 		<p class="ord_label oi">Take Out / Eat In</p>
 		<div class="switch-field">
 			<input type="radio" id="radio-three" name="takeout" value="Out" checked/>

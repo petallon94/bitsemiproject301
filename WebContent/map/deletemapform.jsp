@@ -14,11 +14,10 @@
 <body>
 
 </body>
-<div class="alert alert-info" style="width: 600px; height: 200px; text-align: center; vertical-align: middle; padding-top: 20px;">
-	<form action="deletemapaction.jsp" method="post">
+<div class="alert alert-info">
+	<form action="map/deletemapaction.jsp" method="post">
 		<b>삭제할 매장명을 입력해주세요</b><br><br>
-		<input type="text" name="shopname" class="shopname form-control" style="width: 200px; margin-left: 177px;" required="required" autofocus="autofocus">
-		
+		<input type="text" name="shopname" class="shopname form-control" style="width: 200px; required="required" autofocus="autofocus">
 		<button style="margin-left: 320px; margin-top: -66px;" type="submit" class="btn btn-danger">매장삭제</button>
 	</form>
 </div>
