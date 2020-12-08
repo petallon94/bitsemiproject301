@@ -525,22 +525,3 @@ if(loginok!=null && myid.equals("admin"))
 <a id="test"></a>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
