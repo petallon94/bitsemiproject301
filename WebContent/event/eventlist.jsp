@@ -157,7 +157,7 @@ $(function(){
       		<div class="ev_content w3-third"
       		 eventnum="<%=idto.getEventnum()%>">
       		 <img src="eventsave/<%=idto.getEvlistimage()%>" 
-      		 class="w3-round w3-margin-bottom" style="width:90%">
+      		 class="w3-round w3-margin-bottom" style="width:232px;height: 230px;">
       		  <p class="ev_subject"><%=idto.getEvsubject()%><br>
       		  <%=idto.getEvstartday()%>~<%=idto.getEvendday()%>
       		  </p>
@@ -185,7 +185,7 @@ $(function(){
       		 ">
       		 </span>
       		 
-      		 <img src="eventsave/<%=edto.getEvlistimage()%>" class="w3-round w3-margin-bottom" style="width:90%">
+      		 <img src="eventsave/<%=edto.getEvlistimage()%>" class="w3-round w3-margin-bottom" style="width:232px;height: 230px;">
       		 </a> 
       		  <p class="ev_subject"><%=edto.getEvsubject()%><br>
       		  <%=edto.getEvstartday()%>~<%=edto.getEvendday()%>

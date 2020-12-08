@@ -277,7 +277,7 @@ $(function(){
   		<div class="ev_list w3-quarter"
   		eventnum="<%=ldto.getEventnum()%>">
   		<img src="eventsave/<%=ldto.getEvlistimage()%>"
-  		style="width:75%;">
+  		style="width:204px;height: 204px;">
   		<p class="ev_subject"><%=ldto.getEvsubject()%><br>
   		<%=ldto.getEvstartday()%>~<%=ldto.getEvendday()%>
   		</p>
