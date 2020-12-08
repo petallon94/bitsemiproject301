@@ -42,10 +42,12 @@ width: 50%;
 width: 100%;
 height: 100%;
 }
+
 #image-container_bg{
 position: relative;
 width: 100%;
 }
+
 #image-container_title{
     height: 104px;
     left: 50%;
@@ -56,26 +58,26 @@ width: 100%;
     z-index: 4;
     color: #ffffff;
     font-family: "Karma", sans-serif
+
 }
-.fixed-btn {
-    position: fixed;
-    z-index: 49;
-    right: 0;
-    bottom: 0;
+
+#pageTop {
     overflow: hidden;
+    position: fixed;
+    z-index: 300;
+    right: 31px;
+    bottom: 0;
+    width: 58px;
+    height: 58px;
+    border: 0;
+    background: url('./image/backtotop_icon.png') no-repeat 50% 50%;
+    font-size: 0;
+    line-height: 0;
+    text-indent: -9999px;
+    opacity: 0;
+    transition: background .2s;
 }
-.fixed-btn #pageTop {
-    width: 60px;
-    height: 60px;
-    background: url('./image/backtotop_icon.png') no-repeat center;
-    background-size: cover;
-    vertical-align: middle;
-    text-align: center;
-}
-
-
 .shop_div {
-
 	overflow: hidden;
 }
 .shop_div img {
@@ -99,13 +101,16 @@ width: 100%;
     transform:scale(1.2); 
     overflow: hidden;   
 }
+
+
 .promotion_slide {
 width: 1200px;
 }
 #Menu, #Event, #Shop {
 margin-top: 40px;
-
 }
+
+
 #main_location{
 width: 1000px; 
 height: 500px;
@@ -241,28 +246,25 @@ $(function(){
 	
 %>
 
-
 <div style="width:1260px; height : 100%;">
 <div class="slide_container" style="background-color : #eee;">
 	<h2 class="slide_title">메뉴</h2>
  	<div class="promotion_slide1 w3-container tabs" id="Menu">  			
 
 				<div class="slide_box" >        
-
 						<%for(MenuDto medto : list){%>
 						<div>
-							<a href="index.jsp?main=menu/menudetailpage.jsp?menunum=<%=medto.getMenunum()%>" target="_self" style="margin-left: 33px;">
+							<a href="index.jsp?main=menu/menudetailpage.jsp?menunum=<%=medto.getMenunum()%>" target="_self">
 								<p class="photo">
-									<img src="menusave/<%=medto.getMenuphoto() %>" class="t_hidden m_hidden" style="width: 270px; height: 270px;"/>									
+									<img src="menusave/<%=medto.getMenuphoto() %>" class="t_hidden m_hidden"/>									
 								</p>
-								<p class="desc_box" style="width: 270px; height: 50px; font-size: 14pt;">
+								<p class="desc_box">
 									<span class="subject"><%=medto.getMenuname() %></span>									
 								</p>
 							</a>						
 						</div>
 						 <%} %>
 				</div> 
-
 			<a style="cursor :pointer" onclick ="location.href='index.jsp?main=menu/menulist.jsp'">더보기</a>		 	
    	</div>
    	</div>
@@ -274,7 +276,7 @@ $(function(){
 						<div>
 							<a href="index.jsp?main=event/eventcontent.jsp?eventnum=<%=evdto.getEventnum()%>" target="_self">
 								<p class="photo">
-									<img src="menusave/<%=evdto.getEvlistimage() %>" style ="width : 250px; height:250px;" class="t_hidden m_hidden"/>									
+									<img src="eventsave/<%=evdto.getEvlistimage() %>" style ="width : 250px; height:250px;" class="t_hidden m_hidden"/>									
 								</p>
 								<p class="desc_box">
 									<span class="subject"><%=evdto.getEvsubject() %></span>									
@@ -284,7 +286,6 @@ $(function(){
 						 <%} %>
 				</div> 
 			<a style="cursor :pointer" onclick ="location.href='index.jsp?main=event/eventlist.jsp'">더보기</a>
-
    	</div>	 
 
    	 </div>
@@ -298,11 +299,11 @@ $(function(){
 		<div class ="shop_div" style ="width : 250px;height:250px; border-radius:125px; border : 1px solid black;">
    		<img src ="shopmapsave/<%=smdto.getShopphoto() %>"  style ="width : 250px;height:250px;">
    		</div>
-
    		<p style ="width:250px"><%=smdto.getShopname() %></p>   		
    		</div>
 		 <%} %>   
 		 <a style="cursor :pointer" onclick ="location.href='index.jsp?main=map/map.jsp'">더보기</a> 
+	
 
 </div>
 </div>
@@ -312,10 +313,10 @@ $(function(){
   <!-- 매장위치 카카오맵
   <div class="main_location" id="main_location"> 매장위치</div>-->
 
-<!-- top button 작동안됨 -->
-<div class="fixed-btn">
-<a href="#top" class="on" style="opacity:1;"><span id="pageTop" >TOP</span></a>
-</div>
+
+
+<a href="#top" id="pageTop" class="on" style="opacity:1;">맨 위로 가기</a>
+
 </div>
 </div>
 
@@ -341,8 +342,8 @@ var options = {
 	center: new kakao.maps.LatLng(33.450701, 126.570667),
 	level: 3
 };
+
 var map = new kakao.maps.Map(container, options);
 	 */
 </script>
-
 </html>
