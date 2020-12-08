@@ -20,6 +20,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 <!--   slick api -->
   <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
@@ -29,10 +30,10 @@
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b6754d93f8d097bb07dd758c1b12ba4c&libraries=services,clusterer,drawing"></script>
 <style>
 body{
-font-family: 'Gothic A1', sans-serif;
+font-family: 'Noto Sans KR', Arial, sans-serif;
 }
 h1,h2,h3 {
-font-family: "Karma", sans-serif
+font-family: 'Noto Sans KR', Arial, sans-serif;
 }
 .carousel-container{
 width: 50%;
@@ -44,12 +45,10 @@ width: 50%;
 width: 100%;
 height: 100%;
 }
-
 #image-container_bg{
 position: relative;
 width: 100%;
 }
-
 #image-container_title{
     height: 104px;
     left: 50%;
@@ -60,9 +59,7 @@ width: 100%;
     z-index: 4;
     color: #ffffff;
     font-family: "Karma", sans-serif
-
 }
-
 #pageTop {
     overflow: hidden;
     position: fixed;
@@ -103,8 +100,6 @@ width: 100%;
     transform:scale(1.2); 
     overflow: hidden;   
 }
-
-
 .promotion_slide {
 width: 1200px;
 }
@@ -121,8 +116,6 @@ text-align: center;
 }
 .menuslide_box div a:hover{text-decoration: none; color: black;}
 .menuslide_box div a p:hover{color: black;}
-
-
 .eventslide_box div{margin-right: 30px;}
 .eventslide_box div:last-child{margin-right: 0;}
 .eventslide_box div a:hover{text-decoration: none; color: black;}
