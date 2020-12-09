@@ -190,7 +190,7 @@ MemberDao dao=new MemberDao();
 //아이디에 해당하는 이름 얻기
 //String name=dao.getName(myid);
 //myid가 StarBottle(관리자)인 경우에만 보이기
-if(loginok!=null && (myid.equals("StarBottle")||myid.equals("admin")))
+if(loginok!=null && myid.equals("admin"))
 {%>
 	<%--공지사항 리스트 페이지 --%>
 	<div style="width: 1000px; height: 750px; margin: 60px auto;">

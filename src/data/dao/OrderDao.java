@@ -59,7 +59,7 @@ public class OrderDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
-			//바인딩
+			//諛붿씤�뵫
 			pstmt.setString(1, dto.getOrderid());
 			pstmt.setString(2, dto.getMnname());
 			pstmt.setString(3, dto.getSize());
@@ -67,7 +67,7 @@ public class OrderDao {
 			pstmt.setInt(5, dto.getOrderprice());
 			pstmt.setString(6, dto.getTakeout());
 			
-			//실행
+			//�떎�뻾
 			pstmt.execute();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -77,7 +77,7 @@ public class OrderDao {
 		}
 	}
 	
-	//장바구니 출력
+	//�옣諛붽뎄�땲 異쒕젰
 	public List<HashMap<String, String>> getOrderList(String id)
 	{
 		String sql="select m.menuname, m.menunum, m.menuphoto, m.menuprice, o.size, o.temp, o.takeout, o.orderdate, o.ordernum "
@@ -92,10 +92,10 @@ public class OrderDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
-			//바인딩
+			//諛붿씤�뵫
 			pstmt.setString(1, id);
 			
-			//실행
+			//�떎�뻾
 			rs=pstmt.executeQuery();
 			while(rs.next())
 			{
@@ -110,7 +110,7 @@ public class OrderDao {
 				map.put("orderdate", rs.getString("orderdate"));
 				map.put("ordernum", rs.getString("ordernum"));
 				
-				//list에 추가
+				//list�뿉 異붽�
 				list.add(map);
 			}
 		} catch (SQLException e) {
@@ -122,7 +122,7 @@ public class OrderDao {
 		return list;
 	}
 	
-	//장바구니 삭제 버튼 이벤
+	//�옣諛붽뎄�땲 �궘�젣 踰꾪듉 �씠踰�
 	public void deleteOrder(int ordernum)
 	{
 		Connection conn = null;
@@ -132,7 +132,7 @@ public class OrderDao {
 		conn = db.getMyConnection();
 		try {
 			pstmt = conn.prepareStatement(sql);
-			//ε
+			//琯
 			pstmt.setInt(1, ordernum);
 			//
 			pstmt.execute();
@@ -144,7 +144,7 @@ public class OrderDao {
 		}
 	}
 
-	//체크한 항목 데이터 가져오기
+	//泥댄겕�븳 �빆紐� �뜲�씠�꽣 媛��졇�삤湲�
 	public List<OrderDto> getFinishOrder(int ordernum)
 	{
 		List<OrderDto> list = new ArrayList<OrderDto>();
@@ -211,25 +211,24 @@ public class OrderDao {
 		return dto;
 	}
 	
-	//체크한 항목 데이터 insert하기
+	//泥댄겕�븳 �빆紐� �뜲�씠�꽣 insert�븯湲�
 	public void insertFinishOrder(OrderDto dto)
 	{
-		String sql="insert into forder (forderid, fmnname, fsize, ftemp, forderdate, forderprice) values (?,?,?,?,?,?)";
+		String sql="insert into forder (forderid, fmnname, fsize, ftemp, forderdate, forderprice) values (?,?,?,?,now(),?)";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		conn = db.getMyConnection();
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
-			//바인딩
+			//諛붿씤�뵫
 			pstmt.setString(1, dto.getOrderid());
 			pstmt.setString(2, dto.getMnname());
 			pstmt.setString(3, dto.getSize());
 			pstmt.setString(4, dto.getTemp());
-			pstmt.setTimestamp(5, dto.getOrderdate());
-			pstmt.setInt(6, dto.getOrderprice());
+			pstmt.setInt(5, dto.getOrderprice());
 			
-			//실행
+			//�떎�뻾
 			pstmt.execute();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

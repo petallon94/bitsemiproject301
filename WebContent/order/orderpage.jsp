@@ -30,6 +30,7 @@
 	String menuprice = request.getParameter("menuprice");
 	String photo = request.getParameter("menuphoto");
 	String category = request.getParameter("category");
+	
 	//로그인한 아이디 구하기 - 수정
 	String id = (String)session.getAttribute("myid");
 
@@ -63,6 +64,7 @@
 	<input type="hidden" name="mnname" value="<%=medto.getMenuname()%>">
 	<input type="hidden" name="orderprice" value="<%=medto.getMenuprice()%>">
 	<input type="hidden" name="category" value="<%=medto.getCategory()%>">
+	
 		<div class="menuinfo">
 			<p class="main_t"><%=medto.getCategory()%> ) <%=medto.getMenuname() %></p>
 			<span class="sub_t"><%=medto.getMenudetail() %></span><br>

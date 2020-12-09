@@ -25,7 +25,7 @@
 <body>
 <div class="gonupdateform">
   <fieldset style="width: 800px;">
-    <legend>SmartEditor 입력폼</legend>
+    <legend>게시글 수정</legend>
   	  <form action="gonji/gonupdateaction.jsp" method="post"
   		enctype="multipart/form-data"name="f">
 	    <!-- hidden -->
@@ -34,8 +34,7 @@
 	    
 	    <%-- 수정폼 : 중요한 건 value값--%>
 	    <table class="table table-bordered">
-	      <caption><b>게시글 수정</b></caption>
-		 	<tr>
+	       	<tr>
 		 		<th width="100" bgcolor="#ddd">작성자</th>
 		 		<td>
 		 			<input type="text" class="form-control"

@@ -1,3 +1,4 @@
+<%@page import="java.sql.Timestamp"%>
 <%@page import="data.dto.MemberDto"%>
 <%@page import="data.dto.OrderDto"%>
 <%@page import="data.dao.OrderDao"%>
@@ -19,7 +20,6 @@
 	String temp = request.getParameter("temp");
 	int orderprice = Integer.parseInt(request.getParameter("orderprice"));
 	String takeout = request.getParameter("takeout");
-	//String orderdate = request.getParameter("");
 	
 	odto.setOrderid(orderid);
 	odto.setMnname(mnname);
