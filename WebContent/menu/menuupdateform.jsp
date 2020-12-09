@@ -123,7 +123,7 @@ $(function(){
     </div>
     
     <br>
-    <button type="submit" class="btn btn-primary" onclick ="../index.jsp?main=mypage/adminpagemain.jsp">추가</button>
+    <button type="submit" class="btn btn-primary" onclick ="../index.jsp?main=mypage/adminpagemain.jsp">수정</button>
   </form>
 </div>
 

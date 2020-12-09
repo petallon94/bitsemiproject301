@@ -253,7 +253,7 @@ public class MemberDao {
 			//¹ÙÀÎµù
 			pstmt.setString(1, id);
 			pstmt.setString(2, password);
-			System.out.println(id+"   "+ password);
+			//System.out.println(id+"   "+ password);
 			rs=pstmt.executeQuery();
 			if(rs.next())
 				find=true;

@@ -122,7 +122,7 @@
 			<tr>
 				<td><%=no-- %></td>
 				<td><b><%=dto.getFmnname() %></b></td>
-				<td><%=dto.getFsize() %> / <%=dto.getFtemp() %><br><span style="color: #bbb;"><%=dto.getForderdate() %></span></td>
+				<td><%=dto.getFsize() %> / <%=dto.getFtemp() %><br><span style="color: #bbb;"><%=sdf.format(dto.getForderdate())%></span></td>
 				<td><%=df.format(dto.getForderprice()) %> 원</td>
 				<td>주문 완료</td>
 			</tr>

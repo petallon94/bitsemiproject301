@@ -81,7 +81,7 @@ function execDaumPostcode() {
 			<tr>
 				<td class="mapaddr" style="width: 150px; background-color: #f6c244;"><b>주 소</b></td>
 				<td>					
-					<input type="text" class="form-control input-sm" id="shoppostcode" name="shoppostcode" placeholder="우편번호" style="background-color: #eee; width: 80px;">&nbsp;
+					<input type="text" class="form-control input-sm" id="shoppostcode" name="shoppostcode" placeholder="우편번호" style="background-color: #eee; width: 100px;">&nbsp;
 					<button class="btn btn-outline-warning" id="btnpost" onclick="execDaumPostcode()">주소검색</button><br><p></p>
 					<input type="text" class="w-75 form-control input-sm" id="shopaddr" name="shopaddr" placeholder="주소" style="background-color: #eee">
 					<input type="text" class="w-75 form-control input-sm" id="shopaddrdetail" name="shopaddrdetail" placeholder="상세주소" required="required">

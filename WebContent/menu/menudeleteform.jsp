@@ -61,7 +61,7 @@
       <div class="modal-content">
         <!-- Modal body -->
         <div class="modal-body">
-        <input type="hide" class="form-control" id="menunum"  name="menunum" value =<%=num%>>
+        <input type="hidden" class="form-control" id="menunum"  name="menunum" value =<%=num%>>
 
         <div>정말 삭제하겠습니까?</div>
         <div class ="button-body">
